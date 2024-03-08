@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="15.1.0">
+  <zoom_level>9</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>198</x>
+      <y>288</y>
+      <w>189</w>
+      <h>135</h>
+    </coordinates>
+    <panel_attributes>Shape
+--
+-color:
+-map:
+--
++moveLeft()
++moveRight()
++moveDown()
++dropToBottom()
+*+rotateShape()*</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>549</x>
+      <y>297</y>
+      <w>189</w>
+      <h>135</h>
+    </coordinates>
+    <panel_attributes>Tetris
+--
+
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>369</x>
+      <y>477</y>
+      <w>189</w>
+      <h>135</h>
+    </coordinates>
+    <panel_attributes>GameFrame
+--
+
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>144</x>
+      <y>495</y>
+      <w>189</w>
+      <h>135</h>
+    </coordinates>
+    <panel_attributes>RulesEngine
+--
+
+--
++clearLine()
++endGame()
++updateScore()
++updateLinesNumber()</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>63</x>
+      <y>54</y>
+      <w>189</w>
+      <h>135</h>
+    </coordinates>
+    <panel_attributes>Grid
+--
+-width:
+-lenght:
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>369</x>
+      <y>63</y>
+      <w>189</w>
+      <h>135</h>
+    </coordinates>
+    <panel_attributes>MenuFrame
+--
+
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>
