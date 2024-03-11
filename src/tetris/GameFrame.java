@@ -18,15 +18,21 @@ import panels.InformationPanelRight;
 public class GameFrame extends JFrame {
 
 	private static final long serialVersionUID = 1L;
+	
+	private Color backgroundColor;
 
 	/**
 	 * The constructor creates the Frame for the game.
 	 */
 	public GameFrame() {
 		initFrame();
-		this.add(new GridPanel(), BorderLayout.CENTER);
-		this.add(new InformationPanelLeft(), BorderLayout.WEST);
-		this.add(new InformationPanelRight(), BorderLayout.EAST);
+		
+		//Set custom color
+		backgroundColor = new Color(255, 100, 50);
+		
+		this.add(new GridPanel(backgroundColor), BorderLayout.CENTER);
+		this.add(new InformationPanelLeft(backgroundColor), BorderLayout.WEST);
+		this.add(new InformationPanelRight(backgroundColor), BorderLayout.EAST);
 	
 	}
 
