@@ -17,16 +17,15 @@ import tetris.GridTableModel;
 public class GridPanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
-
-	private static final int numbRows = 20;
-	private static final int numbColumns = 10;
-
+	
 	/**
 	 * This constructor creates the grid panel where the Tetrominos are stored.
 	 * 
 	 * @param color Background color of the grid panel
+	 * @param numbRows Number of rows of the grid
+	 * @param numbColumns Number of columns of the grid
 	 */
-	public GridPanel(Color color) {
+	public GridPanel(Color color, int numbRows, int numbColumns) {
 		GridTableModel model = new GridTableModel(numbRows, numbColumns);
 		JTable table = new JTable(model);
 		table.setGridColor(Color.LIGHT_GRAY);

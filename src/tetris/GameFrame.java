@@ -3,7 +3,10 @@ package tetris;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+
+import javax.swing.Box;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 import panels.GridPanel;
 import panels.InformationPanelLeft;
@@ -21,14 +24,19 @@ public class GameFrame extends JFrame {
 	private static final int HEIGHT = 400;
 	
 	//Possibility to change background color
-	private Color backgroundColor = new Color(255, 100, 50);;
+	private Color backgroundColor = new Color(255, 50, 50);
+	
+	private JPanel menuPanel, gamePanel, pausePanel;
 
 	/**
 	 * The constructor creates the Frame for the game.
 	 */
 	public GameFrame() {
 		initFrame();
-		initPanels();
+		initMenuPanel();
+		
+		//Call later if Game is started
+		initGamePanel();
 	}
 
 	/**
@@ -46,10 +54,26 @@ public class GameFrame extends JFrame {
 	/**
 	 * This method initialize the panels
 	 */
-	private void initPanels() {
-		this.add(new GridPanel(backgroundColor), BorderLayout.CENTER);
-		this.add(new InformationPanelLeft(backgroundColor), BorderLayout.WEST);
-		this.add(new InformationPanelRight(backgroundColor), BorderLayout.EAST);
+	private void initGamePanel() {
+		
+		gamePanel = new JPanel();
+		gamePanel.setLayout(new BorderLayout());
+		
+		//TODO How to keep the grid centered???
+		gamePanel.add(new GridPanel(backgroundColor, 20, 10), BorderLayout.CENTER);
+		gamePanel.add(new InformationPanelLeft(backgroundColor), BorderLayout.WEST);
+		gamePanel.add(new InformationPanelRight(backgroundColor), BorderLayout.EAST);
+		this.add(gamePanel);
+		
+	}
+	
+	/**
+	 * This method initialize the panel with the menu view
+	 */
+	private void initMenuPanel() {
+		//TODO
+		menuPanel = new JPanel();
+		this.add(menuPanel);
 	}
 }
 
