@@ -23,6 +23,8 @@ public class GameFrame extends JFrame {
 		this.setMinimumSize(new Dimension(700, 400));
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setLocationRelativeTo(null); //Place the JFrame in the middle of the screen
+		GridPanel gridPanel = new GridPanel();
+		this.add(gridPanel);
 
 	}
 
