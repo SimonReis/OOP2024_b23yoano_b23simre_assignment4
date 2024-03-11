@@ -32,9 +32,10 @@ public class InformationPanelRight extends JPanel {
 		linesLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 		this.add(linesLabel);
 		
-		nextTetrominoLabel = new JLabel("Lines: 0");
+		nextTetrominoLabel = new JLabel("Next:");
 		nextTetrominoLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 		this.add(nextTetrominoLabel);
+		
 		
 		
 		
