@@ -6,6 +6,9 @@ import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.table.TableColumn;
 
+import tetris.GridCellRenderer;
+import tetris.GridTableModel;
+
 public class GridPanel extends JPanel {
 	
 	/**
