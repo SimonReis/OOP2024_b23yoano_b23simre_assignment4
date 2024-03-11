@@ -9,9 +9,9 @@ public class GridTableModel extends DefaultTableModel {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public GridTableModel() {
-		this.setRowCount(20);
-		this.setColumnCount(10);
+	public GridTableModel(int numbRows, int numbColumns) {
+		this.setRowCount(numbRows);
+		this.setColumnCount(numbColumns);
 	}
 	
 	@Override
