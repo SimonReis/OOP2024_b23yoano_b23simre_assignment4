@@ -3,6 +3,7 @@ package tetris;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.GridLayout;
 
 import javax.swing.Box;
 import javax.swing.JFrame;
@@ -24,7 +25,7 @@ public class GameFrame extends JFrame {
 	private static final int HEIGHT = 400;
 	
 	//Possibility to change background color
-	private Color backgroundColor = new Color(255, 50, 50);
+	private Color backgroundColor = new Color(255, 60, 50);
 	
 	private JPanel menuPanel, gamePanel, pausePanel;
 
@@ -57,16 +58,16 @@ public class GameFrame extends JFrame {
 	private void initGamePanel() {
 		
 		gamePanel = new JPanel();
-		gamePanel.setLayout(new BorderLayout());
+		gamePanel.setLayout(new GridLayout(1,3));
 		
-		//TODO How to keep the grid centered???
+		//Create the three panels with informations and the grid
 		JPanel gridPanel = new GridPanel(backgroundColor);
 		JPanel leftPanel = new InformationPanelLeft(backgroundColor);
 		JPanel rightPanel = new InformationPanelRight(backgroundColor);
 		
-		gamePanel.add(gridPanel, BorderLayout.CENTER);
-		gamePanel.add(leftPanel, BorderLayout.WEST);
-		gamePanel.add(rightPanel, BorderLayout.EAST);
+		gamePanel.add(leftPanel);
+		gamePanel.add(gridPanel);
+		gamePanel.add(rightPanel);
 		this.add(gamePanel);
 		
 	}
