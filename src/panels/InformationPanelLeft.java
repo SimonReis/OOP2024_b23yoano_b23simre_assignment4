@@ -23,16 +23,17 @@ public class InformationPanelLeft extends JPanel {
 		this.setBackground(color);
 
 		JLabel titleLabel = new JLabel("Tetris");
+		titleLabel.setLayout(null);
+		
+		
 		titleLabel.setFont(new Font("Arial", Font.BOLD, 65));
-		//titleLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
-		//titleLabel.setBounds(50,100, 100,100); 
 		this.add(titleLabel);
 		
 		
 		
 		
 		JPanel buttonPanel = new JPanel();
-		buttonPanel.setLayout(null);
+		buttonPanel.setLayout(new GridLayout(3,1));
 		buttonPanel.setBackground(color);
 		
 		

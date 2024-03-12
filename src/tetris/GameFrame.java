@@ -25,7 +25,7 @@ public class GameFrame extends JFrame {
 	private static final int HEIGHT = 400;
 	
 	//Possibility to change background color
-	private Color backgroundColor = new Color(255, 60, 50);
+	private Color backgroundColor = new Color(127, 0, 255);
 	
 	private JPanel menuPanel, gamePanel, pausePanel;
 
