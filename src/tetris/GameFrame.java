@@ -60,9 +60,13 @@ public class GameFrame extends JFrame {
 		gamePanel.setLayout(new BorderLayout());
 		
 		//TODO How to keep the grid centered???
-		gamePanel.add(new GridPanel(backgroundColor), BorderLayout.CENTER);
-		gamePanel.add(new InformationPanelLeft(backgroundColor), BorderLayout.WEST);
-		gamePanel.add(new InformationPanelRight(backgroundColor), BorderLayout.EAST);
+		JPanel gridPanel = new GridPanel(backgroundColor);
+		JPanel leftPanel = new InformationPanelLeft(backgroundColor);
+		JPanel rightPanel = new InformationPanelRight(backgroundColor);
+		
+		gamePanel.add(gridPanel, BorderLayout.CENTER);
+		gamePanel.add(leftPanel, BorderLayout.WEST);
+		gamePanel.add(rightPanel, BorderLayout.EAST);
 		this.add(gamePanel);
 		
 	}

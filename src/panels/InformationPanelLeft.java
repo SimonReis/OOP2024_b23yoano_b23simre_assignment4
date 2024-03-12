@@ -1,4 +1,5 @@
 package panels;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
@@ -14,24 +15,21 @@ import javax.swing.SwingConstants;
 public class InformationPanelLeft extends JPanel {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	public InformationPanelLeft(Color color) {
-		
+
 		this.setLayout(new BorderLayout());
+		this.setBounds(0, 0, 300, 200);
 		this.setBackground(color);
-		
-		ImageIcon image = new ImageIcon("/Users/simonreis/Downloads/aaa_tetris_logo.jpg");
-		
-		JLabel logo = new JLabel(image);
-//		JLabel titleLabel = new JLabel("Tetris");
+
+		JLabel titleLabel = new JLabel("Tetris");
 //		titleLabel.setFont(new Font("Arial", Font.BOLD, 65));
-//        titleLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
-        
-        this.add(logo, BorderLayout.NORTH);
-        
-        JButton pauseButton = new JButton("Pause Game");
-        this.add(pauseButton, BorderLayout.SOUTH);
+//		titleLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+		titleLabel.setBounds(1000,100, 100,1000); 
+		this.add(titleLabel, BorderLayout.NORTH);
+
+		JButton pauseButton = new JButton("Pause Game");
+		this.add(pauseButton, BorderLayout.SOUTH);
 	}
-	
-	
+
 }
