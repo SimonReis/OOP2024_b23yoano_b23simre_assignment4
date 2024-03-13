@@ -35,11 +35,15 @@ public class GameFrame extends JFrame {
 	 * the view if the game is paused.
 	 */
 	private JPanel menuPanel, gamePanel, pausePanel;
+	
+	private GridTable table;
 
 	/**
 	 * The constructor creates the Frame for the game.
 	 */
-	public GameFrame() {
+	public GameFrame(GridTable tabel) {
+		
+		this.table = table;
 		initFrame();
 		initMenuPanel();
 
@@ -78,7 +82,7 @@ public class GameFrame extends JFrame {
 		this.pack();
 		
 		//System.out.println("Frame size 2: " + gamePanel.getSize());
-		
+	}	
 
 	private void initGridPanel() {
 		JPanel gridPanel = new JPanel();
