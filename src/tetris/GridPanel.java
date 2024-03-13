@@ -4,6 +4,7 @@ import java.awt.Color;
 
 import javax.swing.JPanel;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 
 public class GridPanel extends JPanel {
@@ -14,7 +15,7 @@ public class GridPanel extends JPanel {
 	private static final long serialVersionUID = 1L;
 
 	public GridPanel() {
-		
+
 		GridTableModel model = new GridTableModel();
 		JTable table = new JTable(model);
 		table.setGridColor(Color.LIGHT_GRAY);
@@ -23,8 +24,8 @@ public class GridPanel extends JPanel {
 	        TableColumn column = table.getColumnModel().getColumn(i);
 	        column.setPreferredWidth(24);
 	    }
-		table.setDefaultRenderer(Object.class, new GridCellRenderer());
-		model.setValueAt(0, 2, 1);
+	    model.setValueAt(1, 2, 1);
+		table.setDefaultRenderer(Object.class, new GridTableRenderer());
 		this.add(table);
 	
 	}
