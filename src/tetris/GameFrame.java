@@ -75,9 +75,14 @@ public class GameFrame extends JFrame {
 		JPanel leftPanel = new InformationPanelLeft(backgroundColor);
 		JPanel rightPanel = new InformationPanelRight(backgroundColor);
 
+		
+		
 		gamePanel.add(leftPanel);
 		gamePanel.add(gridPanel);
 		gamePanel.add(rightPanel);
+		
+		gridPanel.add(table);
+		
 		this.add(gamePanel);
 		this.pack();
 		
