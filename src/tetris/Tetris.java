@@ -23,9 +23,18 @@ public class Tetris {
 		GameFrame frame = new GameFrame(table);
 		frame.setVisible(true);
 		frame.pack();
-        Timer timer = new Timer();
-        long delay = 100; // Delay in milliseconds
-        timer.scheduleAtFixedRate(new Block(table, 0, 5), 0, delay);
+		
+		int i = 0;
+		
+		while (i < 10) {
+			Timer timer = new Timer();
+			Block block = new Block(table, 0, 5);
+	        timer.scheduleAtFixedRate(block, 0, 100);
+	        while (block.isMoving()) {
+	        	
+	        }
+	        i++;
+		}
 	}
 
 }
