@@ -51,6 +51,14 @@ public class GameFrame extends JFrame {
 	/**
 	 * This method initialize the main frame.
 	 */
+	private GridTable table;
+
+	public GameFrame(GridTable table) {
+		this.table = table;
+		initFrame();
+		initGridPanel();
+	}
+
 	private void initFrame() {
 		this.setTitle("Tetris Game");
 		this.setMinimumSize(new Dimension(WIDTH, HEIGHT));
@@ -80,6 +88,10 @@ public class GameFrame extends JFrame {
 		//System.out.println("Frame size 2: " + gamePanel.getSize());
 		
 
+	private void initGridPanel() {
+		JPanel gridPanel = new JPanel();
+		gridPanel.add(table);
+		this.add(gridPanel);
 	}
 
 	/**

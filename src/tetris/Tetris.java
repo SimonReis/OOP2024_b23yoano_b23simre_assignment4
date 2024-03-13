@@ -1,5 +1,7 @@
 package tetris;
 
+import java.util.Timer;
+
 /**
  * This class runs the Tetris game.
  * 
@@ -17,9 +19,19 @@ public class Tetris {
 	
 	private void execute() {
 		System.out.println("Execute");
-		GameFrame frame = new GameFrame();
+		GridTable table = new GridTable();
+		GameFrame frame = new GameFrame(table);
 		frame.setVisible(true);
 		frame.pack();
+        Timer timer = new Timer();
+        long delay = 100; // Delay in milliseconds
+        try {
+            timer.scheduleAtFixedRate(new Block(table, 0, 5), 0, delay);
+        } catch (RuntimeException e) {
+        	e.printStackTrace();
+            System.out.println("Action stopped!");
+            timer.cancel();
+        }
 	}
 
 }
