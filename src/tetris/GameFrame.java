@@ -8,7 +8,7 @@ import java.awt.GridLayout;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import panels.GridPanel;
+//import panels.GridPanel;
 import panels.InformationPanelLeft;
 import panels.InformationPanelRight;
 
@@ -35,11 +35,15 @@ public class GameFrame extends JFrame {
 	 * the view if the game is paused.
 	 */
 	private JPanel menuPanel, gamePanel, pausePanel;
+	
+	private GridTable table;
 
 	/**
 	 * The constructor creates the Frame for the game.
 	 */
-	public GameFrame() {
+	public GameFrame(GridTable table) {
+	
+		this.table = table;
 		initFrame();
 		initMenuPanel();
 
@@ -48,16 +52,6 @@ public class GameFrame extends JFrame {
 	
 	}
 
-	/**
-	 * This method initialize the main frame.
-	 */
-	private GridTable table;
-
-	public GameFrame(GridTable table) {
-		this.table = table;
-		initFrame();
-		initGridPanel();
-	}
 
 	private void initFrame() {
 		this.setTitle("Tetris Game");
@@ -74,8 +68,11 @@ public class GameFrame extends JFrame {
 		gamePanel = new JPanel();
 		gamePanel.setLayout(new GridLayout(1, 3));
 
-		// Create the three panels with informations and the grid
-		JPanel gridPanel = new GridPanel(backgroundColor);
+		//TODO Add Background color
+		JPanel gridPanel = new JPanel();
+		gridPanel.add(table);
+		this.add(gridPanel);
+		
 		JPanel leftPanel = new InformationPanelLeft(backgroundColor);
 		JPanel rightPanel = new InformationPanelRight(backgroundColor);
 
@@ -85,14 +82,9 @@ public class GameFrame extends JFrame {
 		this.add(gamePanel);
 		this.pack();
 		
-		//System.out.println("Frame size 2: " + gamePanel.getSize());
-		
-
-	private void initGridPanel() {
-		JPanel gridPanel = new JPanel();
-		gridPanel.add(table);
-		this.add(gridPanel);
 	}
+
+
 
 	/**
 	 * This method initialize the panel with the menu view
