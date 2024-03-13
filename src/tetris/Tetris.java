@@ -24,8 +24,9 @@ public class Tetris {
 		frame.setVisible(true);
 		frame.pack();
         Timer timer = new Timer();
-        long delay = 1000; // Delay in milliseconds
-        timer.scheduleAtFixedRate(new GameEngine(table), 0, delay);
+        long delay = 100; // Delay in milliseconds
+        timer.scheduleAtFixedRate(new Block(table, 0, 5), 0, delay);
+        
 	}
 
 }
