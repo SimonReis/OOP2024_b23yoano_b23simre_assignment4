@@ -1,20 +1,18 @@
 package panels;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Component;
-import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.SwingConstants;
 
+/**
+ * This class represent the left information panel with the logo and the pause button of tetris.
+ */
 public class InformationPanelLeft extends JPanel {
 
 	private static final long serialVersionUID = 1L;
