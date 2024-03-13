@@ -80,6 +80,10 @@ public class GameFrame extends JFrame {
 		//System.out.println("Frame size 2: " + gamePanel.getSize());
 		
 
+	private void initGridPanel() {
+		JPanel gridPanel = new JPanel();
+		gridPanel.add(table);
+		this.add(gridPanel);
 	}
 
 	/**
