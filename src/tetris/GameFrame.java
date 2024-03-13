@@ -28,7 +28,7 @@ public class GameFrame extends JFrame {
 	/**
 	 * Possibility to change background color
 	 */
-	private Color backgroundColor = new Color(127, 0, 255);
+	private Color backgroundColor = new Color(0, 0, 255);
 
 	/**
 	 * For the game there are three different views. The menu, the game itself and
