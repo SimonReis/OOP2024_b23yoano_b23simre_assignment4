@@ -25,13 +25,17 @@ public class Tetris {
 		frame.pack();
 		
 		int i = 0;
-		
+		Timer timer = new Timer();
 		while (i < 10) {
-			Timer timer = new Timer();
 			Block block = new Block(table, 0, 5);
 	        timer.scheduleAtFixedRate(block, 0, 100);
 	        while (block.isMoving()) {
-	        	
+	        	try {
+					Thread.sleep(100);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 	        }
 	        i++;
 		}
