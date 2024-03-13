@@ -1,5 +1,6 @@
 package tetris;
 
+import java.util.Random;
 import java.util.Timer;
 
 /**
@@ -26,8 +27,12 @@ public class Tetris {
 		
 		int i = 0;
 		Timer timer = new Timer();
-		while (i < 10) {
-			Block block = new Block(table, 0, 5);
+		while (true) {
+			Random r = new Random();
+			int low = 0;
+			int high = 10;
+			int col = r.nextInt(high-low) + low;
+			Block block = new Block(table, 0, col);
 	        timer.scheduleAtFixedRate(block, 0, 100);
 	        while (block.isMoving()) {
 	        	try {
