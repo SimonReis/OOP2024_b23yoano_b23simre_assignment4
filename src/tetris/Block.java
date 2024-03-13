@@ -19,33 +19,19 @@ public class Block extends TimerTask {
 	public void run() {
 		// TODO Auto-generated method stub
 		System.out.println("Action performed at: " + new java.util.Date());
-		if (row < 19) {
+		
+//		System.out.println("row " + row + " = " + table.getValueAt(row, col));
+//		System.out.println("row " + row+2 + " = " + table.getValueAt(row+1, col));
+		if (row < 19 && (int) table.getValueAt(row+1, col) != 1) {
 			table.setValueAt(0, row, col);
 			row++;
 			table.setValueAt(1, row, col);
 		} else {
-			System.out.println("Action exit");
+			System.out.println("Blocage");
 			cancel();
 		}
 		
 	}
-	
-	
-	
-	public int getRow() {
-		return row;
-	}
-	
-	public int getCol() {
-		return col;
-	}
-	
-	public void setRow(int row) {
-		this.row = row;
-	}
-	
-	public void setCol(int col) {
-		this.col = col;
-	}
+
 
 }

@@ -25,8 +25,13 @@ public class Tetris {
 		frame.pack();
         Timer timer = new Timer();
         long delay = 100; // Delay in milliseconds
-        timer.scheduleAtFixedRate(new Block(table, 0, 5), 0, delay);
-        
+        try {
+            timer.scheduleAtFixedRate(new Block(table, 0, 5), 0, delay);
+        } catch (RuntimeException e) {
+        	e.printStackTrace();
+            System.out.println("Action stopped!");
+            timer.cancel();
+        }
 	}
 
 }
