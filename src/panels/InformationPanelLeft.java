@@ -20,9 +20,11 @@ public class InformationPanelLeft extends JPanel {
 	JLabel titleLabel;
 	JPanel buttonPanel;
 	JButton pauseButton;
+	
+	private Color color;
 
 	public InformationPanelLeft(Color color) {
-
+		this.color = color;
 		initPanel(color);
 		initLogo();
 		initButton(color);

@@ -10,16 +10,16 @@ public class TableModel extends DefaultTableModel {
 	/**
 	 * Constructor
 	 */
-	public TableModel(int numRow, int numCol) {
-		Object[][] data = new Object[numRow][numCol];
+	public TableModel(int numRow, int numCols) {
+		Object[][] data = new Object[numRow][numCols];
 		for (int i = 0; i < numRow; i++) {
-			for (int j = 0; j < numCol; j++) {
+			for (int j = 0; j < numCols; j++) {
 				data[i][j] = 0;
 			}
 		}
 
-		String[] columns = new String[numCol];
-		for (int i = 0; i < numCol; i++) {
+		String[] columns = new String[numCols];
+		for (int i = 0; i < numCols; i++) {
 			columns[i] = "Column" + i;
 		}
 		this.setDataVector(data, columns);

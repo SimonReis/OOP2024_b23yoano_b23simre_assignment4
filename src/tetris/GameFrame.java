@@ -1,6 +1,5 @@
 package tetris;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
@@ -8,6 +7,7 @@ import java.awt.GridLayout;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import panels.GridPanel;
 //import panels.GridPanel;
 import panels.InformationPanelLeft;
 import panels.InformationPanelRight;
@@ -35,20 +35,18 @@ public class GameFrame extends JFrame {
 	 * the view if the game is paused.
 	 */
 	private JPanel menuPanel, gamePanel, pausePanel;
-	
-	private GridTable table;
 
 	/**
 	 * The constructor creates the Frame for the game.
 	 */
-	public GameFrame(GridTable table) {
-	
-		this.table = table;
+	public GameFrame() {
+
 		initFrame();
 		initMenuPanel();
 
 		// Call later if Game is started
 		initGamePanel();
+		
 	
 	}
 
@@ -57,6 +55,9 @@ public class GameFrame extends JFrame {
 		this.setMinimumSize(new Dimension(WIDTH, HEIGHT));
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setLocationRelativeTo(null); // Place the JFrame in the middle of the screen
+		
+		GameListener gameListener = new GameListener();
+		this.addKeyListener(gameListener);
 	}
 
 	/**
@@ -67,17 +68,10 @@ public class GameFrame extends JFrame {
 		gamePanel = new JPanel();
 		gamePanel.setLayout(new GridLayout(1, 3));
 
-		//TODO Add Background color
-		JPanel gridPanel = new JPanel();
-		gridPanel.setBackground(backgroundColor);
-		gridPanel.add(table);
-		
-		
+		JPanel gridPanel = new GridPanel(backgroundColor);
 		JPanel leftPanel = new InformationPanelLeft(backgroundColor);
 		JPanel rightPanel = new InformationPanelRight(backgroundColor);
 
-		
-		
 		gamePanel.add(leftPanel);
 		gamePanel.add(gridPanel);
 		gamePanel.add(rightPanel);

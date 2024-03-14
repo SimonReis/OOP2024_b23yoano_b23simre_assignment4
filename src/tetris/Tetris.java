@@ -1,8 +1,5 @@
 package tetris;
 
-import java.util.Random;
-import java.util.Timer;
-
 /**
  * This class runs the Tetris game.
  * 
@@ -20,29 +17,13 @@ public class Tetris {
 		Tetris application = new Tetris();
 		application.execute();
 	}
-	
+
 	/**
 	 * This method executes the Tetris Game
 	 */
 	private void execute() {
-		
-		GridTable table = new GridTable();
-		GameFrame frame = new GameFrame(table);
+		GameFrame frame = new GameFrame();
 		frame.setVisible(true);
 		frame.pack();
-		GameListener gameListener = new GameListener();
-		frame.addKeyListener(gameListener);
-		while (true) {
-			Block block = new Block(table, 0, 4);
-	        while (block.isMoving()) {
-	        	try {
-					Thread.sleep(100);
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-	        }
-		}
 	}
-
 }
