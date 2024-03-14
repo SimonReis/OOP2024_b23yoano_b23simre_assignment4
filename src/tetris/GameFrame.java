@@ -35,19 +35,20 @@ public class GameFrame extends JFrame {
 	 * the view if the game is paused.
 	 */
 	private JPanel menuPanel, gamePanel, pausePanel;
+	
+	Grid gameGrid;
 
 	/**
 	 * The constructor creates the Frame for the game.
 	 */
-	public GameFrame() {
-
+	public GameFrame(Grid gameGrid) {
+		this.gameGrid = gameGrid;
 		initFrame();
-		initMenuPanel();
+		// initMenuPanel();
 
 		// Call later if Game is started
 		initGamePanel();
-		
-	
+
 	}
 
 	private void initFrame() {
@@ -55,7 +56,7 @@ public class GameFrame extends JFrame {
 		this.setMinimumSize(new Dimension(WIDTH, HEIGHT));
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setLocationRelativeTo(null); // Place the JFrame in the middle of the screen
-		
+
 		GameListener gameListener = new GameListener();
 		this.addKeyListener(gameListener);
 	}
@@ -68,20 +69,18 @@ public class GameFrame extends JFrame {
 		gamePanel = new JPanel();
 		gamePanel.setLayout(new GridLayout(1, 3));
 
-		JPanel gridPanel = new GridPanel(backgroundColor);
+		JPanel gridPanel = new GridPanel(backgroundColor, gameGrid);
 		JPanel leftPanel = new InformationPanelLeft(backgroundColor);
 		JPanel rightPanel = new InformationPanelRight(backgroundColor);
-
+		
 		gamePanel.add(leftPanel);
 		gamePanel.add(gridPanel);
 		gamePanel.add(rightPanel);
-		
+
 		this.add(gamePanel);
 		this.pack();
-		
+
 	}
-
-
 
 	/**
 	 * This method initialize the panel with the menu view
@@ -91,4 +90,6 @@ public class GameFrame extends JFrame {
 		menuPanel = new JPanel();
 		this.add(menuPanel);
 	}
+	
+
 }

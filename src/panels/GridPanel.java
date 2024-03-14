@@ -21,35 +21,18 @@ public class GridPanel extends JPanel {
 	private static final long serialVersionUID = 1L;
 
 	Grid gameGrid;
-	
 
 	/**
 	 * This constructor creates the grid panel where the Tetrominos are stored.
 	 * 
 	 * @param color Background color of the grid panel
 	 */
-	public GridPanel(Color color) {
+	public GridPanel(Color color, Grid gameGrid) {
+
 		this.setBackground(color);
-		gameGrid = new Grid(20,10);
 		this.add(gameGrid);
-		
-		while (true) {
-			Block block = new Block(gameGrid, 0, 4);
-	        while (block.isMoving()) {
-	        	try {
-					Thread.sleep(100);
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-	        }
-		}
-		
-		
-		
+
+
 	}
-	
-//	public Grid getGameGrid() {
-//		return gameGrid;
-//	}
+
 }
