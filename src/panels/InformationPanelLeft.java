@@ -20,9 +20,11 @@ public class InformationPanelLeft extends JPanel {
 	JLabel titleLabel;
 	JPanel buttonPanel;
 	JButton pauseButton;
+	
+	private Color color;
 
 	public InformationPanelLeft(Color color) {
-
+		this.color = color;
 		initPanel(color);
 		initLogo();
 		initButton(color);
@@ -59,7 +61,6 @@ public class InformationPanelLeft extends JPanel {
 		buttonPanel.setBackground(color);
 		buttonPanel.setLayout( new GridBagLayout() );
 		pauseButton = new JButton("Pause Game");
-		pauseButton.setForeground(color);
 		
 		// TODO Resize not possible
 		//pauseButton.setSize(200, 100);

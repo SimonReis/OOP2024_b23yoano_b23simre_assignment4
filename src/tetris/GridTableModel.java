@@ -2,24 +2,26 @@ package tetris;
 
 import javax.swing.table.DefaultTableModel;
 
-public class TableModel extends DefaultTableModel {
+public class GridTableModel extends DefaultTableModel {
 
-	
+	/**
+	 * 
+	 */
 	private static final long serialVersionUID = 1L;
 	
 	/**
 	 * Constructor
 	 */
-	public TableModel(int numRow, int numCols) {
-		Object[][] data = new Object[numRow][numCols];
-		for (int i = 0; i < numRow; i++) {
-			for (int j = 0; j < numCols; j++) {
+	public GridTableModel() {
+		Object[][] data = new Object[20][10];
+		for (int i = 0; i < 20; i++) {
+			for (int j = 0; j < 10; j++) {
 				data[i][j] = 0;
 			}
 		}
-
-		String[] columns = new String[numCols];
-		for (int i = 0; i < numCols; i++) {
+		data[19][5] = 1;
+		String[] columns = new String[10];
+		for (int i = 0; i < 10; i++) {
 			columns[i] = "Column" + i;
 		}
 		this.setDataVector(data, columns);

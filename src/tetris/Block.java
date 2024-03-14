@@ -7,13 +7,13 @@ import javax.swing.Timer;
 
 public class Block {
 
-	private GridTable table;
+	private Grid table;
 	private int row;
 	private int col;
 	private boolean isMoving;
 	private Timer timer;
 
-	public Block(GridTable table, int row, int col) {
+	public Block(Grid table, int row, int col) {
 		this.table = table;
 		this.row = row;
 		this.col = col;
@@ -52,5 +52,6 @@ public class Block {
 		return isMoving;
 
 	}
+
 
 }
