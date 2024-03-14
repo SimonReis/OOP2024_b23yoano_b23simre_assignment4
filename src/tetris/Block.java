@@ -1,36 +1,56 @@
 package tetris;
 
-import java.util.TimerTask;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class Block extends TimerTask {
-	
+import javax.swing.Timer;
+
+public class Block {
+
 	private GridTable table;
 	private int row;
 	private int col;
-	
+	private boolean isMoving;
+	private Timer timer;
+
 	public Block(GridTable table, int row, int col) {
 		this.table = table;
 		this.row = row;
 		this.col = col;
 		table.setValueAt(1, row, col);
+		isMoving = true;
+		ActionListener actionListener = new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				performTask();
+			}
+		};
+		timer = new Timer(100, actionListener);
+		timer.start();
 	}
-	
-	@Override
-	public void run() {
-		// TODO Auto-generated method stub
-		System.out.println("Action performed at: " + new java.util.Date());
-		
-//		System.out.println("row " + row + " = " + table.getValueAt(row, col));
-//		System.out.println("row " + row+2 + " = " + table.getValueAt(row+1, col));
-		if (row < 19 && (int) table.getValueAt(row+1, col) != 1) {
+
+	// Implement your task logic here
+	public void performTask() {
+		// Your code to be executed repeatedly
+		if (row < 19 && (int) table.getValueAt(row + 1, col) != 1) {
 			table.setValueAt(0, row, col);
 			row++;
 			table.setValueAt(1, row, col);
 		} else {
 			System.out.println("Blocage");
-			cancel();
+			isMoving = false;
+			timer.stop();
 		}
-		
+	}
+
+	// Create a timer with a delay of 1 second (1000 millisecondsTimerimer timer =
+	// new Timer(1000, actionListener);
+
+	// Start the timer
+
+	public boolean isMoving() {
+		return isMoving;
+
 	}
 
 

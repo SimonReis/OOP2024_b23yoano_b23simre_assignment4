@@ -1,5 +1,6 @@
 package tetris;
 
+import java.util.Random;
 import java.util.Timer;
 
 /**
@@ -29,15 +30,19 @@ public class Tetris {
 		GameFrame frame = new GameFrame(table);
 		frame.setVisible(true);
 		frame.pack();
-        Timer timer = new Timer();
-        long delay = 100; // Delay in milliseconds
-        try {
-            timer.scheduleAtFixedRate(new Block(table, 0, 5), 0, delay);
-        } catch (RuntimeException e) {
-        	e.printStackTrace();
-            System.out.println("Action stopped!");
-            timer.cancel();
-        }
+		GameListener gameListener = new GameListener();
+		frame.addKeyListener(gameListener);
+		while (true) {
+			Block block = new Block(table, 0, 4);
+	        while (block.isMoving()) {
+	        	try {
+					Thread.sleep(100);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+	        }
+		}
 	}
 
 }
