@@ -13,7 +13,7 @@ public class Grid extends JTable {
 	private static final long serialVersionUID = 1L;
 
 	public Grid(int numRows, int numCols) {
-		TableModel model = new TableModel(numRows, numCols);
+		GridModel model = new GridModel(numRows, numCols);
 		this.setModel(model);
 		this.setGridColor(Color.LIGHT_GRAY);
 		this.setRowHeight(24); //TODO Maybe add resize later
@@ -21,7 +21,7 @@ public class Grid extends JTable {
 			TableColumn column = this.getColumnModel().getColumn(i);
 			column.setPreferredWidth(24);
 		}
-		this.setDefaultRenderer(Object.class, new TableRenderer());
+		this.setDefaultRenderer(Object.class, new GridRenderer());
 	}
 
 }

@@ -23,25 +23,13 @@ public class Tetris {
 	 */
 	private void execute() {
 		
-		Grid gameGrid = new Grid(20,10);
+		Grid gameGrid = new Grid(20, 10);
 		
 		GameFrame frame = new GameFrame(gameGrid);
 		frame.setVisible(true);
 		frame.pack();
-//		Block storedBlock = new Block(gameGrid);
-		Block playingBlock;
-		playingBlock = new Block(gameGrid);
+		Block playingBlock = new Block(gameGrid);
 		playingBlock.initBlock(0, 4);
-//		while (true) {
-//			playingBlock = storedBlock;
-//			while (playingBlock.isMoving()) {
-//				try {
-//					Thread.sleep(100);
-//				} catch (InterruptedException e) {
-//					// TODO Auto-generated catch block
-//					e.printStackTrace();
-//				}
-//			}			
-//		}
+
 	}
 }

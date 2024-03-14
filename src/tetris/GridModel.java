@@ -2,7 +2,7 @@ package tetris;
 
 import javax.swing.table.DefaultTableModel;
 
-public class TableModel extends DefaultTableModel {
+public class GridModel extends DefaultTableModel {
 
 	
 	private static final long serialVersionUID = 1L;
@@ -10,7 +10,7 @@ public class TableModel extends DefaultTableModel {
 	/**
 	 * Constructor
 	 */
-	public TableModel(int numRow, int numCols) {
+	public GridModel(int numRow, int numCols) {
 		Object[][] data = new Object[numRow][numCols];
 		for (int i = 0; i < numRow; i++) {
 			for (int j = 0; j < numCols; j++) {
