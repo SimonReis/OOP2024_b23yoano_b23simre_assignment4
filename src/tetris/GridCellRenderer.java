@@ -6,7 +6,7 @@ import java.awt.Component;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 
-public class GridTableRenderer extends DefaultTableCellRenderer {
+public class GridCellRenderer extends DefaultTableCellRenderer {
 
 	/**
 	 * 
@@ -19,12 +19,10 @@ public class GridTableRenderer extends DefaultTableCellRenderer {
 
 		if (value != null) {
 			if ((int) value == 0) {
-				setBackground(Color.DARK_GRAY);
-			} else {
 				setBackground(Color.YELLOW);
 			}
 		} else {
-			setBackground(Color.WHITE);
+			setBackground(Color.DARK_GRAY);
 		}
 		
 		//setBorder(BorderFactory.createLineBorder(Color.black));
