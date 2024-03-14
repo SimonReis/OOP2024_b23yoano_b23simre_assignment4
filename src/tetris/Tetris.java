@@ -28,14 +28,14 @@ public class Tetris {
 		frame.addKeyListener(gameListener);
 		while (true) {
 			Block block = new Block(table, 0, 4);
-//	        while (block.isMoving()) {
-//	        	try {
-//					Thread.sleep(100);
-//				} catch (InterruptedException e) {
-//					// TODO Auto-generated catch block
-//					e.printStackTrace();
-//				}
-//	        }
+	        while (block.isMoving()) {
+	        	try {
+					Thread.sleep(100);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+	        }
 		}
 	}
 
