@@ -28,7 +28,7 @@ public class GameFrame extends JFrame {
 	/**
 	 * Possibility to change background color
 	 */
-	private Color backgroundColor = new Color(0, 0, 255);
+	private Color backgroundColor = new Color(138, 146, 174);
 
 	/**
 	 * For the game there are three different views. The menu, the game itself and
@@ -69,8 +69,9 @@ public class GameFrame extends JFrame {
 
 		//TODO Add Background color
 		JPanel gridPanel = new JPanel();
+		gridPanel.setBackground(backgroundColor);
 		gridPanel.add(table);
-		this.add(gridPanel);
+		
 		
 		JPanel leftPanel = new InformationPanelLeft(backgroundColor);
 		JPanel rightPanel = new InformationPanelRight(backgroundColor);
@@ -80,8 +81,6 @@ public class GameFrame extends JFrame {
 		gamePanel.add(leftPanel);
 		gamePanel.add(gridPanel);
 		gamePanel.add(rightPanel);
-		
-		gridPanel.add(table);
 		
 		this.add(gamePanel);
 		this.pack();

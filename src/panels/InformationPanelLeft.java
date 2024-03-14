@@ -59,7 +59,6 @@ public class InformationPanelLeft extends JPanel {
 		buttonPanel.setBackground(color);
 		buttonPanel.setLayout( new GridBagLayout() );
 		pauseButton = new JButton("Pause Game");
-		pauseButton.setForeground(color);
 		
 		// TODO Resize not possible
 		//pauseButton.setSize(200, 100);
