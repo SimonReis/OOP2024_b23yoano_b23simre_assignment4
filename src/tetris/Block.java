@@ -13,8 +13,32 @@ public class Block {
 	private boolean isMoving;
 	private Timer timer;
 
-	public Block(Grid table, int row, int col) {
+	public Block(Grid table) {
 		this.table = table;
+
+	}
+
+	// Implement your task logic here
+	public void performTask() {
+		// Your code to be executed repeatedly
+		if (row < 19 && (int) table.getValueAt(row + 1, col) != 1) {
+			table.setValueAt(0, row, col);
+			row++;
+			table.setValueAt(1, row, col);
+		} else {
+			isMoving = false;
+			timer.stop();
+			Block playingBlock = new Block(table);
+			playingBlock.initBlock(0, 4);
+		}
+	}
+
+	public boolean isMoving() {
+		return isMoving;
+
+	}
+
+	public void initBlock(int row, int col) {
 		this.row = row;
 		this.col = col;
 		table.setValueAt(1, row, col);
@@ -28,30 +52,5 @@ public class Block {
 		timer = new Timer(100, actionListener);
 		timer.start();
 	}
-
-	// Implement your task logic here
-	public void performTask() {
-		// Your code to be executed repeatedly
-		if (row < 19 && (int) table.getValueAt(row + 1, col) != 1) {
-			table.setValueAt(0, row, col);
-			row++;
-			table.setValueAt(1, row, col);
-		} else {
-			System.out.println("Blocage");
-			isMoving = false;
-			timer.stop();
-		}
-	}
-
-	// Create a timer with a delay of 1 second (1000 millisecondsTimerimer timer =
-	// new Timer(1000, actionListener);
-
-	// Start the timer
-
-	public boolean isMoving() {
-		return isMoving;
-
-	}
-
 
 }
