@@ -20,18 +20,18 @@ public class Block {
 		table.setValueAt(1, row, col);
 		isMoving = true;
 		ActionListener actionListener = new ActionListener() {
-			  @Override
-			  public void actionPerformed(ActionEvent e) {
-			    performTask();
-			  }
-			};
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				performTask();
+			}
+		};
 		timer = new Timer(100, actionListener);
 		timer.start();
 	}
-	
+
 	// Implement your task logic here
 	public void performTask() {
-	  // Your code to be executed repeatedly
+		// Your code to be executed repeatedly
 		if (row < 19 && (int) table.getValueAt(row + 1, col) != 1) {
 			table.setValueAt(0, row, col);
 			row++;
@@ -43,16 +43,14 @@ public class Block {
 		}
 	}
 
-
-
-	// Create a timer with a delay of 1 second (1000 millisecondsTimerimer timer = new Timer(1000, actionListener);
+	// Create a timer with a delay of 1 second (1000 millisecondsTimerimer timer =
+	// new Timer(1000, actionListener);
 
 	// Start the timer
-	
-	
+
 	public boolean isMoving() {
 		return isMoving;
-		
+
 	}
 
 }
