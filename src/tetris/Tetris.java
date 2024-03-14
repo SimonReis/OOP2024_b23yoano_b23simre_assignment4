@@ -24,16 +24,10 @@ public class Tetris {
 		GameFrame frame = new GameFrame(table);
 		frame.setVisible(true);
 		frame.pack();
-		
-		int i = 0;
-		Timer timer = new Timer();
+		GameListener gameListener = new GameListener();
+		frame.addKeyListener(gameListener);
 		while (true) {
-			Random r = new Random();
-			int low = 0;
-			int high = 10;
-			int col = r.nextInt(high-low) + low;
-			Block block = new Block(table, 0, col);
-	        timer.scheduleAtFixedRate(block, 0, 100);
+			Block block = new Block(table, 0, 4);
 	        while (block.isMoving()) {
 	        	try {
 					Thread.sleep(100);
@@ -42,7 +36,6 @@ public class Tetris {
 					e.printStackTrace();
 				}
 	        }
-	        i++;
 		}
 	}
 
