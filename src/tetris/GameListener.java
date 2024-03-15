@@ -1,9 +1,13 @@
 package tetris;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
-public class GameListener implements KeyListener {
+public class GameListener implements KeyListener, ActionListener {
 	
 	public void keyPressed(KeyEvent e) {
 	    int keyCode = e.getKeyCode();
@@ -35,6 +39,13 @@ public class GameListener implements KeyListener {
 
 	@Override
 	public void keyReleased(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		
 	} 

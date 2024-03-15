@@ -19,14 +19,14 @@ public class InformationPanelLeft extends JPanel {
 	private static final long serialVersionUID = 1L;
 
 	/**
-	 * All components to build the information left panel
+	 * All components to build the information left panel.
 	 */
 	private JLabel titleLabel;
 	private JPanel buttonPanel;
 	private JButton pauseButton;
 
 	/**
-	 * Color which should used for the background
+	 * Color which should used for the background.
 	 */
 	private Color color;
 
@@ -40,6 +40,7 @@ public class InformationPanelLeft extends JPanel {
 		initPanel();
 		initLogo();
 		initButton();
+		
 	}
 
 	/**

@@ -7,8 +7,8 @@ import java.awt.GridLayout;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import panels.MenuPanel;
 import panels.GridPanel;
-//import panels.GridPanel;
 import panels.InformationPanelLeft;
 import panels.InformationPanelRight;
 
@@ -49,15 +49,15 @@ public class GameFrame extends JFrame {
 		this.gameGrid = gameGrid;
 
 		initFrame();
-		// initMenuPanel();
+		initMenuPanel();
 
 		// Call later if Game is started
-		initGamePanel();
+		//initGamePanel();
 
 		GameListener gameListener = new GameListener();
 		this.addKeyListener(gameListener);
-
 		// Add pause button Listener
+		
 
 	}
 
@@ -97,7 +97,12 @@ public class GameFrame extends JFrame {
 	 */
 	private void initMenuPanel() {
 		// TODO
-		menuPanel = new JPanel();
+		menuPanel = new MenuPanel(backgroundColor);
+		
+		
+		
+		
+		
 		this.add(menuPanel);
 	}
 
