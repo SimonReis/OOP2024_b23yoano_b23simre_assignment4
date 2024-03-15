@@ -1,5 +1,7 @@
 package tetris;
 
+import java.awt.Dimension;
+
 /**
  * This class runs the Tetris game.
  * 

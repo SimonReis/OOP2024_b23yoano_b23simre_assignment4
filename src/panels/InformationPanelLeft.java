@@ -11,63 +11,83 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 /**
- * This class represent the left information panel with the logo and the pause button of tetris.
+ * This class represent the left information panel with the logo and the pause
+ * button of tetris.
  */
 public class InformationPanelLeft extends JPanel {
 
 	private static final long serialVersionUID = 1L;
-	
-	JLabel titleLabel;
-	JPanel buttonPanel;
-	JButton pauseButton;
-	
+
+	/**
+	 * All components to build the information left panel
+	 */
+	private JLabel titleLabel;
+	private JPanel buttonPanel;
+	private JButton pauseButton;
+
+	/**
+	 * Color which should used for the background
+	 */
 	private Color color;
 
+	/**
+	 * This constructor creates the left information panel of the game panel.
+	 * 
+	 * @param color Background color
+	 */
 	public InformationPanelLeft(Color color) {
 		this.color = color;
-		initPanel(color);
+		initPanel();
 		initLogo();
-		initButton(color);
-
+		initButton();
 	}
-	
-	private void initPanel(Color color) {
-		this.setLayout(new GridLayout(2,1));
+
+	/**
+	 * This method sets the layout and background color for the panel.
+	 */
+	private void initPanel() {
+		this.setLayout(new GridLayout(2, 1));
 		this.setBackground(color);
 	}
-	
+
 	/**
 	 * This method initializes the logo text of the game.
 	 */
 	private void initLogo() {
-		
+
 		titleLabel = new JLabel("Tetris");
 		titleLabel.setLayout(null);
-		titleLabel.setFont(new Font("Arial", Font.BOLD, 65));
+		titleLabel.setFont(new Font("Arial", Font.BOLD, 65)); //Set a font for logo text
 		titleLabel.setHorizontalAlignment(JLabel.CENTER);
-		
+
 		this.add(titleLabel);
-		
+
 	}
-	
+
 	/**
-	 * This method initializes the pause button in the center of its under left corner.
+	 * This method initializes the pause button in the center of its under left
+	 * corner.
 	 * 
 	 * @param color Background color
 	 */
-	private void initButton(Color color) {
-		
+	private void initButton() {
+
 		buttonPanel = new JPanel();
 		buttonPanel.setBackground(color);
-		buttonPanel.setLayout( new GridBagLayout() );
+		buttonPanel.setLayout(new GridBagLayout());
 		pauseButton = new JButton("Pause Game");
-		
-		// TODO Resize not possible
-		//pauseButton.setSize(200, 100);
-		
 		buttonPanel.add(pauseButton, new GridBagConstraints());
 		this.add(buttonPanel);
 
+	}
+	
+	/**
+	 * This method returns the pause button.
+	 * 
+	 * @return Pause button
+	 */
+	public JButton getPauseButton() {
+		return pauseButton;
 	}
 
 }

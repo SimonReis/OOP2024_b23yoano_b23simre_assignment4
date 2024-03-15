@@ -35,53 +35,62 @@ public class GameFrame extends JFrame {
 	 * the view if the game is paused.
 	 */
 	private JPanel menuPanel, gamePanel, pausePanel;
-	
-	Grid gameGrid;
+
+	/**
+	 * The game grid is the grid where the game takes part.
+	 */
+	private Grid gameGrid;
 
 	/**
 	 * The constructor creates the Frame for the game.
 	 */
 	public GameFrame(Grid gameGrid) {
+
 		this.gameGrid = gameGrid;
+
 		initFrame();
 		// initMenuPanel();
 
 		// Call later if Game is started
 		initGamePanel();
 
-	}
-
-	private void initFrame() {
-		this.setTitle("Tetris Game");
-		this.setMinimumSize(new Dimension(WIDTH, HEIGHT));
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setLocationRelativeTo(null); // Place the JFrame in the middle of the screen
-
 		GameListener gameListener = new GameListener();
 		this.addKeyListener(gameListener);
+
+		// Add pause button Listener
+
 	}
 
 	/**
-	 * This method initialize the panels
+	 * This method initialize the frame. The size of the frame is fixed to one size.
+	 */
+	private void initFrame() {
+		this.setTitle("Tetris Game");
+		this.setMinimumSize(new Dimension(WIDTH, HEIGHT));
+		this.setMaximumSize(new Dimension(WIDTH, HEIGHT));
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setLocationRelativeTo(null); // Place the JFrame in the middle of the screen
+	}
+
+	/**
+	 * This method initialize the game panel including three panels with elements
+	 * required for the Tetris game.
 	 */
 	private void initGamePanel() {
-
-		gamePanel = new JPanel();
-		gamePanel.setLayout(new GridLayout(1, 3));
-
+		//Create the three different panels
 		JPanel gridPanel = new GridPanel(backgroundColor, gameGrid);
 		JPanel leftPanel = new InformationPanelLeft(backgroundColor);
 		JPanel rightPanel = new InformationPanelRight(backgroundColor);
 		
+		//Add the panels in the game panels, which is added to the frame.
+		gamePanel = new JPanel();
+		gamePanel.setLayout(new GridLayout(1, 3));
 		gamePanel.add(leftPanel);
 		gamePanel.add(gridPanel);
 		gamePanel.add(rightPanel);
 
 		this.add(gamePanel);
-		this.pack();
 	}
-
-
 
 	/**
 	 * This method initialize the panel with the menu view
@@ -91,6 +100,5 @@ public class GameFrame extends JFrame {
 		menuPanel = new JPanel();
 		this.add(menuPanel);
 	}
-	
 
 }
