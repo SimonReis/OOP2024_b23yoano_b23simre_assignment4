@@ -13,22 +13,30 @@ public class GridRenderer extends DefaultTableCellRenderer {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	@Override
-	public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+	public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus,
+			int row, int column) {
 		super.getTableCellRendererComponent(table, "", false, false, row, column);
 
-		if (value != null) {
-			if ((int) value == 0) {
-				setBackground(Color.DARK_GRAY);
-			} else {
-				setBackground(Color.YELLOW);
-			}
-		} else {
-			setBackground(Color.WHITE);
+		if (value == null) {
+			setBackground(Color.DARK_GRAY);
+		} else if (value == "I") {
+			setBackground(Color.CYAN);
+		} else if (value == "J") {
+			setBackground(Color.BLUE);
+		} else if (value == "L") {
+			setBackground(Color.ORANGE);
+		} else if (value == "O") {
+			setBackground(Color.YELLOW);
+		} else if (value == "S") {
+			setBackground(Color.GREEN);
+		} else if (value == "T") {
+			setBackground(Color.MAGENTA);
+		} else if (value == "Z") {
+			setBackground(Color.RED);
 		}
-		
-		//setBorder(BorderFactory.createLineBorder(Color.black));
+
+		// setBorder(BorderFactory.createLineBorder(Color.black));
 		return this;
 	}
-		
+
 }

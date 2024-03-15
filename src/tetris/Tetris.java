@@ -26,10 +26,11 @@ public class Tetris {
 		Grid gameGrid = new Grid(20, 10);
 		
 		GameFrame frame = new GameFrame(gameGrid);
+		frame.setFocusable(true);
 		frame.setVisible(true);
 		frame.pack();
 		Block playingBlock = new Block(gameGrid);
-		playingBlock.initBlock(0, 4);
+		playingBlock.spawnBlock();
 
 	}
 }
