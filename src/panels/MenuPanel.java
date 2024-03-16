@@ -7,10 +7,12 @@ import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import tetris.ButtonHandler;
+import tetris.GameFrame;
 
 /**
  * This class represents the menu panel, in which a new Tetris game can be
@@ -19,6 +21,8 @@ import tetris.ButtonHandler;
 public class MenuPanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
+	
+	private GameFrame frame;
 
 	/**
 	 * Color which should used for the background.
@@ -40,11 +44,16 @@ public class MenuPanel extends JPanel {
 	 * 
 	 * @param color Background color of th panel
 	 */
-	public MenuPanel(Color color) {
+	public MenuPanel(GameFrame frame, Color color) {
+		this.frame = frame;
 		this.color = color;
 		initPanel();
 		intitUpperPanel();
 		intitLowerPanel();
+	}
+	
+	public GameFrame getFrame() {
+		return frame;
 	}
 
 	/**

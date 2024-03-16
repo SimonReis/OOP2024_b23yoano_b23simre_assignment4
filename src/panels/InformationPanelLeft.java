@@ -12,6 +12,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import tetris.ButtonHandler;
+import tetris.GameFrame;
 
 /**
  * This class represent the left information panel with the logo and the pause
@@ -21,6 +22,8 @@ public class InformationPanelLeft extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 
+	private GameFrame frame;
+	
 	/**
 	 * All components to build the information left panel.
 	 */
@@ -38,12 +41,17 @@ public class InformationPanelLeft extends JPanel {
 	 * 
 	 * @param color Background color
 	 */
-	public InformationPanelLeft(Color color) {
+	public InformationPanelLeft(GameFrame frame, Color color) {
+		this.frame = frame;
 		this.color = color;
 		initPanel();
 		initLogo();
 		initButton();
 		
+	}
+	
+	public GameFrame getFrame() {
+		return frame;
 	}
 
 	/**

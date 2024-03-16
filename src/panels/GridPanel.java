@@ -27,7 +27,7 @@ public class GridPanel extends JPanel {
 	 * 
 	 * @param color Background color of the grid panel
 	 */
-	public GridPanel(Color color, Grid gameGrid) {
+	public GridPanel(Grid gameGrid, Color color) {
 
 		this.setBackground(color);
 		this.add(gameGrid);

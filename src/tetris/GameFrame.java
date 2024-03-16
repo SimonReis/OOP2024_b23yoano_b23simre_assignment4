@@ -50,14 +50,10 @@ public class GameFrame extends JFrame {
 
 		initFrame();
 		initMenuPanel();
-
-		// Call later if Game is started
 		//initGamePanel();
 
 		GameListener gameListener = new GameListener();
 		this.addKeyListener(gameListener);
-
-		
 
 	}
 
@@ -77,18 +73,18 @@ public class GameFrame extends JFrame {
 	 * required for the Tetris game.
 	 */
 	private void initGamePanel() {
-		//Create the three different panels
-		JPanel gridPanel = new GridPanel(backgroundColor, gameGrid);
-		JPanel leftPanel = new InformationPanelLeft(backgroundColor);
+		// Create the three different panels
+		JPanel gridPanel = new GridPanel(gameGrid, backgroundColor);
+		JPanel leftPanel = new InformationPanelLeft(this, backgroundColor);
 		JPanel rightPanel = new InformationPanelRight(backgroundColor);
-		
-		//Add the panels in the game panels, which is added to the frame.
+
+		// Add the panels in the game panels, which is added to the frame.
 		gamePanel = new JPanel();
 		gamePanel.setLayout(new GridLayout(1, 3));
 		gamePanel.add(leftPanel);
 		gamePanel.add(gridPanel);
 		gamePanel.add(rightPanel);
-
+		
 		this.add(gamePanel);
 	}
 
@@ -97,13 +93,28 @@ public class GameFrame extends JFrame {
 	 */
 	private void initMenuPanel() {
 		// TODO
-		menuPanel = new MenuPanel(backgroundColor);
-		
-		
-		
-		
-		
+		menuPanel = new MenuPanel(this, backgroundColor);
 		this.add(menuPanel);
+	}
+
+	/**
+	 * This method is called, when a new game should start. The view will change
+	 * from the menu panel to the game panel.
+	 */
+	public void startGame() {
+		this.remove(menuPanel);
+		initGamePanel();
+		this.pack();
+	}
+	
+	/**
+	 * This method is called, when a game should be ended. The view will change
+	 * from the game panel to the menu panel.
+	 */
+	public void endGame() {
+		this.remove(gamePanel);
+		initMenuPanel();
+		this.pack();
 	}
 
 }

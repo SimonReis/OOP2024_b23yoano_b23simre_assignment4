@@ -33,9 +33,12 @@ public class ButtonHandler implements ActionListener {
 			if (menuPanel.getNewGameButton() == e.getSource()) {
 				System.out.println("New Game Button is clicked!");
 				// TODO implement Action
+				menuPanel.getFrame().startGame();
+				
 			} else if (menuPanel.getQuitGameButton() == e.getSource()) {
 				System.out.println("Quit Game Button is clicked!");
 				// TODO implement Action
+				System.exit(0);
 			}
 		}
 
@@ -58,6 +61,7 @@ public class ButtonHandler implements ActionListener {
 				} else if (result == 0) {
 					System.out.println("You selected: End Game");
 					// TODO implement Action
+					infoLeft.getFrame().endGame();
 				}
 			}
 		}
