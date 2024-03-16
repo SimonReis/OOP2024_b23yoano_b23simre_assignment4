@@ -10,6 +10,8 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import tetris.ButtonHandler;
+
 public class MenuPanel extends JPanel {
 	
 	private static final long serialVersionUID = 1L;
@@ -83,16 +85,38 @@ public class MenuPanel extends JPanel {
 		
 //		highScore = new JLabel("Highscore: 0");
 //		upperPanel.add(highScore);
+		
 		newGameButton = new JButton("New Game");
+		newGameButton.addActionListener(new ButtonHandler(this));
 		upperPanel.add(newGameButton);
+		
 		quitGameButton = new JButton("Quit Game");
+		quitGameButton.addActionListener(new ButtonHandler(this));
 		upperPanel.add(quitGameButton);
 		
 
 		this.add(upperPanel);
 	}
 	
-	public void setNewHighScore(int number) {
-		
+	/**
+	 * This method returns the new game button.
+	 * 
+	 * @return New Game button
+	 */
+	public JButton getNewGameButton() {
+		return newGameButton;
 	}
+	
+	/**
+	 * This method returns the quit game button.
+	 * 
+	 * @return Quit game button
+	 */
+	public JButton getQuitGameButton() {
+		return quitGameButton;
+	}
+	
+//	public void setNewHighScore(int number) {
+//		
+//	}
 }

@@ -56,7 +56,7 @@ public class GameFrame extends JFrame {
 
 		GameListener gameListener = new GameListener();
 		this.addKeyListener(gameListener);
-		// Add pause button Listener
+
 		
 
 	}

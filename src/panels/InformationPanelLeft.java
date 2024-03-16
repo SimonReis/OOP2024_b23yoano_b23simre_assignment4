@@ -11,6 +11,8 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import tetris.ButtonHandler;
+
 /**
  * This class represent the left information panel with the logo and the pause
  * button of tetris.
@@ -78,6 +80,7 @@ public class InformationPanelLeft extends JPanel {
 		buttonPanel.setBackground(color);
 		buttonPanel.setLayout(new GridBagLayout());
 		pauseButton = new JButton("Pause Game");
+		pauseButton.addActionListener(new ButtonHandler(this));
 		buttonPanel.add(pauseButton, new GridBagConstraints());
 		this.add(buttonPanel);
 
