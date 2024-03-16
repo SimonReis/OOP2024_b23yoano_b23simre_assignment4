@@ -52,7 +52,7 @@ public class MenuPanel extends JPanel {
 		
 		// Set panel layout
 		JPanel upperPanel = new JPanel();
-		upperPanel.setLayout(new GridLayout(3, 1));
+		upperPanel.setLayout(new GridLayout(2, 1));
 		upperPanel.setBackground(color);
 		
 		// Create headline
