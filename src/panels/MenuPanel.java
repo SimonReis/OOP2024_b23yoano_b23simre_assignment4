@@ -12,28 +12,33 @@ import javax.swing.JPanel;
 
 import tetris.ButtonHandler;
 
+/**
+ * This class represents the menu panel, in which a new Tetris game can be
+ * started, or the application can be closed.
+ */
 public class MenuPanel extends JPanel {
-	
+
 	private static final long serialVersionUID = 1L;
-	
-	/**.
-	 * Color which should used for the background
+
+	/**
+	 * Color which should used for the background.
 	 */
 	private Color color;
-	
+
 	/**
 	 * Buttons for starting a new game or quit the game.
 	 */
 	private JButton newGameButton, quitGameButton;
-	
+
 	/**
 	 * JLabel for displaying the current highscore.
 	 */
 	private JLabel highScore;
-	
+
 	/**
-	 * This class represents the menu panel. 
-	 * @param color
+	 * This class represents the menu panel.
+	 * 
+	 * @param color Background color of th panel
 	 */
 	public MenuPanel(Color color) {
 		this.color = color;
@@ -41,7 +46,7 @@ public class MenuPanel extends JPanel {
 		intitUpperPanel();
 		intitLowerPanel();
 	}
-	
+
 	/**
 	 * This method sets the layout and background color for the panel.
 	 */
@@ -49,26 +54,30 @@ public class MenuPanel extends JPanel {
 		this.setLayout(new GridLayout(2, 1));
 		this.setBackground(color);
 	}
-	
+
+	/**
+	 * This method initializes the upper panel, which contains a headline and
+	 * subhead line.
+	 */
 	private void intitUpperPanel() {
-		
+
 		// Set panel layout
 		JPanel upperPanel = new JPanel();
 		upperPanel.setLayout(new GridLayout(2, 1));
 		upperPanel.setBackground(color);
-		
+
 		// Create headline
 		JLabel headlineLabel = new JLabel("Tetris");
 		headlineLabel.setLayout(null);
-		headlineLabel.setFont(new Font("Arial", Font.BOLD, 100)); //Set a font for logo text
+		headlineLabel.setFont(new Font("Arial", Font.BOLD, 100)); // Set a font for logo text
 		headlineLabel.setHorizontalAlignment(JLabel.CENTER);
 		headlineLabel.setVerticalAlignment(JLabel.BOTTOM);
 		upperPanel.add(headlineLabel);
-		
+
 		// Create sub headline
 		JLabel subHeadlineLabel = new JLabel("created by Yoann and Simon");
 		subHeadlineLabel.setLayout(null);
-		subHeadlineLabel.setFont(new Font("Arial", Font.BOLD, 13)); //Set a font for logo text
+		subHeadlineLabel.setFont(new Font("Arial", Font.BOLD, 13)); // Set a font for logo text
 		subHeadlineLabel.setHorizontalAlignment(JLabel.CENTER);
 		subHeadlineLabel.setVerticalAlignment(JLabel.TOP);
 		upperPanel.add(subHeadlineLabel);
@@ -76,28 +85,44 @@ public class MenuPanel extends JPanel {
 		this.add(upperPanel);
 	}
 
+	/**
+	 * This method initializes the lower panel, which contains a new game button and
+	 * a quit game button.
+	 */
 	private void intitLowerPanel() {
-		
+
 		// Set panel layout
 		JPanel upperPanel = new JPanel();
-		upperPanel.setLayout(new GridBagLayout());
+		upperPanel.setLayout(new GridLayout(2, 1));
 		upperPanel.setBackground(color);
 		
-//		highScore = new JLabel("Highscore: 0");
-//		upperPanel.add(highScore);
+		// Create high score label
+		highScore = new JLabel("Highscore: 0");
+		highScore.setFont(new Font("Arial", Font.BOLD, 23));
+		highScore.setHorizontalAlignment(JLabel.CENTER);
+		highScore.setVerticalAlignment(JLabel.BOTTOM);
+		upperPanel.add(highScore); 
 		
+		// Create button panel
+		JPanel buttonPanel = new JPanel();
+		buttonPanel.setLayout(new GridBagLayout());
+		buttonPanel.setBackground(color);
+
+		// Create new game button
 		newGameButton = new JButton("New Game");
 		newGameButton.addActionListener(new ButtonHandler(this));
-		upperPanel.add(newGameButton);
-		
+		buttonPanel.add(newGameButton);
+
+		// Create quit game button
 		quitGameButton = new JButton("Quit Game");
 		quitGameButton.addActionListener(new ButtonHandler(this));
-		upperPanel.add(quitGameButton);
+		buttonPanel.add(quitGameButton);
 		
+		upperPanel.add(buttonPanel);
 
 		this.add(upperPanel);
 	}
-	
+
 	/**
 	 * This method returns the new game button.
 	 * 
@@ -106,7 +131,7 @@ public class MenuPanel extends JPanel {
 	public JButton getNewGameButton() {
 		return newGameButton;
 	}
-	
+
 	/**
 	 * This method returns the quit game button.
 	 * 
@@ -115,7 +140,7 @@ public class MenuPanel extends JPanel {
 	public JButton getQuitGameButton() {
 		return quitGameButton;
 	}
-	
+
 //	public void setNewHighScore(int number) {
 //		
 //	}
