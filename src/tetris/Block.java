@@ -2,65 +2,70 @@ package tetris;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Random;
-
 import javax.swing.Timer;
 
 public class Block {
 
-	private Grid table;
+	private Grid gameGrid;
 	private int row;
 	private int col;
-	private Object shape;
-	private Timer timer;
+	private Object shapeType;
+	private Timer blockTimer;
+	private boolean canMove;
 
-	public Block(Grid table) {
-		this.table = table;
-		shape = generateRandomShapeType();
-	}
-
-	// Implement your task logic here
-	public void performTask() {
-		// Your code to be executed repeatedly
-		moveDown();
+	public Block() {
+		gameGrid = Game.getGameGrid();
+		canMove = false;
 	}
 
 	public void spawnBlock() {
+		System.out.println("spawnBlock");
 		row = 0;
 		col = 4;
-		table.setValueAt(shape, row, col);
+		gameGrid.setValueAt(shapeType, row, col);
 		ActionListener actionListener = new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				performTask();
+				moveDown();
 			}
 		};
-		timer = new Timer(100, actionListener);
-		timer.start();
+		blockTimer = new Timer(500, actionListener);
+		blockTimer.start();
 	}
-	
+
 	public void moveDown() {
 		if (canMove()) {
-			table.setValueAt(null, row, col);
+			gameGrid.setValueAt(null, row, col);
 			row++;
-			table.setValueAt(shape, row, col);
+			gameGrid.setValueAt(shapeType, row, col);
 		} else {
-			timer.stop();
-			Block block = new Block(table);
-			block.spawnBlock();
+			blockTimer.stop();
 		}
 	}
 	
-	public boolean canMove() {
-		return row < 19 && table.getValueAt(row + 1, col) == null;
+	public void moveLeft() {
+		if (col > 0) {
+			gameGrid.setValueAt(null, row, col);
+			col--;
+			gameGrid.setValueAt(shapeType, row, col);
+		}
 	}
 	
-	
-	public Object generateRandomShapeType() {
-		Object[] shapeTypes = {"I", "J", "L", "O", "S", "T", "Z"};
-		Random random = new Random();
-		shape = shapeTypes[random.nextInt(shapeTypes.length)];
-		return shape;
+	public void moveRight() {
+		if (col < 9) {
+			gameGrid.setValueAt(null, row, col);
+			col++;
+			gameGrid.setValueAt(shapeType, row, col);
+		}
+	}
+
+	public boolean canMove() {
+		canMove = row < 19 && gameGrid.getValueAt(row + 1, col) == null;
+		return canMove;
+	}
+
+	public Object setShapeType(Object shapeType) {
+		return this.shapeType = shapeType;
 	}
 
 }

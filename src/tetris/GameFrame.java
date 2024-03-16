@@ -41,8 +41,9 @@ public class GameFrame extends JFrame {
 	/**
 	 * The constructor creates the Frame for the game.
 	 */
-	public GameFrame(Grid gameGrid) {
-		this.gameGrid = gameGrid;
+	public GameFrame() {
+		
+		this.gameGrid = Game.getGameGrid();
 		initFrame();
 		// initMenuPanel();
 
@@ -57,7 +58,7 @@ public class GameFrame extends JFrame {
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setLocationRelativeTo(null); // Place the JFrame in the middle of the screen
 
-		GameListener gameListener = new GameListener();
+		GameFrameListener gameListener = new GameFrameListener();
 		this.addKeyListener(gameListener);
 	}
 
