@@ -50,8 +50,7 @@ public class GameFrame extends JFrame {
 
 		initFrame();
 		initMenuPanel();
-		//initGamePanel();
-
+		
 		GameListener gameListener = new GameListener();
 		this.addKeyListener(gameListener);
 
