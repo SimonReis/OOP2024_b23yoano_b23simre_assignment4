@@ -2,6 +2,8 @@ package tetris;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Random;
+
 import javax.swing.Timer;
 
 public class Block {
@@ -16,6 +18,7 @@ public class Block {
 	public Block() {
 		gameGrid = Game.getGameGrid();
 		canMove = false;
+		shapeType = getRandomShapeType();
 	}
 
 	public void spawnBlock() {
@@ -44,7 +47,7 @@ public class Block {
 	}
 	
 	public void moveLeft() {
-		if (col > 0) {
+		if (col > 0 && gameGrid.getValueAt(row, col - 1) == null) {
 			gameGrid.setValueAt(null, row, col);
 			col--;
 			gameGrid.setValueAt(shapeType, row, col);
@@ -52,7 +55,7 @@ public class Block {
 	}
 	
 	public void moveRight() {
-		if (col < 9) {
+		if (col < 9 && gameGrid.getValueAt(row, col + 1) == null) {
 			gameGrid.setValueAt(null, row, col);
 			col++;
 			gameGrid.setValueAt(shapeType, row, col);
@@ -61,11 +64,18 @@ public class Block {
 
 	public boolean canMove() {
 		canMove = row < 19 && gameGrid.getValueAt(row + 1, col) == null;
-		return canMove;
+		if (canMove) {
+			return canMove;
+		} else {
+			return canMove;
+		}
 	}
-
-	public Object setShapeType(Object shapeType) {
-		return this.shapeType = shapeType;
+	
+	public Object getRandomShapeType() {
+		Object[] shapeTypes = { "I", "J", "L", "O", "S", "T", "Z" };
+		Random random = new Random();
+		shapeType = shapeTypes[random.nextInt(shapeTypes.length)];
+		return shapeType;
 	}
 
 }
