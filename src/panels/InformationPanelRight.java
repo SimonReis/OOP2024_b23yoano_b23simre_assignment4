@@ -7,8 +7,9 @@ import java.awt.GridLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import tetris.GameFrame;
 import tetris.Grid;
-
+import tetris.Tetromino;
 
 /**
  * This class represents the right information panel, where high score, score,
@@ -19,21 +20,26 @@ public class InformationPanelRight extends JPanel {
 	private static final long serialVersionUID = 1L;
 
 	/**
+	 * The frame in which the menu panel is stored.
+	 */
+	private GameFrame frame;
+
+	/**
 	 * Similar properties of the labels of the right information panel.
 	 */
 	private Font font;
 	private Color color;
-	
+
 	/**
 	 * Labels, which display the current high score, score and cleared lines.
 	 */
 	private JLabel highScoreLabelNumber, scoreLabelNumber, linesLabelNumber;
-	
+
 	/**
 	 * Changeable variables during the game.
 	 */
-	private int highScore, score, clearedLines;
-	
+	private int highScore, score;
+
 	/**
 	 * Grid where the next tetromino is displayed.
 	 */
@@ -44,17 +50,16 @@ public class InformationPanelRight extends JPanel {
 	 * 
 	 * @param color Background color
 	 */
-	public InformationPanelRight(Color color) {
-
+	public InformationPanelRight(GameFrame frame, Color color) {
+		this.frame = frame;
 		this.color = color;
 		initPanel();
-		
+
 		// Create the panels and return the labels/grid on which the value is stored
 		scoreLabelNumber = createInformation("Score");
 		highScoreLabelNumber = createInformation("Highscore");
 		nextGrid = createNextGrid("Next");
 		linesLabelNumber = createInformation("Lines");
-		
 	}
 
 	/**
@@ -68,18 +73,19 @@ public class InformationPanelRight extends JPanel {
 	}
 
 	/**
-	 * This method creates a panel in which a text and the corresponding value are displayed.
+	 * This method creates a panel in which a text and the corresponding value are
+	 * displayed.
 	 * 
-	 * @param text Text that should be displayed 
+	 * @param text Text that should be displayed
 	 * @return Label in which the value is stored
 	 */
 	private JLabel createInformation(String text) {
-		
+
 		// Set panel layout
 		JPanel panel = new JPanel();
 		panel.setLayout(new GridLayout(2, 1));
 		panel.setBackground(color);
-		
+
 		// Create text label
 		JLabel labelText = new JLabel(text + ":");
 		labelText.setLayout(null);
@@ -95,25 +101,26 @@ public class InformationPanelRight extends JPanel {
 		labelNumber.setHorizontalAlignment(JLabel.CENTER);
 		labelNumber.setVerticalAlignment(JLabel.TOP);
 		panel.add(labelNumber);
-		
+
 		this.add(panel);
-		
+
 		return labelNumber;
 	}
-	
+
 	/**
-	 * This method creates a panel in which a text and grid for the next tetromino are displayed.
+	 * This method creates a panel in which a text and grid for the next tetromino
+	 * are displayed.
 	 * 
-	 * @param text Text that should be displayed 
+	 * @param text Text that should be displayed
 	 * @return Grid that displays the next tetromino
 	 */
 	private Grid createNextGrid(String text) {
-		
+
 		// Set panel layout
 		JPanel panel = new JPanel();
 		panel.setLayout(new GridLayout(2, 1));
 		panel.setBackground(color);
-		
+
 		// Create text label
 		JLabel labelText = new JLabel(text + ":");
 		labelText.setLayout(null);
@@ -125,16 +132,80 @@ public class InformationPanelRight extends JPanel {
 		// Create grid
 		JPanel nextPanel = new JPanel();
 		nextPanel.setBackground(color);
-		Grid nextGrid = new Grid(4,4);
+		Grid nextGrid = new Grid(4, 4);
 		nextPanel.add(nextGrid);
 		panel.add(nextPanel);
-		
+
 		this.add(panel);
-		
+
 		return nextGrid;
 	}
-	
-	//TODO implement methods for changeing block and numbers
 
+	// TODO implement methods for changeing block and numbers
+
+	/**
+	 * This method converts a numerical value into a string and adds it to a label.
+	 * 
+	 * @param label Label where text should be displayed
+	 * @param number Number for the text field
+	 */
+	private void setNumber(JLabel label, int number) {
+		label.setText(Integer.toString(number));
+	}
+	
+	/**
+	 * This method sets the high score value.
+	 * 
+	 * @param number Number of the current high score
+	 */
+	private void setHighScore(int number) {
+		highScore = number;
+		setNumber(highScoreLabelNumber, highScore);
+	}
+	
+	/**
+	 * This method returns the current highScore
+	 * 
+	 * @return The high score
+	 */
+	public int getHighScore() {
+		return highScore;
+	}
+
+	/**
+	 * This method sets the current score; if this overwrites the current high
+	 * score, it will be updated otherwise.
+	 * 
+	 * @param number Number of the current high score
+	 */
+	public void setScore(int number) {
+		score = number;
+		setNumber(scoreLabelNumber, score);
+
+		if (score >= highScore) {
+			setHighScore(score);
+		}
+
+		frame.pack();
+	}
+	
+	/**
+	 * This method sets the number of cleared lines.
+	 * 
+	 * @param number Number of cleared lines
+	 */
+	public void setClearedLines(int number) {
+		setNumber(linesLabelNumber, number);
+		frame.pack();
+	}
+	
+	public void displayNextTetromino(Tetromino tetromino) {
+		//TODO implement class and methods
+		//nextGrid.addTetromino(tetromino);
+		frame.pack();
+	}
+
+	//TODO maybe add a getter metohd for the tetromino.
+	
 
 }

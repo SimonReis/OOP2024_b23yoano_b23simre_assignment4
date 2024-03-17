@@ -22,6 +22,9 @@ public class MenuPanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 	
+	/**
+	 * The frame in which the menu panel is stored.
+	 */
 	private GameFrame frame;
 
 	/**
@@ -78,7 +81,7 @@ public class MenuPanel extends JPanel {
 		// Create headline
 		JLabel headlineLabel = new JLabel("Tetris");
 		headlineLabel.setLayout(null);
-		headlineLabel.setFont(new Font("Arial", Font.BOLD, 100)); // Set a font for logo text
+		headlineLabel.setFont(new Font("Arial", Font.BOLD, 100));
 		headlineLabel.setHorizontalAlignment(JLabel.CENTER);
 		headlineLabel.setVerticalAlignment(JLabel.BOTTOM);
 		upperPanel.add(headlineLabel);
@@ -86,7 +89,7 @@ public class MenuPanel extends JPanel {
 		// Create sub headline
 		JLabel subHeadlineLabel = new JLabel("created by Yoann and Simon");
 		subHeadlineLabel.setLayout(null);
-		subHeadlineLabel.setFont(new Font("Arial", Font.BOLD, 13)); // Set a font for logo text
+		subHeadlineLabel.setFont(new Font("Arial", Font.BOLD, 13));
 		subHeadlineLabel.setHorizontalAlignment(JLabel.CENTER);
 		subHeadlineLabel.setVerticalAlignment(JLabel.TOP);
 		upperPanel.add(subHeadlineLabel);
@@ -150,7 +153,13 @@ public class MenuPanel extends JPanel {
 		return quitGameButton;
 	}
 
-//	public void setNewHighScore(int number) {
-//		
-//	}
+	/**
+	 * This method sets the new high score.
+	 * 
+	 * @param number Value of the high score
+	 */
+	public void setNewHighScore(int number) {
+		highScore.setText("Highscore: " + number);
+		frame.pack();
+	}
 }

@@ -34,7 +34,8 @@ public class GameFrame extends JFrame {
 	 * For the game there are three different views. The menu, the game itself and
 	 * the view if the game is paused.
 	 */
-	private JPanel menuPanel, gamePanel, pausePanel;
+	private MenuPanel menuPanel;
+	private JPanel gamePanel;
 
 	/**
 	 * The game grid is the grid where the game takes part.
@@ -45,15 +46,13 @@ public class GameFrame extends JFrame {
 	 * The constructor creates the Frame for the game.
 	 */
 	public GameFrame(Grid gameGrid) {
-
 		this.gameGrid = gameGrid;
-
 		initFrame();
 		initMenuPanel();
 		
+		//TODO Change Listener to another place in code
 		GameListener gameListener = new GameListener();
 		this.addKeyListener(gameListener);
-
 	}
 
 	/**
@@ -75,7 +74,7 @@ public class GameFrame extends JFrame {
 		// Create the three different panels
 		JPanel gridPanel = new GridPanel(gameGrid, backgroundColor);
 		JPanel leftPanel = new InformationPanelLeft(this, backgroundColor);
-		JPanel rightPanel = new InformationPanelRight(backgroundColor);
+		JPanel rightPanel = new InformationPanelRight(this, backgroundColor);
 
 		// Add the panels in the game panels, which is added to the frame.
 		gamePanel = new JPanel();
@@ -88,12 +87,12 @@ public class GameFrame extends JFrame {
 	}
 
 	/**
-	 * This method initialize the panel with the menu view
+	 * This method initialize the panel with the menu view.
 	 */
 	private void initMenuPanel() {
-		// TODO
 		menuPanel = new MenuPanel(this, backgroundColor);
 		this.add(menuPanel);
+		
 	}
 
 	/**
@@ -101,6 +100,7 @@ public class GameFrame extends JFrame {
 	 * from the menu panel to the game panel.
 	 */
 	public void startGame() {
+		//TODO Start Falling blocks
 		this.remove(menuPanel);
 		initGamePanel();
 		this.pack();
@@ -115,5 +115,6 @@ public class GameFrame extends JFrame {
 		initMenuPanel();
 		this.pack();
 	}
-
+	
+	//TODO Where to implement cleared lines etc. and when a game is stopped
 }

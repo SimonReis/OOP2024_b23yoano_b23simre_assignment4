@@ -22,8 +22,11 @@ public class InformationPanelLeft extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 
+	/**
+	 * The frame in which the menu panel is stored.
+	 */
 	private GameFrame frame;
-	
+
 	/**
 	 * All components to build the information left panel.
 	 */
@@ -47,11 +50,6 @@ public class InformationPanelLeft extends JPanel {
 		initPanel();
 		initLogo();
 		initButton();
-		
-	}
-	
-	public GameFrame getFrame() {
-		return frame;
 	}
 
 	/**
@@ -69,7 +67,7 @@ public class InformationPanelLeft extends JPanel {
 
 		titleLabel = new JLabel("Tetris");
 		titleLabel.setLayout(null);
-		titleLabel.setFont(new Font("Arial", Font.BOLD, 65)); //Set a font for logo text
+		titleLabel.setFont(new Font("Arial", Font.BOLD, 65));
 		titleLabel.setHorizontalAlignment(JLabel.CENTER);
 
 		this.add(titleLabel);
@@ -93,7 +91,16 @@ public class InformationPanelLeft extends JPanel {
 		this.add(buttonPanel);
 
 	}
-	
+
+	/**
+	 * This method returns the frame in which the information panel left is stored.
+	 * 
+	 * @return
+	 */
+	public GameFrame getFrame() {
+		return frame;
+	}
+
 	/**
 	 * This method returns the pause button.
 	 * 
