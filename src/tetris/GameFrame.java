@@ -52,16 +52,6 @@ public class GameFrame extends JFrame {
 		initMenuPanel();
 	}
 
-	private void initFrame() {
-		this.setTitle("Tetris Game");
-		this.setMinimumSize(new Dimension(WIDTH, HEIGHT));
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setLocationRelativeTo(null); // Place the JFrame in the middle of the screen
-
-		GameFrameListener gameListener = new GameFrameListener();
-		this.addKeyListener(gameListener);
-	}
-
 	/**
 	 * This method initialize the frame. The size of the frame is fixed to one size.
 	 */
@@ -71,6 +61,8 @@ public class GameFrame extends JFrame {
 		this.setMaximumSize(new Dimension(WIDTH, HEIGHT));
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setLocationRelativeTo(null); // Place the JFrame in the middle of the screen
+		GameFrameListener gameListener = new GameFrameListener();
+		this.addKeyListener(gameListener);
 	}
 
 	/**
@@ -110,6 +102,9 @@ public class GameFrame extends JFrame {
 		//TODO Start Falling blocks
 		this.remove(menuPanel);
 		initGamePanel();
+		// Start Falling blocks
+		BlockFactory blockFactory = new BlockFactory();
+		blockFactory.startProduction();
 		this.pack();
 	}
 	

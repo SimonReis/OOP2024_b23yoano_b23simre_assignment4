@@ -22,7 +22,7 @@ public class Tetris {
 	 * This method executes the Tetris Game
 	 */
 	private void execute() {
-		Game game = new Game();
+		new Game();
 	}
 	
 }

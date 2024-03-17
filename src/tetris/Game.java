@@ -10,8 +10,6 @@ public class Game {
 		frame.setFocusable(true);
 		frame.setVisible(true);
 		frame.pack();
-		BlockFactory blockFactory = new BlockFactory();
-		blockFactory.startProduction();
 	}
 
 	public static Grid getGameGrid() {
