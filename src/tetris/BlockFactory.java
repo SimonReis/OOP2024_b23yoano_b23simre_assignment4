@@ -21,7 +21,7 @@ public class BlockFactory {
 		ActionListener actionListener = new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if (currentBlock == null || !currentBlock.canMove()) {
+				if (currentBlock == null || !currentBlock.canMoveDown()) {
 					currentBlock = storedBlock;
 					storedBlock = new Block();
 					//storedBlock.setShapeType(getRandomShapeType());

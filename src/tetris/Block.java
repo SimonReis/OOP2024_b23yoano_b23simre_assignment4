@@ -37,7 +37,7 @@ public class Block {
 	}
 
 	public void moveDown() {
-		if (canMove()) {
+		if (canMoveDown()) {
 			gameGrid.setValueAt(null, row, col);
 			row++;
 			gameGrid.setValueAt(shapeType, row, col);
@@ -62,7 +62,8 @@ public class Block {
 		}
 	}
 
-	public boolean canMove() {
+	// Ajouter une 2ème variable qui retourne la mobilité latérale avec un délai
+	public boolean canMoveDown() {
 		canMove = row < 19 && gameGrid.getValueAt(row + 1, col) == null;
 		if (canMove) {
 			return canMove;
