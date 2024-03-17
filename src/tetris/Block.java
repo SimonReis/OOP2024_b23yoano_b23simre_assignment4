@@ -2,56 +2,81 @@ package tetris;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Random;
 
 import javax.swing.Timer;
 
 public class Block {
 
-	private Grid table;
+	private Grid gameGrid;
 	private int row;
 	private int col;
-	private boolean isMoving;
-	private Timer timer;
+	private Object shapeType;
+	private Timer blockTimer;
+	private boolean canMove;
 
-	public Block(Grid table, int row, int col) {
-		this.table = table;
-		this.row = row;
-		this.col = col;
-		table.setValueAt(1, row, col);
-		isMoving = true;
+	public Block() {
+		gameGrid = Game.getGameGrid();
+		canMove = false;
+		shapeType = getRandomShapeType();
+	}
+
+	public void spawnBlock() {
+		System.out.println("spawnBlock");
+		row = 0;
+		col = 4;
+		gameGrid.setValueAt(shapeType, row, col);
 		ActionListener actionListener = new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				performTask();
+				moveDown();
 			}
 		};
-		timer = new Timer(100, actionListener);
-		timer.start();
+		blockTimer = new Timer(500, actionListener);
+		blockTimer.start();
 	}
 
-	// Implement your task logic here
-	public void performTask() {
-		// Your code to be executed repeatedly
-		if (row < 19 && (int) table.getValueAt(row + 1, col) != 1) {
-			table.setValueAt(0, row, col);
+	public void moveDown() {
+		if (canMoveDown()) {
+			gameGrid.setValueAt(null, row, col);
 			row++;
-			table.setValueAt(1, row, col);
+			gameGrid.setValueAt(shapeType, row, col);
 		} else {
-			System.out.println("Blocage");
-			isMoving = false;
-			timer.stop();
+			blockTimer.stop();
+		}
+	}
+	
+	public void moveLeft() {
+		if (col > 0 && gameGrid.getValueAt(row, col - 1) == null) {
+			gameGrid.setValueAt(null, row, col);
+			col--;
+			gameGrid.setValueAt(shapeType, row, col);
+		}
+	}
+	
+	public void moveRight() {
+		if (col < 9 && gameGrid.getValueAt(row, col + 1) == null) {
+			gameGrid.setValueAt(null, row, col);
+			col++;
+			gameGrid.setValueAt(shapeType, row, col);
 		}
 	}
 
-	// Create a timer with a delay of 1 second (1000 millisecondsTimerimer timer =
-	// new Timer(1000, actionListener);
-
-	// Start the timer
-
-	public boolean isMoving() {
-		return isMoving;
-
+	// Ajouter une 2ème variable qui retourne la mobilité latérale avec un délai
+	public boolean canMoveDown() {
+		canMove = row < 19 && gameGrid.getValueAt(row + 1, col) == null;
+		if (canMove) {
+			return canMove;
+		} else {
+			return canMove;
+		}
 	}
-
+	
+	public Object getRandomShapeType() {
+		Object[] shapeTypes = { "I", "J", "L", "O", "S", "T", "Z" };
+		Random random = new Random();
+		shapeType = shapeTypes[random.nextInt(shapeTypes.length)];
+		return shapeType;
+	}
 
 }

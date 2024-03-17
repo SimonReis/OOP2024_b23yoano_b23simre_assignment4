@@ -45,13 +45,20 @@ public class GameFrame extends JFrame {
 	/**
 	 * The constructor creates the Frame for the game.
 	 */
-	public GameFrame(Grid gameGrid) {
-		this.gameGrid = gameGrid;
+	public GameFrame() {
+		
+		this.gameGrid = Game.getGameGrid();
 		initFrame();
 		initMenuPanel();
-		
-		//TODO Change Listener to another place in code
-		GameListener gameListener = new GameListener();
+	}
+
+	private void initFrame() {
+		this.setTitle("Tetris Game");
+		this.setMinimumSize(new Dimension(WIDTH, HEIGHT));
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setLocationRelativeTo(null); // Place the JFrame in the middle of the screen
+
+		GameFrameListener gameListener = new GameFrameListener();
 		this.addKeyListener(gameListener);
 	}
 

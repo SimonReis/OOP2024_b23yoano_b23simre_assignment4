@@ -22,24 +22,7 @@ public class Tetris {
 	 * This method executes the Tetris Game
 	 */
 	private void execute() {
-		
-		Grid gameGrid = new Grid(20,10);
-		
-		GameFrame frame = new GameFrame(gameGrid);
-		frame.setFocusable(true);
-		frame.setVisible(true);
-		frame.pack();
-		
-		while (true) {
-			Block block = new Block(gameGrid, 0, 4);
-			while (block.isMoving()) {
-				try {
-					Thread.sleep(100);
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
-		}
+		Game game = new Game();
 	}
+	
 }

@@ -8,9 +8,7 @@ import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.table.TableColumn;
 
-import tetris.GridCellRenderer;
 import tetris.Block;
-import tetris.Grid;
 import tetris.Grid;
 
 /**

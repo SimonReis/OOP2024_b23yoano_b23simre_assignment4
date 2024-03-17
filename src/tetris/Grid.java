@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 
 
@@ -26,21 +27,24 @@ public class Grid extends JTable {
 	 * @param numCols Number of columns
 	 */
 	public Grid(int numRows, int numCols) {
-		this.numRows = numRows;
-		this.numCols = numCols;
-		
-		// TODO @Yoann please describe Table model
-		TableModel model = new TableModel(numRows, numCols);
+		DefaultTableModel model = new DefaultTableModel(numRows, numCols) {
+
+			private static final long serialVersionUID = 1L;
+
+			@Override
+		    public boolean isCellEditable(int row, int column) {
+		       //all cells false
+		       return false;
+		    }
+		};
 		this.setModel(model);
 		this.setGridColor(Color.LIGHT_GRAY);
-		
-		//TODO Maybe add resize later
-		cellSize = 24;
-		setTableSize(cellSize);
-		
-		
-		// TODO @Yoann please describe Renderer
-		this.setDefaultRenderer(Object.class, new TableRenderer());
+		this.setRowHeight(24); //TODO Maybe add resize later
+		for (int i = 0; i < this.getColumnModel().getColumnCount(); i++) {
+			TableColumn column = this.getColumnModel().getColumn(i);
+			column.setPreferredWidth(24);
+		}
+		this.setDefaultRenderer(Object.class, new GridRenderer());
 	}
 	
 	/**
