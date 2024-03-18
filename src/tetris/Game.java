@@ -28,7 +28,7 @@ public class Game {
 		gameGrid = grid;
 	}
 	
-	public static GameFrame getFrame() {
+	public GameFrame getFrame() {
 		return frame;
 	
 	}

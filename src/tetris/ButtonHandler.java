@@ -59,6 +59,7 @@ public class ButtonHandler implements ActionListener {
 				if (result == 1) {
 					System.out.println("You selected: Resume Game");
 					// TODO implement Action
+					Game.getGameInstance().getFrame().setFocusable(true);
 					
 				} else if (result == 0) {
 					System.out.println("You selected: End Game");
