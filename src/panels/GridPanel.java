@@ -9,6 +9,8 @@ import javax.swing.JTextArea;
 import javax.swing.table.TableColumn;
 
 import tetris.Block;
+import tetris.GameFrame;
+import tetris.GameFrameListener;
 import tetris.Grid;
 
 /**
@@ -25,12 +27,24 @@ public class GridPanel extends JPanel {
 	 * 
 	 * @param color Background color of the grid panel
 	 */
-	public GridPanel(Grid gameGrid, Color color) {
+	public GridPanel(GameFrame gameFrame, Grid gameGrid, Color color) {
 
 		this.setBackground(color);
 		this.add(gameGrid);
+		
+		// Add Listener to the frame
+		GameFrameListener gameListener = new GameFrameListener();
+		gameFrame.addKeyListener(gameListener);
 
-
+	}
+	
+	/**
+	 * This method returns the game grid.
+	 * 
+	 * @return Game grid
+	 */
+	public Grid getGameGrid() {
+		return gameGrid;
 	}
 
 }

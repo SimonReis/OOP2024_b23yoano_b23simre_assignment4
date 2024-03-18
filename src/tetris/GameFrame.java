@@ -30,6 +30,9 @@ public class GameFrame extends JFrame {
 	 */
 	private Color backgroundColor = new Color(138, 146, 174);
 
+	
+	private Game game;
+	
 	/**
 	 * For the game there are three different views. The menu, the game itself and
 	 * the view if the game is paused.
@@ -46,7 +49,6 @@ public class GameFrame extends JFrame {
 	 * The constructor creates the Frame for the game.
 	 */
 	public GameFrame() {
-		
 		this.gameGrid = Game.getGameGrid();
 		initFrame();
 		initMenuPanel();
@@ -61,8 +63,8 @@ public class GameFrame extends JFrame {
 		this.setMaximumSize(new Dimension(WIDTH, HEIGHT));
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setLocationRelativeTo(null); // Place the JFrame in the middle of the screen
-		GameFrameListener gameListener = new GameFrameListener();
-		this.addKeyListener(gameListener);
+		
+
 	}
 
 	/**
@@ -71,7 +73,7 @@ public class GameFrame extends JFrame {
 	 */
 	private void initGamePanel() {
 		// Create the three different panels
-		JPanel gridPanel = new GridPanel(gameGrid, backgroundColor);
+		JPanel gridPanel = new GridPanel(this, gameGrid, backgroundColor);
 		JPanel leftPanel = new InformationPanelLeft(this, backgroundColor);
 		JPanel rightPanel = new InformationPanelRight(this, backgroundColor);
 
@@ -91,32 +93,25 @@ public class GameFrame extends JFrame {
 	private void initMenuPanel() {
 		menuPanel = new MenuPanel(this, backgroundColor);
 		this.add(menuPanel);
-		
 	}
+	
 
 	/**
 	 * This method is called, when a new game should start. The view will change
 	 * from the menu panel to the game panel.
 	 */
-	public void startGame() {
-		//TODO Start Falling blocks
+	public void setGameView() {
 		this.remove(menuPanel);
 		initGamePanel();
-		// Start Falling blocks
-		BlockFactory blockFactory = new BlockFactory();
-		blockFactory.startProduction();
-		this.pack();
 	}
 	
 	/**
 	 * This method is called, when a game should be ended. The view will change
 	 * from the game panel to the menu panel.
 	 */
-	public void endGame() {
+	public void setMenuView() {
 		this.remove(gamePanel);
 		initMenuPanel();
-		this.pack();
 	}
 	
-	//TODO Where to implement cleared lines etc. and when a game is stopped
 }
