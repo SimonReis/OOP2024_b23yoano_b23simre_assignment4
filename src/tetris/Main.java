@@ -6,7 +6,7 @@ package tetris;
  * @author Yoann Normand
  * @author Simon Rainer Reis
  */
-public class Tetris {
+public class Main {
 
 	/**
 	 * This is the main method which creates the Tetris application.
@@ -14,7 +14,7 @@ public class Tetris {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		Tetris application = new Tetris();
+		Main application = new Main();
 		application.execute();
 	}
 

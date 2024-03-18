@@ -8,7 +8,7 @@ import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.table.TableColumn;
 
-import tetris.Block;
+import tetris.Tetromino;
 import tetris.GameFrame;
 import tetris.GameFrameListener;
 import tetris.Grid;

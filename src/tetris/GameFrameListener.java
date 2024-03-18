@@ -14,17 +14,17 @@ public class GameFrameListener implements KeyListener {
 			break;
 		case KeyEvent.VK_DOWN:
 			// handle down
-			BlockFactory.getCurrentBlock().moveDown();
+			TetrominoFactory.getCurrentTetromino().moveDown();
 			System.out.println("down");
 			break;
 		case KeyEvent.VK_LEFT:
 			// handle left
-			BlockFactory.getCurrentBlock().moveLeft();
+			TetrominoFactory.getCurrentTetromino().moveLeft();
 			System.out.println("left");
 			break;
 		case KeyEvent.VK_RIGHT:
 			// handle right
-			BlockFactory.getCurrentBlock().moveRight();
+			TetrominoFactory.getCurrentTetromino().moveRight();
 			System.out.println("right");
 			break;
 		default:

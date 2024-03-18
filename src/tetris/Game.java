@@ -44,7 +44,7 @@ public class Game {
 		frame.pack();
 
 		// Start Falling blocks
-		BlockFactory blockFactory = new BlockFactory();
+		TetrominoFactory blockFactory = new TetrominoFactory();
 		blockFactory.startProduction();
 
 	}

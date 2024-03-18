@@ -9,7 +9,6 @@ import javax.swing.JPanel;
 
 import tetris.GameFrame;
 import tetris.Grid;
-import tetris.Tetromino;
 
 /**
  * This class represents the right information panel, where high score, score,
@@ -196,12 +195,6 @@ public class InformationPanelRight extends JPanel {
 	 */
 	public void setClearedLines(int number) {
 		setNumber(linesLabelNumber, number);
-		frame.pack();
-	}
-	
-	public void displayNextTetromino(Tetromino tetromino) {
-		//TODO implement class and methods
-		//nextGrid.addTetromino(tetromino);
 		frame.pack();
 	}
 
