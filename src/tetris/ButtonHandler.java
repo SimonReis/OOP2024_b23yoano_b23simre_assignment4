@@ -34,8 +34,7 @@ public class ButtonHandler implements ActionListener {
 				System.out.println("New Game Button is clicked!");
 				// TODO implement Action
 				Game.getGameInstance().startGame();
-		
-				
+
 			} else if (menuPanel.getQuitGameButton() == e.getSource()) {
 				System.out.println("Quit Game Button is clicked!");
 				// TODO implement Action
@@ -51,21 +50,23 @@ public class ButtonHandler implements ActionListener {
 				int result = JOptionPane.showOptionDialog(infoLeft.getParent(),
 						"Do you want to resume or end the game?", "Game is paused", JOptionPane.YES_NO_OPTION,
 						JOptionPane.PLAIN_MESSAGE, null, options, options[1]);
-				
-				
+
 				// result == 1: Resume Game
 				// result == 0: End Game
-				
+
 				if (result == 1) {
 					System.out.println("You selected: Resume Game");
 					// TODO implement Action
-					Game.getGameInstance().getFrame().setFocusable(true);
-					
+					Game.getGameInstance().getFrame().requestFocus();
+
 				} else if (result == 0) {
 					System.out.println("You selected: End Game");
 					// TODO implement Action
 					Game.getGameInstance().endGame();
-					
+
+				} else {
+
+					Game.getGameInstance().getFrame().requestFocus();
 				}
 			}
 		}
