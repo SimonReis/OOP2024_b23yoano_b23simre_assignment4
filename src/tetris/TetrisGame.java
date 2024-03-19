@@ -72,8 +72,8 @@ public class TetrisGame {
 		frame.pack();
 
 		// Start Falling blocks
-		BlockFactory blockFactory = new BlockFactory();
-		blockFactory.startProduction();
+		TetrominoFactory tetrominoFactory = new TetrominoFactory();
+		tetrominoFactory.startProduction();
 	}
 	
 	public void pauseGame() {

@@ -3,7 +3,6 @@ package listeners;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-import tetris.BlockFactory;
 import tetris.TetrominoFactory;
 
 public class GameFrameListener implements KeyListener {
