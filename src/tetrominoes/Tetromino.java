@@ -28,7 +28,7 @@ public class Tetromino {
 	/**
 	 * Tetromino type defined by a letter.
 	 */
-	private Object tetrominoType;
+	private Shapes tetrominoShape;
 	
 	/**
 	 * Timer to set repeated down movement of the Tetromino.
@@ -49,7 +49,7 @@ public class Tetromino {
 	public Tetromino() {
 		gameGrid = TetrisGame.getGameGrid();
 		canMoveDown = false;
-		tetrominoType = getRandomTetrominoType();
+		tetrominoShape = getRandomTetrominoShape();
 	}
 	
 	/**
@@ -63,7 +63,7 @@ public class Tetromino {
 		// Sets the spawning location of the Tetromino.
 		row = 0;
 		col = 4;
-		gameGrid.setValueAt(tetrominoType, row, col);
+		gameGrid.setValueAt(tetrominoShape.getColor(), row, col);
 		
 		ActionListener actionListener = new ActionListener() {
 			
@@ -95,7 +95,7 @@ public class Tetromino {
 			
 			// Rebuilds the Tetromino in its new location one row below.
 			row++;
-			gameGrid.setValueAt(tetrominoType, row, col);
+			gameGrid.setValueAt(tetrominoShape, row, col);
 			
 		// If the Tetromino cannot move down.
 		} else {
@@ -118,7 +118,7 @@ public class Tetromino {
 			
 			// Rebuilds the Tetromino in its new location one column left.
 			col--;
-			gameGrid.setValueAt(tetrominoType, row, col);
+			gameGrid.setValueAt(tetrominoShape, row, col);
 		}
 	}
 	
@@ -135,7 +135,7 @@ public class Tetromino {
 			
 			// Rebuilds the Tetromino in its new location one column left.
 			col++;
-			gameGrid.setValueAt(tetrominoType, row, col);
+			gameGrid.setValueAt(tetrominoShape, row, col);
 		}
 	}
 
@@ -151,19 +151,19 @@ public class Tetromino {
 	}
 	
 	/**
-	 * This method returns a random Tetromino type defined by a letter for each shape.
+	 * This method returns a random Tetromino shape defined by a color and matrix for each shape.
 	 * 
-	 * @return tetrominoType
+	 * @return Random Tetromino shape
 	 */
-	public Object getRandomTetrominoType() {
-		// Stores the Tetromino types.
-		Object[] tetrominoTypes = { "I", "J", "L", "O", "S", "T", "Z" };
-		
-		// Chooses randomly one of these types.
+	private Shapes getRandomTetrominoShape() {
+		// Create randomizer
 		Random random = new Random();
-		tetrominoType = tetrominoTypes[random.nextInt(tetrominoTypes.length)];
 		
-		return tetrominoType;
+		// Create array with all shapes
+		Shapes[] allShapes = Shapes.getAllShapes();
+				
+		// Use one random Shape
+		return allShapes[random.nextInt(allShapes.length)];
 	}
 
 }

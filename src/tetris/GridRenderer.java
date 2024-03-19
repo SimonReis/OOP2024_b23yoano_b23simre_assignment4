@@ -6,30 +6,32 @@ import java.awt.Component;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 
+import tetrominoes.Shapes;
+
 public class GridRenderer extends DefaultTableCellRenderer {
 
 	private static final long serialVersionUID = 1L;
 
-	public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus,
+	public Component getTableCellRendererComponent(JTable table, Shapes tetrominoShape, boolean isSelected, boolean hasFocus,
 			int row, int column) {
 		super.getTableCellRendererComponent(table, "", false, false, row, column);
 
-		if (value == null) {
+		if (tetrominoShape == null) {
 			setBackground(Color.DARK_GRAY);
-		} else if (value == "I") {
-			setBackground(Color.CYAN);
-		} else if (value == "J") {
-			setBackground(Color.BLUE);
-		} else if (value == "L") {
-			setBackground(Color.ORANGE);
-		} else if (value == "O") {
-			setBackground(Color.YELLOW);
-		} else if (value == "S") {
-			setBackground(Color.GREEN);
-		} else if (value == "T") {
-			setBackground(Color.MAGENTA);
-		} else if (value == "Z") {
-			setBackground(Color.RED);
+		} else if (tetrominoShape == Shapes.I) {
+			setBackground(Shapes.I.getColor());
+		} else if (tetrominoShape == Shapes.J) {
+			setBackground(Shapes.J.getColor());
+		} else if (tetrominoShape == Shapes.L) {
+			setBackground(Shapes.L.getColor());
+		} else if (tetrominoShape == Shapes.O) {
+			setBackground(Shapes.O.getColor());
+		} else if (tetrominoShape == Shapes.S) {
+			setBackground(Shapes.S.getColor());
+		} else if (tetrominoShape == Shapes.T) {
+			setBackground(Shapes.T.getColor());
+		} else if (tetrominoShape == Shapes.Z) {
+			setBackground(Shapes.Z.getColor());
 		}
 
 		// setBorder(BorderFactory.createLineBorder(Color.black));

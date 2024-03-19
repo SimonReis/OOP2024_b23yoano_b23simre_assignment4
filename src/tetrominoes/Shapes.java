@@ -97,5 +97,14 @@ public enum Shapes {
 	public int[][] getMatrix(){
 		return matrix;
 	}
+	
+	/**
+	 * This method returns all shapes in an array;
+	 * 
+	 * @return All shapes stored in an array
+	 */
+	public static Shapes[] getAllShapes() {	
+		return new Shapes[]{I, J, L, O, S, T, Z};		
+	}
 
 }
