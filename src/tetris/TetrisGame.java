@@ -44,7 +44,7 @@ public class TetrisGame {
 	}
 
 	/**
-	 * This method returns the game grid. 
+	 * This method returns the game grid.
 	 *
 	 * @return Game grid
 	 */
@@ -62,8 +62,9 @@ public class TetrisGame {
 	}
 
 	/**
-	 * This method is called, when a new game round should start. The view will change,
-	 * the production of Tetrominos start and they will spawned in the game frame.
+	 * This method is called, when a new game round should start. The view will
+	 * change, the production of Tetrominos start and they will spawned in the game
+	 * frame.
 	 */
 	public void startGame() {
 		// Change View
@@ -75,30 +76,32 @@ public class TetrisGame {
 		TetrominoFactory tetrominoFactory = new TetrominoFactory();
 		tetrominoFactory.startProduction();
 	}
-	
+
 	public void pauseGame() {
-		//TODO Implement method
-		//stop thread 
+		// TODO Implement method
+		// stop thread
 	}
-	
+
 	/**
-	 * This method is called, when the game round should end. The view will change and the high score is set.
+	 * This method is called, when the game round should end. The view will change
+	 * and the high score is set.
 	 */
 	public void endGame() {
 		// Change View
 		frame.setMenuView();
 		frame.setFocusable(true);
 		frame.pack();
-		
-		//TODO SET HIGHSCORE
+
+		// TODO SET HIGHSCORE
 	}
-	
+
 	/**
-	 * This method refreshes the high score, if the new high score is higher than the older one.
+	 * This method refreshes the high score, if the new high score is higher than
+	 * the older one.
 	 */
 	public void refreshHighScore() {
-		//TODO Implement method
-		//Get current highscore
+		// TODO Implement method
+		// Get current highscore
 		// Compare with old highscore
 		// set label if neccesarry
 	}

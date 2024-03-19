@@ -6,14 +6,22 @@ import java.awt.Component;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 
+
+/**
+ * This class represents the grid renderer.
+ * It defines the rules to render each cell depending on their content.
+ */
 public class GridRenderer extends DefaultTableCellRenderer {
 
 	private static final long serialVersionUID = 1L;
-
+	
+	/**
+	 * This method sets the behavior to follow for each possible cell value.
+	 */
 	public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus,
 			int row, int column) {
 		super.getTableCellRendererComponent(table, "", false, false, row, column);
-
+		
 		if (value == null) {
 			setBackground(Color.DARK_GRAY);
 		} else if (value == "I") {
@@ -32,7 +40,6 @@ public class GridRenderer extends DefaultTableCellRenderer {
 			setBackground(Color.RED);
 		}
 
-		// setBorder(BorderFactory.createLineBorder(Color.black));
 		return this;
 	}
 

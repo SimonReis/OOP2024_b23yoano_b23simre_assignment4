@@ -51,6 +51,9 @@ public class TetrominoFactory {
 
 					// Stores a new Tetromino.
 					storedTetromino = new Tetromino();
+					
+					// Destroys full lines
+					clearLines();
 
 					// Spawns the current Tetromino.
 					currentTetromino.spawnTetromino();
@@ -62,6 +65,37 @@ public class TetrominoFactory {
 		tetrominoFactoryTimer = new Timer(10, actionListener);
 		tetrominoFactoryTimer.start();
 
+	}
+	
+	public void clearLines() {
+		Grid gameGrid = TetrisGame.getGameGrid();
+		int numRows = gameGrid.getRowCount();
+		int numCols = gameGrid.getColumnCount();
+		int nullCount;
+		int clearedRow;
+		for (int i = numRows-1; i >= 0 ; i--) {
+			nullCount = 0;
+			for (int j = 0; j < numCols; j++) {
+				Object value = gameGrid.getValueAt(i, j);
+				if (value == null) {
+					nullCount++;
+				}
+			}
+			if (nullCount == 0) {
+				clearedRow = i;
+				for (int j = 0; j < numCols; j++) {
+					gameGrid.setValueAt(null, i, j);
+				}
+				for (int k = clearedRow-1; k >=0; k--) {
+					for (int l = 0; l < numCols; l++) {
+						Object valueToMove = gameGrid.getValueAt(k, l);
+						gameGrid.setValueAt(valueToMove, k+1, l);
+					}
+				}
+				
+				//System.out.println("Line " + i + " has been cleared!");
+			}
+		}
 	}
 
 	/**
