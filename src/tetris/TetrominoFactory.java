@@ -4,6 +4,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.Timer;
 
+import tetrominoes.Tetromino;
+
 /**
  * This class represents the process that makes new Tetrominos.
  */

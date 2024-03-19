@@ -1,7 +1,7 @@
 package tetris;
 
 /**
- * This class represents the whole Tetris game including the GUI, the core game
+ * This class represents the whole teris game including the GUI, the core game
  * logic, including rules and scorekeeping.
  */
 public class TetrisGame {

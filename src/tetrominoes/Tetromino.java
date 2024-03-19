@@ -1,10 +1,13 @@
-package tetris;
+package tetrominoes;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Random;
 
 import javax.swing.Timer;
+
+import tetris.Grid;
+import tetris.TetrisGame;
 
 /**
  * This class represents the shapes from the game Tetris.
