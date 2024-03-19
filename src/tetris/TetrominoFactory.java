@@ -83,5 +83,9 @@ public class TetrominoFactory {
 	public static Tetromino getCurrentTetromino() {
 		return currentTetromino;
 	}
+	
+	private void loadNextGrid() {
+		
+	}
 
 }

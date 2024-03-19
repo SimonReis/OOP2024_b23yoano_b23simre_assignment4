@@ -12,7 +12,7 @@ public class GridRenderer extends DefaultTableCellRenderer {
 
 	private static final long serialVersionUID = 1L;
 
-	public Component getTableCellRendererComponent(JTable table, Shapes tetrominoShape, boolean isSelected, boolean hasFocus,
+	public Component getTableCellRendererComponent(JTable table, Object tetrominoShape, boolean isSelected, boolean hasFocus,
 			int row, int column) {
 		super.getTableCellRendererComponent(table, "", false, false, row, column);
 
