@@ -58,6 +58,7 @@ public class TetrominoFactory {
 					TetrisGame.getFrame().pack();
 					// Spawns the current Tetromino.
 					currentTetromino.spawnTetromino();
+					System.out.println("Spawn");
 				}
 			}
 		};

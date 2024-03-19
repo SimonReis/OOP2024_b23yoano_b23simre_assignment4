@@ -25,6 +25,10 @@ public class Tetromino {
 	 */
 	private int row;
 	private int col;
+	
+	//delete soon
+	int n = 0;
+	int m = 3;
 
 	/**
 	 * Shape of the tetromino in a 4x4 matrix.
@@ -72,36 +76,86 @@ public class Tetromino {
 	 */
 	public void spawnTetromino() {
 		
-		// Set start point to spawn tetromino
-		if ((tetrominoShape == Shapes.I) || (tetrominoShape == Shapes.S) || (tetrominoShape == Shapes.T) || (tetrominoShape == Shapes.Z)) {
-			row = 0;
-			col = 3;
-		} else if ((tetrominoShape == Shapes.J) || (tetrominoShape == Shapes.L) || (tetrominoShape == Shapes.O)) {
-			row = 0;
-			col = 4;
-		} else {
-			throw new IllegalArgumentException("This shouldnt happen");
-		}
-	
-		// Iterate through the matrix
-		for (int m = 0; m < 4 ; m++) {
-			//Offset for drawing block in the grid
-			int u = 0;
-			int v = 0;
-			for (int n = 0; n < 4; n++) {
-				if(matrix[m][n] == 1) {
-					// If a value is one, a block should be drawn
-					gameGrid.setValueAt(tetrominoShape, row + u, col + v);
-					v++;
-					if (m == 3) {
-						System.out.println("Row incremented");
-						u++;
+		row = 0;
+		col = 0;
+
+		int rowStart = tetrominoShape.getStartRow();
+		int colStart = tetrominoShape.getStartCol();
+
+		for (int u = rowStart; u <= rowStart + 4; u++) {
+			System.out.println("for u");
+			for (int v = colStart; v < colStart + 4; v++) {
+				System.out.println("for v");
+				if (matrix[m][n] == 1) {
+					System.out.println("Matrix m, n: " + m + ", " + n);
+					gameGrid.setValueAt(tetrominoShape, u, v);
 				}
-				}
+				n++;
 			}
+			m--;
 		}
+		n = 0;
+		m = 3;
+		
+		
+		
+		
+		
+		
+		// Set start point to spawn tetromino
+//		if ((tetrominoShape == Shapes.I) || (tetrominoShape == Shapes.S) || (tetrominoShape == Shapes.T) || (tetrominoShape == Shapes.Z)) {
+//			xrow = 3;
+//			xcol = 3;
+//		} else if ((tetrominoShape == Shapes.J) || (tetrominoShape == Shapes.L) || (tetrominoShape == Shapes.O)) {
+//			xrow = 3;
+//			xcol = 3;
+//		}
 	
-		//gameGrid.setValueAt(tetrominoShape, row, col);
+		// Iterate through the matrix.
+//		for (int m = 0; m < 4; m++) {
+//			// Offset for drawing block in the grid
+//			int u = 0;
+//			int v = 0;
+//
+//			for (int n = 0; n < 4; n++) {
+//				if (matrix[m][n] == 1) {
+//					// If a value is one, a block should be drawn.
+//					gameGrid.setValueAt(tetrominoShape, xrow + u, xcol + v);
+//					// v++;
+//				}
+//				v++;
+//				
+//				if (n == 3) {
+//					System.out.println("Row incremented by n: " + n);
+//					u++;
+//				}
+//			}
+//		}
+//		
+		
+		
+//		
+//		for (int m = 2; m >= 0 ; m--) {
+//			int u = 0;
+//			int v = 0;
+//			for (int n = 0; n < 4; n++) {
+//				if(tetrominoShape.getMatrix()[m][n] == 1) {
+//					gameGrid.setValueAt(tetrominoShape, row + u, col + v);
+//				}
+//				v++;
+//				if (n == 3) {
+//					u++;
+//				}
+//			}
+//	}
+			
+		
+		
+		
+		
+//Activate later!!		
+		
+		gameGrid.setValueAt(tetrominoShape, row, col);
 
 		ActionListener actionListener = new ActionListener() {
 
