@@ -14,6 +14,7 @@ import javax.swing.JPanel;
 import listeners.PauseButtonListener;
 import listeners.MenuButtonListener;
 import tetris.MainFrame;
+import tetris.TetrisGame;
 
 /**
  * This class represents the menu panel, in which a new Tetris game can be
@@ -39,18 +40,24 @@ public class MenuPanel extends JPanel {
 	private JButton newGameButton, quitGameButton;
 
 	/**
-	 * JLabel for displaying the current highscore.
+	 * JLabel for displaying the current high score.
 	 */
-	private JLabel highScore;
-
+	private JLabel highScoreLabel;
+	
+	/**
+	 * Number of the high score
+	 */
+	private int highScore;
+	
 	/**
 	 * This class represents the menu panel.
 	 * 
-	 * @param color Background color of th panel
+	 * @param color Background color of the panel
 	 */
 	public MenuPanel(MainFrame frame, Color color) {
 		this.frame = frame;
 		this.color = color;
+		this.highScore = TetrisGame.getHighScore();
 		initPanel();
 		intitUpperPanel();
 		intitLowerPanel();
@@ -115,11 +122,11 @@ public class MenuPanel extends JPanel {
 		upperPanel.setBackground(color);
 		
 		// Create high score label
-		highScore = new JLabel("Highscore: 0");
-		highScore.setFont(new Font("Arial", Font.BOLD, 23));
-		highScore.setHorizontalAlignment(JLabel.CENTER);
-		highScore.setVerticalAlignment(JLabel.BOTTOM);
-		upperPanel.add(highScore); 
+		highScoreLabel = new JLabel("Highscore: " + highScore);
+		highScoreLabel.setFont(new Font("Arial", Font.BOLD, 23));
+		highScoreLabel.setHorizontalAlignment(JLabel.CENTER);
+		highScoreLabel.setVerticalAlignment(JLabel.BOTTOM);
+		upperPanel.add(highScoreLabel); 
 		
 		// Create button panel
 		JPanel buttonPanel = new JPanel();
@@ -158,6 +165,15 @@ public class MenuPanel extends JPanel {
 	public JButton getQuitGameButton() {
 		return quitGameButton;
 	}
+	
+	/**
+	 * This method returns the current highScore of the application
+	 * 
+	 * @return The high score
+	 */
+	public int getHighScore() {
+		return highScore;
+	}
 
 	/**
 	 * This method sets the new high score.
@@ -165,7 +181,7 @@ public class MenuPanel extends JPanel {
 	 * @param number Value of the high score
 	 */
 	public void setNewHighScore(int number) {
-		highScore.setText("Highscore: " + number);
+		highScoreLabel.setText("Highscore: " + number);
 		frame.pack();
 	}
 }

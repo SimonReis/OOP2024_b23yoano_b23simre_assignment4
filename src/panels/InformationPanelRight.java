@@ -8,6 +8,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import tetris.MainFrame;
+import tetris.TetrisGame;
 import tetris.Grid;
 
 /**
@@ -52,6 +53,7 @@ public class InformationPanelRight extends JPanel {
 	public InformationPanelRight(MainFrame frame, Color color) {
 		this.frame = frame;
 		this.color = color;
+		this.highScore = TetrisGame.getHighScore();
 		initPanel();
 
 		// Create the panels and return the labels/grid on which the value is stored
@@ -59,6 +61,9 @@ public class InformationPanelRight extends JPanel {
 		highScoreLabelNumber = createInformation("Highscore");
 		nextGrid = createNextGrid("Next");
 		linesLabelNumber = createInformation("Lines");
+		
+		// Use the high score from the application in the information panel
+		setHighScore(highScore);
 	}
 
 	/**
@@ -158,17 +163,8 @@ public class InformationPanelRight extends JPanel {
 	 * @param number Number of the current high score
 	 */
 	private void setHighScore(int number) {
-		highScore = number;
+		TetrisGame.setHighScore(number);
 		setNumber(highScoreLabelNumber, highScore);
-	}
-	
-	/**
-	 * This method returns the current highScore
-	 * 
-	 * @return The high score
-	 */
-	public int getHighScore() {
-		return highScore;
 	}
 
 	/**
