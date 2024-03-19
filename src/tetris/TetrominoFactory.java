@@ -35,7 +35,7 @@ public class TetrominoFactory {
 	 * This method starts the process of making new Tetromino.
 	 */
 	public void startProduction() {
-		
+
 		ActionListener actionListener = new ActionListener() {
 
 			// This action will be repeated each X seconds (defined in the timer setting).
@@ -51,7 +51,7 @@ public class TetrominoFactory {
 
 					// Stores a new Tetromino.
 					storedTetromino = new Tetromino();
-					
+
 					// Destroys full lines
 					clearLines();
 
@@ -66,14 +66,25 @@ public class TetrominoFactory {
 		tetrominoFactoryTimer.start();
 
 	}
-	
+
+	/**
+	 * This method clears the lines full of Tetrominos cells.
+	 */
 	public void clearLines() {
+		
+		// Gets the game grid.
 		Grid gameGrid = TetrisGame.getGameGrid();
+		
+		// Gets the numer of rows and columns of the game grid.
 		int numRows = gameGrid.getRowCount();
 		int numCols = gameGrid.getColumnCount();
+		
+		// Variable to count the number of null values in a row.
 		int nullCount;
+		
+		// Variable 
 		int clearedRow;
-		for (int i = numRows-1; i >= 0 ; i--) {
+		for (int i = numRows - 1; i >= 0; i--) {
 			nullCount = 0;
 			for (int j = 0; j < numCols; j++) {
 				Object value = gameGrid.getValueAt(i, j);
@@ -82,18 +93,14 @@ public class TetrominoFactory {
 				}
 			}
 			if (nullCount == 0) {
-				clearedRow = i;
-				for (int j = 0; j < numCols; j++) {
-					gameGrid.setValueAt(null, i, j);
-				}
-				for (int k = clearedRow-1; k >=0; k--) {
+				//clearedRow = i;
+				for (int k = i - 1; k >= 0; k--) {
 					for (int l = 0; l < numCols; l++) {
 						Object valueToMove = gameGrid.getValueAt(k, l);
-						gameGrid.setValueAt(valueToMove, k+1, l);
+						gameGrid.setValueAt(valueToMove, k + 1, l);
 					}
 				}
-				
-				//System.out.println("Line " + i + " has been cleared!");
+				i++;
 			}
 		}
 	}
