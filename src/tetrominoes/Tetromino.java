@@ -25,10 +25,6 @@ public class Tetromino {
 	 */
 	private int row;
 	private int col;
-	
-	//delete soon
-	int xrow;
-	int xcol;
 
 	/**
 	 * Shape of the tetromino in a 4x4 matrix.
@@ -75,57 +71,37 @@ public class Tetromino {
 	 * milliseconds (defined in the timer setting).
 	 */
 	public void spawnTetromino() {
-
-		System.out.println("A new Tetromino just spawned!");
-		row = 0;
-		col = 3;
-		
-		gameGrid.setValueAt(tetrominoShape, row, col);
 		
 		// Set start point to spawn tetromino
-//		if ((tetrominoShape == Shapes.I) || (tetrominoShape == Shapes.S) || (tetrominoShape == Shapes.T) || (tetrominoShape == Shapes.Z)) {
-//			xrow = 0;
-//			xcol = 3;
-//		} else if ((tetrominoShape == Shapes.J) || (tetrominoShape == Shapes.L) || (tetrominoShape == Shapes.O)) {
-//			xrow = 0;
-//			xcol = 4;
-//		}
-//	
-//		
-//	
-//		for (int m = 0; m < 4 ; m++) {
-//			for (int n = 0; n < 4; n++) {
-//				if(matrix[m][n] == 1) {
-//					gameGrid.setValueAt(tetrominoShape, xrow, xcol);
-//				}
-//				xcol++;
-//				if (n == 3) {
-//					xrow++;
-//				}
-//			}
-//		
-		
-		
-//		
-//		for (int m = 2; m >= 0 ; m--) {
-//			for (int n = 0; n < 4; n++) {
-//				if(tetrominoShape.getMatrix()[m][n] == 1) {
-//					gameGrid.setValueAt(tetrominoShape, row, col);
-//				}
-//				col++;
-//				if (n == 3) {
-//					row++;
-//				}
-//			}
-//	}
-			
-		
-		
-		
-		
-		
-		
-		gameGrid.setValueAt(tetrominoShape, row, col);
+		if ((tetrominoShape == Shapes.I) || (tetrominoShape == Shapes.S) || (tetrominoShape == Shapes.T) || (tetrominoShape == Shapes.Z)) {
+			row = 0;
+			col = 3;
+		} else if ((tetrominoShape == Shapes.J) || (tetrominoShape == Shapes.L) || (tetrominoShape == Shapes.O)) {
+			row = 0;
+			col = 4;
+		} else {
+			throw new IllegalArgumentException("This shouldnt happen");
+		}
+	
+		// Iterate through the matrix
+		for (int m = 0; m < 4 ; m++) {
+			//Offset for drawing block in the grid
+			int u = 0;
+			int v = 0;
+			for (int n = 0; n < 4; n++) {
+				if(matrix[m][n] == 1) {
+					// If a value is one, a block should be drawn
+					gameGrid.setValueAt(tetrominoShape, row + u, col + v);
+					v++;
+					if (m == 3) {
+						System.out.println("Row incremented");
+						u++;
+				}
+				}
+			}
+		}
+	
+		//gameGrid.setValueAt(tetrominoShape, row, col);
 
 		ActionListener actionListener = new ActionListener() {
 
