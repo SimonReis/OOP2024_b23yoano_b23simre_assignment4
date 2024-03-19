@@ -54,9 +54,9 @@ public class MenuPanel extends JPanel {
 	 * 
 	 * @param color Background color of the panel
 	 */
-	public MenuPanel(MainFrame frame, Color color) {
-		this.frame = frame;
-		this.color = color;
+	public MenuPanel() {
+		this.frame = TetrisGame.getFrame();
+		this.color = TetrisGame.getBackgroundColor();
 		this.highScore = TetrisGame.getHighScore();
 		initPanel();
 		intitUpperPanel();

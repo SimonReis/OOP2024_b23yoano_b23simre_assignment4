@@ -1,5 +1,6 @@
 package tetrominoes;
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Random;
@@ -33,6 +34,11 @@ public class Tetromino {
 	 * Shape of the tetromino in a 4x4 matrix.
 	 */
 	private int[][] matrix;
+	
+	/**
+	 * Color of the tetromino.
+	 */
+	private Color color;
 
 	/**
 	 * Tetromino type defined by a letter.
@@ -59,6 +65,9 @@ public class Tetromino {
 		gameGrid = TetrisGame.getGameGrid();
 		canMoveDown = false;
 		tetrominoShape = getRandomTetrominoShape();
+		matrix = tetrominoShape.getMatrix();
+		color = tetrominoShape.getColor();
+		
 	}
 
 	/**
@@ -82,7 +91,7 @@ public class Tetromino {
 //			xcol = 4;
 //		}
 //	
-//		matrix = tetrominoShape.getMatrix();
+//		
 //	
 //		for (int m = 0; m < 4 ; m++) {
 //			for (int n = 0; n < 4; n++) {
@@ -278,5 +287,14 @@ public class Tetromino {
         	throw new IllegalArgumentException ("Wrong matrix dimensions!");
         }
 	}
+	
+	/**
+	 * This method returns the shape of the tetromino.
+	 */
+	public Shapes getShape(){
+		return tetrominoShape;
+	}
+	
+
 
 }

@@ -28,7 +28,7 @@ public class MainFrame extends JFrame {
 	/**
 	 * Possibility to change background color
 	 */
-	private Color backgroundColor = new Color(138, 146, 174);
+	private Color backgroundColor;
 	
 	/**
 	 * For the game there are three different views. The menu, the game itself and
@@ -54,6 +54,7 @@ public class MainFrame extends JFrame {
 	public MainFrame() {
 		this.gameGrid = TetrisGame.getGameGrid();
 		this.highScore = TetrisGame.getHighScore();
+		this.backgroundColor = TetrisGame.getBackgroundColor();
 		initFrame();
 		initMenuPanel();
 	}
@@ -77,9 +78,9 @@ public class MainFrame extends JFrame {
 	 */
 	private void initGamePanel() {
 		// Create the three different panels
-		JPanel gridPanel = new GridPanel(this, gameGrid, backgroundColor);
-		JPanel leftPanel = new InformationPanelLeft(this, backgroundColor);
-		rightPanel = new InformationPanelRight(this, backgroundColor);
+		JPanel gridPanel = new GridPanel(gameGrid);
+		JPanel leftPanel = new InformationPanelLeft();
+		rightPanel = new InformationPanelRight();
 
 		// Add the panels in the game panels, which is added to the frame.
 		gamePanel = new JPanel();
@@ -95,7 +96,7 @@ public class MainFrame extends JFrame {
 	 * This method initialize the panel with the menu view.
 	 */
 	private void initMenuPanel() {
-		menuPanel = new MenuPanel(this, backgroundColor);
+		menuPanel = new MenuPanel();
 		this.add(menuPanel);
 	}
 	

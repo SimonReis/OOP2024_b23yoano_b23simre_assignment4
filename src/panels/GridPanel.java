@@ -6,6 +6,7 @@ import javax.swing.JPanel;
 
 import listeners.GameFrameListener;
 import tetris.MainFrame;
+import tetris.TetrisGame;
 import tetris.Grid;
 
 /**
@@ -22,14 +23,14 @@ public class GridPanel extends JPanel {
 	 * 
 	 * @param color Background color of the grid panel
 	 */
-	public GridPanel(MainFrame gameFrame, Grid gameGrid, Color color) {
+	public GridPanel(Grid gameGrid) {
 
-		this.setBackground(color);
+		this.setBackground(TetrisGame.getBackgroundColor());
 		this.add(gameGrid);
 		
 		// Add Listener to the frame
 		GameFrameListener gameListener = new GameFrameListener();
-		gameFrame.addKeyListener(gameListener);
+		TetrisGame.getFrame().addKeyListener(gameListener);
 
 	}
 	

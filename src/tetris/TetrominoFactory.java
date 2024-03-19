@@ -25,7 +25,7 @@ public class TetrominoFactory {
 	 * The moving Tetromino that is displayed in the Tetris Grid.
 	 */
 	private Timer tetrominoFactoryTimer;
-
+	
 	/**
 	 * This constructor stores the next Tetromino.
 	 */
@@ -43,7 +43,7 @@ public class TetrominoFactory {
 			// This action will be repeated each X seconds (defined in the timer setting).
 			@Override
 			public void actionPerformed(ActionEvent e) {
-
+				
 				// Checks if there is no current Tetromino (production starting case)
 				// and checks if this Tetromino can't move down.
 				if (currentTetromino == null || !currentTetromino.canMoveDown()) {
@@ -53,7 +53,9 @@ public class TetrominoFactory {
 
 					// Stores a new Tetromino.
 					storedTetromino = new Tetromino();
-
+					// Place the stored tetromino in the next grid
+					TetrisGame.getFrame().getInfoRight().setNextTetromino(storedTetromino);
+					TetrisGame.getFrame().pack();
 					// Spawns the current Tetromino.
 					currentTetromino.spawnTetromino();
 				}
@@ -67,10 +69,11 @@ public class TetrominoFactory {
 	}
 
 	/**
-	 * This method returns next Tetromino.
+	 * This method returns the next Tetromino.
 	 * 
 	 * @return storedTetromino
 	 */
+	//TODO why should this be static
 	public static Tetromino getStoredTetromino() {
 		return storedTetromino;
 	}
@@ -82,10 +85,6 @@ public class TetrominoFactory {
 	 */
 	public static Tetromino getCurrentTetromino() {
 		return currentTetromino;
-	}
-	
-	private void loadNextGrid() {
-		
 	}
 
 }
