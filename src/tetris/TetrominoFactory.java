@@ -75,32 +75,45 @@ public class TetrominoFactory {
 		// Gets the game grid.
 		Grid gameGrid = TetrisGame.getGameGrid();
 		
-		// Gets the numer of rows and columns of the game grid.
+		// Gets the number of rows and columns of the game grid.
 		int numRows = gameGrid.getRowCount();
 		int numCols = gameGrid.getColumnCount();
 		
-		// Variable to count the number of null values in a row.
-		int nullCount;
+		// Variable to tell if the line is full.
+		boolean isLineFull;
 		
-		// Variable 
-		int clearedRow;
-		for (int i = numRows - 1; i >= 0; i--) {
-			nullCount = 0;
-			for (int j = 0; j < numCols; j++) {
-				Object value = gameGrid.getValueAt(i, j);
+		// For each row in the game grid.
+		for (int row = numRows - 1; row >= 0; row--) {
+			
+			// Sets the full line checker to true.
+			// The value will remain true if no null is found in the row.
+			isLineFull = true;
+			
+			// For each column on this row
+			for (int col = 0; col < numCols; col++) {
+				
+				// Checks if the value at the intersection of this row and column is null.
+				// Pass the full line checker to false and exits the for loop when it is the case.
+				Object value = gameGrid.getValueAt(row, col);
 				if (value == null) {
-					nullCount++;
+					isLineFull = false;
+					break;
 				}
 			}
-			if (nullCount == 0) {
-				//clearedRow = i;
-				for (int k = i - 1; k >= 0; k--) {
-					for (int l = 0; l < numCols; l++) {
-						Object valueToMove = gameGrid.getValueAt(k, l);
-						gameGrid.setValueAt(valueToMove, k + 1, l);
+			
+			// If the line is full of Tetrominos values,
+			// Moves each value to the cell below.
+			// It starts from bottom (line above the full one) to top, in order to prevent value suppression.
+			if (isLineFull) {
+				for (int rowToMove = row - 1; rowToMove >= 0; rowToMove--) {
+					for (int colToMove = 0; colToMove < numCols; colToMove++) {
+						Object valueToMove = gameGrid.getValueAt(rowToMove, colToMove);
+						gameGrid.setValueAt(valueToMove, rowToMove + 1, colToMove);
 					}
 				}
-				i++;
+				
+				// Goes back to previous row because it contains new values and might be full as well.
+				row++;
 			}
 		}
 	}
