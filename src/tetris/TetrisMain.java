@@ -1,12 +1,12 @@
 package tetris;
 
 /**
- * This class runs the Tetris game.
+ * This class is the entry point for the Tetris application.
  * 
  * @author Yoann Normand
  * @author Simon Rainer Reis
  */
-public class Tetris {
+public class TetrisMain {
 
 	/**
 	 * This is the main method which creates the Tetris application.
@@ -14,7 +14,7 @@ public class Tetris {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		Tetris application = new Tetris();
+		TetrisMain application = new TetrisMain();
 		application.execute();
 	}
 
@@ -22,7 +22,7 @@ public class Tetris {
 	 * This method executes the Tetris Game
 	 */
 	private void execute() {
-		new Game();
+		new TetrisGame();
 	}
 	
 }

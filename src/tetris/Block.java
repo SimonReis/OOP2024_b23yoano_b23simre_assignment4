@@ -16,7 +16,7 @@ public class Block {
 	private boolean canMove;
 
 	public Block() {
-		gameGrid = Game.getGameGrid();
+		gameGrid = TetrisGame.getGameGrid();
 		canMove = false;
 		shapeType = getRandomShapeType();
 	}

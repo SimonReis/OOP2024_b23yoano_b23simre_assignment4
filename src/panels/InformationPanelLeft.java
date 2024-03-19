@@ -11,8 +11,8 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import tetris.ButtonHandler;
-import tetris.GameFrame;
+import listeners.PauseButtonListener;
+import tetris.MainFrame;
 
 /**
  * This class represent the left information panel with the logo and the pause
@@ -25,7 +25,7 @@ public class InformationPanelLeft extends JPanel {
 	/**
 	 * The frame in which the menu panel is stored.
 	 */
-	private GameFrame frame;
+	private MainFrame frame;
 
 	/**
 	 * All components to build the information left panel.
@@ -44,7 +44,7 @@ public class InformationPanelLeft extends JPanel {
 	 * 
 	 * @param color Background color
 	 */
-	public InformationPanelLeft(GameFrame frame, Color color) {
+	public InformationPanelLeft(MainFrame frame, Color color) {
 		this.frame = frame;
 		this.color = color;
 		initPanel();
@@ -86,7 +86,7 @@ public class InformationPanelLeft extends JPanel {
 		buttonPanel.setBackground(color);
 		buttonPanel.setLayout(new GridBagLayout());
 		pauseButton = new JButton("Pause Game");
-		pauseButton.addActionListener(new ButtonHandler(this));
+		pauseButton.addActionListener(new PauseButtonListener(this));
 		buttonPanel.add(pauseButton, new GridBagConstraints());
 		this.add(buttonPanel);
 
@@ -97,7 +97,7 @@ public class InformationPanelLeft extends JPanel {
 	 * 
 	 * @return
 	 */
-	public GameFrame getFrame() {
+	public MainFrame getFrame() {
 		return frame;
 	}
 

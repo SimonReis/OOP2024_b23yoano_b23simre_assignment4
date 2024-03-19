@@ -8,9 +8,9 @@ import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.table.TableColumn;
 
+import listeners.GameFrameListener;
 import tetris.Block;
-import tetris.GameFrame;
-import tetris.GameFrameListener;
+import tetris.MainFrame;
 import tetris.Grid;
 
 /**
@@ -27,7 +27,7 @@ public class GridPanel extends JPanel {
 	 * 
 	 * @param color Background color of the grid panel
 	 */
-	public GridPanel(GameFrame gameFrame, Grid gameGrid, Color color) {
+	public GridPanel(MainFrame gameFrame, Grid gameGrid, Color color) {
 
 		this.setBackground(color);
 		this.add(gameGrid);
