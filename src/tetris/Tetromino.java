@@ -16,7 +16,7 @@ public class Tetromino {
 	private boolean canMove;
 
 	public Tetromino() {
-		gameGrid = Game.getGameGrid();
+		gameGrid = TetrisGame.getGameGrid();
 		canMove = false;
 		shapeType = getRandomShapeType();
 	}
