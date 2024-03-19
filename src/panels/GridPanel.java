@@ -2,14 +2,9 @@ package panels;
 
 import java.awt.Color;
 
-import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTable;
-import javax.swing.JTextArea;
-import javax.swing.table.TableColumn;
 
 import listeners.GameFrameListener;
-import tetris.Block;
 import tetris.MainFrame;
 import tetris.Grid;
 

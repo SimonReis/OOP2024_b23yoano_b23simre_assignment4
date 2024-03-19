@@ -8,9 +8,6 @@ import javax.swing.table.DefaultTableCellRenderer;
 
 public class GridRenderer extends DefaultTableCellRenderer {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 	public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus,
