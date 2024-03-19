@@ -13,9 +13,9 @@ import panels.InformationPanelLeft;
 import panels.InformationPanelRight;
 
 /**
- * This class represents the Tetris game frame.
+ * This class represents the Tetris main frame of the tetris application.
  */
-public class GameFrame extends JFrame {
+public class MainFrame extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 
@@ -29,9 +29,6 @@ public class GameFrame extends JFrame {
 	 * Possibility to change background color
 	 */
 	private Color backgroundColor = new Color(138, 146, 174);
-
-	
-	private Game game;
 	
 	/**
 	 * For the game there are three different views. The menu, the game itself and
@@ -48,8 +45,8 @@ public class GameFrame extends JFrame {
 	/**
 	 * The constructor creates the Frame for the game.
 	 */
-	public GameFrame() {
-		this.gameGrid = Game.getGameGrid();
+	public MainFrame() {
+		this.gameGrid = TetrisGame.getGameGrid();
 		initFrame();
 		initMenuPanel();
 	}

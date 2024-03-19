@@ -7,7 +7,7 @@ import java.awt.GridLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import tetris.GameFrame;
+import tetris.MainFrame;
 import tetris.Grid;
 
 /**
@@ -21,7 +21,7 @@ public class InformationPanelRight extends JPanel {
 	/**
 	 * The frame in which the menu panel is stored.
 	 */
-	private GameFrame frame;
+	private MainFrame frame;
 
 	/**
 	 * Similar properties of the labels of the right information panel.
@@ -49,7 +49,7 @@ public class InformationPanelRight extends JPanel {
 	 * 
 	 * @param color Background color
 	 */
-	public InformationPanelRight(GameFrame frame, Color color) {
+	public InformationPanelRight(MainFrame frame, Color color) {
 		this.frame = frame;
 		this.color = color;
 		initPanel();

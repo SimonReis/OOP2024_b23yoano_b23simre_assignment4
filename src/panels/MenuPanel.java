@@ -11,8 +11,9 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import tetris.ButtonHandler;
-import tetris.GameFrame;
+import listeners.PauseButtonListener;
+import listeners.MenuButtonListener;
+import tetris.MainFrame;
 
 /**
  * This class represents the menu panel, in which a new Tetris game can be
@@ -25,7 +26,7 @@ public class MenuPanel extends JPanel {
 	/**
 	 * The frame in which the menu panel is stored.
 	 */
-	private GameFrame frame;
+	private MainFrame frame;
 
 	/**
 	 * Color which should used for the background.
@@ -47,7 +48,7 @@ public class MenuPanel extends JPanel {
 	 * 
 	 * @param color Background color of th panel
 	 */
-	public MenuPanel(GameFrame frame, Color color) {
+	public MenuPanel(MainFrame frame, Color color) {
 		this.frame = frame;
 		this.color = color;
 		initPanel();
@@ -55,7 +56,12 @@ public class MenuPanel extends JPanel {
 		intitLowerPanel();
 	}
 	
-	public GameFrame getFrame() {
+	/**
+	 * This method returns the main frame.
+	 * 
+	 * @return Main frame
+	 */
+	public MainFrame getFrame() {
 		return frame;
 	}
 
@@ -122,12 +128,12 @@ public class MenuPanel extends JPanel {
 
 		// Create new game button
 		newGameButton = new JButton("New Game");
-		newGameButton.addActionListener(new ButtonHandler(this));
+		newGameButton.addActionListener(new MenuButtonListener(this));
 		buttonPanel.add(newGameButton);
 
 		// Create quit game button
 		quitGameButton = new JButton("Quit Game");
-		quitGameButton.addActionListener(new ButtonHandler(this));
+		quitGameButton.addActionListener(new MenuButtonListener(this));
 		buttonPanel.add(quitGameButton);
 		
 		upperPanel.add(buttonPanel);
