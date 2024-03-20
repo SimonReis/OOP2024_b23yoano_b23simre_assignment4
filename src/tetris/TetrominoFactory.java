@@ -4,6 +4,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.Timer;
 
+import tetrominoes.Tetromino;
+
 /**
  * This class represents the process that makes new Tetrominos.
  */
@@ -23,7 +25,7 @@ public class TetrominoFactory {
 	 * The moving Tetromino that is displayed in the Tetris Grid.
 	 */
 	private Timer tetrominoFactoryTimer;
-
+	
 	/**
 	 * This constructor stores the next Tetromino.
 	 */
@@ -41,7 +43,7 @@ public class TetrominoFactory {
 			// This action will be repeated each X seconds (defined in the timer setting).
 			@Override
 			public void actionPerformed(ActionEvent e) {
-
+				
 				// Checks if there is no current Tetromino (production starting case)
 				// and checks if this Tetromino can't move down.
 				if (currentTetromino == null || !currentTetromino.canMoveDown()) {
@@ -51,12 +53,16 @@ public class TetrominoFactory {
 
 					// Stores a new Tetromino.
 					storedTetromino = new Tetromino();
+					// Place the stored tetromino in the next grid
+					TetrisGame.getFrame().getInfoRight().setNextTetromino(storedTetromino);
+					TetrisGame.getFrame().pack();
 
 					// Destroys full lines
 					clearLines();
 
 					// Spawns the current Tetromino.
 					currentTetromino.spawnTetromino();
+					System.out.println("Spawn");
 				}
 			}
 		};
@@ -123,6 +129,7 @@ public class TetrominoFactory {
 	 * 
 	 * @return storedTetromino
 	 */
+	//TODO why should this be static
 	public static Tetromino getStoredTetromino() {
 		return storedTetromino;
 	}

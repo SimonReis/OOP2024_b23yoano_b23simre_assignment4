@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 
 import tetris.MainFrame;
 import tetris.TetrisGame;
+import tetrominoes.Tetromino;
 import tetris.Grid;
 
 /**
@@ -50,9 +51,9 @@ public class InformationPanelRight extends JPanel {
 	 * 
 	 * @param color Background color
 	 */
-	public InformationPanelRight(MainFrame frame, Color color) {
-		this.frame = frame;
-		this.color = color;
+	public InformationPanelRight() {
+		this.frame = TetrisGame.getFrame();
+		this.color = TetrisGame.getBackgroundColor();
 		this.highScore = TetrisGame.getHighScore();
 		initPanel();
 
@@ -196,5 +197,39 @@ public class InformationPanelRight extends JPanel {
 
 	//TODO maybe add a getter metohd for the tetromino.
 	
+	
+	/**
+	 * This method sets the next tetromino in the next grid.
+	 * 
+	 * @param tetromino The tetromino which shoukld displayed
+	 */
+	public void setNextTetromino(Tetromino tetromino) {
+		
+		// Clear next grid at first.
+		clearNextGrid();
+		
+		// Matrix of the tetromino
+		int[][] matrix = tetromino.getShape().getMatrix();
+		
+		// Draw a colored block for each one in the matrix
+		for(int m = 0; m < 4; m++) {
+			for(int n = 0; n < 4; n++) {
+				if(matrix[m][n] == 1) {
+					nextGrid.setValueAt(tetromino.getShape(), m, n);
+				}
+			}
+		}
+	}
+	
+	/**
+	 * This method clears the next grid.
+	 */
+	private void clearNextGrid() {
+		for(int m = 0; m < 4; m++) {
+			for(int n = 0; n < 4; n++) {
+				nextGrid.setValueAt(null, m, n);
+			}
+		}
+	}
 
 }

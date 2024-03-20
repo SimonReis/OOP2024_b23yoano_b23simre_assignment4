@@ -1,7 +1,11 @@
 package tetris;
 
+import java.awt.Color;
+
+import tetrominoes.Tetromino;
+
 /**
- * This class represents the whole Tetris game including the GUI, the core game
+ * This class represents the whole teris game including the GUI, the core game
  * logic, including rules and scorekeeping.
  */
 public class TetrisGame {
@@ -27,12 +31,18 @@ public class TetrisGame {
 	private static int highScore;
 	
 	/**
+	 * This is the used background color.
+	 */
+	private static Color backgroundColor;
+	
+	/**
 	 * This is the constructor, where all required parts for using the tetris
 	 * application and playing a game is initialized.
 	 */
 	public TetrisGame() {
 		gameInstance = this;
 		highScore = 0; //TODO Maybe Save this variable
+		backgroundColor = new Color(138, 146, 174);
 		gameGrid = new Grid(20, 10);
 		frame = new MainFrame();
 		frame.setFocusable(true);
@@ -63,7 +73,7 @@ public class TetrisGame {
 	 * 
 	 * @return Main frame
 	 */
-	public MainFrame getFrame() {
+	public static MainFrame getFrame() {
 		return frame;
 	}
 	
@@ -72,6 +82,13 @@ public class TetrisGame {
 	 */
 	public static int getHighScore() {
 		return highScore;
+	}
+	
+	/**
+	 * This method returns the high score of the game.
+	 */
+	public static Color getBackgroundColor() {
+		return backgroundColor;
 	}
 	
 	/**
@@ -95,6 +112,7 @@ public class TetrisGame {
 		// Start Falling blocks
 		TetrominoFactory tetrominoFactory = new TetrominoFactory();
 		tetrominoFactory.startProduction();
+
 	}
 
 	public void pauseGame() {
@@ -114,6 +132,4 @@ public class TetrisGame {
 
 		// TODO SET HIGHSCORE
 	}
-
-
 }
