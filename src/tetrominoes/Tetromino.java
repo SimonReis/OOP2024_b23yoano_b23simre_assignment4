@@ -161,7 +161,7 @@ public class Tetromino {
 			// Sets the new location of the Tetromino.
 			row++;
 
-			// If the Tetromino cannot move down.
+		// If the Tetromino cannot move down.
 		} else {
 
 			for (int rowMatrix = offsetBottom; rowMatrix >= offsetTop; rowMatrix--) {
@@ -244,19 +244,24 @@ public class Tetromino {
 	 */
 	public boolean canMoveDown() {
 
+		// For each non empty row of the matrix.
 		overloop: for (int rowMatrix = offsetBottom; rowMatrix >= offsetTop; rowMatrix--) {
-
+			
+			// For each column of the matrix.
 			for (int colMatrix = 0; colMatrix < matrix[0].length; colMatrix++) {
-
+				
+				// Gets the corresponding cell location on the grid
 				int rowToMove = row + rowMatrix - offsetTop;
 				int colToMove = col + colMatrix;
-
+				
+				// If there is no cell below (it reached the bottom of the grid)
+				// Sets the Tetromino mobility checker to false. 
 				if (rowToMove + 1 >= 20) {
-					
+
 					canMoveDown = false;
-					
+
 				} else {
-					
+
 					if (gameGrid.getValueAt(rowToMove, colToMove) != null
 							&& gameGrid.getValueAt(rowToMove + 1, colToMove) != null) {
 

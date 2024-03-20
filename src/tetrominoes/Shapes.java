@@ -62,6 +62,62 @@ public enum Shapes {
 		{0, 1, 1, 0}, 
 		{0, 0, 0, 0}
 		}, true);
+	
+	// I shape in cyan
+	M(Color.cyan, new int[][]{
+		{0, 0, 0, 0}, 
+		{0, 0, 0, 0}, 
+		{1, 1, 1, 1}, 
+		{0, 0, 0, 0}
+		}, false),
+	
+	// J shape in blue
+	Jx(Color.blue, new int[][]{
+		{0, 0, 1, 0}, 
+		{0, 0, 1, 0}, 
+		{0, 1, 1, 0}, 
+		{0, 0, 0, 0}
+		}, true),
+	
+	// L shape in orange
+	Lx(Color.orange, new int[][]{
+		{0, 1, 0, 0}, 
+		{0, 1, 0, 0}, 
+		{0, 1, 1, 0}, 
+		{0, 0, 0, 0}
+		}, true),
+	
+	// O shape in yellow
+	Ox(Color.yellow, new int[][]{
+		{0, 0, 0, 0}, 
+		{0, 1, 1, 0}, 
+		{0, 1, 1, 0}, 
+		{0, 0, 0, 0}
+		}, true),
+		
+	// S shape in green
+	Sx(Color.green, new int[][]{
+		{0, 0, 0, 0}, 
+		{0, 1, 1, 0}, 
+		{1, 1, 0, 0}, 
+		{0, 0, 0, 0}
+		}, true),
+	
+	// T shape in pink
+	Tx(Color.pink, new int[][]{
+		{0, 0, 0, 0}, 
+		{1, 1, 1, 0}, 
+		{0, 1, 0, 0}, 
+		{0, 0, 0, 0}
+		}, true),
+
+	// Z shape in red
+	Zx(Color.red, new int[][]{
+		{0, 0, 0, 0}, 
+		{1, 1, 0, 0}, 
+		{0, 1, 1, 0}, 
+		{0, 0, 0, 0}
+		}, true);
 
 	/**
 	 * Properties of a Tetromino shape.
