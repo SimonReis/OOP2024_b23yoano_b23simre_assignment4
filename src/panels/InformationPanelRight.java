@@ -39,7 +39,7 @@ public class InformationPanelRight extends JPanel {
 	/**
 	 * Changeable variables during the game.
 	 */
-	private int highScore, score;
+	private int highScore, score, clearedLines;
 
 	/**
 	 * Grid where the next tetromino is displayed.
@@ -55,6 +55,8 @@ public class InformationPanelRight extends JPanel {
 		this.frame = TetrisGame.getFrame();
 		this.color = TetrisGame.getBackgroundColor();
 		this.highScore = TetrisGame.getHighScore();
+		score = 0;
+		clearedLines = 0;
 		initPanel();
 
 		// Create the panels and return the labels/grid on which the value is stored
@@ -175,7 +177,7 @@ public class InformationPanelRight extends JPanel {
 	 * @param number Number of the current high score
 	 */
 	public void setScore(int number) {
-		score = number;
+		score =+ number;
 		setNumber(scoreLabelNumber, score);
 
 		if (score >= highScore) {
@@ -190,9 +192,18 @@ public class InformationPanelRight extends JPanel {
 	 * 
 	 * @param number Number of cleared lines
 	 */
-	public void setClearedLines(int number) {
-		setNumber(linesLabelNumber, number);
-		frame.pack();
+	public void addClearedLines(int number) {
+		
+		if (number >= 0) {
+			clearedLines =+ number;
+			setNumber(linesLabelNumber, clearedLines);
+			frame.pack();
+		} else {
+			throw new IllegalArgumentException("Number of cleared lines cannot be negative.");
+		}
+		
+		
+		
 	}
 
 	//TODO maybe add a getter metohd for the tetromino.

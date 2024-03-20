@@ -121,7 +121,7 @@ public class TetrisGame {
 	}
 
 	/**
-	 * This method is called, when the game round should end. The view will change
+	 * This method is called, when the game round should end. The 		view will change
 	 * and the high score is set.
 	 */
 	public void endGame() {
@@ -130,6 +130,27 @@ public class TetrisGame {
 		frame.setFocusable(true);
 		frame.pack();
 
-		// TODO SET HIGHSCORE
+		// TODO SET HIGHSCORE, maybe already included
 	}
+	
+	/**
+	 * This method returns the number of points to be awarded.
+	 * 
+	 * @param numberOfClearedLines Number of the lines cleared at one time
+	 * @return Number of points which the player will recive
+	 */
+	public int calculateScore(int numberOfClearedLines) {
+		if (numberOfClearedLines == 1) {
+			return 100;
+		} else if (numberOfClearedLines == 2) {
+			return 300;
+		} else if (numberOfClearedLines == 3) {
+			return 500;
+		} else if (numberOfClearedLines >= 4) {
+			return 800;
+		} else {
+			return 0;
+		}
+	}
+	
 }
