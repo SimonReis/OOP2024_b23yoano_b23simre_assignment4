@@ -337,8 +337,12 @@ public class Tetromino {
 	/**
 	 * This method returns the shape of the tetromino.
 	 */
-	public Shapes[] getShape() {
+	public Shapes[] getShapeDuo() {
 		return tetrominoShapeDuo;
+	}
+	
+	public Shapes getShape() {
+		return tetrominoShape;
 	}
 
 }

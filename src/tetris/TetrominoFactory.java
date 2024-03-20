@@ -68,7 +68,7 @@ public class TetrominoFactory {
 		};
 
 		// Sets and starts the timer for repeated action.
-		tetrominoFactoryTimer = new Timer(10, actionListener);
+		tetrominoFactoryTimer = new Timer(300, actionListener);
 		tetrominoFactoryTimer.start();
 
 	}
