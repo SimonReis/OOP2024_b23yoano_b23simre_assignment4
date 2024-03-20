@@ -60,7 +60,7 @@ public class TetrisGame {
 	}
 
 	/**
-	 * This method returns the game grid. 
+	 * This method returns the game grid.
 	 *
 	 * @return Game grid
 	 */
@@ -99,8 +99,9 @@ public class TetrisGame {
 	}
 
 	/**
-	 * This method is called, when a new game round should start. The view will change,
-	 * the production of Tetrominos start and they will spawned in the game frame.
+	 * This method is called, when a new game round should start. The view will
+	 * change, the production of Tetrominos start and they will spawned in the game
+	 * frame.
 	 */
 	public void startGame() {
 		// Change View
@@ -113,23 +114,22 @@ public class TetrisGame {
 		tetrominoFactory.startProduction();
 
 	}
-	
+
 	public void pauseGame() {
-		//TODO Implement method
-		//stop thread 
+		// TODO Implement method
+		// stop thread
 	}
-	
+
 	/**
-	 * This method is called, when the game round should end. The view will change and the high score is set.
+	 * This method is called, when the game round should end. The view will change
+	 * and the high score is set.
 	 */
 	public void endGame() {
 		// Change View
 		frame.setMenuView();
 		frame.setFocusable(true);
 		frame.pack();
-		
-		//TODO SET HIGHSCORE
+
+		// TODO SET HIGHSCORE
 	}
-
-
 }

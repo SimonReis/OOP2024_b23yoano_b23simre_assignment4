@@ -37,7 +37,7 @@ public class TetrominoFactory {
 	 * This method starts the process of making new Tetromino.
 	 */
 	public void startProduction() {
-		
+
 		ActionListener actionListener = new ActionListener() {
 
 			// This action will be repeated each X seconds (defined in the timer setting).
@@ -56,6 +56,10 @@ public class TetrominoFactory {
 					// Place the stored tetromino in the next grid
 					TetrisGame.getFrame().getInfoRight().setNextTetromino(storedTetromino);
 					TetrisGame.getFrame().pack();
+
+					// Destroys full lines
+					clearLines();
+
 					// Spawns the current Tetromino.
 					currentTetromino.spawnTetromino();
 					System.out.println("Spawn");
@@ -70,7 +74,58 @@ public class TetrominoFactory {
 	}
 
 	/**
-	 * This method returns the next Tetromino.
+	 * This method clears the lines full of Tetrominos cells.
+	 */
+	public void clearLines() {
+		
+		// Gets the game grid.
+		Grid gameGrid = TetrisGame.getGameGrid();
+		
+		// Gets the number of rows and columns of the game grid.
+		int numRows = gameGrid.getRowCount();
+		int numCols = gameGrid.getColumnCount();
+		
+		// Variable to tell if the line is full.
+		boolean isLineFull;
+		
+		// For each row in the game grid.
+		for (int row = numRows - 1; row >= 0; row--) {
+			
+			// Sets the full line checker to true.
+			// The value will remain true if no null is found in the row.
+			isLineFull = true;
+			
+			// For each column on this row
+			for (int col = 0; col < numCols; col++) {
+				
+				// Checks if the value at the intersection of this row and column is null.
+				// Pass the full line checker to false and exits the for loop when it is the case.
+				Object value = gameGrid.getValueAt(row, col);
+				if (value == null) {
+					isLineFull = false;
+					break;
+				}
+			}
+			
+			// If the line is full of Tetrominos values,
+			// Moves each value to the cell below.
+			// It starts from bottom (line above the full one) to top, in order to prevent value suppression.
+			if (isLineFull) {
+				for (int rowToMove = row - 1; rowToMove >= 0; rowToMove--) {
+					for (int colToMove = 0; colToMove < numCols; colToMove++) {
+						Object valueToMove = gameGrid.getValueAt(rowToMove, colToMove);
+						gameGrid.setValueAt(valueToMove, rowToMove + 1, colToMove);
+					}
+				}
+				
+				// Goes back to previous row because it contains new values and might be full as well.
+				row++;
+			}
+		}
+	}
+
+	/**
+	 * This method returns next Tetromino.
 	 * 
 	 * @return storedTetromino
 	 */
