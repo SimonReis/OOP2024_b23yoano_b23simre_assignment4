@@ -26,10 +26,6 @@ public class Tetromino {
 	private int row;
 	private int col;
 
-	// delete soon
-	int n = 0;
-	int m = 3;
-
 	/**
 	 * Shape of the tetromino in a 4x4 matrix.
 	 */
@@ -55,6 +51,9 @@ public class Tetromino {
 	 */
 	private boolean canMoveDown;
 
+	int offsetTop = 0;
+	int offsetBottom = 0;
+
 	/**
 	 * This constructor creates a random Tetromino. Sets its canMoveDown value to
 	 * false because the Tetromino is stored for now.
@@ -63,11 +62,31 @@ public class Tetromino {
 	 */
 	public Tetromino() {
 		gameGrid = TetrisGame.getGameGrid();
-		canMoveDown = false;
+		canMoveDown = true;
 		tetrominoShape = getRandomTetrominoShape();
 		System.out.println(tetrominoShape);
 		matrix = tetrominoShape.getMatrix();
 		color = tetrominoShape.getColor();
+
+		// Gets the first row with a "1" in the Tetromino Shape.
+		outerloop: for (int rowMatrix = 0; rowMatrix < matrix.length; rowMatrix++) {
+			for (int colMatrix = 0; colMatrix < matrix[0].length; colMatrix++) {
+				if (matrix[rowMatrix][colMatrix] == 1) {
+					offsetTop = rowMatrix;
+					break outerloop;
+				}
+			}
+		}
+
+		// Gets the last row with a "1" in the Tetromino Shape.
+		outerloop: for (int rowMatrix = matrix.length - 1; rowMatrix >= 0; rowMatrix--) {
+			for (int colMatrix = 0; colMatrix < matrix[0].length; colMatrix++) {
+				if (matrix[rowMatrix][colMatrix] == 1) {
+					offsetBottom = rowMatrix;
+					break outerloop;
+				}
+			}
+		}
 
 	}
 
@@ -76,27 +95,17 @@ public class Tetromino {
 	 * milliseconds (defined in the timer setting).
 	 */
 	public void spawnTetromino() {
-		
-		// Sets the spawning position of the Tetromino (coordinates of its top left corner).
+
+		// Sets the spawning position of the Tetromino (coordinates of its top left
+		// corner).
 		row = 0;
 		col = 3;
-		
-		// Sets the first row with a "1" in the Tetromino Shape.
-		int offset = 0;
-		outerloop: for (int rowMatrix = 0; rowMatrix < matrix.length; rowMatrix++) {
-			for (int colMatrix = 0; colMatrix < matrix[0].length; colMatrix++) {
-				if (matrix[rowMatrix][colMatrix] == 1) {
-					offset = rowMatrix;
-					break outerloop;
-				}
-			}
-		}
-		
+
 		// Fills the cells in the game grid with the Tetromino Shape.
-		for (int rowMatrix = offset; rowMatrix < matrix.length; rowMatrix++) {
+		for (int rowMatrix = offsetTop; rowMatrix <= offsetBottom; rowMatrix++) {
 			for (int colMatrix = 0; colMatrix < matrix[0].length; colMatrix++) {
 				if (matrix[rowMatrix][colMatrix] == 1) {
-					gameGrid.setValueAt(tetrominoShape, row + rowMatrix - offset, col + colMatrix);
+					gameGrid.setValueAt(tetrominoShape, row + rowMatrix - offsetTop, col + colMatrix);
 				}
 			}
 		}
@@ -127,14 +136,21 @@ public class Tetromino {
 	 */
 	public void moveDown() {
 
+		System.out.println("Can move down ? " + canMoveDown());
+
 		// If the Tetromino can is move down.
 		if (canMoveDown()) {
 
 			// Replaces the Tetromino cells values by null in its current location.
-			for (int rowMatrix = matrix.length - 1; rowMatrix >= 0; rowMatrix--) {
+			for (int rowMatrix = offsetBottom; rowMatrix >= offsetTop; rowMatrix--) {
+
+				System.out.println(row + rowMatrix - offsetTop);
+
 				for (int colMatrix = 0; colMatrix < matrix[0].length; colMatrix++) {
-					int rowToMove = row + rowMatrix;
+
+					int rowToMove = row + rowMatrix - offsetTop;
 					int colToMove = col + colMatrix;
+
 					if (gameGrid.getValueAt(rowToMove, colToMove) == tetrominoShape) {
 						gameGrid.setValueAt(null, rowToMove, colToMove);
 						gameGrid.setValueAt(tetrominoShape, rowToMove + 1, colToMove);
@@ -145,8 +161,27 @@ public class Tetromino {
 			// Sets the new location of the Tetromino.
 			row++;
 
-		// If the Tetromino cannot move down.
+			// If the Tetromino cannot move down.
 		} else {
+
+			for (int rowMatrix = offsetBottom; rowMatrix >= offsetTop; rowMatrix--) {
+
+				for (int colMatrix = 0; colMatrix < matrix[0].length; colMatrix++) {
+
+					int rowToMove = row + rowMatrix - offsetTop;
+					int colToMove = col + colMatrix;
+
+					if (gameGrid.getValueAt(rowToMove, colToMove) != null) {
+						Shapes cellValue = (Shapes) gameGrid.getValueAt(rowToMove, colToMove);
+						if (cellValue.isMovable()) {
+							cellValue.setToNotMovable();
+							gameGrid.setValueAt(cellValue, rowToMove, colToMove);
+						}
+					}
+
+				}
+
+			}
 
 			// Stops the timer so the Tetromino stops moving.
 			tetrominoTimer.stop();
@@ -208,7 +243,35 @@ public class Tetromino {
 	 * @return canMoveDown
 	 */
 	public boolean canMoveDown() {
-		canMoveDown = row < 19 && gameGrid.getValueAt(row + 4, col) == null;
+
+		overloop: for (int rowMatrix = offsetBottom; rowMatrix >= offsetTop; rowMatrix--) {
+
+			for (int colMatrix = 0; colMatrix < matrix[0].length; colMatrix++) {
+
+				int rowToMove = row + rowMatrix - offsetTop;
+				int colToMove = col + colMatrix;
+
+				if (rowToMove + 1 >= 20) {
+					
+					canMoveDown = false;
+					
+				} else {
+					
+					if (gameGrid.getValueAt(rowToMove, colToMove) != null
+							&& gameGrid.getValueAt(rowToMove + 1, colToMove) != null) {
+
+						Shapes shapeCurrent = (Shapes) gameGrid.getValueAt(rowToMove, colToMove);
+						Shapes shapeBelow = (Shapes) gameGrid.getValueAt(rowToMove + 1, colToMove);
+
+						if (shapeCurrent.isMovable() == true && shapeBelow.isMovable() == false) {
+							canMoveDown = false;
+							break overloop;
+						}
+					}
+				}
+
+			}
+		}
 		return canMoveDown;
 	}
 
