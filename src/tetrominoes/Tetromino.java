@@ -25,8 +25,8 @@ public class Tetromino {
 	 */
 	private int row;
 	private int col;
-	
-	//delete soon
+
+	// delete soon
 	int n = 0;
 	int m = 3;
 
@@ -34,7 +34,7 @@ public class Tetromino {
 	 * Shape of the tetromino in a 4x4 matrix.
 	 */
 	private int[][] matrix;
-	
+
 	/**
 	 * Color of the tetromino.
 	 */
@@ -65,9 +65,10 @@ public class Tetromino {
 		gameGrid = TetrisGame.getGameGrid();
 		canMoveDown = false;
 		tetrominoShape = getRandomTetrominoShape();
+		System.out.println(tetrominoShape);
 		matrix = tetrominoShape.getMatrix();
 		color = tetrominoShape.getColor();
-		
+
 	}
 
 	/**
@@ -75,87 +76,29 @@ public class Tetromino {
 	 * milliseconds (defined in the timer setting).
 	 */
 	public void spawnTetromino() {
-		
+
 		row = 0;
-		col = 0;
-
-		int rowStart = tetrominoShape.getStartRow();
-		int colStart = tetrominoShape.getStartCol();
-
-		for (int u = rowStart; u <= rowStart + 4; u++) {
-			System.out.println("for u");
-			for (int v = colStart; v < colStart + 4; v++) {
-				System.out.println("for v");
-				if (matrix[m][n] == 1) {
-					System.out.println("Matrix m, n: " + m + ", " + n);
-					gameGrid.setValueAt(tetrominoShape, u, v);
+		col = 3;
+		int offset = 0;
+		outerloop:
+		for (int rowMatrix = 0; rowMatrix < matrix.length; rowMatrix++) {
+			for (int colMatrix = 0; colMatrix < matrix[0].length; colMatrix++) {
+				if (matrix[rowMatrix][colMatrix] == 1) {
+					offset = rowMatrix;
+					break outerloop;
 				}
-				n++;
 			}
-			m--;
 		}
-		n = 0;
-		m = 3;
-		
-		
-		
-		
-		
-		
-		// Set start point to spawn tetromino
-//		if ((tetrominoShape == Shapes.I) || (tetrominoShape == Shapes.S) || (tetrominoShape == Shapes.T) || (tetrominoShape == Shapes.Z)) {
-//			xrow = 3;
-//			xcol = 3;
-//		} else if ((tetrominoShape == Shapes.J) || (tetrominoShape == Shapes.L) || (tetrominoShape == Shapes.O)) {
-//			xrow = 3;
-//			xcol = 3;
-//		}
-	
-		// Iterate through the matrix.
-//		for (int m = 0; m < 4; m++) {
-//			// Offset for drawing block in the grid
-//			int u = 0;
-//			int v = 0;
-//
-//			for (int n = 0; n < 4; n++) {
-//				if (matrix[m][n] == 1) {
-//					// If a value is one, a block should be drawn.
-//					gameGrid.setValueAt(tetrominoShape, xrow + u, xcol + v);
-//					// v++;
-//				}
-//				v++;
-//				
-//				if (n == 3) {
-//					System.out.println("Row incremented by n: " + n);
-//					u++;
-//				}
-//			}
-//		}
-//		
-		
-		
-//		
-//		for (int m = 2; m >= 0 ; m--) {
-//			int u = 0;
-//			int v = 0;
-//			for (int n = 0; n < 4; n++) {
-//				if(tetrominoShape.getMatrix()[m][n] == 1) {
-//					gameGrid.setValueAt(tetrominoShape, row + u, col + v);
-//				}
-//				v++;
-//				if (n == 3) {
-//					u++;
-//				}
-//			}
-//	}
-			
-		
-		
-		
-		
-//Activate later!!		
-		
-		gameGrid.setValueAt(tetrominoShape, row, col);
+
+		for (int rowMatrix = offset; rowMatrix < matrix.length; rowMatrix++) {
+			for (int colMatrix = 0; colMatrix < matrix[0].length; colMatrix++) {
+				if (matrix[rowMatrix][colMatrix] == 1) {
+					gameGrid.setValueAt(tetrominoShape, row + rowMatrix - offset, col + colMatrix);
+				}
+			}
+		}
+
+// Activate later!!		
 
 		ActionListener actionListener = new ActionListener() {
 
@@ -165,6 +108,7 @@ public class Tetromino {
 			public void actionPerformed(ActionEvent e) {
 
 				// Moves the Tetromino one row down.
+				System.out.println("The Tetromino moves one step down.");
 				moveDown();
 			}
 		};
@@ -182,13 +126,23 @@ public class Tetromino {
 
 		// If the Tetromino can is move down.
 		if (canMoveDown()) {
+			System.out.println(matrix.length);
 
 			// Replaces the Tetromino cells values by null in its current location.
-			gameGrid.setValueAt(null, row, col);
+			for (int rowMatrix = matrix.length - 1; rowMatrix >= 0; rowMatrix--) {
+				for (int colMatrix = 0; colMatrix < matrix[0].length; colMatrix++) {
+					int rowToMove = row + rowMatrix;
+					int colToMove = col + colMatrix;
+					if (gameGrid.getValueAt(rowToMove, colToMove) == tetrominoShape) {
+						gameGrid.setValueAt(null, rowToMove, colToMove);
+						gameGrid.setValueAt(tetrominoShape, rowToMove + 1, colToMove);
+					}
+				}
+			}
 
 			// Rebuilds the Tetromino in its new location one row below.
 			row++;
-			gameGrid.setValueAt(tetrominoShape, row, col);
+			// gameGrid.setValueAt(tetrominoShape, row, col);
 
 			// If the Tetromino cannot move down.
 		} else {
@@ -231,28 +185,19 @@ public class Tetromino {
 			gameGrid.setValueAt(tetrominoShape, row, col);
 		}
 	}
-	
+
 	/**
-	 * This method rotates the Tetromino by +90 degrees in mathematically orientation. 
+	 * This method rotates the Tetromino by +90 degrees in mathematically
+	 * orientation.
 	 */
 	public void rotate() {
 		// Create 4x4 rotation matrix for a 90 degree rotation
-		int[][] rotationMatrix  = new int[][] {
-			{1, 0, 0, 0},
-			{0, 0, -1, 0},
-			{0, 1, 0, 0},
-			{0, 0, 0, 1}
-		};
-		
+		int[][] rotationMatrix = new int[][] { { 1, 0, 0, 0 }, { 0, 0, -1, 0 }, { 0, 1, 0, 0 }, { 0, 0, 0, 1 } };
+
 		matrix = matrixMultiplication(rotationMatrix, matrix);
-		
-		//set new grid value
+
+		// set new grid value
 	}
-	
-	
-	
-	
-	
 
 	// REMINDER : ADD A 2ND FIELD THAT RETURNS THE SIDE MOBILITY WITH A TIME DELAY
 	// (last chance move).
@@ -262,7 +207,7 @@ public class Tetromino {
 	 * @return canMoveDown
 	 */
 	public boolean canMoveDown() {
-		canMoveDown = row < 19 && gameGrid.getValueAt(row + 1, col) == null;
+		canMoveDown = row < 19 && gameGrid.getValueAt(row + 4, col) == null;
 		return canMoveDown;
 	}
 
@@ -282,49 +227,47 @@ public class Tetromino {
 		// Use one random Shape
 		return allShapes[random.nextInt(allShapes.length)];
 	}
-	
+
 	/**
 	 * This method computes a matrix-matrix multiplication.
 	 * 
 	 * @param matrix1 First matrix
 	 * @param matrix2 Second matrix
-	 * @return Multiplied matrix 
+	 * @return Multiplied matrix
 	 */
-	private int[][] matrixMultiplication(int[][] matrix1, int[][] matrix2){
+	private int[][] matrixMultiplication(int[][] matrix1, int[][] matrix2) {
 		int mtx1rows = matrix1.length;
 		int mtx2rows = matrix2.length;
-        int mtx1cols = matrix1[0].length;
-        int mtx2cols = matrix2[0].length;
+		int mtx1cols = matrix1[0].length;
+		int mtx2cols = matrix2[0].length;
 
-        // Check if both matrices can be multiplied
-        if (mtx1cols == mtx2rows) {
-        	
-        	// Create result matrix with the new dimensions
-        	int[][] result = new int[mtx1rows][mtx2cols];
+		// Check if both matrices can be multiplied
+		if (mtx1cols == mtx2rows) {
 
-        	// Execute matrix multiplication
-            for (int i = 0; i < mtx1rows; i++) {
-                for (int j = 0; j < mtx2cols; j++) {
-                    for (int k = 0; k < mtx1cols; k++) {
-                        result[i][j] += matrix1[i][k] * matrix2[k][j];
-                    }
-                }
-            }
+			// Create result matrix with the new dimensions
+			int[][] result = new int[mtx1rows][mtx2cols];
 
-            return result;
-        	
-        } else {
-        	throw new IllegalArgumentException ("Wrong matrix dimensions!");
-        }
+			// Execute matrix multiplication
+			for (int i = 0; i < mtx1rows; i++) {
+				for (int j = 0; j < mtx2cols; j++) {
+					for (int k = 0; k < mtx1cols; k++) {
+						result[i][j] += matrix1[i][k] * matrix2[k][j];
+					}
+				}
+			}
+
+			return result;
+
+		} else {
+			throw new IllegalArgumentException("Wrong matrix dimensions!");
+		}
 	}
-	
+
 	/**
 	 * This method returns the shape of the tetromino.
 	 */
-	public Shapes getShape(){
+	public Shapes getShape() {
 		return tetrominoShape;
 	}
-	
-
 
 }
