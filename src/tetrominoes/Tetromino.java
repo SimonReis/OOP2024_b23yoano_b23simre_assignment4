@@ -39,6 +39,8 @@ public class Tetromino {
 	/**
 	 * Tetromino type defined by a letter.
 	 */
+	private Shapes[] tetrominoShapeDuo;
+	
 	private Shapes tetrominoShape;
 
 	/**
@@ -63,7 +65,8 @@ public class Tetromino {
 	public Tetromino() {
 		gameGrid = TetrisGame.getGameGrid();
 		canMoveDown = true;
-		tetrominoShape = getRandomTetrominoShape();
+		tetrominoShapeDuo = getRandomTetrominoShapeDuo();
+		tetrominoShape = tetrominoShapeDuo[0];
 		System.out.println(tetrominoShape);
 		matrix = tetrominoShape.getMatrix();
 		color = tetrominoShape.getColor();
@@ -173,9 +176,8 @@ public class Tetromino {
 
 					if (gameGrid.getValueAt(rowToMove, colToMove) != null) {
 						Shapes cellValue = (Shapes) gameGrid.getValueAt(rowToMove, colToMove);
-						if (cellValue.isMovable()) {
-							cellValue.setToNotMovable();
-							gameGrid.setValueAt(cellValue, rowToMove, colToMove);
+						if (cellValue.isMovable() == true) {
+							gameGrid.setValueAt(tetrominoShapeDuo[1], rowToMove, colToMove);
 						}
 					}
 
@@ -265,10 +267,10 @@ public class Tetromino {
 					if (gameGrid.getValueAt(rowToMove, colToMove) != null
 							&& gameGrid.getValueAt(rowToMove + 1, colToMove) != null) {
 
-						Shapes shapeCurrent = (Shapes) gameGrid.getValueAt(rowToMove, colToMove);
-						Shapes shapeBelow = (Shapes) gameGrid.getValueAt(rowToMove + 1, colToMove);
+						Shapes valueCurrentCell = (Shapes) gameGrid.getValueAt(rowToMove, colToMove);
+						Shapes valueBelowCell = (Shapes) gameGrid.getValueAt(rowToMove + 1, colToMove);
 
-						if (shapeCurrent.isMovable() == true && shapeBelow.isMovable() == false) {
+						if (valueCurrentCell.isMovable() == true && valueBelowCell.isMovable() == false) {
 							canMoveDown = false;
 							break overloop;
 						}
@@ -286,12 +288,12 @@ public class Tetromino {
 	 * 
 	 * @return Random Tetromino shape
 	 */
-	private Shapes getRandomTetrominoShape() {
+	private Shapes[] getRandomTetrominoShapeDuo() {
 		// Create randomizer
 		Random random = new Random();
 
 		// Create array with all shapes
-		Shapes[] allShapes = Shapes.getAllShapes();
+		Shapes[][] allShapes = Shapes.getAllShapeDuos();
 
 		// Use one random Shape
 		return allShapes[random.nextInt(allShapes.length)];
@@ -335,8 +337,8 @@ public class Tetromino {
 	/**
 	 * This method returns the shape of the tetromino.
 	 */
-	public Shapes getShape() {
-		return tetrominoShape;
+	public Shapes[] getShape() {
+		return tetrominoShapeDuo;
 	}
 
 }

@@ -61,10 +61,10 @@ public enum Shapes {
 		{1, 1, 0, 0}, 
 		{0, 1, 1, 0}, 
 		{0, 0, 0, 0}
-		}, true);
+		}, true),
 	
 	// I shape in cyan
-	M(Color.cyan, new int[][]{
+	Ix(Color.cyan, new int[][]{
 		{0, 0, 0, 0}, 
 		{0, 0, 0, 0}, 
 		{1, 1, 1, 1}, 
@@ -77,7 +77,7 @@ public enum Shapes {
 		{0, 0, 1, 0}, 
 		{0, 1, 1, 0}, 
 		{0, 0, 0, 0}
-		}, true),
+		}, false),
 	
 	// L shape in orange
 	Lx(Color.orange, new int[][]{
@@ -85,7 +85,7 @@ public enum Shapes {
 		{0, 1, 0, 0}, 
 		{0, 1, 1, 0}, 
 		{0, 0, 0, 0}
-		}, true),
+		}, false),
 	
 	// O shape in yellow
 	Ox(Color.yellow, new int[][]{
@@ -93,7 +93,7 @@ public enum Shapes {
 		{0, 1, 1, 0}, 
 		{0, 1, 1, 0}, 
 		{0, 0, 0, 0}
-		}, true),
+		}, false),
 		
 	// S shape in green
 	Sx(Color.green, new int[][]{
@@ -101,7 +101,7 @@ public enum Shapes {
 		{0, 1, 1, 0}, 
 		{1, 1, 0, 0}, 
 		{0, 0, 0, 0}
-		}, true),
+		}, false),
 	
 	// T shape in pink
 	Tx(Color.pink, new int[][]{
@@ -109,7 +109,7 @@ public enum Shapes {
 		{1, 1, 1, 0}, 
 		{0, 1, 0, 0}, 
 		{0, 0, 0, 0}
-		}, true),
+		}, false),
 
 	// Z shape in red
 	Zx(Color.red, new int[][]{
@@ -117,7 +117,7 @@ public enum Shapes {
 		{1, 1, 0, 0}, 
 		{0, 1, 1, 0}, 
 		{0, 0, 0, 0}
-		}, true);
+		}, false);
 
 	/**
 	 * Properties of a Tetromino shape.
@@ -155,30 +155,25 @@ public enum Shapes {
 	public int[][] getMatrix() {
 		return matrix;
 	}
+	
+	/**
+	 * This method returns the matrix of the Tetromino shape.
+	 * 
+	 * @return 4x4 Matrix where the shape is stored
+	 */
+	public boolean isMovable() {
+		return movable;
+	}
+	
+	
 
 	/**
 	 * This method returns all shapes in an array;
 	 * 
 	 * @return All shapes stored in an array
 	 */
-	public static Shapes[] getAllShapes() {
-		return new Shapes[] { I, J, L, O, S, T, Z };
-	}
-	
-	/**
-	 * This method returns the mobility of the shape.
-	 * 
-	 * @return True if shape is movable
-	 */
-	public boolean isMovable() {
-		return movable;
-	}
-	
-	/**
-	 * This method changes the mobility of the shape.
-	 */
-	public void setToNotMovable() {
-		movable = false;
+	public static Shapes[][] getAllShapeDuos() {
+		return new Shapes[][] { {I, Ix}, {J, Jx}, {L, Lx}, {O, Ox}, {S, Sx}, {T, Tx}, {Z, Zx} };
 	}
 }
 	

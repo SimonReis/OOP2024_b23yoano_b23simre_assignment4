@@ -26,19 +26,19 @@ public class GridRenderer extends DefaultTableCellRenderer {
 		
 		if (tetrominoShape == null) {
 			setBackground(Color.DARK_GRAY);
-		} else if (tetrominoShape == Shapes.I) {
+		} else if (tetrominoShape == Shapes.I || tetrominoShape == Shapes.Ix) {
 			setBackground(Shapes.I.getColor());
-		} else if (tetrominoShape == Shapes.J) {
+		} else if (tetrominoShape == Shapes.J || tetrominoShape == Shapes.Jx) {
 			setBackground(Shapes.J.getColor());
-		} else if (tetrominoShape == Shapes.L) {
+		} else if (tetrominoShape == Shapes.L || tetrominoShape == Shapes.Lx) {
 			setBackground(Shapes.L.getColor());
-		} else if (tetrominoShape == Shapes.O) {
+		} else if (tetrominoShape == Shapes.O || tetrominoShape == Shapes.Ox) {
 			setBackground(Shapes.O.getColor());
-		} else if (tetrominoShape == Shapes.S) {
+		} else if (tetrominoShape == Shapes.S || tetrominoShape == Shapes.Sx) {
 			setBackground(Shapes.S.getColor());
-		} else if (tetrominoShape == Shapes.T) {
+		} else if (tetrominoShape == Shapes.T || tetrominoShape == Shapes.Tx) {
 			setBackground(Shapes.T.getColor());
-		} else if (tetrominoShape == Shapes.Z) {
+		} else if (tetrominoShape == Shapes.Z || tetrominoShape == Shapes.Zx) {
 			setBackground(Shapes.Z.getColor());
 		}
 
