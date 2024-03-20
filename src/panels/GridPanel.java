@@ -4,7 +4,7 @@ import java.awt.Color;
 
 import javax.swing.JPanel;
 
-import listeners.GameFrameListener;
+import listeners.KeyBoardListener;
 import tetris.MainFrame;
 import tetris.TetrisGame;
 import tetris.Grid;
@@ -29,7 +29,7 @@ public class GridPanel extends JPanel {
 		this.add(gameGrid);
 		
 		// Add Listener to the frame
-		GameFrameListener gameListener = new GameFrameListener();
+		KeyBoardListener gameListener = new KeyBoardListener();
 		TetrisGame.getFrame().addKeyListener(gameListener);
 
 	}

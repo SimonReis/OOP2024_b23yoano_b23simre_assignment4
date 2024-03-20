@@ -65,7 +65,6 @@ public class Tetromino {
 		gameGrid = TetrisGame.getGameGrid();
 		canMoveDown = false;
 		tetrominoShape = getRandomTetrominoShape();
-		System.out.println(tetrominoShape);
 		matrix = tetrominoShape.getMatrix();
 		color = tetrominoShape.getColor();
 
@@ -197,6 +196,16 @@ public class Tetromino {
 		matrix = matrixMultiplication(rotationMatrix, matrix);
 
 		// set new grid value
+	}
+	
+	/**
+	 * This method place a tetromino a the lowest possible position in the game grid.
+	 */
+	public void dropToBottom() {
+		for (int i = 0; i < 20; i++) {
+			moveDown();
+		}
+		
 	}
 
 	// REMINDER : ADD A 2ND FIELD THAT RETURNS THE SIDE MOBILITY WITH A TIME DELAY

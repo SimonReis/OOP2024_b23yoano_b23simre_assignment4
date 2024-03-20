@@ -5,7 +5,7 @@ import java.awt.event.KeyListener;
 
 import tetris.TetrominoFactory;
 
-public class GameFrameListener implements KeyListener {
+public class KeyBoardListener implements KeyListener {
 
 	public void keyPressed(KeyEvent e) {
 		int keyCode = e.getKeyCode();
@@ -29,6 +29,11 @@ public class GameFrameListener implements KeyListener {
 			TetrominoFactory.getCurrentTetromino().moveRight();
 			System.out.println("right");
 			break;
+		case KeyEvent.VK_SPACE:
+			//handle spacebar
+			TetrominoFactory.getCurrentTetromino().dropToBottom();
+			System.out.println("bottom");
+			break;			
 		default:
 			System.out.println("other");
 		}
