@@ -209,13 +209,13 @@ public class InformationPanelRight extends JPanel {
 		clearNextGrid();
 		
 		// Matrix of the tetromino
-		int[][] matrix = tetromino.getShapeDuo()[0].getMatrix();
+		int[][] matrix = tetromino.getShape().getMatrix();
 		
 		// Draw a colored block for each one in the matrix
 		for(int m = 0; m < 4; m++) {
 			for(int n = 0; n < 4; n++) {
 				if(matrix[m][n] == 1) {
-					nextGrid.setValueAt(tetromino.getShapeDuo()[0], m, n);
+					nextGrid.setValueAt(tetromino.getShape(), m, n);
 				}
 			}
 		}
