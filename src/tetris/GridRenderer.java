@@ -6,6 +6,8 @@ import java.awt.Component;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 
+import tetrominoes.Shapes;
+
 
 /**
  * This class represents the grid renderer.
@@ -18,11 +20,11 @@ public class GridRenderer extends DefaultTableCellRenderer {
 	/**
 	 * This method sets the behavior to follow for each possible cell value.
 	 */
-	public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus,
+	public Component getTableCellRendererComponent(JTable table, Object tetrominoShape, boolean isSelected, boolean hasFocus,
 			int row, int column) {
 		super.getTableCellRendererComponent(table, "", false, false, row, column);
 		
-		if (value == null) {
+		if (tetrominoShape == null) {
 			setBackground(Color.DARK_GRAY);
 		} else if (tetrominoShape == Shapes.I) {
 			setBackground(Shapes.I.getColor());
