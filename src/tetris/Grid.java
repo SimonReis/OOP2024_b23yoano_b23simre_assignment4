@@ -37,6 +37,7 @@ public class Grid extends JTable {
 		       return false;
 		    }
 		};
+		
 		this.setModel(model);
 		this.setGridColor(Color.LIGHT_GRAY);
 		this.setRowHeight(24); //TODO Maybe add resize later

@@ -22,11 +22,17 @@ public class TetrisGame {
 	private static MainFrame frame;
 
 	/**
+	 * This is the high score of the application.
+	 */
+	private static int highScore;
+	
+	/**
 	 * This is the constructor, where all required parts for using the tetris
 	 * application and playing a game is initialized.
 	 */
 	public TetrisGame() {
 		gameInstance = this;
+		highScore = 0; //TODO Maybe Save this variable
 		gameGrid = new Grid(20, 10);
 		frame = new MainFrame();
 		frame.setFocusable(true);
@@ -59,6 +65,20 @@ public class TetrisGame {
 	 */
 	public MainFrame getFrame() {
 		return frame;
+	}
+	
+	/**
+	 * This method returns the high score of the game.
+	 */
+	public static int getHighScore() {
+		return highScore;
+	}
+	
+	/**
+	 * This method set a new the high score of the game.
+	 */
+	public static void setHighScore(int newHighScore) {
+		highScore = newHighScore;
 	}
 
 	/**
@@ -95,15 +115,5 @@ public class TetrisGame {
 		// TODO SET HIGHSCORE
 	}
 
-	/**
-	 * This method refreshes the high score, if the new high score is higher than
-	 * the older one.
-	 */
-	public void refreshHighScore() {
-		// TODO Implement method
-		// Get current highscore
-		// Compare with old highscore
-		// set label if neccesarry
-	}
 
 }
