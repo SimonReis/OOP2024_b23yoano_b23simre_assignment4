@@ -67,7 +67,7 @@ public class TetrominoFactory {
 			}
 		};
 
-		// Sets and starts the timer for repeated action.
+		// Sets and starts the timer for repeated action (not below 200 or the canMoveDown() will not work well).
 		tetrominoFactoryTimer = new Timer(300, actionListener);
 		tetrominoFactoryTimer.start();
 
