@@ -166,8 +166,19 @@ public class InformationPanelRight extends JPanel {
 	 * @param number Number of the current high score
 	 */
 	private void setHighScore(int number) {
-		TetrisGame.setHighScore(number);
+		highScore = number;
+		
+		System.out.println("Current Score: " + score);
+		System.out.println("Current High Score: " + highScore);
+		
 		setNumber(highScoreLabelNumber, highScore);
+	}
+	
+	/**
+	 * This method returns the high score of the game.
+	 */
+	public int getHighScore() {
+		return highScore;
 	}
 
 	/**
@@ -177,9 +188,11 @@ public class InformationPanelRight extends JPanel {
 	 * @param number Number of the current high score
 	 */
 	public void setScore(int number) {
-		score =+ number;
+		score = score + number;
 		setNumber(scoreLabelNumber, score);
 
+
+		
 		if (score >= highScore) {
 			setHighScore(score);
 		}
@@ -195,7 +208,7 @@ public class InformationPanelRight extends JPanel {
 	public void addClearedLines(int number) {
 		
 		if (number >= 0) {
-			clearedLines =+ number;
+			clearedLines = clearedLines + number;
 			setNumber(linesLabelNumber, clearedLines);
 			frame.pack();
 		} else {

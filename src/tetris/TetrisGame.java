@@ -2,8 +2,6 @@ package tetris;
 
 import java.awt.Color;
 
-import tetrominoes.Tetromino;
-
 /**
  * This class represents the whole teris game including the GUI, the core game
  * logic, including rules and scorekeeping.
@@ -85,17 +83,17 @@ public class TetrisGame {
 	}
 	
 	/**
+	 * This method set the high score of the game.
+	 */
+	private void refreshHighScore() {
+		highScore = frame.getInfoRight().getHighScore();
+	}
+	
+	/**
 	 * This method returns the high score of the game.
 	 */
 	public static Color getBackgroundColor() {
 		return backgroundColor;
-	}
-	
-	/**
-	 * This method set a new the high score of the game.
-	 */
-	public static void setHighScore(int newHighScore) {
-		highScore = newHighScore;
 	}
 
 	/**
@@ -127,10 +125,12 @@ public class TetrisGame {
 	public void endGame() {
 		// Change View
 		frame.setMenuView();
+		refreshHighScore();
+		frame.getMenuPanel().setNewHighScore(highScore);
 		frame.setFocusable(true);
 		frame.pack();
 
-		// TODO SET HIGHSCORE, maybe already included
+		// TODO SET HIGHSCORE, maybe already included, nope 
 	}
 	
 	/**

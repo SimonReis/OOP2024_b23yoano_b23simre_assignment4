@@ -165,15 +165,6 @@ public class MenuPanel extends JPanel {
 	public JButton getQuitGameButton() {
 		return quitGameButton;
 	}
-	
-	/**
-	 * This method returns the current highScore of the application
-	 * 
-	 * @return The high score
-	 */
-	public int getHighScore() {
-		return highScore;
-	}
 
 	/**
 	 * This method sets the new high score.
@@ -181,7 +172,10 @@ public class MenuPanel extends JPanel {
 	 * @param number Value of the high score
 	 */
 	public void setNewHighScore(int number) {
-		highScoreLabel.setText("Highscore: " + number);
+		highScore = number;
+		highScoreLabel.setText("Highscore: " + highScore);
 		frame.pack();
+		
+		System.out.println("Highscore in menu panel: " + highScore);
 	}
 }

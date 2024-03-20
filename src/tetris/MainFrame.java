@@ -42,18 +42,12 @@ public class MainFrame extends JFrame {
 	 * The game grid is the grid where the game takes part.
 	 */
 	private Grid gameGrid;
-	
-	/**
-	 * This is the high score of the application.
-	 */
-	private int highScore;
 
 	/**
 	 * The constructor creates the Frame for the game.
 	 */
 	public MainFrame() {
 		this.gameGrid = TetrisGame.getGameGrid();
-		this.highScore = TetrisGame.getHighScore();
 		this.backgroundColor = TetrisGame.getBackgroundColor();
 		initFrame();
 		initMenuPanel();
@@ -119,8 +113,22 @@ public class MainFrame extends JFrame {
 		initMenuPanel();
 	}
 	
+	/**
+	 * This method returns the right information panel.
+	 * 
+	 * @return Information panel right
+	 */
 	public InformationPanelRight getInfoRight() {
 		return rightPanel;
+	}
+	
+	/**
+	 * This method returns the menu panel.
+	 * 
+	 * @return Menu panel
+	 */
+	public MenuPanel getMenuPanel() {
+		return menuPanel;
 	}
 	
 	

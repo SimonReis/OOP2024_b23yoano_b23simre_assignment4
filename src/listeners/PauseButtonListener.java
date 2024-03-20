@@ -36,6 +36,9 @@ public class PauseButtonListener implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 
 		if (infoLeft.getPauseButton() == e.getSource()) {
+			
+			//Pause Game in the Background
+			
 
 			// There are two options. The user can choose between resuming or ending the
 			// current game round
@@ -50,7 +53,8 @@ public class PauseButtonListener implements ActionListener {
 				// TODO implement Action
 				TetrisGame.getGameInstance().endGame();
 			} else { // Resume game or close option pane is pressed
-				TetrisGame.getGameInstance().getFrame().requestFocus();
+				TetrisGame.getGameInstance();
+				TetrisGame.getFrame().requestFocus();
 				// TODO implement Action
 				// Pause Game
 				TetrisGame.getGameInstance().pauseGame();

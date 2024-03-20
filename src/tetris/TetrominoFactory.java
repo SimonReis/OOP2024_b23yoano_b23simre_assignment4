@@ -124,7 +124,7 @@ public class TetrominoFactory {
 		TetrisGame.getFrame().getInfoRight().addClearedLines(clearedLines);
 		
 		// Set score
-		
+		TetrisGame.getFrame().getInfoRight().setScore(TetrisGame.getGameInstance().calculateScore(clearedLines));
 	}
 
 	/**
