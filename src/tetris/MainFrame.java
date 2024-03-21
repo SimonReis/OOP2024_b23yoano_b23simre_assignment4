@@ -10,7 +10,6 @@ import javax.swing.JPanel;
 
 import listeners.KeyBoardListener;
 import panels.MenuPanel;
-import panels.GridPanel;
 import panels.InformationPanelLeft;
 import panels.InformationPanelRight;
 
@@ -78,7 +77,13 @@ public class MainFrame extends JFrame {
 		rightPanel = new InformationPanelRight();
 		
 		// Create the game grid panel
-		JPanel gridPanel = new GridPanel(gameGrid);
+		JPanel gridPanel = new JPanel();
+		gridPanel.setBackground(MainFrame.getBackgroundColor());
+		gridPanel.add(gameGrid);
+		
+		// Add Listener to the frame
+		KeyBoardListener gameListener = new KeyBoardListener();
+		TetrisGame.getFrame().addKeyListener(gameListener);
 		
 		// Add the panels in the game panels, which is added to the frame.
 		gamePanel = new JPanel();
