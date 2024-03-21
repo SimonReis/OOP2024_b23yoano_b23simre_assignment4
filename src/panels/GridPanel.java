@@ -1,7 +1,5 @@
 package panels;
 
-import java.awt.Color;
-
 import javax.swing.JPanel;
 
 import listeners.KeyBoardListener;
@@ -24,8 +22,7 @@ public class GridPanel extends JPanel {
 	 * @param color Background color of the grid panel
 	 */
 	public GridPanel(Grid gameGrid) {
-
-		this.setBackground(TetrisGame.getBackgroundColor());
+		this.setBackground(MainFrame.getBackgroundColor());
 		this.add(gameGrid);
 		
 		// Add Listener to the frame
