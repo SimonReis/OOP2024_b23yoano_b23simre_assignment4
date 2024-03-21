@@ -41,7 +41,7 @@ public class TetrominoFactory {
 	public TetrominoFactory() {
 		factoryInstance = this;
 		storedTetromino = new Tetromino();
-		factoryListener = new FactoryListener();
+		factoryListener = new FactoryListener(this);
 	}
 
 	/**
@@ -51,6 +51,7 @@ public class TetrominoFactory {
 		// Sets and starts the timer for repeated action.
 		tetrominoFactoryTimer = new Timer(10, factoryListener);
 		tetrominoFactoryTimer.start();
+		System.out.println("Strart Production");
 	}
 
 	/**
@@ -58,6 +59,7 @@ public class TetrominoFactory {
 	 */
 	public void stopProduction() {
 		tetrominoFactoryTimer.stop();
+		System.out.println("Stop Production");
 	}
 	
 	/**
@@ -73,15 +75,7 @@ public class TetrominoFactory {
 	public void startTetromino() {
 		currentTetromino.startTetromino();
 	}
-	
-	/**
-	 * This method returns the factory instance.
-	 * 
-	 * @return Tetromino factory instance
-	 */
-	public static TetrominoFactory getFactoryInstance() {
-		return factoryInstance;
-	}
+
 
 	/**
 	 * This method returns next Tetromino.
@@ -112,6 +106,7 @@ public class TetrominoFactory {
 	 * This method produces a Tetromino, if possible.
 	 */
 	public void produce() {
+		System.out.println(currentTetromino);
 		// Change to spawn if is not movable anymore?s
 		if (currentTetromino == null || !currentTetromino.canMoveDown()) {
 
@@ -130,5 +125,9 @@ public class TetrominoFactory {
 			// Spawns the current Tetromino.
 			currentTetromino.playingTetromino();
 		}
+	}
+	
+	public void clearTetromino() {
+		currentTetromino = null;
 	}
 }

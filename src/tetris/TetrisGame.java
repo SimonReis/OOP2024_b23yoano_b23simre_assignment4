@@ -27,7 +27,7 @@ public class TetrisGame {
 	 * This is the tetromino factory, where tetrominos were produced and spawned at
 	 * the game grid.
 	 */
-	private static TetrominoFactory tetrominoFactory;
+	private TetrominoFactory tetrominoFactory;
 	
 	/**
 	 * This is the Listener which checks if the game is over.
@@ -105,6 +105,9 @@ public class TetrisGame {
 	 * frame.
 	 */
 	public void startGame() {
+		tetrominoFactory = null;
+		tetrominoFactory = new TetrominoFactory();
+		
 		// Change View
 		frame.setGameView();
 		frame.setFocusable(true);
@@ -144,16 +147,21 @@ public class TetrisGame {
 		frame.pack();
 
 		// Stop production
-		
-		//tetrominoFactory.stopProduction();
+		tetrominoFactory.stopProduction();
+		tetrominoFactory.clearTetromino();
 		//tetrominoFactory.setCurrentTetromino(null);
-		GameRules.clearGrid(gameGrid);
+		//GameRules.clearGrid(gameGrid);
 	}
 	
 	public void newGame() {
-		tetrominoFactory = null;
+		//tetrominoFactory = null;
+		tetrominoFactory.startProduction();
 		startGame();
 		//gameGrid.refreshGrid();
 		
+	}
+	
+	public TetrominoFactory getFactory() {
+		return tetrominoFactory;
 	}
 }

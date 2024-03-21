@@ -82,6 +82,8 @@ public class MainFrame extends JFrame {
 	 * required for the Tetris game.
 	 */
 	private void initGamePanel(Grid gameGrid, Grid nextGrid) {
+		
+		
 		// Create the Information panels
 		JPanel leftPanel = new InformationPanelLeft();
 		rightPanel = new InformationPanelRight(nextGrid);
@@ -115,10 +117,13 @@ public class MainFrame extends JFrame {
 	 * from the menu panel to the game panel.
 	 */
 	public void setGameView() {
-		this.remove(menuPanel);
+		this.remove(menuPanel);	
+		
 		gameGrid = new Grid(20, 10);
 		nextGrid = new Grid(4, 4);
-		
+		// No blocks displayed
+		gameGrid.refreshGrid();
+		nextGrid.refreshGrid();
 		initGamePanel(gameGrid, nextGrid);
 	}
 	
@@ -127,6 +132,9 @@ public class MainFrame extends JFrame {
 	 * from the game panel to the menu panel.
 	 */
 	public void setMenuView() {
+//		gameGrid = new Grid(20, 10);
+//		nextGrid = new Grid(4, 4);
+		
 		this.remove(gamePanel);
 		initMenuPanel();
 	}

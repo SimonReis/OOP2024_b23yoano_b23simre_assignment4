@@ -10,12 +10,17 @@ import tetris.TetrominoFactory;
  */
 public class FactoryListener implements ActionListener {
 
+	private TetrominoFactory tetrominoFactory;
+	
+	public FactoryListener(TetrominoFactory tetrominoFactory){
+		this.tetrominoFactory = tetrominoFactory;
+	}
 	/**
 	 * If the action is performed, the tetromino factory produce a new tetromino.
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		TetrominoFactory.getFactoryInstance().produce();
+		tetrominoFactory.produce();
 	}
 
 }
