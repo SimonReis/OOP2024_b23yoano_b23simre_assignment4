@@ -30,7 +30,7 @@ public class KeyBoardListener implements KeyListener {
 			System.out.println("right");
 			break;
 		case KeyEvent.VK_SPACE:
-			//handle spacebar
+			//handle space bar
 			TetrominoFactory.getCurrentTetromino().dropToBottom();
 			System.out.println("bottom");
 			break;			
