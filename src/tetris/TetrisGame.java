@@ -32,7 +32,7 @@ public class TetrisGame {
 	/**
 	 * This is the Listener which checks if the game is over.
 	 */
-	private static GameOverListener gameOverListener;
+	//private static GameOverListener gameOverListener;
 
 
 	/**
@@ -45,7 +45,7 @@ public class TetrisGame {
 	 */
 	public TetrisGame() {
 		gameInstance = this;
-		tetrominoFactory = TetrominoFactory.getFactoryInstance();
+		tetrominoFactory = new TetrominoFactory();
 		highScore = 0; // TODO Maybe Save this variable
 		gameGrid = new Grid(20, 10);
 		frame = new MainFrame();
@@ -118,14 +118,14 @@ public class TetrisGame {
 	 * This method stops the production and freezes the game.
 	 */
 	public void pauseGame() {
-		tetrominoFactory.stopProduction();
+		tetrominoFactory.stopTetromino();
 	}
 
 	/**
 	 * This method resumes the game.
 	 */
 	public void resumeGame() {
-		tetrominoFactory.startProduction();
+		tetrominoFactory.startTetromino();
 	}
 
 	/**

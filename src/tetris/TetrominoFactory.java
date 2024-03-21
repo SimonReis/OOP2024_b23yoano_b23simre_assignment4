@@ -61,6 +61,20 @@ public class TetrominoFactory {
 	}
 	
 	/**
+	 * This method stops the current Tetromino.
+	 */
+	public void stopTetromino() {
+		currentTetromino.stopTetromino();
+	}
+	
+	/**
+	 * This method starts the timer of the current Tetromino, and it will move again.
+	 */
+	public void startTetromino() {
+		currentTetromino.startTetromino();
+	}
+	
+	/**
 	 * This method returns the factory instance.
 	 * 
 	 * @return Tetromino factory instance
