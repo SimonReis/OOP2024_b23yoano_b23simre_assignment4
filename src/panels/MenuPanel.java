@@ -1,17 +1,15 @@
 package panels;
 
-import java.awt.Color;
 import java.awt.Font;
-import java.awt.GridBagConstraints;
+
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 
 import javax.swing.JButton;
-import javax.swing.JFrame;
+
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import listeners.PauseButtonListener;
 import listeners.MenuButtonListener;
 import tetris.MainFrame;
 import tetris.TetrisGame;
@@ -23,16 +21,6 @@ import tetris.TetrisGame;
 public class MenuPanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
-	
-	/**
-	 * The frame in which the menu panel is stored.
-	 */
-	private MainFrame frame;
-
-	/**
-	 * Color which should used for the background.
-	 */
-	private Color color;
 
 	/**
 	 * Buttons for starting a new game or quit the game.
@@ -43,33 +31,22 @@ public class MenuPanel extends JPanel {
 	 * JLabel for displaying the current high score.
 	 */
 	private JLabel highScoreLabel;
-	
+
 	/**
 	 * Number of the high score
 	 */
 	private int highScore;
-	
+
 	/**
 	 * This class represents the menu panel.
 	 * 
 	 * @param color Background color of the panel
 	 */
 	public MenuPanel() {
-		this.frame = TetrisGame.getFrame();
-		this.color = TetrisGame.getBackgroundColor();
 		this.highScore = TetrisGame.getHighScore();
 		initPanel();
 		intitUpperPanel();
 		intitLowerPanel();
-	}
-	
-	/**
-	 * This method returns the main frame.
-	 * 
-	 * @return Main frame
-	 */
-	public MainFrame getFrame() {
-		return frame;
 	}
 
 	/**
@@ -77,7 +54,7 @@ public class MenuPanel extends JPanel {
 	 */
 	private void initPanel() {
 		this.setLayout(new GridLayout(2, 1));
-		this.setBackground(color);
+		this.setBackground(MainFrame.getBackgroundColor());
 	}
 
 	/**
@@ -89,7 +66,7 @@ public class MenuPanel extends JPanel {
 		// Set panel layout
 		JPanel upperPanel = new JPanel();
 		upperPanel.setLayout(new GridLayout(2, 1));
-		upperPanel.setBackground(color);
+		upperPanel.setBackground(MainFrame.getBackgroundColor());
 
 		// Create headline
 		JLabel headlineLabel = new JLabel("Tetris");
@@ -119,19 +96,19 @@ public class MenuPanel extends JPanel {
 		// Set panel layout
 		JPanel upperPanel = new JPanel();
 		upperPanel.setLayout(new GridLayout(2, 1));
-		upperPanel.setBackground(color);
-		
+		upperPanel.setBackground(MainFrame.getBackgroundColor());
+
 		// Create high score label
 		highScoreLabel = new JLabel("Highscore: " + highScore);
 		highScoreLabel.setFont(new Font("Arial", Font.BOLD, 23));
 		highScoreLabel.setHorizontalAlignment(JLabel.CENTER);
 		highScoreLabel.setVerticalAlignment(JLabel.BOTTOM);
-		upperPanel.add(highScoreLabel); 
-		
+		upperPanel.add(highScoreLabel);
+
 		// Create button panel
 		JPanel buttonPanel = new JPanel();
 		buttonPanel.setLayout(new GridBagLayout());
-		buttonPanel.setBackground(color);
+		buttonPanel.setBackground(MainFrame.getBackgroundColor());
 
 		// Create new game button
 		newGameButton = new JButton("New Game");
@@ -142,7 +119,7 @@ public class MenuPanel extends JPanel {
 		quitGameButton = new JButton("Quit Game");
 		quitGameButton.addActionListener(new MenuButtonListener(this));
 		buttonPanel.add(quitGameButton);
-		
+
 		upperPanel.add(buttonPanel);
 
 		this.add(upperPanel);
@@ -174,8 +151,8 @@ public class MenuPanel extends JPanel {
 	public void setNewHighScore(int number) {
 		highScore = number;
 		highScoreLabel.setText("Highscore: " + highScore);
-		frame.pack();
-		
+		TetrisGame.getFrame().pack();
+
 		System.out.println("Highscore in menu panel: " + highScore);
 	}
 }
