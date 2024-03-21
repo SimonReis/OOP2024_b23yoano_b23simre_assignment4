@@ -22,6 +22,11 @@ public class TetrisGame {
 	 * This is the main frame, where all information and the game is displayed.
 	 */
 	private static MainFrame frame;
+	
+	/**
+	 * This is the tetromino factory, where tetrominos were produced and spawned at the game grid.
+	 */
+	private static TetrominoFactory tetrominoFactory;
 
 	/**
 	 * This is the high score of the application.
@@ -39,6 +44,7 @@ public class TetrisGame {
 	 */
 	public TetrisGame() {
 		gameInstance = this;
+		tetrominoFactory = new TetrominoFactory();
 		highScore = 0; //TODO Maybe Save this variable
 		backgroundColor = new Color(138, 146, 174);
 		gameGrid = new Grid(20, 10);
@@ -108,14 +114,22 @@ public class TetrisGame {
 		frame.pack();
 
 		// Start Falling blocks
-		TetrominoFactory tetrominoFactory = new TetrominoFactory();
 		tetrominoFactory.startProduction();
 
 	}
 
+	/**
+	 * This method stops the production and freezes the game.
+	 */
 	public void pauseGame() {
-		// TODO Implement method
-		// stop thread
+		tetrominoFactory.stopProduction();
+	}
+	
+	/**
+	 * This method resumes the game. 
+	 */
+	public void resumeGame() {
+		tetrominoFactory.startProduction();
 	}
 
 	/**
@@ -129,5 +143,8 @@ public class TetrisGame {
 		frame.getMenuPanel().setNewHighScore(highScore);
 		frame.setFocusable(true);
 		frame.pack(); 
+		
+		//Stop production
+		tetrominoFactory.stopProduction();
 	}
 }

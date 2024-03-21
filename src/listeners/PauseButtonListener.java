@@ -34,11 +34,10 @@ public class PauseButtonListener implements ActionListener {
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
-
 		if (infoLeft.getPauseButton() == e.getSource()) {
-			
-			//Pause Game in the Background
-			
+
+			// Pause Game in the Background
+			TetrisGame.getGameInstance().pauseGame();
 
 			// There are two options. The user can choose between resuming or ending the
 			// current game round
@@ -49,15 +48,14 @@ public class PauseButtonListener implements ActionListener {
 			int result = JOptionPane.showOptionDialog(infoLeft.getParent(), "Do you want to resume or end the game?",
 					"Game is paused", JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE, null, options, options[1]);
 
-			if (result == 0) { // End game button is pressed
-				// TODO implement Action
+			// End game button is pressed
+			if (result == 0) {
 				TetrisGame.getGameInstance().endGame();
-			} else { // Resume game or close option pane is pressed
-				TetrisGame.getGameInstance();
+
+			// Resume game or close option pane is pressed
+			} else {
 				TetrisGame.getFrame().requestFocus();
-				// TODO implement Action
-				// Pause Game
-				TetrisGame.getGameInstance().pauseGame();
+				TetrisGame.getGameInstance().resumeGame();
 			}
 
 		}
