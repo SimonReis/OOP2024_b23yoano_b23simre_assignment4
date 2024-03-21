@@ -4,6 +4,8 @@ import java.awt.Color;
 
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -52,6 +54,13 @@ public class MainFrame extends JFrame {
 		backgroundColor = new Color(138, 146, 174);
 		initFrame();
 		initMenuPanel();
+		
+//		this.addFocusListener(new FocusAdapter() {
+//			@Override
+//			public void focusLost(FocusEvent e) {
+//				TetrisGame.getFrame().requestFocusInWindow();
+//			}
+//		});
 	}
 
 	/**
