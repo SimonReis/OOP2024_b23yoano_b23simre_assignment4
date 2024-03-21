@@ -6,7 +6,6 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JOptionPane;
 
-import tetris.Grid;
 import tetris.TetrisGame;
 
 /**
@@ -15,41 +14,27 @@ import tetris.TetrisGame;
 public class GameOverListener implements ActionListener {
 
 	/**
-	 * Game grid, where all tetrominoes are placed.
-	 */
-	private Grid gameGrid;
-
-	/**
-	 * The constructor initializes the game grid for the listener.
-	 */
-	public GameOverListener() {
-		this.gameGrid = TetrisGame.getGameGrid();
-	}
-
-	/**
 	 * The method implements the actions that should happen when the game is over.
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 
-			// There are two options. The user can choose between resuming or ending the
-			// current game round
-			String[] options = { "Back to menu", "New Game" };
+		// There are two options. The user can choose between resuming or ending the
+		// current game round
+		String[] options = { "Back to menu", "New Game" };
 
-			// This code displays the pop-up windows and returns an integer for the selected
-			// button
-			int result = JOptionPane.showOptionDialog(gameGrid.getParent(), "Do you want to play a new game or go back to menu?",
-					"Game Over", JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE, null, options, options[1]);
+		// This code displays the pop-up windows and returns an integer for the selected
+		// button
+		int result = JOptionPane.showOptionDialog(TetrisGame.getFrame(),
+				"Do you want to play a new game or go back to menu?", "Game Over", JOptionPane.YES_NO_OPTION,
+				JOptionPane.PLAIN_MESSAGE, null, options, options[1]);
 
-			if (result == 1) { // New game button is pressed
-				// TODO implement Action
-				TetrisGame.getGameInstance().startGame();
-			} else { // Back to menu or close option pane is pressed
-				TetrisGame.getGameInstance().endGame();
-			}
-
+		if (result == 1) { // New game button is pressed
+			// TODO implement Action
+			TetrisGame.getGameInstance().startGame();
+		} else { // Back to menu or close option pane is pressed
+			TetrisGame.getGameInstance().endGame();
 		}
-
-	
+	}
 
 }
