@@ -15,7 +15,6 @@ public class FactoryListener implements ActionListener {
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
 		TetrominoFactory.getFactoryInstance().produce();
 	}
 
