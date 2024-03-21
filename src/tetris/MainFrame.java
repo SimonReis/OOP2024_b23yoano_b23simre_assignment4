@@ -76,17 +76,17 @@ public class MainFrame extends JFrame {
 		// Create the Information panels
 		JPanel leftPanel = new InformationPanelLeft();
 		rightPanel = new InformationPanelRight();
+		
 		// Create the game grid panel
-		// Create the three different panels
 		JPanel gridPanel = new GridPanel(gameGrid);
-		System.out.println("3");
+		
 		// Add the panels in the game panels, which is added to the frame.
 		gamePanel = new JPanel();
 		gamePanel.setLayout(new GridLayout(1, 3));
 		gamePanel.add(leftPanel);
 		gamePanel.add(gridPanel);
 		gamePanel.add(rightPanel);
-		System.out.println("4");
+
 		this.add(gamePanel);
 	}
 
