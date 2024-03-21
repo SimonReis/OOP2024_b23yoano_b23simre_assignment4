@@ -55,6 +55,8 @@ public class Tetromino {
 
 	int offsetTop = 0;
 	int offsetBottom = 0;
+	int offsetLeft = 0;
+	int offsetRight = 0;
 
 	/**
 	 * This constructor creates a random Tetromino. Sets its canMoveDown value to
@@ -146,8 +148,6 @@ public class Tetromino {
 
 			// Replaces the Tetromino cells values by null in its current location.
 			for (int rowMatrix = offsetBottom; rowMatrix >= offsetTop; rowMatrix--) {
-
-				System.out.println(row + rowMatrix - offsetTop);
 
 				for (int colMatrix = 0; colMatrix < matrix[0].length; colMatrix++) {
 
@@ -263,14 +263,16 @@ public class Tetromino {
 					canMoveDown = false;
 
 				} else {
+					
+					Object valueCurrentCell = gameGrid.getValueAt(rowToMove, colToMove);
+					Object valueBelowCell = gameGrid.getValueAt(rowToMove + 1, colToMove);
 
-					if (gameGrid.getValueAt(rowToMove, colToMove) != null
-							&& gameGrid.getValueAt(rowToMove + 1, colToMove) != null) {
+					if (valueCurrentCell != null && valueBelowCell != null) {
 
-						Shapes valueCurrentCell = (Shapes) gameGrid.getValueAt(rowToMove, colToMove);
-						Shapes valueBelowCell = (Shapes) gameGrid.getValueAt(rowToMove + 1, colToMove);
+						//Shapes valueCurrentCell = (Shapes) gameGrid.getValueAt(rowToMove, colToMove);
+						//Shapes valueBelowCell = (Shapes) gameGrid.getValueAt(rowToMove + 1, colToMove);
 
-						if (valueCurrentCell.isMovable() == true && valueBelowCell.isMovable() == false) {
+						if (((Shapes) valueCurrentCell).isMovable() == true && ((Shapes) valueBelowCell).isMovable() == false) {
 							canMoveDown = false;
 							break overloop;
 						}
