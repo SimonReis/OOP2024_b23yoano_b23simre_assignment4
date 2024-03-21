@@ -21,16 +21,15 @@ public class GameOverListener implements ActionListener {
 
 		// There are two options. The user can choose between resuming or ending the
 		// current game round
-		String[] options = { "Back to menu", "New Game" };
+		String[] options = { "New Game", "Back to menu" };
 
 		// This code displays the pop-up windows and returns an integer for the selected
 		// button
 		int result = JOptionPane.showOptionDialog(TetrisGame.getFrame(),
 				"Do you want to play a new game or go back to menu?", "Game Over", JOptionPane.YES_NO_OPTION,
-				JOptionPane.PLAIN_MESSAGE, null, options, options[1]);
+				JOptionPane.PLAIN_MESSAGE, null, options, options[0]);
 
-		if (result == 1) { // New game button is pressed
-			// TODO implement Action
+		if (result == 0) { // New game button is pressed
 			TetrisGame.getGameInstance().startGame();
 		} else { // Back to menu or close option pane is pressed
 			TetrisGame.getGameInstance().endGame();
