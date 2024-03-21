@@ -73,7 +73,6 @@ public class MainFrame extends JFrame {
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setLocationRelativeTo(null); // Place the JFrame in the middle of the screen
 		
-
 	}
 
 	/**
