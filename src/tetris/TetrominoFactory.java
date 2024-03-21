@@ -14,7 +14,7 @@ public class TetrominoFactory {
 	 * This is the instance of the tetromino factory.
 	 */
 	private static TetrominoFactory factoryInstance;
-	
+
 	/**
 	 * The next Tetromino that is displayed in the right side panel.
 	 */
@@ -61,21 +61,21 @@ public class TetrominoFactory {
 		tetrominoFactoryTimer.stop();
 		System.out.println("Stop Production");
 	}
-	
+
 	/**
 	 * This method stops the current Tetromino.
 	 */
 	public void stopTetromino() {
 		currentTetromino.stopTetromino();
 	}
-	
+
 	/**
-	 * This method starts the timer of the current Tetromino, and it will move again.
+	 * This method starts the timer of the current Tetromino, and it will move
+	 * again.
 	 */
 	public void startTetromino() {
 		currentTetromino.startTetromino();
 	}
-
 
 	/**
 	 * This method returns next Tetromino.
@@ -94,7 +94,7 @@ public class TetrominoFactory {
 	public static Tetromino getCurrentTetromino() {
 		return currentTetromino;
 	}
-	
+
 	/**
 	 * This method sets the current Tetromino.
 	 */
@@ -106,7 +106,6 @@ public class TetrominoFactory {
 	 * This method produces a Tetromino, if possible.
 	 */
 	public void produce() {
-		System.out.println(currentTetromino);
 		// Change to spawn if is not movable anymore?s
 		if (currentTetromino == null || !currentTetromino.canMoveDown()) {
 
@@ -126,7 +125,10 @@ public class TetrominoFactory {
 			currentTetromino.playingTetromino();
 		}
 	}
-	
+
+	/**
+	 * This method sets the value of the current tetromino to null.
+	 */
 	public void clearTetromino() {
 		currentTetromino = null;
 	}
