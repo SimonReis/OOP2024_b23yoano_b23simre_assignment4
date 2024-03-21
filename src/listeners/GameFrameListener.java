@@ -8,6 +8,18 @@ import tetris.TetrominoFactory;
 public class GameFrameListener implements KeyListener {
 
 	public void keyPressed(KeyEvent e) {
+
+	}
+
+	@Override
+	public void keyTyped(KeyEvent e) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+		// TODO Auto-generated method stub
 		int keyCode = e.getKeyCode();
 		switch (keyCode) {
 		case KeyEvent.VK_UP:
@@ -32,17 +44,6 @@ public class GameFrameListener implements KeyListener {
 		default:
 			System.out.println("other");
 		}
-	}
-
-	@Override
-	public void keyTyped(KeyEvent e) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void keyReleased(KeyEvent e) {
-		// TODO Auto-generated method stub
 
 	}
 

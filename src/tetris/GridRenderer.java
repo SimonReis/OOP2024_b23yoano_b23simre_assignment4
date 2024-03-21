@@ -24,8 +24,8 @@ public class GridRenderer extends DefaultTableCellRenderer {
 			int row, int column) {
 		super.getTableCellRendererComponent(table, "", false, false, row, column);
 		
-		if (tetrominoShape == null) {
-			setBackground(Color.DARK_GRAY);
+		if ( tetrominoShape == null) {
+			setBackground(Color.darkGray);
 		} else if (tetrominoShape == Shapes.I || tetrominoShape == Shapes.Ix) {
 			setBackground(Shapes.I.getColor());
 		} else if (tetrominoShape == Shapes.J || tetrominoShape == Shapes.Jx) {
