@@ -41,15 +41,15 @@ public class PauseButtonListener implements ActionListener {
 
 			// There are two options. The user can choose between resuming or ending the
 			// current game round
-			String[] options = { "End Game", "Resume Game" };
+			String[] options = {"Resume Game", "End Game"};
 
 			// This code displays the pop-up windows and returns an integer for the selected
 			// button
 			int result = JOptionPane.showOptionDialog(infoLeft.getParent(), "Do you want to resume or end the game?",
-					"Game is paused", JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE, null, options, options[1]);
+					"Game is paused", JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE, null, options, options[0]);
 
 			// End game button is pressed
-			if (result == 0) {
+			if (result == 1) {
 				TetrisGame.getGameInstance().endGame();
 
 			// Resume game or close option pane is pressed

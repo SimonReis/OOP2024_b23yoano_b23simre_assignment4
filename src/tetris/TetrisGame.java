@@ -64,16 +64,7 @@ public class TetrisGame {
 	public static TetrisGame getGameInstance() {
 		return gameInstance;
 	}
-
-//	/**
-//	 * This method returns the game grid.
-//	 *
-//	 * @return Game grid
-//	 */
-//	public static Grid getGameGrid() {
-//		return gameGrid;
-//	}
-
+	
 	/**
 	 * This method returns the main frame.
 	 * 
