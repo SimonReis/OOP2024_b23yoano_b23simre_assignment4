@@ -142,5 +142,11 @@ public class TetrisGame {
 
 		// Stop production
 		tetrominoFactory.stopProduction();
+		GameRules.clearGrid(gameGrid);
+	}
+	
+	public void newGame() {
+		gameGrid = new Grid(20, 10);
+		startGame();
 	}
 }

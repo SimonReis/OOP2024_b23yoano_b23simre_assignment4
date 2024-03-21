@@ -79,9 +79,10 @@ public class GameRules {
 	/**
 	 * This method clears the next grid.
 	 */
-	public static void clearNextGrid(Grid nextGrid) {
-		for(int m = 0; m < 4; m++) {
-			for(int n = 0; n < 4; n++) {
+	public static void clearGrid(Grid nextGrid) {
+		
+		for(int m = 0; m < nextGrid.getNumRows(); m++) {
+			for(int n = 0; n < nextGrid.getNumCols(); n++) {
 				nextGrid.setValueAt(null, m, n);
 			}
 		}

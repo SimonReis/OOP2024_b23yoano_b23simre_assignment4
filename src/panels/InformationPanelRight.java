@@ -144,7 +144,7 @@ public class InformationPanelRight extends JPanel {
 		return nextGrid;
 	}
 
-	// TODO implement methods for changeing block and numbers
+	// TODO implement methods for changing block and numbers
 
 	/**
 	 * This method converts a numerical value into a string and adds it to a label.
@@ -219,7 +219,7 @@ public class InformationPanelRight extends JPanel {
 	public void setNextTetromino(Tetromino tetromino) {
 		
 		// Clear next grid at first.
-		GameRules.clearNextGrid(nextGrid);
+		GameRules.clearGrid(nextGrid);
 
 		
 		// Matrix of the tetromino

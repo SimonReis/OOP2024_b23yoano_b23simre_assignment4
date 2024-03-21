@@ -16,6 +16,8 @@ public class Grid extends JTable {
 
 	private static final long serialVersionUID = 1L;
 
+	int numRows, numCols;
+	
 	/**
 	 * This constructor create a grid by a given number of rows and columns.
 	 * 
@@ -23,6 +25,9 @@ public class Grid extends JTable {
 	 * @param numCols Number of columns
 	 */
 	public Grid(int numRows, int numCols) {
+		
+		this.numRows = numRows;
+		this.numCols = numCols;
 
 		DefaultTableModel model = new DefaultTableModel(numRows, numCols) {
 
@@ -45,7 +50,7 @@ public class Grid extends JTable {
 		this.setDefaultRenderer(Object.class, new GridRenderer());
 		
 		
-		//Clicking on table does nothing 
+		//This is necessary to not loose the focus of the key board listener
 		this.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -54,8 +59,23 @@ public class Grid extends JTable {
 		});
 	}
 	
-	@Override
-	public boolean requestFocusInWindow() {
-		return false;
+	/**
+	 * This method returns the number of rows of the grid.
+	 * 
+	 * @return Number of rows
+	 */
+	public int getNumRows() {
+		return numRows;
 	}
+	
+	/**
+	 * This method returns the number of columns of the grid.
+	 * 
+	 * @return Number of Columns
+	 */
+	public int getNumCols() {
+		return numCols;
+	}
+	
+	
 }
