@@ -141,8 +141,8 @@ public class Tetromino {
 					}
 				}
 			}
-			
 			row++;
+			
 
 			// If the Tetromino cannot move down.
 		} else {
@@ -181,9 +181,9 @@ public class Tetromino {
 					}
 				}
 			}
+			col--;
 		}
 		
-		col--;
 	}
 
 	/**
@@ -204,9 +204,11 @@ public class Tetromino {
 					}
 				}
 			}
+			
+			col++;
 		}
 		
-		col++;
+		
 	}
 
 	/**
@@ -214,34 +216,38 @@ public class Tetromino {
 	 * orientation.
 	 */
 	public void rotate() {
-
-
-		matrix = rotateMatrix(matrix);
 		
-		for (int rowGrid = 0; rowGrid < gameGrid.getRowCount(); rowGrid++) {
+		System.out.println("Colonne " + col);
+		
+		if (col >= 0 && col + 3 <= gameGrid.getColumnCount() - 1) {
+			
+			matrix = rotateMatrix(matrix);
+			
+			for (int rowGrid = 0; rowGrid < gameGrid.getRowCount(); rowGrid++) {
 
-			for (int colGrid = 0; colGrid < gameGrid.getColumnCount(); colGrid++) {
+				for (int colGrid = 0; colGrid < gameGrid.getColumnCount(); colGrid++) {
 
-				if (gameGrid.getValueAt(rowGrid, colGrid) == tetrominoShape) {
+					if (gameGrid.getValueAt(rowGrid, colGrid) == tetrominoShape) {
 
-					gameGrid.setValueAt(null, rowGrid, colGrid);
-					//gameGrid.setValueAt(tetrominoShape, rowGrid, colGrid - 1);
+						gameGrid.setValueAt(null, rowGrid, colGrid);
+						//gameGrid.setValueAt(tetrominoShape, rowGrid, colGrid - 1);
+					}
+				}
+				
+			}
+
+			// Fills the cells in the game grid with the Tetromino Shape.
+			for (int rowMatrix = 0; rowMatrix < matrix.length; rowMatrix++) {
+				for (int colMatrix = 0; colMatrix < matrix[0].length; colMatrix++) {
+					if (matrix[rowMatrix][colMatrix] == 1) {
+						gameGrid.setValueAt(tetrominoShape, row + rowMatrix, col + colMatrix);
+					}
 				}
 			}
 			
 		}
-
-		// Fills the cells in the game grid with the Tetromino Shape.
-		for (int rowMatrix = 0; rowMatrix < matrix.length; rowMatrix++) {
-			for (int colMatrix = 0; colMatrix < matrix[0].length; colMatrix++) {
-				if (matrix[rowMatrix][colMatrix] == 1) {
-					gameGrid.setValueAt(tetrominoShape, row + rowMatrix, col + colMatrix);
-				}
-			}
-		}
-
-		// set new grid value
 	}
+
 
 	// REMINDER : ADD A 2ND FIELD THAT RETURNS THE SIDE MOBILITY WITH A TIME DELAY
 	// (last chance move).
@@ -270,26 +276,6 @@ public class Tetromino {
 			}
 		}
 		return canMoveDown;
-	}
-	
-	public boolean canMoveDownDelayed() {
-		
-		ActionListener actionListener = new ActionListener() {
-
-			// This action will be repeated each X milliseconds (defined in the timer
-			// setting).
-			@Override
-			public void actionPerformed(ActionEvent e) {
-
-				// Moves the Tetromino one row down.
-				canMoveDownDelayed = canMoveDown;
-			}
-		};
-
-		// Sets and starts the timer for repeated action.
-		tetrominoTimer = new Timer(1000, actionListener);
-		tetrominoTimer.start();
-		return canMoveDownDelayed;
 	}
 
 	public boolean canMoveLeft() {
