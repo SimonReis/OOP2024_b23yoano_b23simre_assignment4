@@ -31,7 +31,7 @@ public class Tetromino {
 	/**
 	 * Timer to set repeated down movement of the Tetromino.
 	 */
-	private Timer tetrominoTimer;
+	private Timer fallingTimer;
 
 	/**
 	 * Boolean field to tell whether the Tetromino can move down or not.
@@ -58,16 +58,33 @@ public class Tetromino {
 		tetrominoShape = getRandomTetrominoShape();
 		matrix = tetrominoShape.getMatrix();
 		tetrominoListener = new TetrominoListener(this);
+		
+		// Sets and starts the timer for repeated action.
+		fallingTimer = new Timer(500, tetrominoListener);
 	}
 
+	/**
+	 * This method spawn an moves a tetromino.
+	 */
 	public void playingTetromino() {
 		//Tetromino is spawned in at game grid
 		spawnTetromino();
+		startTetromino();
 		
-		// Sets and starts the timer for repeated action.
-		tetrominoTimer = new Timer(500, tetrominoListener);
-		// Tetromino moves down as long as possible;
-		tetrominoTimer.start();
+	}
+	
+	/**
+	 * This method starts the timer of the falling interval of one tetromino.
+	 */
+	public void startTetromino() {
+		fallingTimer.start();
+	}
+	
+	/**
+	 * This method stops the timer of the falling interval of one tetromino.
+	 */
+	public void stopTetromino() {
+		fallingTimer.stop();
 	}
 
 	/**
@@ -99,7 +116,7 @@ public class Tetromino {
 		// If the Tetromino cannot move down.
 		} else {
 			// Stops the timer so the Tetromino stops moving.
-			tetrominoTimer.stop();
+			fallingTimer.stop();
 		}
 	}
 

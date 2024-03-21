@@ -45,7 +45,7 @@ public class TetrisGame {
 	 */
 	public TetrisGame() {
 		gameInstance = this;
-		tetrominoFactory = new TetrominoFactory();
+		tetrominoFactory = TetrominoFactory.getFactoryInstance();
 		highScore = 0; // TODO Maybe Save this variable
 		gameGrid = new Grid(20, 10);
 		frame = new MainFrame();
@@ -53,8 +53,6 @@ public class TetrisGame {
 		frame.setVisible(true);
 		frame.pack();
 
-		tetrominoFactory = new TetrominoFactory();
-		
 		//TODO Maybe in another class?
 		//gameOverListener = new GameOverListener();
 	}
@@ -120,17 +118,15 @@ public class TetrisGame {
 	 * This method stops the production and freezes the game.
 	 */
 	public void pauseGame() {
-		//tetrominoFactory.stopProduction();
-		
-		//TODO freezeBlock();
+		tetrominoFactory.stopProduction();
 	}
 
-//	/**
-//	 * This method resumes the game.
-//	 */
-//	public void resumeGame() {
-//		//tetrominoFactory.startProduction();
-//	}
+	/**
+	 * This method resumes the game.
+	 */
+	public void resumeGame() {
+		tetrominoFactory.startProduction();
+	}
 
 	/**
 	 * This method is called, when the game round should end. The view will change
