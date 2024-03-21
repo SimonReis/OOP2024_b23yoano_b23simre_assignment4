@@ -24,6 +24,7 @@ public class GameFrameListener implements KeyListener {
 		switch (keyCode) {
 		case KeyEvent.VK_UP:
 			// handle up
+			TetrominoFactory.getCurrentTetromino().rotate();
 			System.out.println("up");
 			break;
 		case KeyEvent.VK_DOWN:

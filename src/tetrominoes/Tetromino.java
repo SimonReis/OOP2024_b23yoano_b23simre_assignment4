@@ -141,6 +141,8 @@ public class Tetromino {
 					}
 				}
 			}
+			
+			row++;
 
 			// If the Tetromino cannot move down.
 		} else {
@@ -180,6 +182,8 @@ public class Tetromino {
 				}
 			}
 		}
+		
+		col--;
 	}
 
 	/**
@@ -201,6 +205,8 @@ public class Tetromino {
 				}
 			}
 		}
+		
+		col++;
 	}
 
 	/**
@@ -208,10 +214,31 @@ public class Tetromino {
 	 * orientation.
 	 */
 	public void rotate() {
-		// Create 4x4 rotation matrix for a 90 degree rotation
-		int[][] rotationMatrix = new int[][] { { 1, 0, 0, 0 }, { 0, 0, -1, 0 }, { 0, 1, 0, 0 }, { 0, 0, 0, 1 } };
 
-		matrix = matrixMultiplication(rotationMatrix, matrix);
+
+		matrix = rotateMatrix(matrix);
+		
+		for (int rowGrid = 0; rowGrid < gameGrid.getRowCount(); rowGrid++) {
+
+			for (int colGrid = 0; colGrid < gameGrid.getColumnCount(); colGrid++) {
+
+				if (gameGrid.getValueAt(rowGrid, colGrid) == tetrominoShape) {
+
+					gameGrid.setValueAt(null, rowGrid, colGrid);
+					//gameGrid.setValueAt(tetrominoShape, rowGrid, colGrid - 1);
+				}
+			}
+			
+		}
+
+		// Fills the cells in the game grid with the Tetromino Shape.
+		for (int rowMatrix = 0; rowMatrix < matrix.length; rowMatrix++) {
+			for (int colMatrix = 0; colMatrix < matrix[0].length; colMatrix++) {
+				if (matrix[rowMatrix][colMatrix] == 1) {
+					gameGrid.setValueAt(tetrominoShape, row + rowMatrix, col + colMatrix);
+				}
+			}
+		}
 
 		// set new grid value
 	}
@@ -332,33 +359,22 @@ public class Tetromino {
 	 * @param matrix2 Second matrix
 	 * @return Multiplied matrix
 	 */
-	private int[][] matrixMultiplication(int[][] matrix1, int[][] matrix2) {
-		int mtx1rows = matrix1.length;
-		int mtx2rows = matrix2.length;
-		int mtx1cols = matrix1[0].length;
-		int mtx2cols = matrix2[0].length;
+	public int[][] rotateMatrix(int[][] matrix) {
+		  if (matrix.length != matrix[0].length || matrix.length != 4) {
+		    throw new IllegalArgumentException("Matrix must be a square 4x4 matrix");
+		  }
 
-		// Check if both matrices can be multiplied
-		if (mtx1cols == mtx2rows) {
-
-			// Create result matrix with the new dimensions
-			int[][] result = new int[mtx1rows][mtx2cols];
-
-			// Execute matrix multiplication
-			for (int i = 0; i < mtx1rows; i++) {
-				for (int j = 0; j < mtx2cols; j++) {
-					for (int k = 0; k < mtx1cols; k++) {
-						result[i][j] += matrix1[i][k] * matrix2[k][j];
-					}
-				}
-			}
-
-			return result;
-
-		} else {
-			throw new IllegalArgumentException("Wrong matrix dimensions!");
+		  for (int i = 0; i < matrix.length / 2; i++) {
+		    for (int j = i; j < matrix.length - i - 1; j++) {
+		      int temp = matrix[i][j];
+		      matrix[i][j] = matrix[matrix.length - 1 - j][i];
+		      matrix[matrix.length - 1 - j][i] = matrix[matrix.length - 1 - i][matrix.length - 1 - j];
+		      matrix[matrix.length - 1 - i][matrix.length - 1 - j] = matrix[j][matrix.length - 1 - i];
+		      matrix[j][matrix.length - 1 - i] = temp;
+		    }
+		  }
+		  return matrix;
 		}
-	}
 
 	/**
 	 * This method returns the shape of the tetromino.
