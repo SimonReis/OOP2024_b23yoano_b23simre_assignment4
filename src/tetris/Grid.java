@@ -2,6 +2,8 @@ package tetris;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -41,5 +43,19 @@ public class Grid extends JTable {
 			column.setPreferredWidth(24);
 		}
 		this.setDefaultRenderer(Object.class, new GridRenderer());
+		
+		
+		//Clicking on table does nothing 
+		this.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				TetrisGame.getFrame().requestFocusInWindow();// Do nothing
+			}
+		});
+	}
+	
+	@Override
+	public boolean requestFocusInWindow() {
+		return false;
 	}
 }

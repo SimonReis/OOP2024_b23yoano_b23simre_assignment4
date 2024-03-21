@@ -82,8 +82,7 @@ public class MainFrame extends JFrame {
 		gridPanel.add(gameGrid);
 		
 		// Add Listener to the frame
-		KeyBoardListener gameListener = new KeyBoardListener();
-		TetrisGame.getFrame().addKeyListener(gameListener);
+		this.addKeyListener(new KeyBoardListener());
 		
 		// Add the panels in the game panels, which is added to the frame.
 		gamePanel = new JPanel();
