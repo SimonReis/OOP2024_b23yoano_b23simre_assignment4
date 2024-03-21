@@ -76,35 +76,12 @@ public class Tetromino {
 	 */
 	private void spawnTetromino() {
 
+		//TODO implement method for one Tetromino
 		row = 0;
 		col = 3;
-//		int offset = 0;
-//		outerloop:
-//		for (int rowMatrix = 0; rowMatrix < matrix.length; rowMatrix++) {
-//			for (int colMatrix = 0; colMatrix < matrix[0].length; colMatrix++) {
-//				if (matrix[rowMatrix][colMatrix] == 1) {
-//					offset = rowMatrix;
-//					break outerloop;
-//				}
-//			}
-//		}
-//
-//		for (int rowMatrix = offset; rowMatrix < matrix.length; rowMatrix++) {
-//			for (int colMatrix = 0; colMatrix < matrix[0].length; colMatrix++) {
-//				if (matrix[rowMatrix][colMatrix] == 1) {
-//					gameGrid.setValueAt(tetrominoShape, row + rowMatrix - offset, col + colMatrix);
-//				}
-//			}
-//		}
 		TetrisGame.getGameGrid().setValueAt(tetrominoShape, row, col);
-
-		// This action will be repeated each X milliseconds (defined in the timer
-		// setting).
-
-		// Sets and starts the timer for repeated action.
-		tetrominoTimer = new Timer(500, tetrominoListener);
-		tetrominoTimer.start();
-
+		//
+		
 	}
 
 	/**
@@ -112,31 +89,15 @@ public class Tetromino {
 	 * bottom of the grid or another Tetromino.
 	 */
 	public void moveDown() {
-		// Changed to test clear lines
 		// If the Tetromino can is move down.
 		if (canMoveDown()) {
-//			System.out.println(matrix.length);
-//
-//			// Replaces the Tetromino cells values by null in its current location.
-//			for (int rowMatrix = matrix.length - 1; rowMatrix >= 0; rowMatrix--) {
-//				for (int colMatrix = 0; colMatrix < matrix[0].length; colMatrix++) {
-//					int rowToMove = row + rowMatrix;
-//					int colToMove = col + colMatrix;
-//					if (gameGrid.getValueAt(rowToMove, colToMove) == tetrominoShape) {
-//						gameGrid.setValueAt(null, rowToMove, colToMove);
-//						gameGrid.setValueAt(tetrominoShape, rowToMove + 1, colToMove);
-//					}
-//				}
-//			}
-//
-//			// Rebuilds the Tetromino in its new location one row below.
-//			row++;
+			//TODO implement method for one Tetromino
 			TetrisGame.getGameGrid().setValueAt(null, row, col);
 			TetrisGame.getGameGrid().setValueAt(tetrominoShape, row + 1, col);
 			row++;
-			// If the Tetromino cannot move down.
+			//TODO implement method for one Tetromino
+		// If the Tetromino cannot move down.
 		} else {
-
 			// Stops the timer so the Tetromino stops moving.
 			tetrominoTimer.stop();
 		}
@@ -146,7 +107,7 @@ public class Tetromino {
 	 * This method moves the Tetromino one row column left.
 	 */
 	public void moveLeft() {
-
+		//TODO implement method for one Tetromino
 		// If the Tetromino will not collide a block or a grid edge.
 		if (col > 0 && TetrisGame.getGameGrid().getValueAt(row, col - 1) == null) {
 
@@ -157,13 +118,14 @@ public class Tetromino {
 			col--;
 			TetrisGame.getGameGrid().setValueAt(tetrominoShape, row, col);
 		}
+		//
 	}
 
 	/**
 	 * This method moves the Tetromino one row column right.
 	 */
 	public void moveRight() {
-
+		//TODO implement method for one Tetromino
 		// If the Tetromino will not collide a block or a grid edge.
 		if (col < 9 && TetrisGame.getGameGrid().getValueAt(row, col + 1) == null) {
 
@@ -174,6 +136,7 @@ public class Tetromino {
 			col++;
 			TetrisGame.getGameGrid().setValueAt(tetrominoShape, row, col);
 		}
+		//
 	}
 
 	/**
@@ -183,10 +146,9 @@ public class Tetromino {
 	public void rotate() {
 		// Create 4x4 rotation matrix for a 90 degree rotation
 		int[][] rotationMatrix = new int[][] { { 1, 0, 0, 0 }, { 0, 0, -1, 0 }, { 0, 1, 0, 0 }, { 0, 0, 0, 1 } };
-
 		matrix = matrixMultiplication(rotationMatrix, matrix);
 
-		// set new grid value
+		//TODO implement method for one Tetromino
 	}
 
 	/**
@@ -272,13 +234,11 @@ public class Tetromino {
 	}
 
 	/**
-	 * This method set placed to true. Call this method if a new tetromino enter the
-	 * game. Then the tetrominois not movable anymore.
+	 * This method returns if the teromino is placed final on the game grid. Then the tetromino is not movable anymore.
 	 * 
-	 * @return true, then the block is placed in the game grid
+	 * @return true, if the tetromino is placed in the game grid
 	 */
-	public boolean isPlaced() {
-		placed = true;
+	public boolean getPlaced() {
 		return placed;
 	}
 

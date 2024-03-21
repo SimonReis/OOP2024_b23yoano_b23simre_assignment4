@@ -95,7 +95,7 @@ public class GameRules {
 	public static boolean isGameOver() {
 		for (int col = 0; col < TetrisGame.getGameGrid().getColumnCount(); col++) {
 			// Check if there is a non movable block in the first row
-			if (Tetromino.class.cast(TetrisGame.getGameGrid().getValueAt(0, col)).isPlaced()) {
+			if (!Tetromino.class.cast(TetrisGame.getGameGrid().getValueAt(0, col)).getPlaced()) {
 				return true;
 			}
 		}
