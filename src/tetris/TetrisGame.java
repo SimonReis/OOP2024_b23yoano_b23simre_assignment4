@@ -33,12 +33,7 @@ public class TetrisGame {
 	 * This is the Listener which checks if the game is over.
 	 */
 	private static GameOverListener gameOverListener;
-	
 
-	/**
-	 * This is the Listener which checks if the game is over.
-	 */
-	private static GameOverListener gameOverListener;
 
 	/**
 	 * This is the high score of the application.
