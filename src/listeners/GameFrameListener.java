@@ -37,8 +37,10 @@ public class GameFrameListener implements KeyListener {
                 System.out.println("up");
                 break;
             case KeyEvent.VK_DOWN:
+            	if (TetrominoFactory.getCurrentTetromino().canMoveDown()) {
                 TetrominoFactory.getCurrentTetromino().moveDown();
                 System.out.println("down");
+            	}
                 break;
             case KeyEvent.VK_LEFT:
                 TetrominoFactory.getCurrentTetromino().moveLeft();
