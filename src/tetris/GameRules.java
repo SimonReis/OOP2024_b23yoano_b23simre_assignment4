@@ -77,6 +77,17 @@ public class GameRules {
 	}
 	
 	/**
+	 * This method clears the next grid.
+	 */
+	public static void clearNextGrid(Grid nextGrid) {
+		for(int m = 0; m < 4; m++) {
+			for(int n = 0; n < 4; n++) {
+				nextGrid.setValueAt(null, m, n);
+			}
+		}
+	}
+	
+	/**
 	 * This method checks if the game is over, by a non movable block in the first row of the game grid.
 	 * 
 	 * @return True if the game is over.
@@ -84,7 +95,7 @@ public class GameRules {
 	public static boolean isGameOver() {
 		for (int col = 0; col < TetrisGame.getGameGrid().getColumnCount(); col++) {
 			// Check if there is a non movable block in the first row
-			if (Tetromino.class.cast(TetrisGame.getGameGrid().getValueAt(0, col)).isPlaced()) {
+			if (!Tetromino.class.cast(TetrisGame.getGameGrid().getValueAt(0, col)).getPlaced()) {
 				return true;
 			}
 		}

@@ -1,11 +1,18 @@
 package listeners;
 
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+import tetris.TetrisGame;
 import tetris.TetrominoFactory;
 
-public class KeyBoardListener implements KeyListener {
+/**
+ * This Listener calls required method for each event from the key board to
+ * control the tetris game.
+ */
+public class KeyBoardListener implements KeyListener, FocusListener {
 
 	public void keyPressed(KeyEvent e) {
 		int keyCode = e.getKeyCode();
@@ -30,10 +37,10 @@ public class KeyBoardListener implements KeyListener {
 			System.out.println("right");
 			break;
 		case KeyEvent.VK_SPACE:
-			//handle spacebar
+			// handle space bar
 			TetrominoFactory.getCurrentTetromino().dropToBottom();
 			System.out.println("bottom");
-			break;			
+			break;
 		default:
 			System.out.println("other");
 		}
@@ -49,6 +56,21 @@ public class KeyBoardListener implements KeyListener {
 	public void keyReleased(KeyEvent e) {
 		// TODO Auto-generated method stub
 
+	}
+
+	@Override
+	public void focusGained(FocusEvent e) {
+		// TODO Auto-generated method stub
+	}
+
+	/**
+	 * This method sets the focus back to the frame if the focus is Lost. This could
+	 * happen e.g. by clicking on the game grid, even if the functions to edit a
+	 * cell are deactivated
+	 */
+	@Override
+	public void focusLost(FocusEvent e) {
+		TetrisGame.getFrame().requestFocusInWindow();
 	}
 
 }

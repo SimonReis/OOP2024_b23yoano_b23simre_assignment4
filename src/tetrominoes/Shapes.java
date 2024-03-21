@@ -107,4 +107,3 @@ public enum Shapes {
 		return new Shapes[] { I, J, L, O, S, T, Z };
 	}
 }
-	

@@ -4,13 +4,14 @@ import java.awt.Color;
 
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import listeners.KeyBoardListener;
 import panels.MenuPanel;
-import panels.GridPanel;
 import panels.InformationPanelLeft;
 import panels.InformationPanelRight;
 
@@ -53,6 +54,13 @@ public class MainFrame extends JFrame {
 		backgroundColor = new Color(138, 146, 174);
 		initFrame();
 		initMenuPanel();
+		
+//		this.addFocusListener(new FocusAdapter() {
+//			@Override
+//			public void focusLost(FocusEvent e) {
+//				TetrisGame.getFrame().requestFocusInWindow();
+//			}
+//		});
 	}
 
 	/**
@@ -65,7 +73,6 @@ public class MainFrame extends JFrame {
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setLocationRelativeTo(null); // Place the JFrame in the middle of the screen
 		
-
 	}
 
 	/**
@@ -78,7 +85,12 @@ public class MainFrame extends JFrame {
 		rightPanel = new InformationPanelRight();
 		
 		// Create the game grid panel
-		JPanel gridPanel = new GridPanel(gameGrid);
+		JPanel gridPanel = new JPanel();
+		gridPanel.setBackground(MainFrame.getBackgroundColor());
+		gridPanel.add(gameGrid);
+		
+		// Add Listener to the frame
+		this.addKeyListener(new KeyBoardListener());
 		
 		// Add the panels in the game panels, which is added to the frame.
 		gamePanel = new JPanel();

@@ -12,19 +12,20 @@ public class TetrisGame {
 	 * This is the instance of the one running tetris game.
 	 */
 	private static TetrisGame gameInstance;
-	
+
 	/**
 	 * This is the main frame, where all information and the game is displayed.
 	 */
 	private static MainFrame frame;
-	
+
 	/**
 	 * This is the game grid, where the actual game takes place.
 	 */
 	private static Grid gameGrid;
-	
+
 	/**
-	 * This is the tetromino factory, where tetrominos were produced and spawned at the game grid.
+	 * This is the tetromino factory, where tetrominos were produced and spawned at
+	 * the game grid.
 	 */
 	private static TetrominoFactory tetrominoFactory;
 	
@@ -35,29 +36,32 @@ public class TetrisGame {
 	
 
 	/**
+	 * This is the Listener which checks if the game is over.
+	 */
+	private static GameOverListener gameOverListener;
+
+	/**
 	 * This is the high score of the application.
 	 */
 	private static int highScore;
-	
 	/**
 	 * This is the constructor, where all required parts for using the tetris
 	 * application and playing a game is initialized.
 	 */
 	public TetrisGame() {
 		gameInstance = this;
-		
+		tetrominoFactory = new TetrominoFactory();
+		highScore = 0; // TODO Maybe Save this variable
+		gameGrid = new Grid(20, 10);
 		frame = new MainFrame();
 		frame.setFocusable(true);
 		frame.setVisible(true);
 		frame.pack();
-		
-		gameGrid = new Grid(20, 10);
-		
+
 		tetrominoFactory = new TetrominoFactory();
 		
-		gameOverListener = new GameOverListener();
-		
-		highScore = 0; //TODO Maybe Save this variable	
+		//TODO Maybe in another class?
+		//gameOverListener = new GameOverListener();
 	}
 
 	/**
@@ -86,14 +90,14 @@ public class TetrisGame {
 	public static MainFrame getFrame() {
 		return frame;
 	}
-	
+
 	/**
 	 * This method returns the high score of the game.
 	 */
 	public static int getHighScore() {
 		return highScore;
 	}
-	
+
 	/**
 	 * This method set the high score of the game.
 	 */
@@ -121,18 +125,20 @@ public class TetrisGame {
 	 * This method stops the production and freezes the game.
 	 */
 	public void pauseGame() {
-		//TODO implement method
+		//tetrominoFactory.stopProduction();
+		
+		//TODO freezeBlock();
 	}
-	
+
 //	/**
-//	 * This method resumes the game. 
+//	 * This method resumes the game.
 //	 */
 //	public void resumeGame() {
-//		//TODO implement method
+//		//tetrominoFactory.startProduction();
 //	}
 
 	/**
-	 * This method is called, when the game round should end. The 		view will change
+	 * This method is called, when the game round should end. The view will change
 	 * and the high score is set.
 	 */
 	public void endGame() {
@@ -141,9 +147,9 @@ public class TetrisGame {
 		refreshHighScore();
 		frame.getMenuPanel().setNewHighScore(highScore);
 		frame.setFocusable(true);
-		frame.pack(); 
-		
-		//Stop production
+		frame.pack();
+
+		// Stop production
 		tetrominoFactory.stopProduction();
 	}
 }

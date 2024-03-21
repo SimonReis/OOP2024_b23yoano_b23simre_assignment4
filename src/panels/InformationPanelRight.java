@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 import tetris.MainFrame;
 import tetris.TetrisGame;
 import tetrominoes.Tetromino;
+import tetris.GameRules;
 import tetris.Grid;
 
 /**
@@ -209,9 +210,6 @@ public class InformationPanelRight extends JPanel {
 		
 		
 	}
-
-	//TODO maybe add a getter metohd for the tetromino.
-	
 	
 	/**
 	 * This method sets the next tetromino in the next grid.
@@ -221,7 +219,8 @@ public class InformationPanelRight extends JPanel {
 	public void setNextTetromino(Tetromino tetromino) {
 		
 		// Clear next grid at first.
-		clearNextGrid();
+		GameRules.clearNextGrid(nextGrid);
+
 		
 		// Matrix of the tetromino
 		int[][] matrix = tetromino.getShape().getMatrix();
@@ -235,16 +234,4 @@ public class InformationPanelRight extends JPanel {
 			}
 		}
 	}
-	
-	/**
-	 * This method clears the next grid.
-	 */
-	private void clearNextGrid() {
-		for(int m = 0; m < 4; m++) {
-			for(int n = 0; n < 4; n++) {
-				nextGrid.setValueAt(null, m, n);
-			}
-		}
-	}
-
 }

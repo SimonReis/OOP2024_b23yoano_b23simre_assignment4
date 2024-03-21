@@ -2,6 +2,8 @@ package tetris;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -13,11 +15,6 @@ import javax.swing.table.TableColumn;
 public class Grid extends JTable {
 
 	private static final long serialVersionUID = 1L;
-
-	/**
-	 * Properties of the grid
-	 */
-	private int numRows, numCols, cellSize;
 
 	/**
 	 * This constructor create a grid by a given number of rows and columns.
@@ -46,44 +43,19 @@ public class Grid extends JTable {
 			column.setPreferredWidth(24);
 		}
 		this.setDefaultRenderer(Object.class, new GridRenderer());
+		
+		
+		//Clicking on table does nothing 
+		this.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				TetrisGame.getFrame().requestFocusInWindow();// Do nothing
+			}
+		});
 	}
-
-	/**
-	 * This method sets the size of the table by a given cell size. Whereas one cell
-	 * is a square.
-	 * 
-	 * @param cellSize Number of pixels for the cell height and width
-	 */
-	private void setTableSize(int cellSize) {
-		this.cellSize = cellSize;
-		Dimension prefferedSize = new Dimension(this.cellSize * numCols, this.cellSize * numRows);
-		this.setPreferredSize(prefferedSize);
-		this.setRowHeight(this.cellSize);
-
-		for (int i = 0; i < this.getColumnModel().getColumnCount(); i++) {
-			TableColumn column = this.getColumnModel().getColumn(i);
-			column.setPreferredWidth(this.cellSize);
-		}
-
+	
+	@Override
+	public boolean requestFocusInWindow() {
+		return false;
 	}
-
-	/**
-	 * Not needed yet.
-	 */
-//	public int getCellSize() {
-//		return cellSize;
-//	}
-//
-//	public void setCellSize(int cellSize) {
-//		this.cellSize = cellSize;
-//		setTableSize(this.cellSize);
-//		
-//	}
-
-	/**
-	 * Not needed yet.
-	 */
-//	public int getTableHeight() {
-//		return numRows*cellSize;
-//	}
 }

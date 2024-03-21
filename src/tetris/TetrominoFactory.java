@@ -1,7 +1,5 @@
 package tetris;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import javax.swing.Timer;
 
 import listeners.FactoryListener;
@@ -109,7 +107,7 @@ public class TetrominoFactory {
 			GameRules.clearLines();
 
 			// Spawns the current Tetromino.
-			currentTetromino.spawnTetromino();
+			currentTetromino.playingTetromino();
 		}
 	}
 
