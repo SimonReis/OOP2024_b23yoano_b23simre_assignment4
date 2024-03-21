@@ -100,6 +100,13 @@ public class TetrominoFactory {
 	public static Tetromino getCurrentTetromino() {
 		return currentTetromino;
 	}
+	
+	/**
+	 * This method sets the current Tetromino.
+	 */
+	public Tetromino setCurrentTetromino(Tetromino tetromino) {
+		return tetromino;
+	}
 
 	/**
 	 * This method produces a Tetromino, if possible.
@@ -124,5 +131,4 @@ public class TetrominoFactory {
 			currentTetromino.playingTetromino();
 		}
 	}
-
 }

@@ -16,7 +16,15 @@ public class Grid extends JTable {
 
 	private static final long serialVersionUID = 1L;
 
-	int numRows, numCols;
+	/**
+	 * Number of rows and Columns of the Grid.
+	 */
+	private int numRows, numCols;
+	
+	/**
+	 * Table model, which contains the properties of a JTabel;
+	 */
+	private DefaultTableModel model;
 	
 	/**
 	 * This constructor create a grid by a given number of rows and columns.
@@ -29,7 +37,7 @@ public class Grid extends JTable {
 		this.numRows = numRows;
 		this.numCols = numCols;
 
-		DefaultTableModel model = new DefaultTableModel(numRows, numCols) {
+		model = new DefaultTableModel(numRows, numCols) {
 
 			private static final long serialVersionUID = 1L;
 
@@ -76,6 +84,12 @@ public class Grid extends JTable {
 	public int getNumCols() {
 		return numCols;
 	}
+	
+	
+	public void refreshGrid() {
+		model.fireTableDataChanged();
+	}
+	
 	
 	
 }

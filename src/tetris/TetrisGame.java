@@ -45,13 +45,15 @@ public class TetrisGame {
 	 */
 	public TetrisGame() {
 		gameInstance = this;
-		tetrominoFactory = new TetrominoFactory();
+		//tetrominoFactory = new TetrominoFactory();
 		highScore = 0; // TODO Maybe Save this variable
 		gameGrid = new Grid(20, 10);
 		frame = new MainFrame();
 		frame.setFocusable(true);
 		frame.setVisible(true);
 		frame.pack();
+		
+		tetrominoFactory = new TetrominoFactory();
 
 		//TODO Maybe in another class?
 		//gameOverListener = new GameOverListener();
@@ -107,10 +109,12 @@ public class TetrisGame {
 		// Change View
 		frame.setGameView();
 		frame.setFocusable(true);
-		frame.pack();
+		//frame.pack();
 
 		// Start Falling blocks
+		
 		tetrominoFactory.startProduction();
+		frame.pack();
 		
 	}
 
@@ -141,12 +145,16 @@ public class TetrisGame {
 		frame.pack();
 
 		// Stop production
-		tetrominoFactory.stopProduction();
+		
+		//tetrominoFactory.stopProduction();
+		//tetrominoFactory.setCurrentTetromino(null);
 		GameRules.clearGrid(gameGrid);
 	}
 	
 	public void newGame() {
-		gameGrid = new Grid(20, 10);
+		tetrominoFactory = null;
 		startGame();
+		//gameGrid.refreshGrid();
+		
 	}
 }

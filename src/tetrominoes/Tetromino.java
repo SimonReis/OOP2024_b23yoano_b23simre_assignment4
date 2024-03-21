@@ -58,7 +58,6 @@ public class Tetromino {
 		tetrominoShape = getRandomTetrominoShape();
 		matrix = tetrominoShape.getMatrix();
 		tetrominoListener = new TetrominoListener(this);
-		
 		// Sets and starts the timer for repeated action.
 		fallingTimer = new Timer(500, tetrominoListener);
 	}

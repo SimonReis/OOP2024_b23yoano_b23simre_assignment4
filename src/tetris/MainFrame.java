@@ -45,22 +45,22 @@ public class MainFrame extends JFrame {
 	 * The game grid is the grid where the game takes part.
 	 */
 	private Grid gameGrid;
+	
+	/**
+	 * The next grid is the grid where the next tetromino is stored.
+	 */
+	private Grid nextGrid;
+
 
 	/**
 	 * The constructor creates the Frame for the game.
 	 */
 	public MainFrame() {
-		gameGrid = TetrisGame.getGameGrid();
 		backgroundColor = new Color(138, 146, 174);
 		initFrame();
 		initMenuPanel();
-		
-//		this.addFocusListener(new FocusAdapter() {
-//			@Override
-//			public void focusLost(FocusEvent e) {
-//				TetrisGame.getFrame().requestFocusInWindow();
-//			}
-//		});
+		// Add Listener to the frame
+		this.addKeyListener(new KeyBoardListener());
 	}
 
 	/**
@@ -79,18 +79,15 @@ public class MainFrame extends JFrame {
 	 * This method initialize the game panel including three panels with elements
 	 * required for the Tetris game.
 	 */
-	private void initGamePanel() {
+	private void initGamePanel(Grid gameGrid, Grid nextGrid) {
 		// Create the Information panels
 		JPanel leftPanel = new InformationPanelLeft();
-		rightPanel = new InformationPanelRight();
+		rightPanel = new InformationPanelRight(nextGrid);
 		
 		// Create the game grid panel
 		JPanel gridPanel = new JPanel();
 		gridPanel.setBackground(MainFrame.getBackgroundColor());
 		gridPanel.add(gameGrid);
-		
-		// Add Listener to the frame
-		this.addKeyListener(new KeyBoardListener());
 		
 		// Add the panels in the game panels, which is added to the frame.
 		gamePanel = new JPanel();
@@ -117,7 +114,10 @@ public class MainFrame extends JFrame {
 	 */
 	public void setGameView() {
 		this.remove(menuPanel);
-		initGamePanel();
+		gameGrid = new Grid(20, 10);
+		nextGrid = new Grid(4, 4);
+		
+		initGamePanel(gameGrid, nextGrid);
 	}
 	
 	/**
@@ -152,6 +152,38 @@ public class MainFrame extends JFrame {
 	 */
 	public static Color getBackgroundColor() {
 		return backgroundColor;
+	}
+	
+	/**
+	 * This method returns the game grid.
+	 * 
+	 * @return Game grid
+	 */
+	public Grid getGameGrid() {
+		return gameGrid;
+	}
+	
+	/**
+	 * This method sets the game grid.
+	 */
+	public void setGameGrid(Grid grid) {
+		gameGrid = grid;
+	}
+	
+	/**
+	 * This method returns the next grid.
+	 * 
+	 * @return Next grid
+	 */
+	public Grid getNextGrid() {
+		return nextGrid;
+	}
+	
+	/**
+	 * This method sets the game grid.
+	 */
+	public void setNextGrid(Grid grid) {
+		nextGrid = grid;
 	}
 	
 	

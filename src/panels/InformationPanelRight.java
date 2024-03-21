@@ -47,10 +47,11 @@ public class InformationPanelRight extends JPanel {
 	 * 
 	 * @param color Background color
 	 */
-	public InformationPanelRight() {
+	public InformationPanelRight(Grid nextGrid) {
 		
 		
 		this.highScore = TetrisGame.getHighScore();
+		this.nextGrid = nextGrid;
 		score = 0;
 		clearedLines = 0;
 		initPanel();
@@ -233,5 +234,14 @@ public class InformationPanelRight extends JPanel {
 				}
 			}
 		}
+	}
+	
+	/**
+	 * This method returns the next grid.
+	 * 
+	 * @return Next grid, where the next tetromino is stored.
+	 */
+	public Grid getNextGrid() {
+		return nextGrid;
 	}
 }
