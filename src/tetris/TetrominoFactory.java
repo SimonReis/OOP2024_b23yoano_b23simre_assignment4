@@ -26,14 +26,12 @@ public class TetrominoFactory {
 	 */
 	private Timer tetrominoFactoryTimer;
 	
-	private GameRules rules;
 	
 	/**
 	 * This constructor stores the next Tetromino.
 	 */
 	public TetrominoFactory() {
 		storedTetromino = new Tetromino();
-		rules = new GameRules();
 	}
 
 	/**
@@ -61,7 +59,7 @@ public class TetrominoFactory {
 					TetrisGame.getFrame().pack();
 
 					// Destroys full lines
-					rules.clearLines();
+					GameRules.clearLines();
 
 					// Spawns the current Tetromino.
 					currentTetromino.spawnTetromino();
@@ -71,7 +69,7 @@ public class TetrominoFactory {
 		};
 
 		// Sets and starts the timer for repeated action.
-		tetrominoFactoryTimer = new Timer(10, actionListener);
+		tetrominoFactoryTimer = new Timer(10, actionListener); // Change to spawn if is not movable anymore?s
 		tetrominoFactoryTimer.start();
 
 	}
@@ -94,5 +92,14 @@ public class TetrominoFactory {
 	public static Tetromino getCurrentTetromino() {
 		return currentTetromino;
 	}
+	
+	public void pauseFactory() {
+		tetrominoFactoryTimer.removeActionListener(null);
+	}
+	
+	public static void resumeFactory() {
+		
+	}
+	
 
 }

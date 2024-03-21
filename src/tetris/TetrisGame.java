@@ -31,7 +31,7 @@ public class TetrisGame {
 	/**
 	 * This is the used background color.
 	 */
-	private static Color backgroundColor;
+	private static Color backgroundColor; //maybe in frame
 	
 	/**
 	 * This is the constructor, where all required parts for using the tetris
@@ -128,29 +128,6 @@ public class TetrisGame {
 		refreshHighScore();
 		frame.getMenuPanel().setNewHighScore(highScore);
 		frame.setFocusable(true);
-		frame.pack();
-
-		// TODO SET HIGHSCORE, maybe already included, nope 
+		frame.pack(); 
 	}
-	
-	/**
-	 * This method returns the number of points to be awarded.
-	 * 
-	 * @param numberOfClearedLines Number of the lines cleared at one time
-	 * @return Number of points which the player will recive
-	 */
-	public int calculateScore(int numberOfClearedLines) {
-		if (numberOfClearedLines == 1) {
-			return 100;
-		} else if (numberOfClearedLines == 2) {
-			return 300;
-		} else if (numberOfClearedLines == 3) {
-			return 500;
-		} else if (numberOfClearedLines >= 4) {
-			return 800;
-		} else {
-			return 0;
-		}
-	}
-	
 }

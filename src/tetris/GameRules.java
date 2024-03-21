@@ -1,21 +1,16 @@
 package tetris;
 
-import tetrominoes.Shapes;
 import tetrominoes.Tetromino;
 
 /**
  * This class implements the game rules of the tetris game.
  */
 public class GameRules {
-
-	public GameRules() {
 		
-	}
-	
 	/**
 	 * This method clears the lines full of Tetrominos cells.
 	 */
-	public void clearLines() {
+	public static void clearLines() {
 
 		// Gets the game grid.
 		Grid gameGrid = TetrisGame.getGameGrid();
@@ -58,7 +53,7 @@ public class GameRules {
 		// Set lines
 		TetrisGame.getFrame().getInfoRight().addClearedLines(clearedLines);
 		// Set score
-		TetrisGame.getFrame().getInfoRight().setScore(TetrisGame.getGameInstance().calculateScore(clearedLines));
+		TetrisGame.getFrame().getInfoRight().setScore(calculateScore(clearedLines));
 	}
 	
 	/**
@@ -69,10 +64,30 @@ public class GameRules {
 	public boolean isGameOver() {
 		for (int col = 0; col < TetrisGame.getGameGrid().getColumnCount(); col++) {
 			// Check if there is a non movable block in the first row
-			if (Shapes.class.cast(TetrisGame.getGameGrid().getValueAt(0, col)).isMovable()) {
+			if (Tetromino.class.cast(TetrisGame.getGameGrid().getValueAt(0, col)).isPlaced()) {
 				return true;
 			}
 		}
 		return false;
+	}
+	
+	/**
+	 * This method returns the number of points to be awarded.
+	 * 
+	 * @param numberOfClearedLines Number of the lines cleared at one time
+	 * @return Number of points which the player will recive
+	 */
+	public static int calculateScore(int numberOfClearedLines) {
+		if (numberOfClearedLines == 1) {
+			return 100;
+		} else if (numberOfClearedLines == 2) {
+			return 300;
+		} else if (numberOfClearedLines == 3) {
+			return 500;
+		} else if (numberOfClearedLines >= 4) {
+			return 800;
+		} else {
+			return 0;
+		}
 	}
 }

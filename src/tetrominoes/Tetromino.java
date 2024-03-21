@@ -16,19 +16,10 @@ import tetris.TetrisGame;
 public class Tetromino {
 
 	/**
-	 * Grid in which Tetrominos spawn and move.
-	 */
-	private Grid gameGrid;
-
-	/**
-	 * Tetromino coordinates in the grid.
+	 * Tetromino coordinates in the game grid.
 	 */
 	private int row;
 	private int col;
-
-	// delete soon
-	int n = 0;
-	int m = 3;
 
 	/**
 	 * Shape of the tetromino in a 4x4 matrix.
@@ -54,6 +45,8 @@ public class Tetromino {
 	 * Boolean field to tell whether the Tetromino can move down or not.
 	 */
 	private boolean canMoveDown;
+	
+	private boolean placed;
 
 	/**
 	 * This constructor creates a random Tetromino. Sets its canMoveDown value to
@@ -62,8 +55,8 @@ public class Tetromino {
 	 * @param color Background color
 	 */
 	public Tetromino() {
-		gameGrid = TetrisGame.getGameGrid();
 		canMoveDown = false;
+		placed = true;
 		tetrominoShape = getRandomTetrominoShape();
 		matrix = tetrominoShape.getMatrix();
 		color = tetrominoShape.getColor();
@@ -96,7 +89,7 @@ public class Tetromino {
 //				}
 //			}
 //		}
-		gameGrid.setValueAt(tetrominoShape, row, col);
+		TetrisGame.getGameGrid().setValueAt(tetrominoShape, row, col);
 
 		ActionListener actionListener = new ActionListener() {
 
@@ -140,8 +133,8 @@ public class Tetromino {
 //
 //			// Rebuilds the Tetromino in its new location one row below.
 //			row++;
-			gameGrid.setValueAt(null, row, col);
-			gameGrid.setValueAt(tetrominoShape, row +1, col);
+			TetrisGame.getGameGrid().setValueAt(null, row, col);
+			TetrisGame.getGameGrid().setValueAt(tetrominoShape, row +1, col);
 			row++;
 			// If the Tetromino cannot move down.
 		} else {
@@ -157,14 +150,14 @@ public class Tetromino {
 	public void moveLeft() {
 
 		// If the Tetromino will not collide a block or a grid edge.
-		if (col > 0 && gameGrid.getValueAt(row, col - 1) == null) {
+		if (col > 0 && TetrisGame.getGameGrid().getValueAt(row, col - 1) == null) {
 
 			// Replaces the Tetromino cells values by null in its current location.
-			gameGrid.setValueAt(null, row, col);
+			TetrisGame.getGameGrid().setValueAt(null, row, col);
 
 			// Rebuilds the Tetromino in its new location one column left.
 			col--;
-			gameGrid.setValueAt(tetrominoShape, row, col);
+			TetrisGame.getGameGrid().setValueAt(tetrominoShape, row, col);
 		}
 	}
 
@@ -174,14 +167,14 @@ public class Tetromino {
 	public void moveRight() {
 
 		// If the Tetromino will not collide a block or a grid edge.
-		if (col < 9 && gameGrid.getValueAt(row, col + 1) == null) {
+		if (col < 9 && TetrisGame.getGameGrid().getValueAt(row, col + 1) == null) {
 
 			// Replaces the Tetromino cells values by null in its current location.
-			gameGrid.setValueAt(null, row, col);
+			TetrisGame.getGameGrid().setValueAt(null, row, col);
 
 			// Rebuilds the Tetromino in its new location one column left.
 			col++;
-			gameGrid.setValueAt(tetrominoShape, row, col);
+			TetrisGame.getGameGrid().setValueAt(tetrominoShape, row, col);
 		}
 	}
 
@@ -216,7 +209,7 @@ public class Tetromino {
 	 * @return canMoveDown
 	 */
 	public boolean canMoveDown() {
-		canMoveDown = row < 19 && gameGrid.getValueAt(row + 1, col) == null;
+		canMoveDown = row < 19 && TetrisGame.getGameGrid().getValueAt(row + 1, col) == null;
 		return canMoveDown;
 	}
 
@@ -277,6 +270,16 @@ public class Tetromino {
 	 */
 	public Shapes getShape() {
 		return tetrominoShape;
+	}
+	
+	/**
+	 * This method set placed to true. Call this method if a new tetromino enter the game. Then the tetrominois not movable anymore.
+	 * 
+	 * @return true, then the block is placed in the game grid
+	 */
+	public boolean isPlaced() {
+		placed = true;
+		return placed;
 	}
 
 }
