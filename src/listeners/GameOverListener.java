@@ -2,35 +2,24 @@ package listeners;
 
 import java.awt.event.ActionEvent;
 
+
 import java.awt.event.ActionListener;
 
 import javax.swing.JOptionPane;
 
-import tetris.Grid;
 import tetris.TetrisGame;
 
 /**
  * This class implements the listener for the game view of the tetris game.
  */
 public class GameOverListener implements ActionListener {
-
-	/**
-	 * Game grid, where all tetrominoes are placed.
-	 */
-	private Grid gameGrid;
-
-	/**
-	 * The constructor initializes the game grid for the listener.
-	 */
-	public GameOverListener() {
-		this.gameGrid = TetrisGame.getGameGrid();
-	}
-
+	
 	/**
 	 * The method implements the actions that should happen when the game is over.
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
+			
 
 			// There are two options. The user can choose between resuming or ending the
 			// current game round
@@ -38,7 +27,7 @@ public class GameOverListener implements ActionListener {
 
 			// This code displays the pop-up windows and returns an integer for the selected
 			// button
-			int result = JOptionPane.showOptionDialog(gameGrid.getParent(), "Do you want to play a new game or go back to menu?",
+			int result = JOptionPane.showOptionDialog(TetrisGame.getGameGrid().getParent(), "Do you want to play a new game or go back to menu?",
 					"Game Over", JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE, null, options, options[1]);
 
 			if (result == 1) { // New game button is pressed

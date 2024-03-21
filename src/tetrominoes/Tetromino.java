@@ -1,13 +1,11 @@
 package tetrominoes;
 
-import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Random;
 
 import javax.swing.Timer;
 
-import tetris.Grid;
 import tetris.TetrisGame;
 
 /**
@@ -29,7 +27,7 @@ public class Tetromino {
 	/**
 	 * Color of the tetromino.
 	 */
-	private Color color;
+
 
 	/**
 	 * Tetromino type defined by a letter.
@@ -59,8 +57,6 @@ public class Tetromino {
 		placed = true;
 		tetrominoShape = getRandomTetrominoShape();
 		matrix = tetrominoShape.getMatrix();
-		color = tetrominoShape.getColor();
-
 	}
 
 	/**

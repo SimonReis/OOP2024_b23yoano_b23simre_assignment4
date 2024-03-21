@@ -1,6 +1,6 @@
 package tetris;
 
-import java.awt.Color;
+import listeners.GameOverListener;
 
 /**
  * This class represents the whole teris game including the GUI, the core game
@@ -12,21 +12,27 @@ public class TetrisGame {
 	 * This is the instance of the one running tetris game.
 	 */
 	private static TetrisGame gameInstance;
-
-	/**
-	 * This is the game grid, where the actual game takes place.
-	 */
-	private static Grid gameGrid;
-
+	
 	/**
 	 * This is the main frame, where all information and the game is displayed.
 	 */
 	private static MainFrame frame;
 	
 	/**
+	 * This is the game grid, where the actual game takes place.
+	 */
+	private static Grid gameGrid;
+	
+	/**
 	 * This is the tetromino factory, where tetrominos were produced and spawned at the game grid.
 	 */
 	private static TetrominoFactory tetrominoFactory;
+	
+	/**
+	 * This is the Listener which checks if the game is over.
+	 */
+	private static GameOverListener gameOverListener;
+	
 
 	/**
 	 * This is the high score of the application.
@@ -34,24 +40,24 @@ public class TetrisGame {
 	private static int highScore;
 	
 	/**
-	 * This is the used background color.
-	 */
-	private static Color backgroundColor; //maybe in frame
-	
-	/**
 	 * This is the constructor, where all required parts for using the tetris
 	 * application and playing a game is initialized.
 	 */
 	public TetrisGame() {
 		gameInstance = this;
-		tetrominoFactory = new TetrominoFactory();
-		highScore = 0; //TODO Maybe Save this variable
-		backgroundColor = new Color(138, 146, 174);
-		gameGrid = new Grid(20, 10);
+		
 		frame = new MainFrame();
 		frame.setFocusable(true);
 		frame.setVisible(true);
 		frame.pack();
+		
+		gameGrid = new Grid(20, 10);
+		
+		tetrominoFactory = new TetrominoFactory();
+		
+		gameOverListener = new GameOverListener();
+		
+		highScore = 0; //TODO Maybe Save this variable	
 	}
 
 	/**
@@ -94,13 +100,6 @@ public class TetrisGame {
 	private void refreshHighScore() {
 		highScore = frame.getInfoRight().getHighScore();
 	}
-	
-	/**
-	 * This method returns the high score of the game.
-	 */
-	public static Color getBackgroundColor() {
-		return backgroundColor;
-	}
 
 	/**
 	 * This method is called, when a new game round should start. The view will
@@ -115,22 +114,22 @@ public class TetrisGame {
 
 		// Start Falling blocks
 		tetrominoFactory.startProduction();
-
+		
 	}
 
 	/**
 	 * This method stops the production and freezes the game.
 	 */
 	public void pauseGame() {
-		tetrominoFactory.stopProduction();
+		//TODO implement method
 	}
 	
-	/**
-	 * This method resumes the game. 
-	 */
-	public void resumeGame() {
-		tetrominoFactory.startProduction();
-	}
+//	/**
+//	 * This method resumes the game. 
+//	 */
+//	public void resumeGame() {
+//		//TODO implement method
+//	}
 
 	/**
 	 * This method is called, when the game round should end. The 		view will change

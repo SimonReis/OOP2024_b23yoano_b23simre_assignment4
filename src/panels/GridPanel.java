@@ -25,7 +25,7 @@ public class GridPanel extends JPanel {
 	 */
 	public GridPanel(Grid gameGrid) {
 
-		this.setBackground(TetrisGame.getBackgroundColor());
+		this.setBackground(MainFrame.getBackgroundColor());
 		this.add(gameGrid);
 		
 		// Add Listener to the frame

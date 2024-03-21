@@ -57,21 +57,6 @@ public class GameRules {
 	}
 	
 	/**
-	 * This method checks if the game is over, by a non movable block in the first row of the game grid.
-	 * 
-	 * @return True if the game is over.
-	 */
-	public boolean isGameOver() {
-		for (int col = 0; col < TetrisGame.getGameGrid().getColumnCount(); col++) {
-			// Check if there is a non movable block in the first row
-			if (Tetromino.class.cast(TetrisGame.getGameGrid().getValueAt(0, col)).isPlaced()) {
-				return true;
-			}
-		}
-		return false;
-	}
-	
-	/**
 	 * This method returns the number of points to be awarded.
 	 * 
 	 * @param numberOfClearedLines Number of the lines cleared at one time
@@ -89,5 +74,20 @@ public class GameRules {
 		} else {
 			return 0;
 		}
+	}
+	
+	/**
+	 * This method checks if the game is over, by a non movable block in the first row of the game grid.
+	 * 
+	 * @return True if the game is over.
+	 */
+	public static boolean isGameOver() {
+		for (int col = 0; col < TetrisGame.getGameGrid().getColumnCount(); col++) {
+			// Check if there is a non movable block in the first row
+			if (Tetromino.class.cast(TetrisGame.getGameGrid().getValueAt(0, col)).isPlaced()) {
+				return true;
+			}
+		}
+		return false;
 	}
 }

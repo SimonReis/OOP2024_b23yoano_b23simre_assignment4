@@ -1,12 +1,14 @@
 package tetris;
 
 import java.awt.Color;
+
 import java.awt.Dimension;
 import java.awt.GridLayout;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import listeners.KeyBoardListener;
 import panels.MenuPanel;
 import panels.GridPanel;
 import panels.InformationPanelLeft;
@@ -28,7 +30,7 @@ public class MainFrame extends JFrame {
 	/**
 	 * Possibility to change background color
 	 */
-	private Color backgroundColor;
+	private static Color backgroundColor;
 	
 	/**
 	 * For the game there are three different views. The menu, the game itself and
@@ -47,8 +49,8 @@ public class MainFrame extends JFrame {
 	 * The constructor creates the Frame for the game.
 	 */
 	public MainFrame() {
-		this.gameGrid = TetrisGame.getGameGrid();
-		this.backgroundColor = TetrisGame.getBackgroundColor();
+		gameGrid = TetrisGame.getGameGrid();
+		backgroundColor = new Color(138, 146, 174);
 		initFrame();
 		initMenuPanel();
 	}
@@ -71,18 +73,20 @@ public class MainFrame extends JFrame {
 	 * required for the Tetris game.
 	 */
 	private void initGamePanel() {
-		// Create the three different panels
-		JPanel gridPanel = new GridPanel(gameGrid);
+		// Create the Information panels
 		JPanel leftPanel = new InformationPanelLeft();
 		rightPanel = new InformationPanelRight();
-
+		// Create the game grid panel
+		// Create the three different panels
+		JPanel gridPanel = new GridPanel(gameGrid);
+		System.out.println("3");
 		// Add the panels in the game panels, which is added to the frame.
 		gamePanel = new JPanel();
 		gamePanel.setLayout(new GridLayout(1, 3));
 		gamePanel.add(leftPanel);
 		gamePanel.add(gridPanel);
 		gamePanel.add(rightPanel);
-		
+		System.out.println("4");
 		this.add(gamePanel);
 	}
 
@@ -129,6 +133,13 @@ public class MainFrame extends JFrame {
 	 */
 	public MenuPanel getMenuPanel() {
 		return menuPanel;
+	}
+	
+	/**
+	 * This method returns the high score of the game.
+	 */
+	public static Color getBackgroundColor() {
+		return backgroundColor;
 	}
 	
 	

@@ -55,7 +55,7 @@ public class PauseButtonListener implements ActionListener {
 			// Resume game or close option pane is pressed
 			} else {
 				TetrisGame.getFrame().requestFocus();
-				TetrisGame.getGameInstance().resumeGame();
+				//TetrisGame.getGameInstance().resumeGame();
 			}
 
 		}

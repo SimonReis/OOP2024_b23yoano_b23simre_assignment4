@@ -59,7 +59,6 @@ public class TetrominoFactory {
 	 * This method stops the production and spawning of tetrominoes.
 	 */
 	public void stopProduction() {
-		System.out.print("Pause!");
 		tetrominoFactoryTimer.removeActionListener(factoryListener);
 	}
 	
@@ -111,7 +110,6 @@ public class TetrominoFactory {
 
 			// Spawns the current Tetromino.
 			currentTetromino.spawnTetromino();
-			System.out.println("Spawn");
 		}
 	}
 
