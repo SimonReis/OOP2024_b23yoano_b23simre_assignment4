@@ -1,13 +1,10 @@
 package tetrominoes;
 
-import java.awt.Color;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.Random;
 
 import javax.swing.Timer;
 
-import tetris.Grid;
+import listeners.TetrominoListener;
 import tetris.TetrisGame;
 
 /**
@@ -27,11 +24,6 @@ public class Tetromino {
 	private int[][] matrix;
 
 	/**
-	 * Color of the tetromino.
-	 */
-	private Color color;
-
-	/**
 	 * Tetromino type defined by a letter.
 	 */
 	private Shapes tetrominoShape;
@@ -45,29 +37,44 @@ public class Tetromino {
 	 * Boolean field to tell whether the Tetromino can move down or not.
 	 */
 	private boolean canMoveDown;
-	
+
+	/**
+	 * True if the tetromino is placed and cannot be moved anymore.
+	 */
 	private boolean placed;
+
+	/**
+	 * This is the listener for each individual Tetromino.
+	 */
+	TetrominoListener tetrominoListener;
 
 	/**
 	 * This constructor creates a random Tetromino. Sets its canMoveDown value to
 	 * false because the Tetromino is stored for now.
-	 * 
-	 * @param color Background color
 	 */
 	public Tetromino() {
 		canMoveDown = false;
-		placed = true;
+		placed = false;
 		tetrominoShape = getRandomTetrominoShape();
 		matrix = tetrominoShape.getMatrix();
-		color = tetrominoShape.getColor();
+		tetrominoListener = new TetrominoListener(this);
+	}
 
+	public void playingTetromino() {
+		//Tetromino is spawned in at game grid
+		spawnTetromino();
+		
+		// Sets and starts the timer for repeated action.
+		tetrominoTimer = new Timer(500, tetrominoListener);
+		// Tetromino moves down as long as possible;
+		tetrominoTimer.start();
 	}
 
 	/**
 	 * This method spawns the Tetromino. It makes the Tetromino moving down each X
 	 * milliseconds (defined in the timer setting).
 	 */
-	public void spawnTetromino() {
+	private void spawnTetromino() {
 
 		row = 0;
 		col = 3;
@@ -91,22 +98,13 @@ public class Tetromino {
 //		}
 		TetrisGame.getGameGrid().setValueAt(tetrominoShape, row, col);
 
-		ActionListener actionListener = new ActionListener() {
-
-			// This action will be repeated each X milliseconds (defined in the timer
-			// setting).
-			@Override
-			public void actionPerformed(ActionEvent e) {
-
-				// Moves the Tetromino one row down.
-				System.out.println("The Tetromino moves one step down.");
-				moveDown();
-			}
-		};
+		// This action will be repeated each X milliseconds (defined in the timer
+		// setting).
 
 		// Sets and starts the timer for repeated action.
-		tetrominoTimer = new Timer(500, actionListener);
+		tetrominoTimer = new Timer(500, tetrominoListener);
 		tetrominoTimer.start();
+
 	}
 
 	/**
@@ -114,7 +112,7 @@ public class Tetromino {
 	 * bottom of the grid or another Tetromino.
 	 */
 	public void moveDown() {
-		//Changed to test clear lines
+		// Changed to test clear lines
 		// If the Tetromino can is move down.
 		if (canMoveDown()) {
 //			System.out.println(matrix.length);
@@ -134,7 +132,7 @@ public class Tetromino {
 //			// Rebuilds the Tetromino in its new location one row below.
 //			row++;
 			TetrisGame.getGameGrid().setValueAt(null, row, col);
-			TetrisGame.getGameGrid().setValueAt(tetrominoShape, row +1, col);
+			TetrisGame.getGameGrid().setValueAt(tetrominoShape, row + 1, col);
 			row++;
 			// If the Tetromino cannot move down.
 		} else {
@@ -190,15 +188,16 @@ public class Tetromino {
 
 		// set new grid value
 	}
-	
+
 	/**
-	 * This method place a tetromino a the lowest possible position in the game grid.
+	 * This method place a tetromino a the lowest possible position in the game
+	 * grid.
 	 */
 	public void dropToBottom() {
 		for (int i = 0; i < 20; i++) {
 			moveDown();
 		}
-		
+
 	}
 
 	// REMINDER : ADD A 2ND FIELD THAT RETURNS THE SIDE MOBILITY WITH A TIME DELAY
@@ -271,9 +270,10 @@ public class Tetromino {
 	public Shapes getShape() {
 		return tetrominoShape;
 	}
-	
+
 	/**
-	 * This method set placed to true. Call this method if a new tetromino enter the game. Then the tetrominois not movable anymore.
+	 * This method set placed to true. Call this method if a new tetromino enter the
+	 * game. Then the tetrominois not movable anymore.
 	 * 
 	 * @return true, then the block is placed in the game grid
 	 */

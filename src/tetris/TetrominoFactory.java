@@ -107,7 +107,7 @@ public class TetrominoFactory {
 			GameRules.clearLines();
 
 			// Spawns the current Tetromino.
-			currentTetromino.spawnTetromino();
+			currentTetromino.playingTetromino();
 		}
 	}
 
