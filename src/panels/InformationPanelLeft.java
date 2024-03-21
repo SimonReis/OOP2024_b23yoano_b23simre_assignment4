@@ -1,7 +1,5 @@
 package panels;
 
-import java.awt.Color;
-
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -13,7 +11,6 @@ import javax.swing.JPanel;
 
 import listeners.PauseButtonListener;
 import tetris.MainFrame;
-import tetris.TetrisGame;
 
 /**
  * This class represent the left information panel with the logo and the pause
@@ -22,12 +19,7 @@ import tetris.TetrisGame;
 public class InformationPanelLeft extends JPanel {
 
 	private static final long serialVersionUID = 1L;
-
-	/**
-	 * The frame in which the menu panel is stored.
-	 */
-	private MainFrame frame;
-
+	
 	/**
 	 * All components to build the information left panel.
 	 */
@@ -35,10 +27,7 @@ public class InformationPanelLeft extends JPanel {
 	private JPanel buttonPanel;
 	private JButton pauseButton;
 
-	/**
-	 * Color which should used for the background.
-	 */
-	private Color color;
+	
 
 	/**
 	 * This constructor creates the left information panel of the game panel.
@@ -46,8 +35,6 @@ public class InformationPanelLeft extends JPanel {
 	 * @param color Background color
 	 */
 	public InformationPanelLeft() {
-		this.frame = TetrisGame.getFrame();
-		this.color = TetrisGame.getBackgroundColor();
 		initPanel();
 		initLogo();
 		initButton();
@@ -58,7 +45,7 @@ public class InformationPanelLeft extends JPanel {
 	 */
 	private void initPanel() {
 		this.setLayout(new GridLayout(2, 1));
-		this.setBackground(color);
+		this.setBackground(MainFrame.getBackgroundColor());
 	}
 
 	/**
@@ -84,22 +71,13 @@ public class InformationPanelLeft extends JPanel {
 	private void initButton() {
 
 		buttonPanel = new JPanel();
-		buttonPanel.setBackground(color);
+		buttonPanel.setBackground(MainFrame.getBackgroundColor());
 		buttonPanel.setLayout(new GridBagLayout());
 		pauseButton = new JButton("Pause Game");
 		pauseButton.addActionListener(new PauseButtonListener(this));
 		buttonPanel.add(pauseButton, new GridBagConstraints());
 		this.add(buttonPanel);
 
-	}
-
-	/**
-	 * This method returns the frame in which the information panel left is stored.
-	 * 
-	 * @return
-	 */
-	public MainFrame getFrame() {
-		return frame;
 	}
 
 	/**
