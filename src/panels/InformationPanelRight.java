@@ -59,7 +59,7 @@ public class InformationPanelRight extends JPanel {
 		// Create the panels and return the labels/grid on which the value is stored
 		scoreLabelNumber = createInformation("Score");
 		highScoreLabelNumber = createInformation("Highscore");
-		nextGrid = createNextGrid("Next");
+		createNextGrid("Next", this.nextGrid);
 		linesLabelNumber = createInformation("Lines");
 		
 		// Use the high score from the application in the information panel
@@ -118,7 +118,7 @@ public class InformationPanelRight extends JPanel {
 	 * @param text Text that should be displayed
 	 * @return Grid that displays the next tetromino
 	 */
-	private Grid createNextGrid(String text) {
+	private void createNextGrid(String text, Grid grid) {
 
 		// Set panel layout
 		JPanel panel = new JPanel();
@@ -136,13 +136,10 @@ public class InformationPanelRight extends JPanel {
 		// Create grid
 		JPanel nextPanel = new JPanel();
 		nextPanel.setBackground(MainFrame.getBackgroundColor());
-		Grid nextGrid = new Grid(4, 4);
-		nextPanel.add(nextGrid);
+		nextPanel.add(grid);
 		panel.add(nextPanel);
 
 		this.add(panel);
-
-		return nextGrid;
 	}
 
 	// TODO implement methods for changing block and numbers

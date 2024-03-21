@@ -21,7 +21,7 @@ public class TetrisGame {
 	/**
 	 * This is the game grid, where the actual game takes place.
 	 */
-	private static Grid gameGrid;
+	private Grid gameGrid;
 
 	/**
 	 * This is the tetromino factory, where tetrominos were produced and spawned at
@@ -47,7 +47,6 @@ public class TetrisGame {
 		gameInstance = this;
 		//tetrominoFactory = new TetrominoFactory();
 		highScore = 0; // TODO Maybe Save this variable
-		gameGrid = new Grid(20, 10);
 		frame = new MainFrame();
 		frame.setFocusable(true);
 		frame.setVisible(true);
@@ -68,14 +67,14 @@ public class TetrisGame {
 		return gameInstance;
 	}
 
-	/**
-	 * This method returns the game grid.
-	 *
-	 * @return Game grid
-	 */
-	public static Grid getGameGrid() {
-		return gameGrid;
-	}
+//	/**
+//	 * This method returns the game grid.
+//	 *
+//	 * @return Game grid
+//	 */
+//	public static Grid getGameGrid() {
+//		return gameGrid;
+//	}
 
 	/**
 	 * This method returns the main frame.

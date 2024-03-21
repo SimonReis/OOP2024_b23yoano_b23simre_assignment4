@@ -13,7 +13,7 @@ public class GameRules {
 	public static void clearLines() {
 
 		// Gets the game grid.
-		Grid gameGrid = TetrisGame.getGameGrid();
+		Grid gameGrid = TetrisGame.getFrame().getGameGrid();
 
 		// Number of cleared lines after one placed tetromino
 		int clearedLines = 0;
@@ -94,9 +94,9 @@ public class GameRules {
 	 * @return True if the game is over.
 	 */
 	public static boolean isGameOver() {
-		for (int col = 0; col < TetrisGame.getGameGrid().getColumnCount(); col++) {
+		for (int col = 0; col < TetrisGame.getFrame().getGameGrid().getColumnCount(); col++) {
 			// Check if there is a non movable block in the first row
-			if (!Tetromino.class.cast(TetrisGame.getGameGrid().getValueAt(0, col)).getPlaced()) {
+			if (!Tetromino.class.cast(TetrisGame.getFrame().getGameGrid().getValueAt(0, col)).getPlaced()) {
 				return true;
 			}
 		}

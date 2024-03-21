@@ -60,6 +60,8 @@ public class MainFrame extends JFrame {
 		initFrame();
 		initMenuPanel();
 		// Add Listener to the frame
+		gameGrid = new Grid(20, 10);
+		nextGrid = new Grid(4, 4);
 		this.addKeyListener(new KeyBoardListener());
 	}
 
