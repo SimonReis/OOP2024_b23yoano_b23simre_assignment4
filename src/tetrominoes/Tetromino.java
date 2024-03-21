@@ -9,6 +9,7 @@ import javax.swing.Timer;
 
 import tetris.Grid;
 import tetris.TetrisGame;
+import tetris.TetrominoFactory;
 
 /**
  * This class represents the shapes from the game Tetris.
@@ -128,6 +129,9 @@ public class Tetromino {
 
 		// If the Tetromino can is move down.
 		if (canMoveDown()) {
+			
+			tetrominoTimer.stop();
+			TetrominoFactory.stopTimer();
 
 			// Replaces the Tetromino cells values by null in its current location.
 			for (int rowGrid = gameGrid.getRowCount() - 1; rowGrid >= 0; rowGrid--) {
@@ -142,10 +146,17 @@ public class Tetromino {
 				}
 			}
 			row++;
+			tetrominoTimer.restart();
+			TetrominoFactory.restartTimer();
+			
 			
 
 			// If the Tetromino cannot move down.
 		} else {
+			
+			// Stops the timer so the Tetromino stops moving.
+			tetrominoTimer.stop();
+			TetrominoFactory.stopTimer();
 
 			for (int rowGrid = 0; rowGrid < gameGrid.getRowCount(); rowGrid++) {
 
@@ -158,8 +169,7 @@ public class Tetromino {
 				}
 			}
 
-			// Stops the timer so the Tetromino stops moving.
-			tetrominoTimer.stop();
+			TetrominoFactory.restartTimer();
 		}
 	}
 
@@ -168,6 +178,9 @@ public class Tetromino {
 	 */
 	public void moveLeft() {
 		if (canMoveLeft()) {
+			
+			tetrominoTimer.stop();
+			TetrominoFactory.stopTimer();
 
 			// Replaces the Tetromino cells values by null in its current location.
 			for (int rowGrid = 0; rowGrid < gameGrid.getRowCount(); rowGrid++) {
@@ -182,6 +195,9 @@ public class Tetromino {
 				}
 			}
 			col--;
+			tetrominoTimer.restart();
+			TetrominoFactory.restartTimer();
+			
 		}
 		
 	}
@@ -191,7 +207,10 @@ public class Tetromino {
 	 */
 	public void moveRight() {
 		if (canMoveRight()) {
-
+			
+			tetrominoTimer.stop();
+			TetrominoFactory.stopTimer();
+			
 			// Replaces the Tetromino cells values by null in its current location.
 			for (int rowGrid = 0; rowGrid < gameGrid.getRowCount(); rowGrid++) {
 
@@ -204,8 +223,10 @@ public class Tetromino {
 					}
 				}
 			}
-			
 			col++;
+			tetrominoTimer.restart();
+			TetrominoFactory.restartTimer();
+			
 		}
 		
 		
@@ -220,6 +241,9 @@ public class Tetromino {
 		System.out.println("Colonne " + col);
 		
 		if (col >= 0 && col + 3 <= gameGrid.getColumnCount() - 1) {
+			
+			tetrominoTimer.stop();
+			TetrominoFactory.stopTimer();
 			
 			matrix = rotateMatrix(matrix);
 			
@@ -244,6 +268,9 @@ public class Tetromino {
 					}
 				}
 			}
+			
+			tetrominoTimer.restart();
+			TetrominoFactory.restartTimer();
 			
 		}
 	}

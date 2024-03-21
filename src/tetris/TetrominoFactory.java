@@ -24,7 +24,7 @@ public class TetrominoFactory {
 	/**
 	 * The moving Tetromino that is displayed in the Tetris Grid.
 	 */
-	private Timer tetrominoFactoryTimer;
+	private static Timer tetrominoFactoryTimer;
 	
 	/**
 	 * This constructor stores the next Tetromino.
@@ -68,7 +68,7 @@ public class TetrominoFactory {
 		};
 
 		// Sets and starts the timer for repeated action (not below 200 or the canMoveDown() will not work well).
-		tetrominoFactoryTimer = new Timer(10, actionListener);
+		tetrominoFactoryTimer = new Timer(500, actionListener);
 		tetrominoFactoryTimer.start();
 
 	}
@@ -142,5 +142,14 @@ public class TetrominoFactory {
 	public static Tetromino getCurrentTetromino() {
 		return currentTetromino;
 	}
+	
+	public static void stopTimer() {
+		tetrominoFactoryTimer.stop();
+	}
+	
+	public static void restartTimer() {
+		tetrominoFactoryTimer.restart();;
+	}
+
 
 }
