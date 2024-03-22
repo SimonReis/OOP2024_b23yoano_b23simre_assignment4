@@ -8,7 +8,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
 
 import panels.InformationPanelLeft;
-import tetris.TetrisGame;
+
 
 /**
  * This class implements the listener for the game view of the tetris game.
@@ -25,7 +25,7 @@ public class PauseButtonListener implements ActionListener {
 	 * 
 	 * @param InformationPanelLeft Panel, where the button is placed.
 	 */
-	public PauseButtonListener(InformationPanelLeft infoLeft) {
+	public PauseButtonListener(TetrisGame tetrisGame, InformationPanelLeft infoLeft) {
 		this.infoLeft = infoLeft;
 	}
 
@@ -38,7 +38,7 @@ public class PauseButtonListener implements ActionListener {
 		if (infoLeft.getPauseButton() == e.getSource()) {
 
 			// Pause Game in the Background
-			TetrisGame.getGameInstance().pauseGame();
+			tetrisGame.pauseGame();
 
 			// There are two options. The user can choose between resuming or ending the
 			// current game round
@@ -51,12 +51,12 @@ public class PauseButtonListener implements ActionListener {
 
 			// End game button is pressed
 			if (result == 1) {
-				TetrisGame.getGameInstance().endGame();
+				tetrisGame.endGame();
 
 			// Resume game or close option pane is pressed
 			} else {
-				TetrisGame.getGameInstance().getFrame().requestFocus();
-				TetrisGame.getGameInstance().resumeGame();
+				tetrisGame.getFrame().requestFocus();
+				tetrisGame.resumeGame();
 			}
 
 		}

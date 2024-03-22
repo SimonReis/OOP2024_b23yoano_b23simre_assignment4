@@ -17,6 +17,11 @@ public abstract class Grid extends JTable {
 	private static final long serialVersionUID = 1L;
 
 	/**
+	 * This is the TetrisGame.
+	 */
+	private TetrisGame tetrisGame;
+	
+	/**
 	 * Number of rows and Columns of the Grid.
 	 */
 	private int numRows, numCols;
@@ -32,8 +37,9 @@ public abstract class Grid extends JTable {
 	 * @param numRows Number of rows
 	 * @param numCols Number of columns
 	 */
-	public Grid(int numRows, int numCols) {
+	public Grid(TetrisGame tetrisGame, int numRows, int numCols) {
 		
+		this.tetrisGame = tetrisGame; 
 		this.numRows = numRows;
 		this.numCols = numCols;
 
@@ -69,7 +75,7 @@ public abstract class Grid extends JTable {
 			 */
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				TetrisGame.getGameInstance().getFrame().requestFocus();
+				tetrisGame.getFrame().requestFocus();
 			}
 		});
 	}

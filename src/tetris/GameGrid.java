@@ -8,10 +8,15 @@ public class GameGrid extends Grid {
 	private static final long serialVersionUID = 1L;
 
 	/**
+	 * This is the TetrisGame.
+	 */
+	private TetrisGame tetrisGame;
+	
+	/**
 	 * This constructor creates the game grid with a size of 20 x 10.
 	 */
-	public GameGrid() {
-		super(20, 10);
+	public GameGrid( TetrisGame tetrisGame) {
+		super(tetrisGame, 20, 10);
 	}
 
 	/**
@@ -55,9 +60,9 @@ public class GameGrid extends Grid {
 			}
 		}
 		// Set lines
-		TetrisGame.getGameInstance().getFrame().getInfoRight().addClearedLines(clearedLines);
+		tetrisGame.getFrame().getInfoRight().addClearedLines(clearedLines);
 		// Set score
-		TetrisGame.getGameInstance().getFrame().getInfoRight().setScore(calculateScore(clearedLines));
+		tetrisGame.getFrame().getInfoRight().setScore(calculateScore(clearedLines));
 	}
 	
 	/**

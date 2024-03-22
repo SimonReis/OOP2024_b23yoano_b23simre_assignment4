@@ -8,10 +8,10 @@ public class NextGrid extends Grid {
 	private static final long serialVersionUID = 1L;
 
 	/**
-	 * This constructor creates a next grid with the size 4x4.
+	 * This constructor creates the game grid with a size of 20 x 10.
 	 */
-	public NextGrid() {
-		super(4, 4);
+	public NextGrid( TetrisGame tetrisGame) {
+		super(tetrisGame, 4, 4);
 	}
 
 }

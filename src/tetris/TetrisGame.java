@@ -1,17 +1,10 @@
 package tetris;
 
-import listeners.GameOverListener;
-
 /**
  * This class represents the whole teris game including the GUI, the core game
  * logic.
  */
 public class TetrisGame {
-
-	/**
-	 * This is the instance of the one running tetris game.
-	 */
-	private static TetrisGame gameInstance;
 
 	/**
 	 * This is the main frame, where all information and the game is displayed.
@@ -26,13 +19,6 @@ public class TetrisGame {
 	private TetrominoFactory tetrominoFactory;
 	
 	/**
-	 * This is the Listener which checks if the game is over.
-	 */
-	//TODO Not implemented yet
-	private static GameOverListener gameOverListener;
-
-
-	/**
 	 * This is the high score of the application.
 	 */
 	private int highScore;
@@ -42,25 +28,12 @@ public class TetrisGame {
 	 * application and playing a game is initialized.
 	 */
 	public TetrisGame() {
-		gameInstance = this;
 		highScore = 0;
-		tetrominoFactory = new TetrominoFactory();
-		frame = new MainFrame();
+		tetrominoFactory = new TetrominoFactory(this);
+		frame = new MainFrame(this);
 		frame.setFocusable(true);
 		frame.setVisible(true);
 		frame.pack();
-
-		//TODO Maybe in another class?
-		//gameOverListener = new GameOverListener();
-	}
-
-	/**
-	 * This method returns the game instance.
-	 * 
-	 * @return Game instance
-	 */
-	public static TetrisGame getGameInstance() {
-		return gameInstance;
 	}
 	
 	/**

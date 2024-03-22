@@ -14,6 +14,11 @@ import tetrominoes.Tetromino;
 public class TetrominoFactory {
 	
 	/**
+	 * This is the TetrisGame.
+	 */
+	private TetrisGame tetrisGame;
+	
+	/**
 	 * The next Tetromino that is displayed in the right side panel.
 	 */
 	private static Tetromino storedTetromino;
@@ -33,10 +38,13 @@ public class TetrominoFactory {
 	 */
 	private static FactoryListener factoryListener;
 
+
+	
 	/**
 	 * This constructor stores the next Tetromino.
 	 */
-	public TetrominoFactory() {
+	public TetrominoFactory(TetrisGame tetrisGame) {
+		this.tetrisGame = tetrisGame; 
 		storedTetromino = new Tetromino();   
 		factoryListener = new FactoryListener(this);
 	}
@@ -126,11 +134,11 @@ public class TetrominoFactory {
 			storedTetromino = new Tetromino();
 
 			// Place the stored tetromino in the next grid
-			TetrisGame.getGameInstance().getFrame().getInfoRight().setNextTetromino(storedTetromino);
-			TetrisGame.getGameInstance().getFrame().pack();
+			tetrisGame.getFrame().getInfoRight().setNextTetromino(storedTetromino);
+			tetrisGame.getFrame().pack();
 
 			// Destroys full lines
-			TetrisGame.getGameInstance().getFrame().getGameGrid().clearLines();
+			tetrisGame.getFrame().getGameGrid().clearLines();
 			
 			// Spawns the current Tetromino. 
 			DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");  
@@ -149,12 +157,22 @@ public class TetrominoFactory {
 	/**
 	 * This method checks if the game is over, if the tetromino can be spawned.
 	 * 
+	 * @return True if tetromino is spawnable
+	 */
+	public boolean isSpawnable() {
+		System.out.println("is spawnable:" + storedTetromino.isSpawnable());
+		return storedTetromino.isSpawnable();
+	}
+	
+	/**
+	 * This method checks if the game is over, by a non movable block in the first row of the game grid.
+	 * 
 	 * @return True if the game is over.
 	 */
-	public static boolean isSpawnable() {
-		for (int col = 0; col < TetrisGame.getGameInstance().getFrame().getGameGrid().getColumnCount(); col++) {
+	public boolean isGameOver() {
+		for (int col = 0; col < tetrisGame.getFrame().getGameGrid().getColumnCount(); col++) {
 			// Check if there is a non movable block in the first row
-			if (true) {
+			if (!Tetromino.class.cast(tetrisGame.getFrame().getGameGrid().getValueAt(0, col)).getShape().isMovable()) {
 				return true;
 			}
 		}
