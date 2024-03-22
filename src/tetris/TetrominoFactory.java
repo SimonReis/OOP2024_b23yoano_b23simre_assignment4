@@ -1,5 +1,10 @@
 package tetris;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 import javax.swing.Timer;
 
 import listeners.FactoryListener;
@@ -42,8 +47,8 @@ public class TetrominoFactory {
 	 * This method starts the process of making new Tetromino.
 	 */
 	public void startProduction() {
-		// Sets and starts the timer for repeated action.
-		tetrominoFactoryTimer = new Timer(10, factoryListener);
+		// Sets and starts the timer for repeated action (>200 or canMoveDown() might bug).
+		tetrominoFactoryTimer = new Timer(500, factoryListener);
 		tetrominoFactoryTimer.start();
 		System.out.println("Strart Production");
 	}
@@ -70,7 +75,7 @@ public class TetrominoFactory {
 	public void startTetromino() {
 		currentTetromino.startTetromino();
 	}
-
+	
 	/**
 	 * This method returns next Tetromino.
 	 * 
@@ -87,6 +92,29 @@ public class TetrominoFactory {
 	 */
 	public static Tetromino getCurrentTetromino() {
 		return currentTetromino;
+	}
+	
+	/**
+	 * This method returns the current Tetromino.
+	 * 
+	 * @return currentTetromino
+	 */
+	public static boolean isPerformingAction() {
+		return isPerformingAction;
+	}
+	
+	/**
+	 * This method stops the TetrominoFactory timer.
+	 */
+	public static void stopTimer() {
+		tetrominoFactoryTimer.stop();
+	}
+	
+	/**
+	 * This method restarts the TetrominoFactory timer.
+	 */
+	public static void restartTimer() {
+		tetrominoFactoryTimer.restart();;
 	}
 
 	/**
@@ -105,17 +133,19 @@ public class TetrominoFactory {
 
 			// Puts the stored Tetromino in the current one.
 			currentTetromino = storedTetromino;
-
 			// Stores a new Tetromino.
 			storedTetromino = new Tetromino();
+
 			// Place the stored tetromino in the next grid
 			TetrisGame.getGameInstance().getFrame().getInfoRight().setNextTetromino(storedTetromino);
 			TetrisGame.getGameInstance().getFrame().pack();
 
 			// Destroys full lines
 			TetrisGame.getGameInstance().getFrame().getGameGrid().clearLines();
-
-			// Spawns the current Tetromino.
+			
+			// Spawns the current Tetromino. 
+			DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");  
+			System.out.println("A " + currentTetromino.getShape() + "-Tetromino will spawn (" + dtf.format(LocalDateTime.now()) + ")");
 			currentTetromino.playingTetromino();
 		}
 	}

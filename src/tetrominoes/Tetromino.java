@@ -7,11 +7,17 @@ import javax.swing.Timer;
 import listeners.TetrominoListener;
 import tetris.GameRules;
 import tetris.TetrisGame;
+import tetris.TetrominoFactory;
 
 /**
  * This class represents the shapes from the game Tetris.
  */
 public class Tetromino {
+
+	/**
+	 * This is the game grid
+	 */
+	private Grid gameGrid;
 
 	/**
 	 * Tetromino coordinates in the game grid.
@@ -25,7 +31,12 @@ public class Tetromino {
 	private int[][] matrix;
 
 	/**
-	 * Tetromino type defined by a letter.
+	 * Tetromino type both movable and not movable.
+	 */
+	private Shapes[] tetrominoShapeDuo;
+	
+	/**
+	 * Tetromino type only movable.
 	 */
 	private Shapes tetrominoShape;
 
@@ -35,33 +46,51 @@ public class Tetromino {
 	private Timer fallingTimer;
 
 	/**
-	 * Boolean field to tell whether the Tetromino can move down or not.
+	 * Boolean fields to tell whether the Tetromino can move or not.
 	 */
 	private boolean canMoveDown;
-
-	/**
-	 * True if the tetromino is placed and cannot be moved anymore.
-	 */
-	private boolean placed;
+	private boolean canMoveLeft;
+	private boolean canMoveRight;
 
 	/**
 	 * This is the listener for each individual Tetromino.
 	 */
 	private TetrominoListener tetrominoListener;
 
+ 	/**
+	 * Variable to store the number of "free" rows (full of 0) in the top part of the shape matrix.
+	 * Allows to spawn the Tetromino with its top on the first row of the grid.
+	 */
+	private int offsetTop = 0;
+	
 	/**
-	 * This constructor creates a random Tetromino. Sets its canMoveDown value to
-	 * false because the Tetromino is stored for now.
+	 * This constructor creates a random Tetromino.
 	 */
 	public Tetromino() {
-		canMoveDown = false;
-		placed = false;
-		tetrominoShape = getRandomTetrominoShape();
+		
+		gameGrid = TetrisGame.getGameInstance().getFrame().getGameGrid();
+		
+		canMoveDown = true;
+		canMoveLeft = true;
+		canMoveRight = true;
+		
+		tetrominoShapeDuo = getRandomTetrominoShapeDuo();
+		tetrominoShape = tetrominoShapeDuo[0];
 		matrix = tetrominoShape.getMatrix();
+
 		tetrominoListener = new TetrominoListener(this);
 		// Sets and starts the timer for repeated action.
 		fallingTimer = new Timer(500, tetrominoListener);
-	}
+
+		// Gets the first row with a "1" in the Tetromino Shape.
+		outerloop: for (int rowMatrix = 0; rowMatrix < matrix.length; rowMatrix++) {
+			for (int colMatrix = 0; colMatrix < matrix[0].length; colMatrix++) {
+				if (matrix[rowMatrix][colMatrix] == 1) {
+					offsetTop = rowMatrix;
+					break outerloop;
+				}
+			}
+		}
 
 	/**
 	 * This method spawn an moves a tetromino.
@@ -92,80 +121,153 @@ public class Tetromino {
 	 * milliseconds (defined in the timer setting).
 	 */
 	private void spawnTetromino() {
-
-		//TODO implement method for one Tetromino
+		//TODO ADD A isSpawnable() METHOD
+	
+		// Spawning coordinates (top left corner of the Tetromino).
 		row = 0;
 		col = 3;
-		TetrisGame.getGameInstance().getFrame().getGameGrid().setValueAt(tetrominoShape, row, col);
-		//
-		
+
+		for (int rowMatrix = 0; rowMatrix < matrix.length; rowMatrix++) {
+			for (int colMatrix = 0; colMatrix < matrix[0].length; colMatrix++) {
+				if (matrix[rowMatrix][colMatrix] == 1) {
+					
+					System.out.println("(row, col) = (" + row + ", " + col + "); (rowMatrix, colMatrix) = (" + rowMatrix + ", " + colMatrix + "); offsetTop = " + offsetTop);
+					
+					//TODO FIX THE ROW INDEX OUT OF BOUNDARIES BUG
+					gameGrid.setValueAt(tetrominoShape, row + rowMatrix - offsetTop, col + colMatrix);
+				}
+			}
+		}
+	
 	}
 
 	/**
-	 * This method moves the Tetromino one row down. It stops it when it reached the
-	 * bottom of the grid or another Tetromino.
+	 * This method moves the Tetromino one row down.It stops it when it reached the
+	 * bottom of the grid or a previous Tetromino.
 	 */
 	public void moveDown() {
 		// If the Tetromino can is move down.
+		// Pauses the Tetromino natural down movement and move it down.
 		if (canMoveDown()) {
-			//TODO implement method for one Tetromino
-			TetrisGame.getGameInstance().getFrame().getGameGrid().setValueAt(null, row, col);
-			TetrisGame.getGameInstance().getFrame().getGameGrid().setValueAt(tetrominoShape, row + 1, col);
-			row++;
-			//TODO implement method for one Tetromino
-		// If the Tetromino cannot move down.
-		} else {
-			// Stops the timer so the Tetromino stops moving.
+			
 			fallingTimer.stop();
+			TetrominoFactory.stopTimer();
+
+			for (int rowGrid = gameGrid.getRowCount() - 1; rowGrid >= 0; rowGrid--) {
+				for (int colGrid = 0; colGrid < gameGrid.getColumnCount(); colGrid++) {
+					if (gameGrid.getValueAt(rowGrid, colGrid) == tetrominoShape) {
+						gameGrid.setValueAt(null, rowGrid, colGrid);
+						gameGrid.setValueAt(tetrominoShape, rowGrid + 1, colGrid);
+					}
+				}
+			}
+			row++;
+			fallingTimer.restart();
+			TetrominoFactory.stopTimer();
+
+		// If the Tetromino cannot move down.
+		// Stops the Tetromino natural down movement.
+		} else {
+			
+			fallingTimer.stop();
+			TetrominoFactory.stopTimer();
+
+			for (int rowGrid = 0; rowGrid < gameGrid.getRowCount(); rowGrid++) {
+				for (int colGrid = 0; colGrid < gameGrid.getColumnCount(); colGrid++) {
+					if (gameGrid.getValueAt(rowGrid, colGrid) == tetrominoShape) {
+						gameGrid.setValueAt(tetrominoShapeDuo[1], rowGrid, colGrid);
+					}
+				}
+			}
+			TetrominoFactory.restartTimer();
 		}
 	}
 
 	/**
-	 * This method moves the Tetromino one row column left.
+	 * This method moves the Tetromino one column to the left.
 	 */
 	public void moveLeft() {
-		//TODO implement method for one Tetromino
-		// If the Tetromino will not collide a block or a grid edge.
-		if (col > 0 && TetrisGame.getGameInstance().getFrame().getGameGrid().getValueAt(row, col - 1) == null) {
+		
+		// If the Tetromino can is move left.
+		// Pauses the Tetromino natural down movement and move it to the left.
+		if (canMoveLeft()) {
+			
+			fallingTimer.stop();
 
-			// Replaces the Tetromino cells values by null in its current location.
-			TetrisGame.getGameInstance().getFrame().getGameGrid().setValueAt(null, row, col);
-
-			// Rebuilds the Tetromino in its new location one column left.
+			for (int rowGrid = 0; rowGrid < gameGrid.getRowCount(); rowGrid++) {
+				for (int colGrid = 0; colGrid < gameGrid.getColumnCount(); colGrid++) {
+					if (gameGrid.getValueAt(rowGrid, colGrid) == tetrominoShape) {
+						gameGrid.setValueAt(null, rowGrid, colGrid);
+						gameGrid.setValueAt(tetrominoShape, rowGrid, colGrid - 1);
+					}
+				}
+			}
 			col--;
-			TetrisGame.getGameInstance().getFrame().getGameGrid().setValueAt(tetrominoShape, row, col);
+			fallingTimer.restart();
+			System.out.println("The Tetromino moved left");
 		}
-		//
+		canMoveLeft = true;
 	}
 
 	/**
-	 * This method moves the Tetromino one row column right.
+	 * This method moves the Tetromino one row column to the right.
 	 */
 	public void moveRight() {
-		//TODO implement method for one Tetromino
-		// If the Tetromino will not collide a block or a grid edge.
-		if (col < 9 && TetrisGame.getGameInstance().getFrame().getGameGrid().getValueAt(row, col + 1) == null) {
-
-			// Replaces the Tetromino cells values by null in its current location.
-			TetrisGame.getGameInstance().getFrame().getGameGrid().setValueAt(null, row, col);
-
-			// Rebuilds the Tetromino in its new location one column left.
+		
+		// If the Tetromino can is move right.
+		// Pauses the Tetromino natural down movement and move it to the right.
+		if (canMoveRight()) {
+			
+			fallingTimer.stop();
+			
+			for (int rowGrid = 0; rowGrid < gameGrid.getRowCount(); rowGrid++) {
+				for (int colGrid = gameGrid.getColumnCount() - 1; colGrid >= 0; colGrid--) {
+					if (gameGrid.getValueAt(rowGrid, colGrid) == tetrominoShape) {
+						gameGrid.setValueAt(null, rowGrid, colGrid);
+						gameGrid.setValueAt(tetrominoShape, rowGrid, colGrid + 1);
+					}
+				}
+			}
 			col++;
-			TetrisGame.getGameInstance().getFrame().getGameGrid().setValueAt(tetrominoShape, row, col);
+			fallingTimer.restart();
+			System.out.println("The Tetromino moved right");
 		}
-		//
+		canMoveRight = true;
 	}
 
 	/**
-	 * This method rotates the Tetromino by +90 degrees in mathematically
-	 * orientation.
+	 * This method rotates the Tetromino by 90° clockwise.
 	 */
 	public void rotate() {
-		// Create 4x4 rotation matrix for a 90 degree rotation
-		int[][] rotationMatrix = new int[][] { { 1, 0, 0, 0 }, { 0, 0, -1, 0 }, { 0, 1, 0, 0 }, { 0, 0, 0, 1 } };
-		matrix = GameRules.matrixMultiplication(rotationMatrix, matrix);
-
-		//TODO implement method for one Tetromino
+		
+		// If the Tetromino can rotate.
+		// Pauses the Tetromino natural down movement and rotate it.
+		if (col >= 0 && col + 3 <= gameGrid.getColumnCount() - 1) {
+			
+			fallingTimer.stop();
+			
+			matrix = rotateMatrix(matrix);
+			
+			// Remove the Tetromino from the grid.
+			for (int rowGrid = 0; rowGrid < gameGrid.getRowCount(); rowGrid++) {
+				for (int colGrid = 0; colGrid < gameGrid.getColumnCount(); colGrid++) {
+					if (gameGrid.getValueAt(rowGrid, colGrid) == tetrominoShape) {
+						gameGrid.setValueAt(null, rowGrid, colGrid);
+					}
+				}
+			}
+			
+			// Add the Tetromino with new orientation to the grid.
+			for (int rowMatrix = 0; rowMatrix < matrix.length; rowMatrix++) {
+				for (int colMatrix = 0; colMatrix < matrix[0].length; colMatrix++) {
+					if (matrix[rowMatrix][colMatrix] == 1) {
+						gameGrid.setValueAt(tetrominoShape, row + rowMatrix, col + colMatrix);
+					}
+				}
+			}
+			fallingTimer.restart();
+			System.out.println("The " + this.getShape() + "-Tetromino rotated");
+		}
 	}
 
 	/**
@@ -177,39 +279,121 @@ public class Tetromino {
 			moveDown();
 		}
 
-	}
-
-	// REMINDER : ADD A 2ND FIELD THAT RETURNS THE SIDE MOBILITY WITH A TIME DELAY
-	// (last chance move).
 	/**
 	 * This method returns canMoveDown value.
 	 * 
 	 * @return canMoveDown
 	 */
 	public boolean canMoveDown() {
-		canMoveDown = row < 19 && TetrisGame.getGameInstance().getFrame().getGameGrid().getValueAt(row + 1, col) == null;
+
+		overloop: for (int rowGrid = 0; rowGrid < gameGrid.getRowCount(); rowGrid++) {
+			for (int colGrid = 0; colGrid < gameGrid.getColumnCount(); colGrid++) {
+				Object valueCurrentCell = gameGrid.getValueAt(rowGrid, colGrid);
+				if (valueCurrentCell == tetrominoShape) {
+					if (rowGrid == gameGrid.getRowCount() - 1) {
+						canMoveDown = false;
+						break overloop;
+					} else {
+						Object valueBelowCell = gameGrid.getValueAt(rowGrid + 1, colGrid);
+						if (valueBelowCell != null && valueBelowCell != tetrominoShape) {
+							canMoveDown = false;
+							break overloop;
+						}
+					}
+				}
+			}
+		}
 		return canMoveDown;
+	}
+	
+	/**
+	 * This method returns canMoveLeft value.
+	 * 
+	 * @return canMoveLeft
+	 */
+	public boolean canMoveLeft() {
+		overloop: for (int rowGrid = 0; rowGrid < gameGrid.getRowCount(); rowGrid++) {
+			for (int colGrid = 0; colGrid < gameGrid.getColumnCount(); colGrid++) {
+				Object valueCurrentCell = gameGrid.getValueAt(rowGrid, colGrid);
+				if (valueCurrentCell == tetrominoShape) {
+					if (colGrid == 0) {
+						canMoveLeft = false;
+						break overloop;
+					} else {
+						Object valueLeftCell = gameGrid.getValueAt(rowGrid, colGrid - 1);
+						if (valueLeftCell != null && valueLeftCell != tetrominoShape) {
+							canMoveLeft = false;
+							break overloop;
+						}
+					}
+				}
+			}
+		}
+		return canMoveLeft;
+	}
+	
+	/**
+	 * This method returns canMoveRight value.
+	 * 
+	 * @return canMoveRight
+	 */
+	public boolean canMoveRight() {
+		overloop: for (int rowGrid = 0; rowGrid < gameGrid.getRowCount(); rowGrid++) {
+			for (int colGrid = 0; colGrid < gameGrid.getColumnCount(); colGrid++) {
+				Object valueCurrentCell = gameGrid.getValueAt(rowGrid, colGrid);
+				if (valueCurrentCell == tetrominoShape) {
+					if (colGrid == gameGrid.getColumnCount() - 1) {
+						canMoveRight = false;
+						break overloop;
+					} else {
+						Object valueLeftCell = gameGrid.getValueAt(rowGrid, colGrid + 1);
+						if (valueLeftCell != null && valueLeftCell != tetrominoShape) {
+							canMoveRight = false;
+							break overloop;
+						}
+					}
+				}
+			}
+		}
+		return canMoveRight;
 	}
 
 	/**
 	 * This method returns a random Tetromino shape defined by a color and matrix
 	 * for each shape.
 	 * 
-	 * @return Random Tetromino shape
+	 * @return Random Tetromino shape duo
 	 */
-	private Shapes getRandomTetrominoShape() {
-		// Create randomizer
+	private Shapes[] getRandomTetrominoShapeDuo() {
 		Random random = new Random();
-
-		// Create array with all shapes
-		Shapes[] allShapes = Shapes.getAllShapes();
-
-		// Use one random Shape
+		Shapes[][] allShapes = Shapes.getAllShapeDuos();
 		return allShapes[random.nextInt(allShapes.length)];
 	}
 
 	/**
-	 * This method returns the shape of the tetromino.
+	 * This method rotates a 4x4 matrix 90° clockwise.
+	 * 
+	 * @param matrix Matrix to rotate
+	 * @return rotated matrix
+	 */
+	public int[][] rotateMatrix(int[][] matrix) {
+		  if (matrix.length != matrix[0].length || matrix.length != 4) {
+		    throw new IllegalArgumentException("Matrix must be a square 4x4 matrix");
+		  }
+		  for (int i = 0; i < matrix.length / 2; i++) {
+		    for (int j = i; j < matrix.length - i - 1; j++) {
+		      int temp = matrix[i][j];
+		      matrix[i][j] = matrix[matrix.length - 1 - j][i];
+		      matrix[matrix.length - 1 - j][i] = matrix[matrix.length - 1 - i][matrix.length - 1 - j];
+		      matrix[matrix.length - 1 - i][matrix.length - 1 - j] = matrix[j][matrix.length - 1 - i];
+		      matrix[j][matrix.length - 1 - i] = temp;
+		    }
+		  }
+		  return matrix;
+		}
+
+	/**
+	 * This method returns the shape of the Tetromino.
 	 */
 	public Shapes getShape() {
 		return tetrominoShape;
