@@ -5,7 +5,6 @@ import java.util.Random;
 import javax.swing.Timer;
 
 import listeners.TetrominoListener;
-import tetris.Grid;
 import tetris.TetrisGame;
 import tetris.TetrominoFactory;
 
