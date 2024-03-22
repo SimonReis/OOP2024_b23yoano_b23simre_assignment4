@@ -68,6 +68,26 @@ public class Grid extends JTable {
 	}
 	
 	/**
+	 * This method returns the number of columns of the grid.
+	 * 
+	 * @return Number of Columns
+	 * This method clears the lines full of Tetrominos cells.
+	 */
+	public int getNumCols() {
+		return numCols;
+	}
+	
+	/**
+	 * This method returns the number of rows of the grid.
+	 * 
+	 * @return Number of rows
+	 * This method clears the grid.
+	 */
+	public int getNumRows() {
+		return numRows;
+	}
+	
+	/**
 	 * This method clears the grid.
 	 */
 	public void clearGrid() {

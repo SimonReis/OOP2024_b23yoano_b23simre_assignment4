@@ -1,5 +1,6 @@
 package panels;
 
+import java.awt.Color;
 import java.awt.Font;
 
 import java.awt.GridBagConstraints;
@@ -27,15 +28,18 @@ public class InformationPanelLeft extends JPanel {
 	private JLabel titleLabel;
 	private JPanel buttonPanel;
 	private JButton pauseButton;
-
+	
+	/**
+	 * This is the background color of the panel.
+	 */
+	private Color color;
 	
 
 	/**
 	 * This constructor creates the left information panel of the game panel.
-	 * 
-	 * @param color Background color
 	 */
 	public InformationPanelLeft() {
+		this.color = TetrisGame.getGameInstance().getFrame().getBackgroundColor();
 		initPanel();
 		initLogo();
 		initButton();
@@ -46,7 +50,7 @@ public class InformationPanelLeft extends JPanel {
 	 */
 	private void initPanel() {
 		this.setLayout(new GridLayout(2, 1));
-		this.setBackground(TetrisGame.getGameInstance().getFrame().getBackgroundColor());
+		this.setBackground(color);
 	}
 
 	/**
@@ -66,13 +70,11 @@ public class InformationPanelLeft extends JPanel {
 	/**
 	 * This method initializes the pause button in the center of its under left
 	 * corner.
-	 * 
-	 * @param color Background color
 	 */
 	private void initButton() {
 
 		buttonPanel = new JPanel();
-		buttonPanel.setBackground(TetrisGame.getGameInstance().getFrame().getBackgroundColor());
+		buttonPanel.setBackground(color);
 		buttonPanel.setLayout(new GridBagLayout());
 		pauseButton = new JButton("Pause Game");
 		pauseButton.addActionListener(new PauseButtonListener(this));

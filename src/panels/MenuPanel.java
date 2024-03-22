@@ -1,5 +1,7 @@
 package panels;
 
+import java.awt.Color;
+
 import java.awt.Font;
 
 import java.awt.GridBagLayout;
@@ -11,7 +13,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import listeners.MenuButtonListener;
-import tetris.MainFrame;
 import tetris.TetrisGame;
 
 /**
@@ -36,14 +37,18 @@ public class MenuPanel extends JPanel {
 	 * Number of the high score
 	 */
 	private int highScore;
+	
+	/**
+	 * This is the background color of the panel.
+	 */
+	private Color color;
 
 	/**
 	 * This class represents the menu panel.
-	 * 
-	 * @param color Background color of the panel
 	 */
 	public MenuPanel() {
 		this.highScore = TetrisGame.getGameInstance().getHighScore();
+		this.color = TetrisGame.getGameInstance().getFrame().getBackgroundColor();
 		initPanel();
 		intitUpperPanel();
 		intitLowerPanel();
@@ -54,7 +59,7 @@ public class MenuPanel extends JPanel {
 	 */
 	private void initPanel() {
 		this.setLayout(new GridLayout(2, 1));
-		this.setBackground(MainFrame.getBackgroundColor());
+		this.setBackground(color);
 	}
 
 	/**
@@ -66,7 +71,7 @@ public class MenuPanel extends JPanel {
 		// Set panel layout
 		JPanel upperPanel = new JPanel();
 		upperPanel.setLayout(new GridLayout(2, 1));
-		upperPanel.setBackground(MainFrame.getBackgroundColor());
+		upperPanel.setBackground(color);
 
 		// Create headline
 		JLabel headlineLabel = new JLabel("Tetris");
@@ -96,7 +101,7 @@ public class MenuPanel extends JPanel {
 		// Set panel layout
 		JPanel upperPanel = new JPanel();
 		upperPanel.setLayout(new GridLayout(2, 1));
-		upperPanel.setBackground(MainFrame.getBackgroundColor());
+		upperPanel.setBackground(color);
 
 		// Create high score label
 		highScoreLabel = new JLabel("Highscore: " + highScore);
@@ -108,7 +113,7 @@ public class MenuPanel extends JPanel {
 		// Create button panel
 		JPanel buttonPanel = new JPanel();
 		buttonPanel.setLayout(new GridBagLayout());
-		buttonPanel.setBackground(MainFrame.getBackgroundColor());
+		buttonPanel.setBackground(color);
 
 		// Create new game button
 		newGameButton = new JButton("New Game");
@@ -152,7 +157,5 @@ public class MenuPanel extends JPanel {
 		highScore = number;
 		highScoreLabel.setText("Highscore: " + highScore);
 		TetrisGame.getGameInstance().getFrame().pack();
-
-		System.out.println("Highscore in menu panel: " + highScore);
 	}
 }
