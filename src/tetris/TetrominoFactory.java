@@ -11,11 +11,6 @@ import tetrominoes.Tetromino;
 public class TetrominoFactory {
 
 	/**
-	 * This is the instance of the tetromino factory.
-	 */
-	private static TetrominoFactory factoryInstance;
-
-	/**
 	 * The next Tetromino that is displayed in the right side panel.
 	 */
 	private static Tetromino storedTetromino;
@@ -39,7 +34,6 @@ public class TetrominoFactory {
 	 * This constructor stores the next Tetromino.
 	 */
 	public TetrominoFactory() {
-		factoryInstance = this;
 		storedTetromino = new Tetromino();
 		factoryListener = new FactoryListener(this);
 	}

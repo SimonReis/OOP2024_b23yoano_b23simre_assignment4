@@ -47,7 +47,7 @@ public class Tetromino {
 	/**
 	 * This is the listener for each individual Tetromino.
 	 */
-	TetrominoListener tetrominoListener;
+	private TetrominoListener tetrominoListener;
 
 	/**
 	 * This constructor creates a random Tetromino. Sets its canMoveDown value to

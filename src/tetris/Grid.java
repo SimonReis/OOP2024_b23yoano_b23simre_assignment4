@@ -69,7 +69,8 @@ public class Grid extends JTable {
 			 */
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				TetrisGame.getGameInstance().getFrame().requestFocusInWindow();
+				TetrisGame.getGameInstance().getFrame().requestFocus();
+				System.out.println("Grid clicked");
 			}
 		});
 	}

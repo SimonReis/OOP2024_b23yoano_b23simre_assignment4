@@ -27,7 +27,6 @@ public class TetrominoListener implements ActionListener {
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		System.out.println("The Tetromino moves one step down.");
 		tetromino.moveDown();
 	}
 
