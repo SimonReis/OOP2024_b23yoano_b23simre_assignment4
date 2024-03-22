@@ -145,4 +145,21 @@ public class TetrominoFactory {
 	public void clearTetromino() {
 		currentTetromino = null;
 	}
+	
+	/**
+	 * This method checks if the game is over, if the tetromino can be spawned.
+	 * 
+	 * @return True if the game is over.
+	 */
+	public static boolean isSpawnable() {
+		for (int col = 0; col < TetrisGame.getGameInstance().getFrame().getGameGrid().getColumnCount(); col++) {
+			// Check if there is a non movable block in the first row
+			if (true) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	
 }

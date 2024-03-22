@@ -14,11 +14,6 @@ import tetris.TetrominoFactory;
 public class Tetromino {
 
 	/**
-	 * This is the tetromino factory.
-	 */
-	private TetrominoFactory tetrominoFactory;
-
-	/**
 	 * Tetromino coordinates in the game grid.
 	 */
 	private int row;
@@ -62,13 +57,15 @@ public class Tetromino {
 	 */
 	private int offsetTop = 0;
 	
+	
+	
 	/**
 	 * This constructor creates a random Tetromino.
 	 */
 	public Tetromino() {
 		
 		//gameGrid = TetrisGame.getGameInstance().getFrame().getGameGrid();
-		tetrominoFactory = TetrisGame.getGameInstance().getFactory();
+		//tetrominoFactory = TetrisGame.getGameInstance().getFactory();
 		
 		canMoveDown = true;
 		canMoveLeft = true;
@@ -115,31 +112,6 @@ public class Tetromino {
 	 */
 	public void stopTetromino() {
 		fallingTimer.stop();
-	}
-
-	/**
-	 * This method spawns the Tetromino. It makes the Tetromino moving down each X
-	 * milliseconds (defined in the timer setting).
-	 */
-	private void spawnTetromino() {
-		//TODO ADD A isSpawnable() METHOD
-	
-		// Spawning coordinates (top left corner of the Tetromino).
-		row = 0;
-		col = 3;
-
-		for (int rowMatrix = 0; rowMatrix < matrix.length; rowMatrix++) {
-			for (int colMatrix = 0; colMatrix < matrix[0].length; colMatrix++) {
-				if (matrix[rowMatrix][colMatrix] == 1) {
-					
-					System.out.println("(row, col) = (" + row + ", " + col + "); (rowMatrix, colMatrix) = (" + rowMatrix + ", " + colMatrix + "); offsetTop = " + offsetTop);
-					
-					//TODO FIX THE ROW INDEX OUT OF BOUNDARIES BUG
-					TetrisGame.getGameInstance().getFrame().getGameGrid().setValueAt(tetrominoShape, row + rowMatrix - offsetTop, col + colMatrix);
-				}
-			}
-		}
-	
 	}
 
 	/**
@@ -393,6 +365,68 @@ public class Tetromino {
 		  }
 		  return matrix;
 		}
+	
+	
+	
+	/**
+	 * This method spawns the Tetromino. It makes the Tetromino moving down each X
+	 * milliseconds (defined in the timer setting).
+	 */
+	private void spawnTetromino() {
+		// TODO ADD A isSpawnable() METHOD
+
+		// Spawning coordinates (top left corner of the Tetromino).
+		row = 0;
+		col = 3;
+		
+		if (isSpawnable()) {
+			
+			for (int rowMatrix = 0; rowMatrix < matrix.length; rowMatrix++) {
+				for (int colMatrix = 0; colMatrix < matrix[0].length; colMatrix++) {
+					if (matrix[rowMatrix][colMatrix] == 1) {
+
+						System.out.println("(row, col) = (" + row + ", " + col + "); (rowMatrix, colMatrix) = (" + rowMatrix
+								+ ", " + colMatrix + "); offsetTop = " + offsetTop);
+
+						// TODO FIX THE ROW INDEX OUT OF BOUNDARIES BUG
+						TetrisGame.getGameInstance().getFrame().getGameGrid().setValueAt(tetrominoShape,
+								row + rowMatrix - offsetTop, col + colMatrix);
+					}
+				}
+			}
+			
+		}
+
+	}
+
+	/**
+	 * This method checks if a tetromino can be spawned.
+	 * 
+	 * @return True if the tetromino can be spawned
+	 */
+	public boolean isSpawnable() {
+		
+		row = 0;
+		col = 3;
+		
+		boolean isSpawnable = true;
+		
+		overloop: for (int rowMatrix = 0; rowMatrix < matrix.length; rowMatrix++) {
+			for (int colMatrix = 0; colMatrix < matrix[0].length; colMatrix++) {
+				if (matrix[rowMatrix][colMatrix] == 1) {
+					if (TetrisGame.getGameInstance().getFrame().getGameGrid().getValueAt(row + rowMatrix - offsetTop,
+							col + colMatrix) != null) {
+						isSpawnable = false;
+						break overloop;
+					}
+				}
+			}
+		}
+		return isSpawnable;
+	}
+	
+	
+	
 
 	/**
 	 * This method returns the shape of the Tetromino.
