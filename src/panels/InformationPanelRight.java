@@ -50,7 +50,7 @@ public class InformationPanelRight extends JPanel {
 	public InformationPanelRight(Grid nextGrid) {
 		
 		
-		this.highScore = TetrisGame.getHighScore();
+		this.highScore = TetrisGame.getGameInstance().getHighScore();
 		this.nextGrid = nextGrid;
 		score = 0;
 		clearedLines = 0;
@@ -187,7 +187,7 @@ public class InformationPanelRight extends JPanel {
 			setHighScore(score);
 		}
 
-		TetrisGame.getFrame().pack();
+		TetrisGame.getGameInstance().getFrame().pack();
 	}
 	
 	/**
@@ -200,7 +200,7 @@ public class InformationPanelRight extends JPanel {
 		if (number >= 0) {
 			clearedLines = clearedLines + number;
 			setNumber(linesLabelNumber, clearedLines);
-			TetrisGame.getFrame().pack();
+			TetrisGame.getGameInstance().getFrame().pack();
 		} else {
 			throw new IllegalArgumentException("Number of cleared lines cannot be negative.");
 		}
@@ -217,7 +217,8 @@ public class InformationPanelRight extends JPanel {
 	public void setNextTetromino(Tetromino tetromino) {
 		
 		// Clear next grid at first.
-		GameRules.clearGrid(nextGrid);
+		nextGrid.clearGrid();
+		//GameRules.clearGrid(nextGrid);
 
 		
 		// Matrix of the tetromino

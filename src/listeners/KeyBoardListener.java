@@ -70,7 +70,7 @@ public class KeyBoardListener implements KeyListener, FocusListener {
 	 */
 	@Override
 	public void focusLost(FocusEvent e) {
-		TetrisGame.getFrame().requestFocusInWindow();
+		TetrisGame.getGameInstance().getFrame().requestFocusInWindow();
 	}
 
 }

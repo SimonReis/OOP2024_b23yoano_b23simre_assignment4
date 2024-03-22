@@ -115,11 +115,11 @@ public class TetrominoFactory {
 			// Stores a new Tetromino.
 			storedTetromino = new Tetromino();
 			// Place the stored tetromino in the next grid
-			TetrisGame.getFrame().getInfoRight().setNextTetromino(storedTetromino);
-			TetrisGame.getFrame().pack();
+			TetrisGame.getGameInstance().getFrame().getInfoRight().setNextTetromino(storedTetromino);
+			TetrisGame.getGameInstance().getFrame().pack();
 
 			// Destroys full lines
-			GameRules.clearLines();
+			TetrisGame.getGameInstance().getFrame().getGameGrid().clearLines();
 
 			// Spawns the current Tetromino.
 			currentTetromino.playingTetromino();

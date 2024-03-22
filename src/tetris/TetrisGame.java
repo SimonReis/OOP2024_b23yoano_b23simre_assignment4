@@ -16,7 +16,7 @@ public class TetrisGame {
 	/**
 	 * This is the main frame, where all information and the game is displayed.
 	 */
-	private static MainFrame frame;
+	private MainFrame frame;
 
 
 	/**
@@ -35,7 +35,7 @@ public class TetrisGame {
 	/**
 	 * This is the high score of the application.
 	 */
-	private static int highScore;
+	private int highScore;
 	
 	/**
 	 * This is the constructor, where all required parts for using the tetris
@@ -68,21 +68,17 @@ public class TetrisGame {
 	 * 
 	 * @return Main frame
 	 */
-	public static MainFrame getFrame() {
+	public MainFrame getFrame() {
 		return frame;
 	}
 
 	/**
 	 * This method returns the high score of the game.
 	 */
-	public static int getHighScore() {
+	public int getHighScore() {
 		return highScore;
 	}
 	
-	public static void setHighScore(int number) {
-		highScore = number;
-	}
-
 	/**
 	 * This method is called, when a new game round should start. The view will
 	 * change, the production of Tetrominos start and they will spawned in the game
@@ -118,7 +114,7 @@ public class TetrisGame {
 	 */
 	public void endGame() {
 		// Refresh the high score to display correctly in menu view.
-		GameRules.refreshHighScore();
+		highScore = frame.getInfoRight().getHighScore();
 		
 		// Change View
 		frame.setMenuView();

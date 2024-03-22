@@ -96,7 +96,7 @@ public class Tetromino {
 		//TODO implement method for one Tetromino
 		row = 0;
 		col = 3;
-		TetrisGame.getFrame().getGameGrid().setValueAt(tetrominoShape, row, col);
+		TetrisGame.getGameInstance().getFrame().getGameGrid().setValueAt(tetrominoShape, row, col);
 		//
 		
 	}
@@ -109,8 +109,8 @@ public class Tetromino {
 		// If the Tetromino can is move down.
 		if (canMoveDown()) {
 			//TODO implement method for one Tetromino
-			TetrisGame.getFrame().getGameGrid().setValueAt(null, row, col);
-			TetrisGame.getFrame().getGameGrid().setValueAt(tetrominoShape, row + 1, col);
+			TetrisGame.getGameInstance().getFrame().getGameGrid().setValueAt(null, row, col);
+			TetrisGame.getGameInstance().getFrame().getGameGrid().setValueAt(tetrominoShape, row + 1, col);
 			row++;
 			//TODO implement method for one Tetromino
 		// If the Tetromino cannot move down.
@@ -126,14 +126,14 @@ public class Tetromino {
 	public void moveLeft() {
 		//TODO implement method for one Tetromino
 		// If the Tetromino will not collide a block or a grid edge.
-		if (col > 0 && TetrisGame.getFrame().getGameGrid().getValueAt(row, col - 1) == null) {
+		if (col > 0 && TetrisGame.getGameInstance().getFrame().getGameGrid().getValueAt(row, col - 1) == null) {
 
 			// Replaces the Tetromino cells values by null in its current location.
-			TetrisGame.getFrame().getGameGrid().setValueAt(null, row, col);
+			TetrisGame.getGameInstance().getFrame().getGameGrid().setValueAt(null, row, col);
 
 			// Rebuilds the Tetromino in its new location one column left.
 			col--;
-			TetrisGame.getFrame().getGameGrid().setValueAt(tetrominoShape, row, col);
+			TetrisGame.getGameInstance().getFrame().getGameGrid().setValueAt(tetrominoShape, row, col);
 		}
 		//
 	}
@@ -144,14 +144,14 @@ public class Tetromino {
 	public void moveRight() {
 		//TODO implement method for one Tetromino
 		// If the Tetromino will not collide a block or a grid edge.
-		if (col < 9 && TetrisGame.getFrame().getGameGrid().getValueAt(row, col + 1) == null) {
+		if (col < 9 && TetrisGame.getGameInstance().getFrame().getGameGrid().getValueAt(row, col + 1) == null) {
 
 			// Replaces the Tetromino cells values by null in its current location.
-			TetrisGame.getFrame().getGameGrid().setValueAt(null, row, col);
+			TetrisGame.getGameInstance().getFrame().getGameGrid().setValueAt(null, row, col);
 
 			// Rebuilds the Tetromino in its new location one column left.
 			col++;
-			TetrisGame.getFrame().getGameGrid().setValueAt(tetrominoShape, row, col);
+			TetrisGame.getGameInstance().getFrame().getGameGrid().setValueAt(tetrominoShape, row, col);
 		}
 		//
 	}
@@ -187,7 +187,7 @@ public class Tetromino {
 	 * @return canMoveDown
 	 */
 	public boolean canMoveDown() {
-		canMoveDown = row < 19 && TetrisGame.getFrame().getGameGrid().getValueAt(row + 1, col) == null;
+		canMoveDown = row < 19 && TetrisGame.getGameInstance().getFrame().getGameGrid().getValueAt(row + 1, col) == null;
 		return canMoveDown;
 	}
 

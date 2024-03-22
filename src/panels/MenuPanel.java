@@ -43,7 +43,7 @@ public class MenuPanel extends JPanel {
 	 * @param color Background color of the panel
 	 */
 	public MenuPanel() {
-		this.highScore = TetrisGame.getHighScore();
+		this.highScore = TetrisGame.getGameInstance().getHighScore();
 		initPanel();
 		intitUpperPanel();
 		intitLowerPanel();
@@ -151,7 +151,7 @@ public class MenuPanel extends JPanel {
 	public void setNewHighScore(int number) {
 		highScore = number;
 		highScoreLabel.setText("Highscore: " + highScore);
-		TetrisGame.getFrame().pack();
+		TetrisGame.getGameInstance().getFrame().pack();
 
 		System.out.println("Highscore in menu panel: " + highScore);
 	}

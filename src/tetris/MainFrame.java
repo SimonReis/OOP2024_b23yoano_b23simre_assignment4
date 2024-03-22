@@ -4,8 +4,6 @@ import java.awt.Color;
 
 import java.awt.Dimension;
 import java.awt.GridLayout;
-import java.awt.event.FocusAdapter;
-import java.awt.event.FocusEvent;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -32,7 +30,7 @@ public class MainFrame extends JFrame {
 	 * Possibility to change background color
 	 */
 	private static Color backgroundColor;
-	
+
 	/**
 	 * For the game there are three different views. The menu, the game itself and
 	 * the view if the game is paused.
@@ -45,12 +43,11 @@ public class MainFrame extends JFrame {
 	 * The game grid is the grid where the game takes part.
 	 */
 	private Grid gameGrid;
-	
+
 	/**
 	 * The next grid is the grid where the next tetromino is stored.
 	 */
 	private Grid nextGrid;
-
 
 	/**
 	 * The constructor creates the Frame for the game.
@@ -74,7 +71,7 @@ public class MainFrame extends JFrame {
 		this.setMaximumSize(new Dimension(WIDTH, HEIGHT));
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setLocationRelativeTo(null); // Place the JFrame in the middle of the screen
-		
+
 	}
 
 	/**
@@ -82,17 +79,16 @@ public class MainFrame extends JFrame {
 	 * required for the Tetris game.
 	 */
 	private void initGamePanel(Grid gameGrid, Grid nextGrid) {
-		
-		
+
 		// Create the Information panels
 		JPanel leftPanel = new InformationPanelLeft();
 		rightPanel = new InformationPanelRight(nextGrid);
-		
+
 		// Create the game grid panel
 		JPanel gridPanel = new JPanel();
 		gridPanel.setBackground(MainFrame.getBackgroundColor());
 		gridPanel.add(gameGrid);
-		
+
 		// Add the panels in the game panels, which is added to the frame.
 		gamePanel = new JPanel();
 		gamePanel.setLayout(new GridLayout(1, 3));
@@ -110,35 +106,27 @@ public class MainFrame extends JFrame {
 		menuPanel = new MenuPanel();
 		this.add(menuPanel);
 	}
-	
 
 	/**
 	 * This method is called, when a new game should start. The view will change
 	 * from the menu panel to the game panel.
 	 */
 	public void setGameView() {
-		this.remove(menuPanel);	
-		
+		this.remove(menuPanel);
+		// Set new grids
 		gameGrid = new Grid(20, 10);
 		nextGrid = new Grid(4, 4);
-		// No blocks displayed
-		gameGrid.refreshGrid();
-		nextGrid.refreshGrid();
 		initGamePanel(gameGrid, nextGrid);
 	}
-	
+
 	/**
-	 * This method is called, when a game should be ended. The view will change
-	 * from the game panel to the menu panel.
+	 * The view will change from the game panel to the menu panel.
 	 */
 	public void setMenuView() {
-//		gameGrid = new Grid(20, 10);
-//		nextGrid = new Grid(4, 4);
-		
 		this.remove(gamePanel);
 		initMenuPanel();
 	}
-	
+
 	/**
 	 * This method returns the right information panel.
 	 * 
@@ -147,7 +135,7 @@ public class MainFrame extends JFrame {
 	public InformationPanelRight getInfoRight() {
 		return rightPanel;
 	}
-	
+
 	/**
 	 * This method returns the menu panel.
 	 * 
@@ -156,14 +144,14 @@ public class MainFrame extends JFrame {
 	public MenuPanel getMenuPanel() {
 		return menuPanel;
 	}
-	
+
 	/**
-	 * This method returns the high score of the game.
+	 * This method returns the background color of the game.
 	 */
 	public static Color getBackgroundColor() {
 		return backgroundColor;
 	}
-	
+
 	/**
 	 * This method returns the game grid.
 	 * 
@@ -172,14 +160,14 @@ public class MainFrame extends JFrame {
 	public Grid getGameGrid() {
 		return gameGrid;
 	}
-	
+
 	/**
 	 * This method sets the game grid.
 	 */
 	public void setGameGrid(Grid grid) {
 		gameGrid = grid;
 	}
-	
+
 	/**
 	 * This method returns the next grid.
 	 * 
@@ -188,13 +176,12 @@ public class MainFrame extends JFrame {
 	public Grid getNextGrid() {
 		return nextGrid;
 	}
-	
+
 	/**
 	 * This method sets the game grid.
 	 */
 	public void setNextGrid(Grid grid) {
 		nextGrid = grid;
 	}
-	
-	
+
 }

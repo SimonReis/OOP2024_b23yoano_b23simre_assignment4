@@ -25,7 +25,7 @@ public class GameOverListener implements ActionListener {
 
 		// This code displays the pop-up windows and returns an integer for the selected
 		// button
-		int result = JOptionPane.showOptionDialog(TetrisGame.getFrame(),
+		int result = JOptionPane.showOptionDialog(TetrisGame.getGameInstance().getFrame(),
 				"Do you want to play a new game or go back to menu?", "Game Over", JOptionPane.YES_NO_OPTION,
 				JOptionPane.PLAIN_MESSAGE, null, options, options[0]);
 
