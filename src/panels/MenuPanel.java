@@ -13,6 +13,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import listeners.MenuButtonListener;
+import tetris.MainFrame;
 import tetris.TetrisGame;
 
 /**
@@ -48,7 +49,7 @@ public class MenuPanel extends JPanel {
 	 */
 	public MenuPanel() {
 		this.highScore = TetrisGame.getGameInstance().getHighScore();
-		this.color = TetrisGame.getGameInstance().getFrame().getBackgroundColor();
+		this.color = MainFrame.getBackgroundColor();
 		initPanel();
 		intitUpperPanel();
 		intitLowerPanel();

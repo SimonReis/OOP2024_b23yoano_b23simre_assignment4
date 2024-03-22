@@ -29,7 +29,7 @@ public class MainFrame extends JFrame {
 	/**
 	 * Possibility to change background color
 	 */
-	private Color backgroundColor;
+	private static Color backgroundColor;
 
 	/**
 	 * For the game there are three different views. The menu, the game itself and
@@ -153,7 +153,7 @@ public class MainFrame extends JFrame {
 	/**
 	 * This method returns the background color of the game.
 	 */
-	public Color getBackgroundColor() {
+	public static Color getBackgroundColor() {
 		return backgroundColor;
 	}
 

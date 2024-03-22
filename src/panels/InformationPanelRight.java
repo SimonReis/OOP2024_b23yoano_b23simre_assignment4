@@ -1,16 +1,17 @@
 package panels;
 
+import java.awt.Color;
 import java.awt.Font;
+
 import java.awt.GridLayout;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import tetris.MainFrame;
 import tetris.TetrisGame;
 import tetrominoes.Tetromino;
-import tetris.GameRules;
 import tetris.Grid;
+import tetris.MainFrame;
 
 /**
  * This class represents the right information panel, where high score, score,
@@ -20,12 +21,10 @@ public class InformationPanelRight extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 
-	
 	/**
 	 * Similar properties of the labels of the right information panel.
 	 */
 	private Font font;
-
 
 	/**
 	 * Labels, which display the current high score, score and cleared lines.
@@ -41,6 +40,11 @@ public class InformationPanelRight extends JPanel {
 	 * Grid where the next tetromino is displayed.
 	 */
 	private Grid nextGrid;
+	
+	/**
+	 * This is the background color of the panel.
+	 */
+	private Color color;
 
 	/**
 	 * This constructor creates the right information panel of the game panel.
@@ -51,6 +55,7 @@ public class InformationPanelRight extends JPanel {
 		
 		
 		this.highScore = TetrisGame.getGameInstance().getHighScore();
+		this.color = MainFrame.getBackgroundColor();
 		this.nextGrid = nextGrid;
 		score = 0;
 		clearedLines = 0;
@@ -72,77 +77,9 @@ public class InformationPanelRight extends JPanel {
 	 */
 	private void initPanel() {
 		this.setLayout(new GridLayout(2, 2));
-		this.setBackground(TetrisGame.getGameInstance().getFrame().getBackgroundColor());
+		this.setBackground(color);
 		font = new Font("Arial", Font.BOLD, 20);
 	}
-
-	/**
-	 * This method creates a panel in which a text and the corresponding value are
-	 * displayed.
-	 * 
-	 * @param text Text that should be displayed
-	 * @return Label in which the value is stored
-	 */
-	private JLabel createInformation(String text) {
-
-		// Set panel layout
-		JPanel panel = new JPanel();
-		panel.setLayout(new GridLayout(2, 1));
-		panel.setBackground(TetrisGame.getGameInstance().getFrame().getBackgroundColor());
-
-		// Create text label
-		JLabel labelText = new JLabel(text + ":");
-		labelText.setLayout(null);
-		labelText.setFont(font);
-		labelText.setHorizontalAlignment(JLabel.CENTER);
-		labelText.setVerticalAlignment(JLabel.BOTTOM);
-		panel.add(labelText);
-
-		// Create number label
-		JLabel labelNumber = new JLabel(Integer.toString(0));
-		labelNumber.setLayout(null);
-		labelNumber.setFont(font);
-		labelNumber.setHorizontalAlignment(JLabel.CENTER);
-		labelNumber.setVerticalAlignment(JLabel.TOP);
-		panel.add(labelNumber);
-
-		this.add(panel);
-
-		return labelNumber;
-	}
-
-	/**
-	 * This method creates a panel in which a text and grid for the next tetromino
-	 * are displayed.
-	 * 
-	 * @param text Text that should be displayed
-	 * @return Grid that displays the next tetromino
-	 */
-	private void createNextGrid(String text, Grid grid) {
-
-		// Set panel layout
-		JPanel panel = new JPanel();
-		panel.setLayout(new GridLayout(2, 1));
-		panel.setBackground(TetrisGame.getGameInstance().getFrame().getBackgroundColor());
-
-		// Create text label
-		JLabel labelText = new JLabel(text + ":");
-		labelText.setLayout(null);
-		labelText.setFont(font);
-		labelText.setHorizontalAlignment(JLabel.CENTER);
-		labelText.setVerticalAlignment(JLabel.BOTTOM);
-		panel.add(labelText);
-
-		// Create grid
-		JPanel nextPanel = new JPanel();
-		nextPanel.setBackground(TetrisGame.getGameInstance().getFrame().getBackgroundColor());
-		nextPanel.add(grid);
-		panel.add(nextPanel);
-
-		this.add(panel);
-	}
-
-	// TODO implement methods for changing block and numbers
 
 	/**
 	 * This method converts a numerical value into a string and adds it to a label.
@@ -191,6 +128,72 @@ public class InformationPanelRight extends JPanel {
 	}
 	
 	/**
+	 * This method creates a panel in which a text and the corresponding value are
+	 * displayed.
+	 * 
+	 * @param text Text that should be displayed
+	 * @return Label in which the value is stored
+	 */
+	private JLabel createInformation(String text) {
+
+		// Set panel layout
+		JPanel panel = new JPanel();
+		panel.setLayout(new GridLayout(2, 1));
+		panel.setBackground(color);
+
+		// Create text label
+		JLabel labelText = new JLabel(text + ":");
+		labelText.setLayout(null);
+		labelText.setFont(font);
+		labelText.setHorizontalAlignment(JLabel.CENTER);
+		labelText.setVerticalAlignment(JLabel.BOTTOM);
+		panel.add(labelText);
+
+		// Create number label
+		JLabel labelNumber = new JLabel(Integer.toString(0));
+		labelNumber.setLayout(null);
+		labelNumber.setFont(font);
+		labelNumber.setHorizontalAlignment(JLabel.CENTER);
+		labelNumber.setVerticalAlignment(JLabel.TOP);
+		panel.add(labelNumber);
+
+		this.add(panel);
+
+		return labelNumber;
+	}
+
+	/**
+	 * This method creates a panel in which a text and grid for the next tetromino
+	 * are displayed.
+	 * 
+	 * @param text Text that should be displayed
+	 * @return Grid that displays the next tetromino
+	 */
+	private void createNextGrid(String text, Grid grid) {
+
+		// Set panel layout
+		JPanel panel = new JPanel();
+		panel.setLayout(new GridLayout(2, 1));
+		panel.setBackground(color);
+
+		// Create text label
+		JLabel labelText = new JLabel(text + ":");
+		labelText.setLayout(null);
+		labelText.setFont(font);
+		labelText.setHorizontalAlignment(JLabel.CENTER);
+		labelText.setVerticalAlignment(JLabel.BOTTOM);
+		panel.add(labelText);
+
+		// Create grid
+		JPanel nextPanel = new JPanel();
+		nextPanel.setBackground(color);
+		nextPanel.add(grid);
+		panel.add(nextPanel);
+
+		this.add(panel);
+	}
+	
+	/**
 	 * This method sets the number of cleared lines.
 	 * 
 	 * @param number Number of cleared lines
@@ -204,9 +207,6 @@ public class InformationPanelRight extends JPanel {
 		} else {
 			throw new IllegalArgumentException("Number of cleared lines cannot be negative.");
 		}
-		
-		
-		
 	}
 	
 	/**
@@ -223,21 +223,12 @@ public class InformationPanelRight extends JPanel {
 		int[][] matrix = tetromino.getShape().getMatrix();
 		
 		// Draw a colored block for each one in the matrix
-		for(int m = 0; m < 4; m++) {
-			for(int n = 0; n < 4; n++) {
+		for(int m = 0; m < nextGrid.getNumRows(); m++) {
+			for(int n = 0; n < nextGrid.getNumCols(); n++) {
 				if(matrix[m][n] == 1) {
 					nextGrid.setValueAt(tetromino.getShape(), m, n);
 				}
 			}
 		}
-	}
-	
-	/**
-	 * This method returns the next grid.
-	 * 
-	 * @return Next grid, where the next tetromino is stored.
-	 */
-	public Grid getNextGrid() {
-		return nextGrid;
 	}
 }
