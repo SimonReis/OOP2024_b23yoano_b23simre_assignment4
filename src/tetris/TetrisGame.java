@@ -4,7 +4,7 @@ import listeners.GameOverListener;
 
 /**
  * This class represents the whole teris game including the GUI, the core game
- * logic, including rules and scorekeeping.
+ * logic.
  */
 public class TetrisGame {
 
@@ -18,10 +18,6 @@ public class TetrisGame {
 	 */
 	private static MainFrame frame;
 
-	/**
-	 * This is the game grid, where the actual game takes place.
-	 */
-	private Grid gameGrid;
 
 	/**
 	 * This is the tetromino factory, where tetrominos were produced and spawned at
@@ -32,21 +28,23 @@ public class TetrisGame {
 	/**
 	 * This is the Listener which checks if the game is over.
 	 */
-	//private static GameOverListener gameOverListener;
+	//TODO Not implemented yet
+	private static GameOverListener gameOverListener;
 
 
 	/**
 	 * This is the high score of the application.
 	 */
 	private static int highScore;
+	
 	/**
 	 * This is the constructor, where all required parts for using the tetris
 	 * application and playing a game is initialized.
 	 */
 	public TetrisGame() {
 		gameInstance = this;
+		highScore = 0;
 		tetrominoFactory = new TetrominoFactory();
-		highScore = 0; // TODO Maybe Save this variable
 		frame = new MainFrame();
 		frame.setFocusable(true);
 		frame.setVisible(true);
@@ -80,12 +78,9 @@ public class TetrisGame {
 	public static int getHighScore() {
 		return highScore;
 	}
-
-	/**
-	 * This method set the high score of the game.
-	 */
-	private void refreshHighScore() {
-		highScore = frame.getInfoRight().getHighScore();
+	
+	public static void setHighScore(int number) {
+		highScore = number;
 	}
 
 	/**
@@ -99,14 +94,12 @@ public class TetrisGame {
 		frame.setFocusable(true);
 		frame.pack();
 
-		// Start Falling blocks
-		
+		// Start Tetromino factory
 		tetrominoFactory.startProduction();
-		frame.pack();
 	}
 
 	/**
-	 * This method stops the production and freezes the game.
+	 * This method pause the game.
 	 */
 	public void pauseGame() {
 		tetrominoFactory.stopTetromino();
@@ -124,9 +117,11 @@ public class TetrisGame {
 	 * and the high score is set.
 	 */
 	public void endGame() {
+		// Refresh the high score to display correctly in menu view.
+		GameRules.refreshHighScore();
+		
 		// Change View
 		frame.setMenuView();
-		refreshHighScore();
 		frame.getMenuPanel().setNewHighScore(highScore);
 		frame.setFocusable(true);
 		frame.pack();

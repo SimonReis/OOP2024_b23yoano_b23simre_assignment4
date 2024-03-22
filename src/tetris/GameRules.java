@@ -6,6 +6,14 @@ import tetrominoes.Tetromino;
  * This class implements the game rules of the tetris game.
  */
 public class GameRules {
+	
+	
+	/**
+	 * This method set the high score of the game.
+	 */
+	public static void refreshHighScore() {
+		TetrisGame.setHighScore(TetrisGame.getFrame().getInfoRight().getHighScore());
+	}
 		
 	/**
 	 * This method clears the lines full of Tetrominos cells.
@@ -77,6 +85,41 @@ public class GameRules {
 	}
 	
 	/**
+	 * This method computes a matrix-matrix multiplication.
+	 * 
+	 * @param matrix1 First matrix
+	 * @param matrix2 Second matrix
+	 * @return Multiplied matrix
+	 */
+	public static int[][] matrixMultiplication(int[][] matrix1, int[][] matrix2) {
+		int mtx1rows = matrix1.length;
+		int mtx2rows = matrix2.length;
+		int mtx1cols = matrix1[0].length;
+		int mtx2cols = matrix2[0].length;
+
+		// Check if both matrices can be multiplied
+		if (mtx1cols == mtx2rows) {
+
+			// Create result matrix with the new dimensions
+			int[][] result = new int[mtx1rows][mtx2cols];
+
+			// Execute matrix multiplication
+			for (int i = 0; i < mtx1rows; i++) {
+				for (int j = 0; j < mtx2cols; j++) {
+					for (int k = 0; k < mtx1cols; k++) {
+						result[i][j] += matrix1[i][k] * matrix2[k][j];
+					}
+				}
+			}
+
+			return result;
+
+		} else {
+			throw new IllegalArgumentException("Wrong matrix dimensions!");
+		}
+	}
+	
+	/**
 	 * This method clears the next grid.
 	 */
 	public static void clearGrid(Grid nextGrid) {
@@ -96,7 +139,7 @@ public class GameRules {
 	public static boolean isGameOver() {
 		for (int col = 0; col < TetrisGame.getFrame().getGameGrid().getColumnCount(); col++) {
 			// Check if there is a non movable block in the first row
-			if (!Tetromino.class.cast(TetrisGame.getFrame().getGameGrid().getValueAt(0, col)).getPlaced()) {
+			if (Tetromino.class.cast(TetrisGame.getFrame().getGameGrid().getValueAt(0, col)).getPlaced()) {
 				return true;
 			}
 		}

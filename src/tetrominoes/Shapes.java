@@ -8,7 +8,7 @@ import java.awt.Color;
 public enum Shapes {
 	
 	// I shape in cyan
-	I(Color.cyan, new int[][]{
+	I(new Color(0, 255, 255), new int[][]{
 		{0, 0, 0, 0}, 
 		{0, 0, 0, 0}, 
 		{1, 1, 1, 1}, 
@@ -16,7 +16,7 @@ public enum Shapes {
 		}),
 	
 	// J shape in blue
-	J(Color.blue, new int[][]{
+	J(new Color(0, 0, 255), new int[][]{
 		{0, 0, 1, 0}, 
 		{0, 0, 1, 0}, 
 		{0, 1, 1, 0}, 
@@ -24,7 +24,7 @@ public enum Shapes {
 		}),
 	
 	// L shape in orange
-	L(Color.orange, new int[][]{
+	L(new Color(255, 127, 0), new int[][]{
 		{0, 1, 0, 0}, 
 		{0, 1, 0, 0}, 
 		{0, 1, 1, 0}, 
@@ -32,7 +32,7 @@ public enum Shapes {
 		}),
 	
 	// O shape in yellow
-	O(Color.yellow, new int[][]{
+	O(new Color(255, 255, 0), new int[][]{
 		{0, 0, 0, 0}, 
 		{0, 1, 1, 0}, 
 		{0, 1, 1, 0}, 
@@ -40,15 +40,15 @@ public enum Shapes {
 		}),
 		
 	// S shape in green
-	S(Color.green, new int[][]{
+	S(new Color(0, 255, 0), new int[][]{
 		{0, 0, 0, 0}, 
 		{0, 1, 1, 0}, 
 		{1, 1, 0, 0}, 
 		{0, 0, 0, 0}
 		}),
 	
-	// T shape in pink
-	T(Color.pink, new int[][]{
+	// T shape in purple
+	T(new Color(128, 0, 128), new int[][]{
 		{0, 0, 0, 0}, 
 		{1, 1, 1, 0}, 
 		{0, 1, 0, 0}, 
@@ -56,7 +56,7 @@ public enum Shapes {
 		}),
 
 	// Z shape in red
-	Z(Color.red, new int[][]{
+	Z(new Color(255, 0, 0), new int[][]{
 		{0, 0, 0, 0}, 
 		{1, 1, 0, 0}, 
 		{0, 1, 1, 0}, 

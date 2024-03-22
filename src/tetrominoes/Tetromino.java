@@ -5,6 +5,7 @@ import java.util.Random;
 import javax.swing.Timer;
 
 import listeners.TetrominoListener;
+import tetris.GameRules;
 import tetris.TetrisGame;
 
 /**
@@ -162,7 +163,7 @@ public class Tetromino {
 	public void rotate() {
 		// Create 4x4 rotation matrix for a 90 degree rotation
 		int[][] rotationMatrix = new int[][] { { 1, 0, 0, 0 }, { 0, 0, -1, 0 }, { 0, 1, 0, 0 }, { 0, 0, 0, 1 } };
-		matrix = matrixMultiplication(rotationMatrix, matrix);
+		matrix = GameRules.matrixMultiplication(rotationMatrix, matrix);
 
 		//TODO implement method for one Tetromino
 	}
@@ -205,41 +206,6 @@ public class Tetromino {
 
 		// Use one random Shape
 		return allShapes[random.nextInt(allShapes.length)];
-	}
-
-	/**
-	 * This method computes a matrix-matrix multiplication.
-	 * 
-	 * @param matrix1 First matrix
-	 * @param matrix2 Second matrix
-	 * @return Multiplied matrix
-	 */
-	private int[][] matrixMultiplication(int[][] matrix1, int[][] matrix2) {
-		int mtx1rows = matrix1.length;
-		int mtx2rows = matrix2.length;
-		int mtx1cols = matrix1[0].length;
-		int mtx2cols = matrix2[0].length;
-
-		// Check if both matrices can be multiplied
-		if (mtx1cols == mtx2rows) {
-
-			// Create result matrix with the new dimensions
-			int[][] result = new int[mtx1rows][mtx2cols];
-
-			// Execute matrix multiplication
-			for (int i = 0; i < mtx1rows; i++) {
-				for (int j = 0; j < mtx2cols; j++) {
-					for (int k = 0; k < mtx1cols; k++) {
-						result[i][j] += matrix1[i][k] * matrix2[k][j];
-					}
-				}
-			}
-
-			return result;
-
-		} else {
-			throw new IllegalArgumentException("Wrong matrix dimensions!");
-		}
 	}
 
 	/**
