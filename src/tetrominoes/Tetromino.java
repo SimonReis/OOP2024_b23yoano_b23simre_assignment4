@@ -15,11 +15,6 @@ import tetris.TetrominoFactory;
 public class Tetromino {
 
 	/**
-	 * This is the game grid.
-	 */
-	private Grid gameGrid;
-	
-	/**
 	 * This is the tetromino factory.
 	 */
 	private TetrominoFactory tetrominoFactory;
@@ -73,7 +68,7 @@ public class Tetromino {
 	 */
 	public Tetromino() {
 		
-		gameGrid = TetrisGame.getGameInstance().getFrame().getGameGrid();
+		//gameGrid = TetrisGame.getGameInstance().getFrame().getGameGrid();
 		tetrominoFactory = TetrisGame.getGameInstance().getFactory();
 		
 		canMoveDown = true;
@@ -141,7 +136,7 @@ public class Tetromino {
 					System.out.println("(row, col) = (" + row + ", " + col + "); (rowMatrix, colMatrix) = (" + rowMatrix + ", " + colMatrix + "); offsetTop = " + offsetTop);
 					
 					//TODO FIX THE ROW INDEX OUT OF BOUNDARIES BUG
-					gameGrid.setValueAt(tetrominoShape, row + rowMatrix - offsetTop, col + colMatrix);
+					TetrisGame.getGameInstance().getFrame().getGameGrid().setValueAt(tetrominoShape, row + rowMatrix - offsetTop, col + colMatrix);
 				}
 			}
 		}
@@ -158,35 +153,35 @@ public class Tetromino {
 		if (canMoveDown()) {
 			
 			fallingTimer.stop();
-			tetrominoFactory.stopTimer();
+			//tetrominoFactory.stopTimer();
 
-			for (int rowGrid = gameGrid.getRowCount() - 1; rowGrid >= 0; rowGrid--) {
-				for (int colGrid = 0; colGrid < gameGrid.getColumnCount(); colGrid++) {
-					if (gameGrid.getValueAt(rowGrid, colGrid) == tetrominoShape) {
-						gameGrid.setValueAt(null, rowGrid, colGrid);
-						gameGrid.setValueAt(tetrominoShape, rowGrid + 1, colGrid);
+			for (int rowGrid = TetrisGame.getGameInstance().getFrame().getGameGrid().getRowCount() - 1; rowGrid >= 0; rowGrid--) {
+				for (int colGrid = 0; colGrid < TetrisGame.getGameInstance().getFrame().getGameGrid().getColumnCount(); colGrid++) {
+					if (TetrisGame.getGameInstance().getFrame().getGameGrid().getValueAt(rowGrid, colGrid) == tetrominoShape) {
+						TetrisGame.getGameInstance().getFrame().getGameGrid().setValueAt(null, rowGrid, colGrid);
+						TetrisGame.getGameInstance().getFrame().getGameGrid().setValueAt(tetrominoShape, rowGrid + 1, colGrid);
 					}
 				}
 			}
 			row++;
 			fallingTimer.restart();
-			tetrominoFactory.stopTimer();
+			//tetrominoFactory.stopTimer();
 
 		// If the Tetromino cannot move down.
 		// Stops the Tetromino natural down movement.
 		} else {
 			
 			fallingTimer.stop();
-			tetrominoFactory.stopTimer();
+			//tetrominoFactory.stopTimer();
 
-			for (int rowGrid = 0; rowGrid < gameGrid.getRowCount(); rowGrid++) {
-				for (int colGrid = 0; colGrid < gameGrid.getColumnCount(); colGrid++) {
-					if (gameGrid.getValueAt(rowGrid, colGrid) == tetrominoShape) {
-						gameGrid.setValueAt(tetrominoShapeDuo[1], rowGrid, colGrid);
+			for (int rowGrid = 0; rowGrid < TetrisGame.getGameInstance().getFrame().getGameGrid().getRowCount(); rowGrid++) {
+				for (int colGrid = 0; colGrid < TetrisGame.getGameInstance().getFrame().getGameGrid().getColumnCount(); colGrid++) {
+					if (TetrisGame.getGameInstance().getFrame().getGameGrid().getValueAt(rowGrid, colGrid) == tetrominoShape) {
+						TetrisGame.getGameInstance().getFrame().getGameGrid().setValueAt(tetrominoShapeDuo[1], rowGrid, colGrid);
 					}
 				}
 			}
-			tetrominoFactory.restartTimer();
+			//tetrominoFactory.restartTimer();
 		}
 	}
 
@@ -201,11 +196,11 @@ public class Tetromino {
 			
 			fallingTimer.stop();
 
-			for (int rowGrid = 0; rowGrid < gameGrid.getRowCount(); rowGrid++) {
-				for (int colGrid = 0; colGrid < gameGrid.getColumnCount(); colGrid++) {
-					if (gameGrid.getValueAt(rowGrid, colGrid) == tetrominoShape) {
-						gameGrid.setValueAt(null, rowGrid, colGrid);
-						gameGrid.setValueAt(tetrominoShape, rowGrid, colGrid - 1);
+			for (int rowGrid = 0; rowGrid < TetrisGame.getGameInstance().getFrame().getGameGrid().getRowCount(); rowGrid++) {
+				for (int colGrid = 0; colGrid < TetrisGame.getGameInstance().getFrame().getGameGrid().getColumnCount(); colGrid++) {
+					if (TetrisGame.getGameInstance().getFrame().getGameGrid().getValueAt(rowGrid, colGrid) == tetrominoShape) {
+						TetrisGame.getGameInstance().getFrame().getGameGrid().setValueAt(null, rowGrid, colGrid);
+						TetrisGame.getGameInstance().getFrame().getGameGrid().setValueAt(tetrominoShape, rowGrid, colGrid - 1);
 					}
 				}
 			}
@@ -227,11 +222,11 @@ public class Tetromino {
 			
 			fallingTimer.stop();
 			
-			for (int rowGrid = 0; rowGrid < gameGrid.getRowCount(); rowGrid++) {
-				for (int colGrid = gameGrid.getColumnCount() - 1; colGrid >= 0; colGrid--) {
-					if (gameGrid.getValueAt(rowGrid, colGrid) == tetrominoShape) {
-						gameGrid.setValueAt(null, rowGrid, colGrid);
-						gameGrid.setValueAt(tetrominoShape, rowGrid, colGrid + 1);
+			for (int rowGrid = 0; rowGrid < TetrisGame.getGameInstance().getFrame().getGameGrid().getRowCount(); rowGrid++) {
+				for (int colGrid = TetrisGame.getGameInstance().getFrame().getGameGrid().getColumnCount() - 1; colGrid >= 0; colGrid--) {
+					if (TetrisGame.getGameInstance().getFrame().getGameGrid().getValueAt(rowGrid, colGrid) == tetrominoShape) {
+						TetrisGame.getGameInstance().getFrame().getGameGrid().setValueAt(null, rowGrid, colGrid);
+						TetrisGame.getGameInstance().getFrame().getGameGrid().setValueAt(tetrominoShape, rowGrid, colGrid + 1);
 					}
 				}
 			}
@@ -249,17 +244,17 @@ public class Tetromino {
 		
 		// If the Tetromino can rotate.
 		// Pauses the Tetromino natural down movement and rotate it.
-		if (col >= 0 && col + 3 <= gameGrid.getColumnCount() - 1) {
+		if (col >= 0 && col + 3 <= TetrisGame.getGameInstance().getFrame().getGameGrid().getColumnCount() - 1) {
 			
 			fallingTimer.stop();
 			
 			matrix = rotateMatrix(matrix);
 			
 			// Remove the Tetromino from the grid.
-			for (int rowGrid = 0; rowGrid < gameGrid.getRowCount(); rowGrid++) {
-				for (int colGrid = 0; colGrid < gameGrid.getColumnCount(); colGrid++) {
-					if (gameGrid.getValueAt(rowGrid, colGrid) == tetrominoShape) {
-						gameGrid.setValueAt(null, rowGrid, colGrid);
+			for (int rowGrid = 0; rowGrid < TetrisGame.getGameInstance().getFrame().getGameGrid().getRowCount(); rowGrid++) {
+				for (int colGrid = 0; colGrid < TetrisGame.getGameInstance().getFrame().getGameGrid().getColumnCount(); colGrid++) {
+					if (TetrisGame.getGameInstance().getFrame().getGameGrid().getValueAt(rowGrid, colGrid) == tetrominoShape) {
+						TetrisGame.getGameInstance().getFrame().getGameGrid().setValueAt(null, rowGrid, colGrid);
 					}
 				}
 			}
@@ -268,7 +263,7 @@ public class Tetromino {
 			for (int rowMatrix = 0; rowMatrix < matrix.length; rowMatrix++) {
 				for (int colMatrix = 0; colMatrix < matrix[0].length; colMatrix++) {
 					if (matrix[rowMatrix][colMatrix] == 1) {
-						gameGrid.setValueAt(tetrominoShape, row + rowMatrix, col + colMatrix);
+						TetrisGame.getGameInstance().getFrame().getGameGrid().setValueAt(tetrominoShape, row + rowMatrix, col + colMatrix);
 					}
 				}
 			}
@@ -294,15 +289,15 @@ public class Tetromino {
 	 */
 	public boolean canMoveDown() {
 
-		overloop: for (int rowGrid = 0; rowGrid < gameGrid.getRowCount(); rowGrid++) {
-			for (int colGrid = 0; colGrid < gameGrid.getColumnCount(); colGrid++) {
-				Object valueCurrentCell = gameGrid.getValueAt(rowGrid, colGrid);
+		overloop: for (int rowGrid = 0; rowGrid < TetrisGame.getGameInstance().getFrame().getGameGrid().getRowCount(); rowGrid++) {
+			for (int colGrid = 0; colGrid < TetrisGame.getGameInstance().getFrame().getGameGrid().getColumnCount(); colGrid++) {
+				Object valueCurrentCell = TetrisGame.getGameInstance().getFrame().getGameGrid().getValueAt(rowGrid, colGrid);
 				if (valueCurrentCell == tetrominoShape) {
-					if (rowGrid == gameGrid.getRowCount() - 1) {
+					if (rowGrid == TetrisGame.getGameInstance().getFrame().getGameGrid().getRowCount() - 1) {
 						canMoveDown = false;
 						break overloop;
 					} else {
-						Object valueBelowCell = gameGrid.getValueAt(rowGrid + 1, colGrid);
+						Object valueBelowCell = TetrisGame.getGameInstance().getFrame().getGameGrid().getValueAt(rowGrid + 1, colGrid);
 						if (valueBelowCell != null && valueBelowCell != tetrominoShape) {
 							canMoveDown = false;
 							break overloop;
@@ -320,15 +315,15 @@ public class Tetromino {
 	 * @return canMoveLeft
 	 */
 	public boolean canMoveLeft() {
-		overloop: for (int rowGrid = 0; rowGrid < gameGrid.getRowCount(); rowGrid++) {
-			for (int colGrid = 0; colGrid < gameGrid.getColumnCount(); colGrid++) {
-				Object valueCurrentCell = gameGrid.getValueAt(rowGrid, colGrid);
+		overloop: for (int rowGrid = 0; rowGrid < TetrisGame.getGameInstance().getFrame().getGameGrid().getRowCount(); rowGrid++) {
+			for (int colGrid = 0; colGrid < TetrisGame.getGameInstance().getFrame().getGameGrid().getColumnCount(); colGrid++) {
+				Object valueCurrentCell = TetrisGame.getGameInstance().getFrame().getGameGrid().getValueAt(rowGrid, colGrid);
 				if (valueCurrentCell == tetrominoShape) {
 					if (colGrid == 0) {
 						canMoveLeft = false;
 						break overloop;
 					} else {
-						Object valueLeftCell = gameGrid.getValueAt(rowGrid, colGrid - 1);
+						Object valueLeftCell = TetrisGame.getGameInstance().getFrame().getGameGrid().getValueAt(rowGrid, colGrid - 1);
 						if (valueLeftCell != null && valueLeftCell != tetrominoShape) {
 							canMoveLeft = false;
 							break overloop;
@@ -346,15 +341,15 @@ public class Tetromino {
 	 * @return canMoveRight
 	 */
 	public boolean canMoveRight() {
-		overloop: for (int rowGrid = 0; rowGrid < gameGrid.getRowCount(); rowGrid++) {
-			for (int colGrid = 0; colGrid < gameGrid.getColumnCount(); colGrid++) {
-				Object valueCurrentCell = gameGrid.getValueAt(rowGrid, colGrid);
+		overloop: for (int rowGrid = 0; rowGrid < TetrisGame.getGameInstance().getFrame().getGameGrid().getRowCount(); rowGrid++) {
+			for (int colGrid = 0; colGrid < TetrisGame.getGameInstance().getFrame().getGameGrid().getColumnCount(); colGrid++) {
+				Object valueCurrentCell = TetrisGame.getGameInstance().getFrame().getGameGrid().getValueAt(rowGrid, colGrid);
 				if (valueCurrentCell == tetrominoShape) {
-					if (colGrid == gameGrid.getColumnCount() - 1) {
+					if (colGrid == TetrisGame.getGameInstance().getFrame().getGameGrid().getColumnCount() - 1) {
 						canMoveRight = false;
 						break overloop;
 					} else {
-						Object valueLeftCell = gameGrid.getValueAt(rowGrid, colGrid + 1);
+						Object valueLeftCell = TetrisGame.getGameInstance().getFrame().getGameGrid().getValueAt(rowGrid, colGrid + 1);
 						if (valueLeftCell != null && valueLeftCell != tetrominoShape) {
 							canMoveRight = false;
 							break overloop;

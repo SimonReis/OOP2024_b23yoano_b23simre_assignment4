@@ -1,7 +1,5 @@
 package tetris;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -14,7 +12,7 @@ import tetrominoes.Tetromino;
  * This class represents the process that makes new Tetrominos.
  */
 public class TetrominoFactory {
-
+	
 	/**
 	 * The next Tetromino that is displayed in the right side panel.
 	 */
@@ -39,7 +37,7 @@ public class TetrominoFactory {
 	 * This constructor stores the next Tetromino.
 	 */
 	public TetrominoFactory() {
-		storedTetromino = new Tetromino();
+		storedTetromino = new Tetromino();   
 		factoryListener = new FactoryListener(this);
 	}
 
@@ -98,14 +96,14 @@ public class TetrominoFactory {
 	 * This method stops the TetrominoFactory timer.
 	 */
 	public void stopTimer() {
-		tetrominoFactoryTimer.stop();
+		//tetrominoFactoryTimer.stop();
 	}
 	
 	/**
 	 * This method restarts the TetrominoFactory timer.
 	 */
 	public void restartTimer() {
-		tetrominoFactoryTimer.restart();;
+		//tetrominoFactoryTimer.restart();;
 	}
 
 	/**
