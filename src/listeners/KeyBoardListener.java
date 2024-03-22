@@ -7,7 +7,7 @@ import javax.swing.Timer;
 
 import tetris.TetrominoFactory;
 
-public class GameFrameListener implements KeyListener {
+public class KeyBoardListener implements KeyListener {
 
     boolean processingKey = false;
     Timer timer;
