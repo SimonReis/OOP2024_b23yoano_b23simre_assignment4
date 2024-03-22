@@ -17,13 +17,10 @@ public class KeyBoardListener implements KeyListener {
     	
         int keyCode = e.getKeyCode();
         
-        if (!processingKey && !TetrominoFactory.isPerformingAction()) {
+        if (!processingKey) {
             processingKey = true;
-            
-            // Stops the TetrominoFactory timer, processes the action and restarts the timer.
-            TetrominoFactory.stopTimer();
+           
             handleKeyAction(keyCode);
-            TetrominoFactory.restartTimer();
             
             // Add a delay of X milliseconds before being able to process the action again.
             // Prevents bugs that happen when a key is pressed continuously.
