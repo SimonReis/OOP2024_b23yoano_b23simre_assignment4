@@ -42,12 +42,12 @@ public class MainFrame extends JFrame {
 	/**
 	 * The game grid is the grid where the game takes part.
 	 */
-	private Grid gameGrid;
+	private GameGrid gameGrid;
 
 	/**
 	 * The next grid is the grid where the next tetromino is stored.
 	 */
-	private Grid nextGrid;
+	private NextGrid nextGrid;
 
 	/**
 	 * The constructor creates the Frame for the game.
@@ -59,8 +59,8 @@ public class MainFrame extends JFrame {
 		initFrame();
 		initMenuPanel();
 		// Create the game grid and the next grid
-		gameGrid = new Grid(20, 10);
-		nextGrid = new Grid(4, 4);
+		gameGrid = new GameGrid();
+		nextGrid = new NextGrid();
 		// Add Listener to the frame
 		this.addKeyListener(new KeyBoardListener());
 	}
@@ -119,8 +119,8 @@ public class MainFrame extends JFrame {
 	public void setGameView() {
 		this.remove(menuPanel);
 		// Set new grids
-		gameGrid = new Grid(20, 10);
-		nextGrid = new Grid(4, 4);
+		gameGrid = new GameGrid();
+		nextGrid = new NextGrid();
 		initGamePanel(gameGrid, nextGrid);
 	}
 
@@ -162,14 +162,14 @@ public class MainFrame extends JFrame {
 	 * 
 	 * @return Game grid
 	 */
-	public Grid getGameGrid() {
+	public GameGrid getGameGrid() {
 		return gameGrid;
 	}
 
 	/**
 	 * This method sets the game grid.
 	 */
-	public void setGameGrid(Grid grid) {
+	public void setGameGrid(GameGrid grid) {
 		gameGrid = grid;
 	}
 
@@ -178,14 +178,14 @@ public class MainFrame extends JFrame {
 	 * 
 	 * @return Next grid
 	 */
-	public Grid getNextGrid() {
+	public NextGrid getNextGrid() {
 		return nextGrid;
 	}
 
 	/**
 	 * This method sets the game grid.
 	 */
-	public void setNextGrid(Grid grid) {
+	public void setNextGrid(NextGrid grid) {
 		nextGrid = grid;
 	}
 
