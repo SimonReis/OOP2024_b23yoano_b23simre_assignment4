@@ -71,6 +71,15 @@ public class TetrisGame {
 	public MainFrame getFrame() {
 		return frame;
 	}
+	
+	/**
+	 * This method returns the tetromino factory.
+	 * 
+	 * @return Tetromino factory
+	 */
+	public TetrominoFactory getFactory() {
+		return tetrominoFactory;
+	}
 
 	/**
 	 * This method returns the high score of the game.

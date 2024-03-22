@@ -93,27 +93,18 @@ public class TetrominoFactory {
 	public static Tetromino getCurrentTetromino() {
 		return currentTetromino;
 	}
-	
-	/**
-	 * This method returns the current Tetromino.
-	 * 
-	 * @return currentTetromino
-	 */
-	public static boolean isPerformingAction() {
-		return isPerformingAction;
-	}
-	
+
 	/**
 	 * This method stops the TetrominoFactory timer.
 	 */
-	public static void stopTimer() {
+	public void stopTimer() {
 		tetrominoFactoryTimer.stop();
 	}
 	
 	/**
 	 * This method restarts the TetrominoFactory timer.
 	 */
-	public static void restartTimer() {
+	public void restartTimer() {
 		tetrominoFactoryTimer.restart();;
 	}
 

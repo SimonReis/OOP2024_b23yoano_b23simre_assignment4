@@ -5,7 +5,7 @@ import java.util.Random;
 import javax.swing.Timer;
 
 import listeners.TetrominoListener;
-import tetris.GameRules;
+import tetris.Grid;
 import tetris.TetrisGame;
 import tetris.TetrominoFactory;
 
@@ -15,9 +15,14 @@ import tetris.TetrominoFactory;
 public class Tetromino {
 
 	/**
-	 * This is the game grid
+	 * This is the game grid.
 	 */
 	private Grid gameGrid;
+	
+	/**
+	 * This is the tetromino factory.
+	 */
+	private TetrominoFactory tetrominoFactory;
 
 	/**
 	 * Tetromino coordinates in the game grid.
@@ -69,6 +74,7 @@ public class Tetromino {
 	public Tetromino() {
 		
 		gameGrid = TetrisGame.getGameInstance().getFrame().getGameGrid();
+		tetrominoFactory = TetrisGame.getGameInstance().getFactory();
 		
 		canMoveDown = true;
 		canMoveLeft = true;
@@ -91,6 +97,7 @@ public class Tetromino {
 				}
 			}
 		}
+	}
 
 	/**
 	 * This method spawn an moves a tetromino.
@@ -151,7 +158,7 @@ public class Tetromino {
 		if (canMoveDown()) {
 			
 			fallingTimer.stop();
-			TetrominoFactory.stopTimer();
+			tetrominoFactory.stopTimer();
 
 			for (int rowGrid = gameGrid.getRowCount() - 1; rowGrid >= 0; rowGrid--) {
 				for (int colGrid = 0; colGrid < gameGrid.getColumnCount(); colGrid++) {
@@ -163,14 +170,14 @@ public class Tetromino {
 			}
 			row++;
 			fallingTimer.restart();
-			TetrominoFactory.stopTimer();
+			tetrominoFactory.stopTimer();
 
 		// If the Tetromino cannot move down.
 		// Stops the Tetromino natural down movement.
 		} else {
 			
 			fallingTimer.stop();
-			TetrominoFactory.stopTimer();
+			tetrominoFactory.stopTimer();
 
 			for (int rowGrid = 0; rowGrid < gameGrid.getRowCount(); rowGrid++) {
 				for (int colGrid = 0; colGrid < gameGrid.getColumnCount(); colGrid++) {
@@ -179,7 +186,7 @@ public class Tetromino {
 					}
 				}
 			}
-			TetrominoFactory.restartTimer();
+			tetrominoFactory.restartTimer();
 		}
 	}
 
@@ -278,6 +285,7 @@ public class Tetromino {
 		for (int i = 0; i < 20; i++) {
 			moveDown();
 		}
+	}
 
 	/**
 	 * This method returns canMoveDown value.
@@ -397,15 +405,6 @@ public class Tetromino {
 	 */
 	public Shapes getShape() {
 		return tetrominoShape;
-	}
-
-	/**
-	 * This method returns if the teromino is placed final on the game grid. Then the tetromino is not movable anymore.
-	 * 
-	 * @return true, if the tetromino is placed in the game grid
-	 */
-	public boolean getPlaced() {
-		return placed;
 	}
 
 }
