@@ -131,12 +131,13 @@ public class TetrisGame {
 		tetrominoFactory.clearTetromino();
 	}
 	
+	/**
+	 * This method starts a new game, if a game has already been played.
+	 */
 	public void newGame() {
+		// Start the production of tetrominoes
 		tetrominoFactory.startProduction();
+		// Start the game
 		startGame();
-	}
-	
-	public TetrominoFactory getFactory() {
-		return tetrominoFactory;
 	}
 }
