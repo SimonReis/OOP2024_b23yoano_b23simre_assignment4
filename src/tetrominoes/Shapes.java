@@ -3,7 +3,7 @@ package tetrominoes;
 import java.awt.Color;
 
 /**
- * This enum defines the different shapes and its color.
+ * This enum defines the different shapes, its color and its mobility.
  */
 public enum Shapes {
 	
@@ -63,7 +63,7 @@ public enum Shapes {
 		{0, 0, 0, 0}
 		}, true),
 	
-	// I shape in cyan
+	// Ix shape in cyan and not movable
 	Ix(Color.cyan, new int[][]{
 		{0, 0, 0, 0}, 
 		{0, 0, 0, 0}, 
@@ -71,7 +71,7 @@ public enum Shapes {
 		{0, 0, 0, 0}
 		}, false),
 	
-	// J shape in blue
+	// Jx shape in blue and not movable
 	Jx(Color.blue, new int[][]{
 		{0, 0, 1, 0}, 
 		{0, 0, 1, 0}, 
@@ -79,7 +79,7 @@ public enum Shapes {
 		{0, 0, 0, 0}
 		}, false),
 	
-	// L shape in orange
+	// Lx shape in orange and not movable
 	Lx(Color.orange, new int[][]{
 		{0, 1, 0, 0}, 
 		{0, 1, 0, 0}, 
@@ -87,7 +87,7 @@ public enum Shapes {
 		{0, 0, 0, 0}
 		}, false),
 	
-	// O shape in yellow
+	// Ox shape in yellow and not movable
 	Ox(Color.yellow, new int[][]{
 		{0, 0, 0, 0}, 
 		{0, 1, 1, 0}, 
@@ -95,7 +95,7 @@ public enum Shapes {
 		{0, 0, 0, 0}
 		}, false),
 		
-	// S shape in green
+	// Sx shape in green and not movable
 	Sx(Color.green, new int[][]{
 		{0, 0, 0, 0}, 
 		{0, 1, 1, 0}, 
@@ -103,7 +103,7 @@ public enum Shapes {
 		{0, 0, 0, 0}
 		}, false),
 	
-	// T shape in pink
+	// Tx shape in pink and not movable
 	Tx(Color.pink, new int[][]{
 		{0, 0, 0, 0}, 
 		{1, 1, 1, 0}, 
@@ -111,7 +111,7 @@ public enum Shapes {
 		{0, 0, 0, 0}
 		}, false),
 
-	// Z shape in red
+	// Zx shape in red and not movable
 	Zx(Color.red, new int[][]{
 		{0, 0, 0, 0}, 
 		{1, 1, 0, 0}, 
@@ -129,8 +129,9 @@ public enum Shapes {
 	/**
 	 * This constructor gives each Tetromino shape its color and matrix.
 	 * 
-	 * @param color  Color of the Tetromino
+	 * @param color Color of the Tetromino
 	 * @param matrix 4x4 Matrix where the Tetromino is stored
+	 * @param movable Mobility state of the Tetromino
 	 */
 	private Shapes(Color color, int[][] matrix, boolean movable) {
 		this.color = color;
@@ -157,20 +158,18 @@ public enum Shapes {
 	}
 	
 	/**
-	 * This method returns the matrix of the Tetromino shape.
+	 * This method returns the mobility state of the shape.
 	 * 
-	 * @return 4x4 Matrix where the shape is stored
+	 * @return movable which tells if the shape can be move.
 	 */
 	public boolean isMovable() {
 		return movable;
 	}
-	
-	
 
 	/**
-	 * This method returns all shapes in an array;
+	 * This method returns all shape duos in an array.
 	 * 
-	 * @return All shapes stored in an array
+	 * @return All shape duos stored in an array.
 	 */
 	public static Shapes[][] getAllShapeDuos() {
 		return new Shapes[][] { {I, Ix}, {J, Jx}, {L, Lx}, {O, Ox}, {S, Sx}, {T, Tx}, {Z, Zx} };

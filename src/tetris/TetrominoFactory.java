@@ -2,6 +2,9 @@ package tetris;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 import javax.swing.Timer;
 
 import tetrominoes.Tetromino;
@@ -27,6 +30,11 @@ public class TetrominoFactory {
 	private static Timer tetrominoFactoryTimer;
 	
 	/**
+	 * 
+	 */
+	private static boolean isPerformingAction = false;
+	
+	/**
 	 * This constructor stores the next Tetromino.
 	 */
 	public TetrominoFactory() {
@@ -47,59 +55,56 @@ public class TetrominoFactory {
 				// Checks if there is no current Tetromino (production starting case)
 				// and checks if this Tetromino can't move down.
 				if (currentTetromino == null || !currentTetromino.canMoveDown()) {
-
-					// Puts the stored Tetromino in the current one.
+					
+					isPerformingAction = true;
+					
 					currentTetromino = storedTetromino;
-
-					// Stores a new Tetromino.
 					storedTetromino = new Tetromino();
-					// Place the stored tetromino in the next grid
+					
+					// Place the stored Tetromino in the next grid.
 					TetrisGame.getFrame().getInfoRight().setNextTetromino(storedTetromino);
 					TetrisGame.getFrame().pack();
 
-					// Destroys full lines
 					clearLines();
-
-					// Spawns the current Tetromino.
+					
+					DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");  
+					System.out.println("A " + currentTetromino.getShape() + "-Tetromino will spawn (" + dtf.format(LocalDateTime.now()) + ")");
 					currentTetromino.spawnTetromino();
-					System.out.println("Spawn");
+
 				}
+				
+				isPerformingAction = false;
 			}
 		};
 
-		// Sets and starts the timer for repeated action (not below 200 or the canMoveDown() will not work well).
+		// Sets and starts the timer for repeated action (>200 or canMoveDown() might bug).
 		tetrominoFactoryTimer = new Timer(500, actionListener);
 		tetrominoFactoryTimer.start();
 
 	}
 
 	/**
-	 * This method clears the lines full of Tetrominos cells.
+	 * This method clears the full lines.
 	 */
 	public void clearLines() {
 		
-		// Gets the game grid.
 		Grid gameGrid = TetrisGame.getGameGrid();
 		
-		// Gets the number of rows and columns of the game grid.
 		int numRows = gameGrid.getRowCount();
 		int numCols = gameGrid.getColumnCount();
 		
 		// Variable to tell if the line is full.
 		boolean isLineFull;
-		
-		// For each row in the game grid.
+
 		for (int row = numRows - 1; row >= 0; row--) {
 			
 			// Sets the full line checker to true.
 			// The value will remain true if no null is found in the row.
 			isLineFull = true;
 			
-			// For each column on this row
 			for (int col = 0; col < numCols; col++) {
-				
-				// Checks if the value at the intersection of this row and column is null.
-				// Pass the full line checker to false and exits the for loop when it is the case.
+
+				// Pass isLineFull to false and exits the for loop is a null is found.
 				Object value = gameGrid.getValueAt(row, col);
 				if (value == null) {
 					isLineFull = false;
@@ -143,13 +148,27 @@ public class TetrominoFactory {
 		return currentTetromino;
 	}
 	
+	/**
+	 * This method returns the current Tetromino.
+	 * 
+	 * @return currentTetromino
+	 */
+	public static boolean isPerformingAction() {
+		return isPerformingAction;
+	}
+	
+	/**
+	 * This method stops the TetrominoFactory timer.
+	 */
 	public static void stopTimer() {
 		tetrominoFactoryTimer.stop();
 	}
 	
+	/**
+	 * This method restarts the TetrominoFactory timer.
+	 */
 	public static void restartTimer() {
 		tetrominoFactoryTimer.restart();;
 	}
-
 
 }

@@ -17,15 +17,20 @@ public class GameFrameListener implements KeyListener {
     	
         int keyCode = e.getKeyCode();
         
-        if (!processingKey) {
+        if (!processingKey && !TetrominoFactory.isPerformingAction()) {
             processingKey = true;
+            
+            // Stops the TetrominoFactory timer, processes the action and restarts the timer.
             TetrominoFactory.stopTimer();
-            handleKeyAction(keyCode);  // Handle the key action immediately
+            handleKeyAction(keyCode);
             TetrominoFactory.restartTimer();
-            timer = new Timer(100, (e1) -> {  // Delay 500 milliseconds
+            
+            // Add a delay of X milliseconds before being able to process the action again.
+            // Prevents bugs that happen when a key is pressed continuously.
+            timer = new Timer(100, (e1) -> {
                 processingKey = false;
             });
-            timer.setRepeats(false);  // Run only once
+            timer.setRepeats(false);
             timer.start();
         }
     }
@@ -34,24 +39,16 @@ public class GameFrameListener implements KeyListener {
         switch (keyCode) {
             case KeyEvent.VK_UP:
                 TetrominoFactory.getCurrentTetromino().rotate();
-                System.out.println("up");
                 break;
             case KeyEvent.VK_DOWN:
-            	if (TetrominoFactory.getCurrentTetromino().canMoveDown()) {
             		TetrominoFactory.getCurrentTetromino().moveDown();
-            		System.out.println("down");
-            	}
                 break;
             case KeyEvent.VK_LEFT:
-                TetrominoFactory.getCurrentTetromino().moveLeft();
-                System.out.println("left");
+            		TetrominoFactory.getCurrentTetromino().moveLeft();
                 break;
             case KeyEvent.VK_RIGHT:
-                TetrominoFactory.getCurrentTetromino().moveRight();
-                System.out.println("right");
+            		TetrominoFactory.getCurrentTetromino().moveRight();
                 break;
-            default:
-                System.out.println("other");
         }
     }
 
