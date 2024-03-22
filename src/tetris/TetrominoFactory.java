@@ -33,7 +33,7 @@ public class TetrominoFactory {
 	/**
 	 * This is the factory listener
 	 */
-	FactoryListener factoryListener;
+	private static FactoryListener factoryListener;
 
 	/**
 	 * This constructor stores the next Tetromino.

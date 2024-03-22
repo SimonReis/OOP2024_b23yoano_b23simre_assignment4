@@ -58,11 +58,18 @@ public class Grid extends JTable {
 		this.setDefaultRenderer(Object.class, new GridRenderer());
 		
 		
-		//This is necessary to not loose the focus of the key board listener
+		/**
+		 * This sets the focus back to the frame if the focus is Lost. This could
+		 * happen e.g. by clicking on the game grid, even if the functions to edit a
+		 * cell are deactivated.
+		 */
 		this.addMouseListener(new MouseAdapter() {
+			/**
+			 * This method request the focus to the main frame.
+			 */
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				TetrisGame.getGameInstance().getFrame().requestFocusInWindow();// Do nothing
+				TetrisGame.getGameInstance().getFrame().requestFocusInWindow();
 			}
 		});
 	}
