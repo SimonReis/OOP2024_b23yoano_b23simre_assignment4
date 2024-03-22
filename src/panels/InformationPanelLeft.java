@@ -1,6 +1,7 @@
 package panels;
 
 import java.awt.Font;
+
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
@@ -10,7 +11,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import listeners.PauseButtonListener;
-import tetris.MainFrame;
+import tetris.TetrisGame;
 
 /**
  * This class represent the left information panel with the logo and the pause
@@ -39,13 +40,13 @@ public class InformationPanelLeft extends JPanel {
 		initLogo();
 		initButton();
 	}
-
+	
 	/**
 	 * This method sets the layout and background color for the panel.
 	 */
 	private void initPanel() {
 		this.setLayout(new GridLayout(2, 1));
-		this.setBackground(MainFrame.getBackgroundColor());
+		this.setBackground(TetrisGame.getGameInstance().getFrame().getBackgroundColor());
 	}
 
 	/**
@@ -71,7 +72,7 @@ public class InformationPanelLeft extends JPanel {
 	private void initButton() {
 
 		buttonPanel = new JPanel();
-		buttonPanel.setBackground(MainFrame.getBackgroundColor());
+		buttonPanel.setBackground(TetrisGame.getGameInstance().getFrame().getBackgroundColor());
 		buttonPanel.setLayout(new GridBagLayout());
 		pauseButton = new JButton("Pause Game");
 		pauseButton.addActionListener(new PauseButtonListener(this));

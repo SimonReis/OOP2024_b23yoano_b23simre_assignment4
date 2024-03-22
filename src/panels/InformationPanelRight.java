@@ -72,7 +72,7 @@ public class InformationPanelRight extends JPanel {
 	 */
 	private void initPanel() {
 		this.setLayout(new GridLayout(2, 2));
-		this.setBackground(MainFrame.getBackgroundColor());
+		this.setBackground(TetrisGame.getGameInstance().getFrame().getBackgroundColor());
 		font = new Font("Arial", Font.BOLD, 20);
 	}
 
@@ -88,7 +88,7 @@ public class InformationPanelRight extends JPanel {
 		// Set panel layout
 		JPanel panel = new JPanel();
 		panel.setLayout(new GridLayout(2, 1));
-		panel.setBackground(MainFrame.getBackgroundColor());
+		panel.setBackground(TetrisGame.getGameInstance().getFrame().getBackgroundColor());
 
 		// Create text label
 		JLabel labelText = new JLabel(text + ":");
@@ -123,7 +123,7 @@ public class InformationPanelRight extends JPanel {
 		// Set panel layout
 		JPanel panel = new JPanel();
 		panel.setLayout(new GridLayout(2, 1));
-		panel.setBackground(MainFrame.getBackgroundColor());
+		panel.setBackground(TetrisGame.getGameInstance().getFrame().getBackgroundColor());
 
 		// Create text label
 		JLabel labelText = new JLabel(text + ":");
@@ -135,7 +135,7 @@ public class InformationPanelRight extends JPanel {
 
 		// Create grid
 		JPanel nextPanel = new JPanel();
-		nextPanel.setBackground(MainFrame.getBackgroundColor());
+		nextPanel.setBackground(TetrisGame.getGameInstance().getFrame().getBackgroundColor());
 		nextPanel.add(grid);
 		panel.add(nextPanel);
 
@@ -218,9 +218,7 @@ public class InformationPanelRight extends JPanel {
 		
 		// Clear next grid at first.
 		nextGrid.clearGrid();
-		//GameRules.clearGrid(nextGrid);
-
-		
+	
 		// Matrix of the tetromino
 		int[][] matrix = tetromino.getShape().getMatrix();
 		
