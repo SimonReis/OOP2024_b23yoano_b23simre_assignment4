@@ -43,7 +43,7 @@ public class TetrominoFactory {
 	 */
 	public TetrominoFactory(TetrisGame game) {
 		this.game = game;
-		storedTetromino = new Tetromino();   
+		storedTetromino = new Tetromino(game);   
 		factoryListener = new FactoryListener(this);
 	}
 
@@ -129,7 +129,7 @@ public class TetrominoFactory {
 			// Puts the stored Tetromino in the current one.
 			currentTetromino = storedTetromino;
 			// Stores a new Tetromino.
-			storedTetromino = new Tetromino();
+			storedTetromino = new Tetromino(game);
 
 			// Place the stored tetromino in the next grid
 			game.getFrame().getInfoRight().setNextTetromino(storedTetromino);
