@@ -23,6 +23,11 @@ import tetris.TetrisGame;
 public class MenuPanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
+	
+	/**
+	 * This is the tetris game.
+	 */
+	private TetrisGame game;
 
 	/**
 	 * Buttons for starting a new game or quit the game.
@@ -47,9 +52,10 @@ public class MenuPanel extends JPanel {
 	/**
 	 * This class represents the menu panel.
 	 */
-	public MenuPanel() {
-		this.highScore = TetrisGame.getGameInstance().getHighScore();
-		this.color = MainFrame.getBackgroundColor();
+	public MenuPanel(TetrisGame game) {
+		this.game = game;
+		this.highScore = this.game.getHighScore();
+		this.color = this.game.getFrame().getBackgroundColor();
 		initPanel();
 		intitUpperPanel();
 		intitLowerPanel();
@@ -118,12 +124,12 @@ public class MenuPanel extends JPanel {
 
 		// Create new game button
 		newGameButton = new JButton("New Game");
-		newGameButton.addActionListener(new MenuButtonListener(this));
+		newGameButton.addActionListener(new MenuButtonListener(game, this));
 		buttonPanel.add(newGameButton);
 
 		// Create quit game button
 		quitGameButton = new JButton("Quit Game");
-		quitGameButton.addActionListener(new MenuButtonListener(this));
+		quitGameButton.addActionListener(new MenuButtonListener(game, this));
 		buttonPanel.add(quitGameButton);
 
 		upperPanel.add(buttonPanel);
@@ -157,6 +163,6 @@ public class MenuPanel extends JPanel {
 	public void setNewHighScore(int number) {
 		highScore = number;
 		highScoreLabel.setText("Highscore: " + highScore);
-		TetrisGame.getGameInstance().getFrame().pack();
+		game.getFrame().pack();
 	}
 }

@@ -12,6 +12,11 @@ import tetris.TetrisGame;
 public class MenuButtonListener implements ActionListener {
 
 	/**
+	 * This is the tetris game.
+	 */
+	private TetrisGame game;
+	
+	/**
 	 * Menu panel, where the buttons are placed.
 	 */
 	private MenuPanel menuPanel;
@@ -21,7 +26,8 @@ public class MenuButtonListener implements ActionListener {
 	 * 
 	 * @param menuPanel Panel, where the buttons are placed.
 	 */
-	public MenuButtonListener(MenuPanel menuPanel) {
+	public MenuButtonListener(TetrisGame game, MenuPanel menuPanel) {
+		this.game = game;
 		this.menuPanel = menuPanel;
 	}
 
@@ -32,7 +38,7 @@ public class MenuButtonListener implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (menuPanel.getNewGameButton() == e.getSource()) {	
-			TetrisGame.getGameInstance().startGame();
+			game.startGame();
 		} else if (menuPanel.getQuitGameButton() == e.getSource()) {
 			System.exit(0);
 		}

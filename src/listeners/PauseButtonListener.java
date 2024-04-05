@@ -14,6 +14,15 @@ import tetris.TetrisGame;
  * This class implements the listener for the game view of the tetris game.
  */
 public class PauseButtonListener implements ActionListener {
+	
+	/**
+	 * This is the tetris game.
+	 */
+	private TetrisGame game;
+	
+	public PauseButtonListener(TetrisGame game) {
+		this.game = game;
+	}
 
 	/**
 	 * Information left panel, where the button is placed.
@@ -38,7 +47,7 @@ public class PauseButtonListener implements ActionListener {
 		if (infoLeft.getPauseButton() == e.getSource()) {
 
 			// Pause Game in the Background
-			TetrisGame.getGameInstance().pauseGame();
+			game.pauseGame();
 
 			// There are two options. The user can choose between resuming or ending the
 			// current game round
@@ -51,12 +60,12 @@ public class PauseButtonListener implements ActionListener {
 
 			// End game button is pressed
 			if (result == 1) {
-				TetrisGame.getGameInstance().endGame();
+				game.endGame();
 
 			// Resume game or close option pane is pressed
 			} else {
-				TetrisGame.getGameInstance().getFrame().requestFocus();
-				TetrisGame.getGameInstance().resumeGame();
+				game.getFrame().requestFocus();
+				game.resumeGame();
 			}
 
 		}

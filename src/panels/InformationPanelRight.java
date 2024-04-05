@@ -20,6 +20,11 @@ import tetris.MainFrame;
 public class InformationPanelRight extends JPanel {
 
 	private static final long serialVersionUID = 1L;
+	
+	/**
+	 * This is the tetris game.
+	 */
+	private TetrisGame game;
 
 	/**
 	 * Similar properties of the labels of the right information panel.
@@ -51,11 +56,11 @@ public class InformationPanelRight extends JPanel {
 	 * 
 	 * @param color Background color
 	 */
-	public InformationPanelRight(Grid nextGrid) {
+	public InformationPanelRight(TetrisGame game, Grid nextGrid) {
+		this.game = game;
 		
-		
-		this.highScore = TetrisGame.getGameInstance().getHighScore();
-		this.color = MainFrame.getBackgroundColor();
+		this.highScore = this.game.getHighScore();
+		this.color = this.game.getFrame().getBackgroundColor();
 		this.nextGrid = nextGrid;
 		score = 0;
 		clearedLines = 0;
@@ -118,13 +123,10 @@ public class InformationPanelRight extends JPanel {
 		score = score + number;
 		setNumber(scoreLabelNumber, score);
 
-
-		
 		if (score >= highScore) {
 			setHighScore(score);
 		}
-
-		TetrisGame.getGameInstance().getFrame().pack();
+		game.getFrame().pack();
 	}
 	
 	/**
@@ -203,7 +205,7 @@ public class InformationPanelRight extends JPanel {
 		if (number >= 0) {
 			clearedLines = clearedLines + number;
 			setNumber(linesLabelNumber, clearedLines);
-			TetrisGame.getGameInstance().getFrame().pack();
+			game.getFrame().pack();
 		} else {
 			throw new IllegalArgumentException("Number of cleared lines cannot be negative.");
 		}

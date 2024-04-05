@@ -92,8 +92,8 @@ public class MainFrame extends JFrame {
 	private void initGamePanel(Grid gameGrid, Grid nextGrid) {
 
 		// Create the Information panels
-		JPanel leftPanel = new InformationPanelLeft();
-		rightPanel = new InformationPanelRight(nextGrid);
+		JPanel leftPanel = new InformationPanelLeft(game);
+		rightPanel = new InformationPanelRight(game, nextGrid);
 
 		// Create the game grid panel
 		JPanel gridPanel = new JPanel();
@@ -114,7 +114,7 @@ public class MainFrame extends JFrame {
 	 * This method initialize the panel with the menu view.
 	 */
 	private void initMenuPanel() {
-		menuPanel = new MenuPanel();
+		menuPanel = new MenuPanel(game);
 		this.add(menuPanel);
 	}
 
