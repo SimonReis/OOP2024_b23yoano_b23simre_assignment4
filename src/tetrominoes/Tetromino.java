@@ -12,6 +12,11 @@ import tetris.TetrominoFactory;
  * This class represents the shapes from the game Tetris.
  */
 public class Tetromino {
+	
+	/**
+	 * This is the tetris game.
+	 */
+	private TetrisGame game;
 
 	/**
 	 * This is the tetromino factory.
@@ -68,10 +73,12 @@ public class Tetromino {
 	/**
 	 * This constructor creates a random Tetromino.
 	 */
-	public Tetromino() {
+	public Tetromino(TetrisGame game) {
+		
+		this.game = game;
 
 		// gameGrid = TetrisGame.getGameInstance().getFrame().getGameGrid();
-		tetrominoFactory = TetrisGame.getGameInstance().getFactory();
+		tetrominoFactory = this.game.getFactory();
 
 		canMoveDown = true;
 		canMoveLeft = true;
@@ -141,7 +148,7 @@ public class Tetromino {
 								+ ", " + colMatrix + "); offsetTop = " + offsetTop);
 
 						// TODO FIX THE ROW INDEX OUT OF BOUNDARIES BUG
-						TetrisGame.getGameInstance().getFrame().getGameGrid().setValueAt(tetrominoShape,
+						game.getFrame().getGameGrid().setValueAt(tetrominoShape,
 								row + rowMatrix - offsetTop, col + colMatrix);
 					}
 				}
@@ -160,7 +167,7 @@ public class Tetromino {
 		for (int rowMatrix = 0; rowMatrix < matrix.length; rowMatrix++) {
 			for (int colMatrix = 0; colMatrix < matrix[0].length; colMatrix++) {
 				if (matrix[rowMatrix][colMatrix] == 1) {
-					if (TetrisGame.getGameInstance().getFrame().getGameGrid().getValueAt(row + rowMatrix - offsetTop,
+					if (game.getFrame().getGameGrid().getValueAt(row + rowMatrix - offsetTop,
 							col + colMatrix) != null) {
 						return false;
 					}

@@ -38,7 +38,7 @@ public class TetrisGame {
 	 */
 	public TetrisGame() {
 		highScore = 0;
-		tetrominoFactory = new TetrominoFactory();
+		tetrominoFactory = new TetrominoFactory(this);
 		frame = new MainFrame();
 		frame.setFocusable(true);
 		frame.setVisible(true);

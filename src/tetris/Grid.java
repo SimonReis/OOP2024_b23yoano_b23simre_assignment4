@@ -15,6 +15,11 @@ import javax.swing.table.TableColumn;
 public abstract class Grid extends JTable {
 
 	private static final long serialVersionUID = 1L;
+	
+	/**
+	 * This is the tetris game.
+	 */
+	private TetrisGame game;
 
 	/**
 	 * Number of rows and Columns of the Grid.
@@ -32,8 +37,8 @@ public abstract class Grid extends JTable {
 	 * @param numRows Number of rows
 	 * @param numCols Number of columns
 	 */
-	public Grid(int numRows, int numCols) {
-		
+	public Grid(TetrisGame game, int numRows, int numCols) {
+		this.game = game;
 		this.numRows = numRows;
 		this.numCols = numCols;
 
