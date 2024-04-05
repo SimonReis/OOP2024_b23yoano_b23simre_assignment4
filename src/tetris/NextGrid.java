@@ -10,8 +10,8 @@ public class NextGrid extends Grid {
 	/**
 	 * This constructor creates a next grid with the size 4x4.
 	 */
-	public NextGrid() {
-		super(4, 4);
+	public NextGrid(TetrisGame game) {
+		super(game, 4, 4);
 	}
 
 }

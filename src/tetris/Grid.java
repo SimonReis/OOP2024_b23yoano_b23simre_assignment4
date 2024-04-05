@@ -74,7 +74,7 @@ public abstract class Grid extends JTable {
 			 */
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				TetrisGame.getGameInstance().getFrame().requestFocus();
+				game.getFrame().requestFocus();
 			}
 		});
 	}
@@ -112,6 +112,10 @@ public abstract class Grid extends JTable {
 		
 	public void refreshGrid() {
 		model.fireTableDataChanged();
+	}
+	
+	public TetrisGame getGame() {
+		return game;
 	}
 	
 	

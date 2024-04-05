@@ -19,6 +19,11 @@ import panels.InformationPanelRight;
 public class MainFrame extends JFrame {
 
 	private static final long serialVersionUID = 1L;
+	
+	/**
+	 * This is the tetris game.
+	 */
+	private TetrisGame game;
 
 	/**
 	 * Possibility to change frame size
@@ -29,7 +34,7 @@ public class MainFrame extends JFrame {
 	/**
 	 * Possibility to change background color
 	 */
-	private static Color backgroundColor;
+	private Color backgroundColor;
 
 	/**
 	 * For the game there are three different views. The menu, the game itself and
@@ -52,15 +57,16 @@ public class MainFrame extends JFrame {
 	/**
 	 * The constructor creates the Frame for the game.
 	 */
-	public MainFrame() {
+	public MainFrame(TetrisGame game) {
+		this.game = game;
 		// Set the background color
 		backgroundColor = new Color(138, 146, 174);
 		//Init frames
 		initFrame();
 		initMenuPanel();
 		// Create the game grid and the next grid
-		gameGrid = new GameGrid();
-		nextGrid = new NextGrid();
+		gameGrid = new GameGrid(game);
+		nextGrid = new NextGrid(game);
 		// Add Listener to the frame
 		this.addKeyListener(new KeyBoardListener());
 	}
@@ -119,8 +125,8 @@ public class MainFrame extends JFrame {
 	public void setGameView() {
 		this.remove(menuPanel);
 		// Set new grids
-		gameGrid = new GameGrid();
-		nextGrid = new NextGrid();
+		gameGrid = new GameGrid(game);
+		nextGrid = new NextGrid(game);
 		initGamePanel(gameGrid, nextGrid);
 	}
 
@@ -153,7 +159,7 @@ public class MainFrame extends JFrame {
 	/**
 	 * This method returns the background color of the game.
 	 */
-	public static Color getBackgroundColor() {
+	public Color getBackgroundColor() {
 		return backgroundColor;
 	}
 
