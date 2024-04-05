@@ -56,11 +56,11 @@ public class InformationPanelRight extends JPanel {
 	 * 
 	 * @param color Background color
 	 */
-	public InformationPanelRight(TetrisGame game, Grid nextGrid) {
+	public InformationPanelRight(TetrisGame game, Grid nextGrid, Color color) {
 		this.game = game;
 		
 		this.highScore = this.game.getHighScore();
-		this.color = this.game.getFrame().getBackgroundColor();
+		this.color = color;
 		this.nextGrid = nextGrid;
 		score = 0;
 		clearedLines = 0;

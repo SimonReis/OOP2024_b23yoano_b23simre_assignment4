@@ -92,8 +92,8 @@ public class MainFrame extends JFrame {
 	private void initGamePanel(Grid gameGrid, Grid nextGrid) {
 
 		// Create the Information panels
-		JPanel leftPanel = new InformationPanelLeft(game);
-		rightPanel = new InformationPanelRight(game, nextGrid);
+		JPanel leftPanel = new InformationPanelLeft(game, backgroundColor);
+		rightPanel = new InformationPanelRight(game, nextGrid, backgroundColor);
 
 		// Create the game grid panel
 		JPanel gridPanel = new JPanel();
@@ -114,7 +114,7 @@ public class MainFrame extends JFrame {
 	 * This method initialize the panel with the menu view.
 	 */
 	private void initMenuPanel() {
-		menuPanel = new MenuPanel(game);
+		menuPanel = new MenuPanel(game, backgroundColor);
 		this.add(menuPanel);
 	}
 
@@ -154,13 +154,6 @@ public class MainFrame extends JFrame {
 	 */
 	public MenuPanel getMenuPanel() {
 		return menuPanel;
-	}
-
-	/**
-	 * This method returns the background color of the game.
-	 */
-	public Color getBackgroundColor() {
-		return backgroundColor;
 	}
 
 	/**

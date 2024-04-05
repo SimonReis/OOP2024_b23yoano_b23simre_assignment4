@@ -44,9 +44,9 @@ public class InformationPanelLeft extends JPanel {
 	/**
 	 * This constructor creates the left information panel of the game panel.
 	 */
-	public InformationPanelLeft(TetrisGame game) {
+	public InformationPanelLeft(TetrisGame game, Color color) {
 		this.game = game;
-		this.color = this.game.getFrame().getBackgroundColor();
+		this.color = color;
 		initPanel();
 		initLogo();
 		initButton();
@@ -84,7 +84,7 @@ public class InformationPanelLeft extends JPanel {
 		buttonPanel.setBackground(color);
 		buttonPanel.setLayout(new GridBagLayout());
 		pauseButton = new JButton("Pause Game");
-		pauseButton.addActionListener(new PauseButtonListener(this));
+		pauseButton.addActionListener(new PauseButtonListener(game, this));
 		buttonPanel.add(pauseButton, new GridBagConstraints());
 		this.add(buttonPanel);
 

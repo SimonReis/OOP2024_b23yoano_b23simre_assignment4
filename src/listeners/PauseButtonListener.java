@@ -34,7 +34,8 @@ public class PauseButtonListener implements ActionListener {
 	 * 
 	 * @param InformationPanelLeft Panel, where the button is placed.
 	 */
-	public PauseButtonListener(InformationPanelLeft infoLeft) {
+	public PauseButtonListener(TetrisGame game, InformationPanelLeft infoLeft) {
+		this.game = game;
 		this.infoLeft = infoLeft;
 	}
 
