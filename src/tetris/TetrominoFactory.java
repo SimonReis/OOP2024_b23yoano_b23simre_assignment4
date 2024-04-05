@@ -14,6 +14,11 @@ import tetrominoes.Tetromino;
 public class TetrominoFactory {
 	
 	/**
+	 * This is the tetris game.
+	 */
+	private TetrisGame game;
+	
+	/**
 	 * The next Tetromino that is displayed in the right side panel.
 	 */
 	private static Tetromino storedTetromino;
@@ -36,7 +41,8 @@ public class TetrominoFactory {
 	/**
 	 * This constructor stores the next Tetromino.
 	 */
-	public TetrominoFactory() {
+	public TetrominoFactory(TetrisGame game) {
+		this.game = game;
 		storedTetromino = new Tetromino();   
 		factoryListener = new FactoryListener(this);
 	}
@@ -126,11 +132,11 @@ public class TetrominoFactory {
 			storedTetromino = new Tetromino();
 
 			// Place the stored tetromino in the next grid
-			TetrisGame.getGameInstance().getFrame().getInfoRight().setNextTetromino(storedTetromino);
-			TetrisGame.getGameInstance().getFrame().pack();
+			game.getFrame().getInfoRight().setNextTetromino(storedTetromino);
+			game.getFrame().pack();
 
 			// Destroys full lines
-			TetrisGame.getGameInstance().getFrame().getGameGrid().clearLines();
+			game.getFrame().getGameGrid().clearLines();
 			
 			// Spawns the current Tetromino. 
 			DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");  

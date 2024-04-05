@@ -9,11 +9,6 @@ import listeners.GameOverListener;
 public class TetrisGame {
 
 	/**
-	 * This is the instance of the one running tetris game.
-	 */
-	private static TetrisGame gameInstance;
-
-	/**
 	 * This is the main frame, where all information and the game is displayed.
 	 */
 	private MainFrame frame;
@@ -42,25 +37,12 @@ public class TetrisGame {
 	 * application and playing a game is initialized.
 	 */
 	public TetrisGame() {
-		gameInstance = this;
 		highScore = 0;
 		tetrominoFactory = new TetrominoFactory();
 		frame = new MainFrame();
 		frame.setFocusable(true);
 		frame.setVisible(true);
 		frame.pack();
-
-		//TODO Maybe in another class?
-		//gameOverListener = new GameOverListener();
-	}
-
-	/**
-	 * This method returns the game instance.
-	 * 
-	 * @return Game instance
-	 */
-	public static TetrisGame getGameInstance() {
-		return gameInstance;
 	}
 	
 	/**
