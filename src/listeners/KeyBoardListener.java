@@ -5,16 +5,26 @@ import java.awt.event.KeyListener;
 
 import javax.swing.Timer;
 
-import tetris.factory;
+import tetris.TetrominoFactory;
 
+/**
+ * This class implements the listener for the key board.
+ */
 public class KeyBoardListener implements KeyListener {
 
-	private factory factory;
+	/**
+	 * This is the tetromino factory.
+	 */
+	private TetrominoFactory factory;
 
 	private boolean processingKey = false;
 	private Timer timer;
 
-	public KeyBoardListener(factory factory) {
+	/**
+	 * This constructor over gives the tetromino factory to the the listener
+	 * @param factory
+	 */
+	public KeyBoardListener(TetrominoFactory factory) {
 		this.factory = factory;
 	}
 

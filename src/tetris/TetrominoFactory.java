@@ -12,7 +12,7 @@ import tetrominoes.Tetromino;
 /**
  * This class represents the process that makes new Tetrominos.
  */
-public class factory {
+public class TetrominoFactory {
 	
 	/**
 	 * This is the tetris game.
@@ -42,7 +42,7 @@ public class factory {
 	/**
 	 * This constructor stores the next Tetromino.
 	 */
-	public factory(TetrisGame game) {
+	public TetrominoFactory(TetrisGame game) {
 		this.game = game;
 		storedTetromino = new Tetromino(game);   
 		factoryListener = new FactoryListener(this);
