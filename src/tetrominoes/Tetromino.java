@@ -7,7 +7,7 @@ import javax.swing.Timer;
 
 import listeners.TetrominoListener;
 import tetris.TetrisGame;
-import tetris.TetrominoFactory;
+import tetris.factory;
 
 /**
  * This class represents the shapes from the game Tetris.
@@ -22,7 +22,7 @@ public class Tetromino {
 	/**
 	 * This is the tetromino factory.
 	 */
-	private TetrominoFactory tetrominoFactory;
+	private factory tetrominoFactory;
 
 	/**
 	 * Tetromino coordinates in the game grid.

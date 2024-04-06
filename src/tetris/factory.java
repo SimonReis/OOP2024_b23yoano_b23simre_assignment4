@@ -12,7 +12,7 @@ import tetrominoes.Tetromino;
 /**
  * This class represents the process that makes new Tetrominos.
  */
-public class TetrominoFactory {
+public class factory {
 	
 	/**
 	 * This is the tetris game.
@@ -22,12 +22,12 @@ public class TetrominoFactory {
 	/**
 	 * The next Tetromino that is displayed in the right side panel.
 	 */
-	private static Tetromino storedTetromino;
+	private Tetromino storedTetromino;
 
 	/**
 	 * The moving Tetromino that is displayed in the Tetris Grid.
 	 */
-	private static Tetromino currentTetromino;
+	private Tetromino currentTetromino;
 
 	/**
 	 * The moving Tetromino that is displayed in the Tetris Grid.
@@ -37,12 +37,12 @@ public class TetrominoFactory {
 	/**
 	 * This is the factory listener
 	 */
-	private static FactoryListener factoryListener;
+	private FactoryListener factoryListener;
 
 	/**
 	 * This constructor stores the next Tetromino.
 	 */
-	public TetrominoFactory(TetrisGame game) {
+	public factory(TetrisGame game) {
 		this.game = game;
 		storedTetromino = new Tetromino(game);   
 		factoryListener = new FactoryListener(this);
@@ -87,7 +87,7 @@ public class TetrominoFactory {
 	 * 
 	 * @return storedTetromino
 	 */
-	public static Tetromino getStoredTetromino() {
+	public Tetromino getStoredTetromino() {
 		return storedTetromino;
 	}
 
@@ -96,7 +96,7 @@ public class TetrominoFactory {
 	 * 
 	 * @return currentTetromino
 	 */
-	public static Tetromino getCurrentTetromino() {
+	public Tetromino getCurrentTetromino() {
 		return currentTetromino;
 	}
 

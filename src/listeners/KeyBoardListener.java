@@ -5,59 +5,65 @@ import java.awt.event.KeyListener;
 
 import javax.swing.Timer;
 
-import tetris.TetrominoFactory;
+import tetris.factory;
 
 public class KeyBoardListener implements KeyListener {
 
-    boolean processingKey = false;
-    Timer timer;
+	private factory factory;
 
-    @Override
-    public void keyPressed(KeyEvent e) {
-    	
-        int keyCode = e.getKeyCode();
-        
-        if (!processingKey) {
-            processingKey = true;
-           
-            handleKeyAction(keyCode);
-            
-            // Add a delay of X milliseconds before being able to process the action again.
-            // Prevents bugs that happen when a key is pressed continuously.
-            timer = new Timer(100, (e1) -> {
-                processingKey = false;
-            });
-            timer.setRepeats(false);
-            timer.start();
-        }
-    }
+	private boolean processingKey = false;
+	private Timer timer;
 
-    private void handleKeyAction(int keyCode) {
-        switch (keyCode) {
-            case KeyEvent.VK_UP:
-                TetrominoFactory.getCurrentTetromino().rotate();
-                break;
-            case KeyEvent.VK_DOWN:
-            		TetrominoFactory.getCurrentTetromino().moveDown();
-                break;
-            case KeyEvent.VK_LEFT:
-            		TetrominoFactory.getCurrentTetromino().moveLeft();
-                break;
-            case KeyEvent.VK_RIGHT:
-            		TetrominoFactory.getCurrentTetromino().moveRight();
-                break;
-			case KeyEvent.VK_SPACE:
-					TetrominoFactory.getCurrentTetromino().dropToBottom();
-				break;
-        }
-    }
+	public KeyBoardListener(factory factory) {
+		this.factory = factory;
+	}
 
-    @Override
-    public void keyTyped(KeyEvent e) {
-    }
+	@Override
+	public void keyPressed(KeyEvent e) {
 
-    @Override
-    public void keyReleased(KeyEvent e) {
+		int keyCode = e.getKeyCode();
 
-    }
+		if (!processingKey) {
+			processingKey = true;
+
+			handleKeyAction(keyCode);
+
+			// Add a delay of X milliseconds before being able to process the action again.
+			// Prevents bugs that happen when a key is pressed continuously.
+			timer = new Timer(100, (e1) -> {
+				processingKey = false;
+			});
+			timer.setRepeats(false);
+			timer.start();
+		}
+	}
+
+	private void handleKeyAction(int keyCode) {
+		switch (keyCode) {
+		case KeyEvent.VK_UP:
+			factory.getCurrentTetromino().rotate();
+			break;
+		case KeyEvent.VK_DOWN:
+			factory.getCurrentTetromino().moveDown();
+			break;
+		case KeyEvent.VK_LEFT:
+			factory.getCurrentTetromino().moveLeft();
+			break;
+		case KeyEvent.VK_RIGHT:
+			factory.getCurrentTetromino().moveRight();
+			break;
+		case KeyEvent.VK_SPACE:
+			factory.getCurrentTetromino().dropToBottom();
+			break;
+		}
+	}
+
+	@Override
+	public void keyTyped(KeyEvent e) {
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+
+	}
 }

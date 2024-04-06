@@ -17,7 +17,7 @@ public class TetrisGame {
 	 * This is the tetromino factory, where tetrominos were produced and spawned at
 	 * the game grid.
 	 */
-	private TetrominoFactory tetrominoFactory;
+	private factory tetrominoFactory;
 
 	/**
 	 * This is the high score of the application.
@@ -30,7 +30,7 @@ public class TetrisGame {
 	 */
 	public TetrisGame() {
 		highScore = 0;
-		tetrominoFactory = new TetrominoFactory(this);
+		tetrominoFactory = new factory(this);
 		frame = new MainFrame(this);
 		frame.setFocusable(true);
 		frame.setVisible(true);
@@ -51,7 +51,7 @@ public class TetrisGame {
 	 * 
 	 * @return Tetromino factory
 	 */
-	public TetrominoFactory getFactory() {
+	public factory getFactory() {
 		return tetrominoFactory;
 	}
 

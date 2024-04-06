@@ -3,16 +3,16 @@ package listeners;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import tetris.TetrominoFactory;
+import tetris.factory;
 
 /**
  * This Listener is for producing tetrominoes.
  */
 public class FactoryListener implements ActionListener {
 
-	private TetrominoFactory tetrominoFactory;
+	private factory tetrominoFactory;
 	
-	public FactoryListener(TetrominoFactory tetrominoFactory){
+	public FactoryListener(factory tetrominoFactory){
 		this.tetrominoFactory = tetrominoFactory;
 	}
 	/**

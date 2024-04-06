@@ -68,7 +68,7 @@ public class MainFrame extends JFrame {
 		gameGrid = new GameGrid(game);
 		nextGrid = new NextGrid(game);
 		// Add Listener to the frame
-		this.addKeyListener(new KeyBoardListener());
+		this.addKeyListener(new KeyBoardListener(game.getFactory()));
 	}
 
 	/**
