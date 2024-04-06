@@ -76,6 +76,8 @@ public class Tetromino {
 	public Tetromino(TetrisGame game) {
 
 		this.game = game;
+		
+		isSpawnable = true;
 
 		// gameGrid = TetrisGame.getGameInstance().getFrame().getGameGrid();
 		tetrominoFactory = this.game.getFactory();
@@ -177,8 +179,6 @@ public class Tetromino {
 	 * milliseconds (defined in the timer setting).
 	 */
 	private void spawnTetromino() {
-		// TODO ADD A isSpawnable() METHOD
-
 		// Spawning coordinates (top left corner of the Tetromino).
 		row = 0;
 		col = 3;
@@ -202,6 +202,11 @@ public class Tetromino {
 
 	}
 
+	/**
+	 * This method is to check if the Tetromino is spawnable.
+	 * 
+	 * @return True if the Tetromino is spawnable
+	 */
 	private boolean isSpawnable() {
 
 		row = 0;
@@ -212,7 +217,9 @@ public class Tetromino {
 				for (int colMatrix = 0; colMatrix < matrix[0].length; colMatrix++) {
 					if (matrix[rowMatrix][colMatrix] == 1) {
 						if (getValueAt(row + rowMatrix - offsetTop, col + colMatrix) != null) {
-							return false;
+							isSpawnable = false;
+							System.out.println("Game Over");
+							return isSpawnable;
 						}
 					}
 				}
@@ -221,7 +228,16 @@ public class Tetromino {
 			matrix = rotateMatrix(matrix);
 			isSpawnable();
 		}
-		return true;
+		return isSpawnable;
+	}
+	
+	/**
+	 * This method returns true if the tetromino is not spawnable anymore. So the game is over.
+	 * 
+	 * @return True if the Tetromino is not spawnable anymore
+	 */
+	public boolean notSpawnable() {
+		return !isSpawnable;
 	}
 
 	/**

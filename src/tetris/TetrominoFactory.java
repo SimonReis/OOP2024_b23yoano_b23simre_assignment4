@@ -6,6 +6,7 @@ import java.time.format.DateTimeFormatter;
 import javax.swing.Timer;
 
 import listeners.FactoryListener;
+import listeners.GameOverListener;
 import tetrominoes.Tetromino;
 
 /**
@@ -37,6 +38,12 @@ public class TetrominoFactory {
 	 * This is the factory listener
 	 */
 	private static FactoryListener factoryListener;
+	
+	/**
+	 * This is the Listener which checks if the game is over.
+	 */
+	//TODO Not implemented yet
+	private GameOverListener gameOverListener;
 
 	/**
 	 * This constructor stores the next Tetromino.
@@ -45,6 +52,7 @@ public class TetrominoFactory {
 		this.game = game;
 		storedTetromino = new Tetromino(game);   
 		factoryListener = new FactoryListener(this);
+		gameOverListener = new GameOverListener(game, this);
 	}
 
 	/**
@@ -99,20 +107,6 @@ public class TetrominoFactory {
 	}
 
 	/**
-	 * This method stops the TetrominoFactory timer.
-	 */
-	public void stopTimer() {
-		//tetrominoFactoryTimer.stop();
-	}
-	
-	/**
-	 * This method restarts the TetrominoFactory timer.
-	 */
-	public void restartTimer() {
-		//tetrominoFactoryTimer.restart();;
-	}
-
-	/**
 	 * This method sets the current Tetromino.
 	 */
 	public Tetromino setCurrentTetromino(Tetromino tetromino) {
@@ -150,5 +144,9 @@ public class TetrominoFactory {
 	 */
 	public void clearTetromino() {
 		currentTetromino = null;
+	}
+	
+	public boolean gameOver() {
+		return currentTetromino.notSpawnable();
 	}
 }

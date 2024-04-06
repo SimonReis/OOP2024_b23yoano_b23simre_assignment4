@@ -21,13 +21,6 @@ public class TetrisGame {
 	private TetrominoFactory tetrominoFactory;
 	
 	/**
-	 * This is the Listener which checks if the game is over.
-	 */
-	//TODO Not implemented yet
-	private static GameOverListener gameOverListener;
-
-
-	/**
 	 * This is the high score of the application.
 	 */
 	private int highScore;
