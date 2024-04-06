@@ -2,9 +2,9 @@ package tetrominoes;
 
 import java.util.Random;
 
+
 import javax.swing.Timer;
 
-import listeners.GameOverListener;
 import listeners.TetrominoListener;
 import tetris.TetrisGame;
 import tetris.TetrominoFactory;
@@ -23,12 +23,6 @@ public class Tetromino {
 	 * This is the tetromino factory.
 	 */
 	private TetrominoFactory tetrominoFactory;
-	
-	/**
-	 * This is the Listener which checks if the game is over.
-	 */
-	//TODO Not implemented yet
-	private GameOverListener gameOverListener;
 
 	/**
 	 * Tetromino coordinates in the game grid.
@@ -75,19 +69,14 @@ public class Tetromino {
 	 */
 	private int offsetTop = 0;
 
-	private boolean isSpawnable;
-
 	/**
 	 * This constructor creates a random Tetromino.
 	 */
 	public Tetromino(TetrisGame game) {
 
 		this.game = game;
-		
-		isSpawnable = true;
-
+	
 		tetrominoFactory = this.game.getFactory();
-		gameOverListener = new GameOverListener(game, this);
 
 		canMoveDown = true;
 		canMoveLeft = true;
@@ -224,9 +213,9 @@ public class Tetromino {
 				for (int colMatrix = 0; colMatrix < matrix[0].length; colMatrix++) {
 					if (matrix[rowMatrix][colMatrix] == 1) {
 						if (getValueAt(row + rowMatrix - offsetTop, col + colMatrix) != null) {
-							isSpawnable = false;
 							System.out.println("Game Over");
-							return isSpawnable;
+							game.gameOver();
+							return false;
 						}
 					}
 				}
@@ -235,18 +224,9 @@ public class Tetromino {
 			matrix = rotateMatrix(matrix);
 			isSpawnable();
 		}
-		return isSpawnable;
+		return true;
 	}
 	
-	/**
-	 * This method returns true if the tetromino is not spawnable anymore. So the game is over.
-	 * 
-	 * @return True if the Tetromino is not spawnable anymore
-	 */
-	public boolean notSpawnable() {
-		return !isSpawnable;
-	}
-
 	/**
 	 * This method moves the Tetromino one row down.It stops it when it reached the
 	 * bottom of the grid or a previous Tetromino.

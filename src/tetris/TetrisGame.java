@@ -2,8 +2,6 @@ package tetris;
 
 import javax.swing.JOptionPane;
 
-import listeners.GameOverListener;
-
 /**
  * This class represents the whole teris game including the GUI, the core game
  * logic.

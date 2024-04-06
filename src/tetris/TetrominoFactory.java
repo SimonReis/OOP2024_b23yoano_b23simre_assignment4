@@ -1,12 +1,12 @@
 package tetris;
 
 import java.time.LocalDateTime;
+
 import java.time.format.DateTimeFormatter;
 
 import javax.swing.Timer;
 
 import listeners.FactoryListener;
-import listeners.GameOverListener;
 import tetrominoes.Tetromino;
 
 /**
