@@ -131,6 +131,7 @@ public class TetrisGame {
 				"Game Over", JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE, null, options, options[0]);
 
 		if (result == 0) { // New game button is pressed
+			endGame();
 			startGame();
 		} else { // Back to menu or close option pane is pressed
 			endGame();
