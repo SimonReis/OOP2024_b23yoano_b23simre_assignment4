@@ -38,12 +38,6 @@ public class TetrominoFactory {
 	 * This is the factory listener
 	 */
 	private static FactoryListener factoryListener;
-	
-	/**
-	 * This is the Listener which checks if the game is over.
-	 */
-	//TODO Not implemented yet
-	private GameOverListener gameOverListener;
 
 	/**
 	 * This constructor stores the next Tetromino.
@@ -52,7 +46,7 @@ public class TetrominoFactory {
 		this.game = game;
 		storedTetromino = new Tetromino(game);   
 		factoryListener = new FactoryListener(this);
-		gameOverListener = new GameOverListener(game, this);
+		
 	}
 
 	/**
@@ -146,7 +140,4 @@ public class TetrominoFactory {
 		currentTetromino = null;
 	}
 	
-	public boolean gameOver() {
-		return currentTetromino.notSpawnable();
-	}
 }

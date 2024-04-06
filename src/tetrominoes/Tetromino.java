@@ -4,6 +4,7 @@ import java.util.Random;
 
 import javax.swing.Timer;
 
+import listeners.GameOverListener;
 import listeners.TetrominoListener;
 import tetris.TetrisGame;
 import tetris.TetrominoFactory;
@@ -22,6 +23,12 @@ public class Tetromino {
 	 * This is the tetromino factory.
 	 */
 	private TetrominoFactory tetrominoFactory;
+	
+	/**
+	 * This is the Listener which checks if the game is over.
+	 */
+	//TODO Not implemented yet
+	private GameOverListener gameOverListener;
 
 	/**
 	 * Tetromino coordinates in the game grid.
@@ -79,8 +86,8 @@ public class Tetromino {
 		
 		isSpawnable = true;
 
-		// gameGrid = TetrisGame.getGameInstance().getFrame().getGameGrid();
 		tetrominoFactory = this.game.getFactory();
+		gameOverListener = new GameOverListener(game, this);
 
 		canMoveDown = true;
 		canMoveLeft = true;

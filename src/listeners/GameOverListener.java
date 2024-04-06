@@ -8,6 +8,7 @@ import javax.swing.JOptionPane;
 
 import tetris.TetrisGame;
 import tetris.TetrominoFactory;
+import tetrominoes.Tetromino;
 
 /**
  * This class implements the listener for the game view of the tetris game.
@@ -21,16 +22,16 @@ public class GameOverListener implements ActionListener {
 	/**
 	 * This is the tetromino factory of the game.
 	 */
-	private TetrominoFactory factory;
+	private Tetromino tetromino;
 
 	/**
 	 * This constructor initializes the game over listener
 	 * 
 	 * @param game The tetris game
 	 */
-	public GameOverListener(TetrisGame game, TetrominoFactory factory) {
+	public GameOverListener(TetrisGame game, Tetromino tetromino) {
 		this.game = game;
-		this.factory = factory;
+		this.tetromino = tetromino;
 	}
 
 	/**
@@ -39,7 +40,7 @@ public class GameOverListener implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 	
-		if (factory.gameOver()) {
+		if (tetromino.notSpawnable()) {
 			// There are two options. The user can choose between resuming or ending the
 			// current game round
 			String[] options = { "New Game", "Back to menu" };
