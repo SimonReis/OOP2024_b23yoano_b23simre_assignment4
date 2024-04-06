@@ -1,5 +1,7 @@
 package tetris;
 
+import javax.swing.JOptionPane;
+
 import listeners.GameOverListener;
 
 /**
@@ -13,18 +15,17 @@ public class TetrisGame {
 	 */
 	private MainFrame frame;
 
-
 	/**
 	 * This is the tetromino factory, where tetrominos were produced and spawned at
 	 * the game grid.
 	 */
 	private TetrominoFactory tetrominoFactory;
-	
+
 	/**
 	 * This is the high score of the application.
 	 */
 	private int highScore;
-	
+
 	/**
 	 * This is the constructor, where all required parts for using the tetris
 	 * application and playing a game is initialized.
@@ -37,7 +38,7 @@ public class TetrisGame {
 		frame.setVisible(true);
 		frame.pack();
 	}
-	
+
 	/**
 	 * This method returns the main frame.
 	 * 
@@ -46,7 +47,7 @@ public class TetrisGame {
 	public MainFrame getFrame() {
 		return frame;
 	}
-	
+
 	/**
 	 * This method returns the tetromino factory.
 	 * 
@@ -62,7 +63,7 @@ public class TetrisGame {
 	public int getHighScore() {
 		return highScore;
 	}
-	
+
 	/**
 	 * This method is called, when a new game round should start. The view will
 	 * change, the production of Tetrominos start and they will spawned in the game
@@ -99,7 +100,7 @@ public class TetrisGame {
 	public void endGame() {
 		// Refresh the high score to display correctly in menu view.
 		highScore = frame.getInfoRight().getHighScore();
-		
+
 		// Change View
 		frame.setMenuView();
 		frame.getMenuPanel().setNewHighScore(highScore);
@@ -110,7 +111,7 @@ public class TetrisGame {
 		tetrominoFactory.stopProduction();
 		tetrominoFactory.clearTetromino();
 	}
-	
+
 	/**
 	 * This method starts a new game, if a game has already been played.
 	 */
@@ -119,5 +120,22 @@ public class TetrisGame {
 		tetrominoFactory.startProduction();
 		// Start the game
 		startGame();
+	}
+
+	public void gameOver() {
+		// There are two options. The user can choose between resuming or ending the
+		// current game round
+		String[] options = { "New Game", "Back to menu" };
+
+		// This code displays the pop-up windows and returns an integer for the selected
+		// button
+		int result = JOptionPane.showOptionDialog(getFrame(), "Do you want to play a new game or go back to menu?",
+				"Game Over", JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE, null, options, options[0]);
+
+		if (result == 0) { // New game button is pressed
+			startGame();
+		} else { // Back to menu or close option pane is pressed
+			endGame();
+		}
 	}
 }
