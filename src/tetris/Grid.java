@@ -41,11 +41,13 @@ public abstract class Grid extends JTable {
 		this.game = game;
 		this.numRows = numRows;
 		this.numCols = numCols;
+		
+		
 
 		model = new DefaultTableModel(numRows, numCols) {
 
 			private static final long serialVersionUID = 1L;
-
+			
 			@Override
 			public boolean isCellEditable(int row, int column) {
 				// all cells false
@@ -74,10 +76,19 @@ public abstract class Grid extends JTable {
 			 */
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				game.getFrame().requestFocus();
+				System.out.println("Focus Lost");
+				game.getFrame().requestFocusInWindow();
+				game.getFrame().setVisible(true);
 			}
 		});
 	}
+	
+//	@Override
+//	public boolean isFocusTraversable() {
+//		//TODO UNUSED
+//		System.out.println("focus method executed");
+//		return false;
+//	}
 	
 	/**
 	 * This method returns the number of columns of the grid.

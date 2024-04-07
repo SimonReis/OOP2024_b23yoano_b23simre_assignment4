@@ -56,7 +56,7 @@ public class TetrominoFactory {
 		// Sets and starts the timer for repeated action (>200 or canMoveDown() might bug).
 		tetrominoFactoryTimer = new Timer(500, factoryListener);
 		tetrominoFactoryTimer.start();
-		System.out.println("Strart Production");
+		System.out.println("Start Production");
 	}
 
 	/**
