@@ -24,8 +24,10 @@ public class FocusListener implements MouseListener {
 		this.game = game;
 	}
 	
+	/**
+	 * This method requests the focus to the main frame of the tetris game.
+	 */
 	private void setFoucusToFrame() {
-		System.out.println("Focus Lost");
 		game.getFrame().requestFocusInWindow();
 		game.getFrame().setVisible(true);
 	}

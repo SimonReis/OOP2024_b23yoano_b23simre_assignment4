@@ -75,13 +75,6 @@ public abstract class Grid extends JTable {
 		this.addMouseListener(new FocusListener(game));
 	}
 	
-//	@Override
-//	public boolean isFocusTraversable() {
-//		//TODO UNUSED
-//		System.out.println("focus method executed");
-//		return false;
-//	}
-	
 	/**
 	 * This method returns the number of columns of the grid.
 	 * 
