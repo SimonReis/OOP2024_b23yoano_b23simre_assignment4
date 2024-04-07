@@ -9,6 +9,8 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 
+import listeners.FocusListener;
+
 /**
  * This abstract class creates a grid with cells in form of a square.
  */
@@ -70,17 +72,7 @@ public abstract class Grid extends JTable {
 		 * happen e.g. by clicking on the game grid, even if the functions to edit a
 		 * cell are deactivated.
 		 */
-		this.addMouseListener(new MouseAdapter() {
-			/**
-			 * This method request the focus to the main frame.
-			 */
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				System.out.println("Focus Lost");
-				game.getFrame().requestFocusInWindow();
-				game.getFrame().setVisible(true);
-			}
-		});
+		this.addMouseListener(new FocusListener(game));
 	}
 	
 //	@Override
