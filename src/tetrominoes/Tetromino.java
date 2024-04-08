@@ -225,6 +225,8 @@ public class Tetromino {
 	 * bottom of the grid or a previous Tetromino.
 	 */
 	public void moveDown() {
+		
+		
 		// If the Tetromino can is move down.
 		// Pauses the Tetromino natural down movement and move it down.
 		if (canMoveDown()) {

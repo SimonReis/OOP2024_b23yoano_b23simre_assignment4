@@ -38,7 +38,7 @@ public class MenuButtonListener implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (menuPanel.getNewGameButton() == e.getSource()) {	
-			game.startGame();
+			game.newGame();
 		} else if (menuPanel.getQuitGameButton() == e.getSource()) {
 			System.exit(0);
 		}

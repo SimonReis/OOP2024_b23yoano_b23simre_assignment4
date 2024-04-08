@@ -31,6 +31,7 @@ public class TetrisGame {
 	public TetrisGame() {
 		highScore = 0;
 		tetrominoFactory = new TetrominoFactory(this);
+		
 		frame = new MainFrame(this);
 		frame.setFocusable(true);
 		frame.setVisible(true);
@@ -67,7 +68,7 @@ public class TetrisGame {
 	 * change, the production of Tetrominos start and they will spawned in the game
 	 * frame.
 	 */
-	public void startGame() {
+	public void newGame() {
 		// Change View
 		frame.setGameView();
 		frame.setFocusable(true);
@@ -110,16 +111,6 @@ public class TetrisGame {
 		tetrominoFactory.clearTetromino();
 	}
 
-	/**
-	 * This method starts a new game, if a game has already been played.
-	 */
-	public void newGame() {
-		// Start the production of tetrominoes
-		tetrominoFactory.startProduction();
-		// Start the game
-		startGame();
-	}
-
 	public void gameOver() {
 		// There are two options. The user can choose between resuming or ending the
 		// current game round
@@ -132,7 +123,7 @@ public class TetrisGame {
 
 		if (result == 0) { // New game button is pressed
 			endGame();
-			startGame();
+			newGame();
 		} else { // Back to menu or close option pane is pressed
 			endGame();
 		}
