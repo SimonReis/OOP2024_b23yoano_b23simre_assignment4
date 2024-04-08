@@ -110,7 +110,10 @@ public class TetrisGame {
 		tetrominoFactory.stopProduction();
 		tetrominoFactory.clearTetromino();
 	}
-
+	
+	/**
+	 * This method is executed when the game is over and no tetromino can be spawned anymore. Then a pop up window is shown.
+	 */
 	public void gameOver() {
 		// There are two options. The user can choose between resuming or ending the
 		// current game round
