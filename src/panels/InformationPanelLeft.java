@@ -1,6 +1,7 @@
 package panels;
 
 import java.awt.Color;
+
 import java.awt.Font;
 
 import java.awt.GridBagConstraints;
@@ -12,7 +13,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import listeners.PauseButtonListener;
-import tetris.MainFrame;
 import tetris.TetrisGame;
 
 /**

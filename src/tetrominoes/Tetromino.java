@@ -7,7 +7,6 @@ import javax.swing.Timer;
 
 import listeners.TetrominoListener;
 import tetris.TetrisGame;
-import tetris.TetrominoFactory;
 
 /**
  * This class represents the shapes from the game Tetris.
