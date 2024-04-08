@@ -1,6 +1,7 @@
 package panels;
 
 import java.awt.Color;
+
 import java.awt.Font;
 
 import java.awt.GridLayout;
@@ -11,7 +12,6 @@ import javax.swing.JPanel;
 import tetris.TetrisGame;
 import tetrominoes.Tetromino;
 import tetris.Grid;
-import tetris.MainFrame;
 
 /**
  * This class represents the right information panel, where high score, score,
@@ -58,7 +58,6 @@ public class InformationPanelRight extends JPanel {
 	 */
 	public InformationPanelRight(TetrisGame game, Grid nextGrid, Color color) {
 		this.game = game;
-		
 		this.highScore = this.game.getHighScore();
 		this.color = color;
 		this.nextGrid = nextGrid;

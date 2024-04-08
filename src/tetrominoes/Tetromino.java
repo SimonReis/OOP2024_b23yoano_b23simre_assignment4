@@ -94,16 +94,6 @@ public class Tetromino {
 	}
 
 	/**
-	 * This method spawn an moves a tetromino.
-	 */
-	public void playingTetromino() {
-		// Tetromino is spawned in at game grid
-		spawnTetromino();
-		startTetromino();
-
-	}
-
-	/**
 	 * This method starts the timer of the falling interval of one tetromino.
 	 */
 	public void startTetromino() {
@@ -166,7 +156,7 @@ public class Tetromino {
 	 * This method spawns the Tetromino. It makes the Tetromino moving down each X
 	 * milliseconds (defined in the timer setting).
 	 */
-	private void spawnTetromino() {
+	public void spawnTetromino() {
 		// Spawning coordinates (top left corner of the Tetromino).
 		row = 0;
 		col = 3;
@@ -182,6 +172,7 @@ public class Tetromino {
 
 						// TODO FIX THE ROW INDEX OUT OF BOUNDARIES BUG
 						setValueAt(tetrominoShape, row + rowMatrix - offsetTop, col + colMatrix);
+						fallingTimer.start();
 					}
 				}
 			}

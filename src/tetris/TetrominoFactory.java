@@ -129,7 +129,7 @@ public class TetrominoFactory {
 			// Spawns the current Tetromino. 
 			DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");  
 			System.out.println("A " + currentTetromino.getShape() + "-Tetromino will spawn (" + dtf.format(LocalDateTime.now()) + ")");
-			currentTetromino.playingTetromino();
+			currentTetromino.spawnTetromino();
 		}
 	}
 

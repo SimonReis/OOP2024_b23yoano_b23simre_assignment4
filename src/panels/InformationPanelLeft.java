@@ -47,6 +47,7 @@ public class InformationPanelLeft extends JPanel {
 	public InformationPanelLeft(TetrisGame game, Color color) {
 		this.game = game;
 		this.color = color;
+		
 		initPanel();
 		initLogo();
 		initButton();
