@@ -17,15 +17,23 @@ public class KeyBoardListener implements KeyListener {
 	 */
 	private TetrominoFactory factory;
 
-	private boolean processingKey = false;
+	private boolean processingKey;
 	private Timer timer;
 
 	/**
 	 * This constructor over gives the tetromino factory to the the listener
+	 * 
 	 * @param factory
 	 */
 	public KeyBoardListener(TetrominoFactory factory) {
 		this.factory = factory;
+		processingKey = false;
+
+		// Add a delay of X milliseconds before being able to process the action again.
+		// Prevents bugs that happen when a key is pressed continuously.
+		timer = new Timer(100, (e1) -> {
+			processingKey = false;
+		});
 	}
 
 	@Override
@@ -38,11 +46,6 @@ public class KeyBoardListener implements KeyListener {
 
 			handleKeyAction(keyCode);
 
-			// Add a delay of X milliseconds before being able to process the action again.
-			// Prevents bugs that happen when a key is pressed continuously.
-			timer = new Timer(100, (e1) -> {
-				processingKey = false;
-			});
 			timer.setRepeats(false);
 			timer.start();
 		}
