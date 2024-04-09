@@ -6,6 +6,7 @@ import java.awt.event.KeyListener;
 import javax.swing.Timer;
 
 import tetris.TetrominoFactory;
+import tetrominoes.Tetromino;
 
 /**
  * This class implements the listener for the key board.
@@ -52,23 +53,31 @@ public class KeyBoardListener implements KeyListener {
 	}
 
 	private void handleKeyAction(int keyCode) {
-		switch (keyCode) {
-		case KeyEvent.VK_UP:
-			factory.getCurrentTetromino().rotate();
-			break;
-		case KeyEvent.VK_DOWN:
-			factory.getCurrentTetromino().moveDown();
-			break;
-		case KeyEvent.VK_LEFT:
-			factory.getCurrentTetromino().moveLeft();
-			break;
-		case KeyEvent.VK_RIGHT:
-			factory.getCurrentTetromino().moveRight();
-			break;
-		case KeyEvent.VK_SPACE:
-			factory.getCurrentTetromino().dropToBottom();
-			break;
+
+		Tetromino tetromino = factory.getCurrentTetromino();
+
+		// If the tetromino is null, e.g. because no game is started yet, nothing should
+		// happen by using the keyboard.
+		if (tetromino != null) {
+			switch (keyCode) {
+			case KeyEvent.VK_UP:
+				tetromino.rotate();
+				break;
+			case KeyEvent.VK_DOWN:
+				tetromino.moveDown();
+				break;
+			case KeyEvent.VK_LEFT:
+				tetromino.moveLeft();
+				break;
+			case KeyEvent.VK_RIGHT:
+				tetromino.moveRight();
+				break;
+			case KeyEvent.VK_SPACE:
+				tetromino.dropToBottom();
+				break;
+			}
 		}
+
 	}
 
 	@Override
