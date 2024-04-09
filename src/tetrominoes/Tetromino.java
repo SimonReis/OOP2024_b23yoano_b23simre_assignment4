@@ -234,7 +234,8 @@ public class Tetromino {
 				}
 			}
 			row++;
-			fallingTimer.restart();
+			System.out.print("Row in move down: " + row);
+			fallingTimer.restart(); 
 			// tetrominoFactory.stopTimer();
 
 			// If the Tetromino cannot move down.
@@ -376,6 +377,8 @@ public class Tetromino {
 				}
 			}
 		}
+		System.out.println("Tetromino can move down: " + canMoveDown);
+		
 		return canMoveDown;
 	}
 
