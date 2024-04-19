@@ -221,7 +221,9 @@ public class InformationPanelRight extends JPanel {
 		nextGrid.clearGrid();
 	
 		// Matrix of the tetromino
-		int[][] matrix = tetromino.getShape().getMatrix();
+		int[][] matrix = extendedMatrix(tetromino.getShape().getMatrix());
+		
+		
 		
 		// Draw a colored block for each one in the matrix
 		for(int m = 0; m < nextGrid.getNumRows(); m++) {
@@ -231,5 +233,34 @@ public class InformationPanelRight extends JPanel {
 				}
 			}
 		}
+	}
+	
+	private int[][] extendedMatrix(int[][] mtx){
+		
+		System.out.println("matrix: "+ mtx);
+		
+		if (mtx.length < 4 && mtx[0].length < 4) {
+			
+			int[][] tmpMtx = new int[4][4];
+			
+			for(int i = 0; i < mtx.length; i++) {
+				for(int j = 0; j < mtx[i].length; j++) {
+					tmpMtx[i][j] = mtx[i][j];
+				}
+			}
+			
+			for(int i = mtx.length; i < 4; i++) {
+				for(int j = mtx[i].length; j < 4; j++) {
+					tmpMtx[i][j] = 0;
+				}
+			}
+			
+			System.out.println("extended matrix: "+ tmpMtx);
+			
+			return tmpMtx;
+			
+		}
+		
+		return mtx;
 	}
 }

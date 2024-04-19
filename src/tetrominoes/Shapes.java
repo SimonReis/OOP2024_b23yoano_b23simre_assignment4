@@ -17,50 +17,44 @@ public enum Shapes {
 	
 	// J shape in blue
 	J(new Color(0, 0, 255), new int[][]{
-		{0, 0, 1, 0}, 
-		{0, 0, 1, 0}, 
-		{0, 1, 1, 0}, 
-		{0, 0, 0, 0}
+		{0, 0, 1}, 
+		{0, 0, 1}, 
+		{0, 1, 1}, 
 		}, true),
 	
 	// L shape in orange
 	L(new Color(255, 127, 0), new int[][]{
-		{0, 1, 0, 0}, 
-		{0, 1, 0, 0}, 
-		{0, 1, 1, 0}, 
-		{0, 0, 0, 0}
+		{0, 1, 0}, 
+		{0, 1, 0}, 
+		{0, 1, 1}, 
 		}, true),
 	
 	// O shape in yellow
 	O(new Color(255, 255, 0), new int[][]{
-		{0, 0, 0, 0}, 
-		{0, 1, 1, 0}, 
-		{0, 1, 1, 0}, 
-		{0, 0, 0, 0}
+		{0, 0, 0}, 
+		{0, 1, 1}, 
+		{0, 1, 1}, 
 		}, true),
 		
 	// S shape in green
 	S(new Color(0, 255, 0), new int[][]{
-		{0, 0, 0, 0}, 
-		{0, 1, 1, 0}, 
-		{1, 1, 0, 0}, 
-		{0, 0, 0, 0}
+		{0, 0, 0}, 
+		{0, 1, 1}, 
+		{1, 1, 0}, 
 		}, true),
 	
 	// T shape in purple
 	T(new Color(128, 0, 128), new int[][]{
-		{0, 0, 0, 0}, 
-		{1, 1, 1, 0}, 
-		{0, 1, 0, 0}, 
-		{0, 0, 0, 0}
+		{0, 0, 0}, 
+		{1, 1, 1}, 
+		{0, 1, 0},
 		}, true),
 
 	// Z shape in red
 	Z(new Color(255, 0, 0), new int[][]{
-		{0, 0, 0, 0}, 
-		{1, 1, 0, 0}, 
-		{0, 1, 1, 0}, 
-		{0, 0, 0, 0}
+		{0, 0, 0}, 
+		{1, 1, 0}, 
+		{0, 1, 1},
 		}, true),
 	
 	// Ix shape in cyan and not movable
@@ -73,50 +67,44 @@ public enum Shapes {
 	
 	// Jx shape in blue and not movable
 	Jx(new Color(0, 0, 255), new int[][]{
-		{0, 0, 1, 0}, 
-		{0, 0, 1, 0}, 
-		{0, 1, 1, 0}, 
-		{0, 0, 0, 0}
+		{0, 0, 1}, 
+		{0, 0, 1}, 
+		{0, 1, 1}, 
 		}, false),
 	
 	// Lx shape in orange and not movable
 	Lx(new Color(255, 127, 0), new int[][]{
-		{0, 1, 0, 0}, 
-		{0, 1, 0, 0}, 
-		{0, 1, 1, 0}, 
-		{0, 0, 0, 0}
+		{0, 1, 0}, 
+		{0, 1, 0}, 
+		{0, 1, 1}, 
 		}, false),
 	
 	// Ox shape in yellow and not movable
 	Ox(new Color(255, 255, 0), new int[][]{
-		{0, 0, 0, 0}, 
-		{0, 1, 1, 0}, 
-		{0, 1, 1, 0}, 
-		{0, 0, 0, 0}
+		{0, 0, 0}, 
+		{0, 1, 1}, 
+		{0, 1, 1}, 
 		}, false),
 		
 	// Sx shape in green and not movable
 	Sx(new Color(0, 255, 0), new int[][]{
-		{0, 0, 0, 0}, 
-		{0, 1, 1, 0}, 
-		{1, 1, 0, 0}, 
-		{0, 0, 0, 0}
+		{0, 0, 0}, 
+		{0, 1, 1}, 
+		{1, 1, 0}, 
 		}, false),
 	
 	// Tx shape in pink and not movable
 	Tx(new Color(128, 0, 128), new int[][]{
-		{0, 0, 0, 0}, 
-		{1, 1, 1, 0}, 
-		{0, 1, 0, 0}, 
-		{0, 0, 0, 0}
+		{0, 0, 0}, 
+		{1, 1, 1}, 
+		{0, 1, 0},
 		}, false),
 
 	// Zx shape in red and not movable
 	Zx(new Color(255, 0, 0), new int[][]{
-		{0, 0, 0, 0}, 
-		{1, 1, 0, 0}, 
-		{0, 1, 1, 0}, 
-		{0, 0, 0, 0}
+		{0, 0, 0}, 
+		{1, 1, 0}, 
+		{0, 1, 1}, 
 		}, false);
 
 	/**

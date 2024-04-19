@@ -62,6 +62,8 @@ public class Tetromino {
 	 * of the grid.
 	 */
 	private int offsetTop = 0;
+	
+	private boolean isMovable;
 
 	/**
 	 * This constructor creates a random Tetromino.
@@ -73,6 +75,8 @@ public class Tetromino {
 		canMoveDown = true;
 		canMoveLeft = true;
 		canMoveRight = true;
+		
+		isMovable = false;
 
 		tetrominoShapeDuo = getRandomTetrominoShapeDuo();
 		tetrominoShape = tetrominoShapeDuo[0];
