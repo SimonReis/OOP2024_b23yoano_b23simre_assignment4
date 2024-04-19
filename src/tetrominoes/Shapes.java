@@ -31,9 +31,10 @@ public enum Shapes {
 	
 	// O shape in yellow
 	O(new Color(255, 255, 0), new int[][]{
-		{0, 0, 0}, 
-		{0, 1, 1}, 
-		{0, 1, 1}, 
+		{0, 0, 0, 0}, 
+		{0, 1, 1, 0}, 
+		{0, 1, 1, 0}, 
+		{0, 0, 0, 0}
 		}, true),
 		
 	// S shape in green
@@ -81,9 +82,10 @@ public enum Shapes {
 	
 	// Ox shape in yellow and not movable
 	Ox(new Color(255, 255, 0), new int[][]{
-		{0, 0, 0}, 
-		{0, 1, 1}, 
-		{0, 1, 1}, 
+		{0, 0, 0, 0}, 
+		{0, 1, 1, 0}, 
+		{0, 1, 1, 0}, 
+		{0, 0, 0, 0}
 		}, false),
 		
 	// Sx shape in green and not movable

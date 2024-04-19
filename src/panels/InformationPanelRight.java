@@ -20,7 +20,7 @@ import tetris.Grid;
 public class InformationPanelRight extends JPanel {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	/**
 	 * This is the tetris game.
 	 */
@@ -45,7 +45,7 @@ public class InformationPanelRight extends JPanel {
 	 * Grid where the next tetromino is displayed.
 	 */
 	private Grid nextGrid;
-	
+
 	/**
 	 * This is the background color of the panel.
 	 */
@@ -70,7 +70,7 @@ public class InformationPanelRight extends JPanel {
 		highScoreLabelNumber = createInformation("Highscore");
 		createNextGrid("Next", this.nextGrid);
 		linesLabelNumber = createInformation("Lines");
-		
+
 		// Use the high score from the application in the information panel
 		setHighScore(highScore);
 	}
@@ -88,13 +88,13 @@ public class InformationPanelRight extends JPanel {
 	/**
 	 * This method converts a numerical value into a string and adds it to a label.
 	 * 
-	 * @param label Label where text should be displayed
+	 * @param label  Label where text should be displayed
 	 * @param number Number for the text field
 	 */
 	private void setNumber(JLabel label, int number) {
 		label.setText(Integer.toString(number));
 	}
-	
+
 	/**
 	 * This method sets the high score value.
 	 * 
@@ -104,7 +104,7 @@ public class InformationPanelRight extends JPanel {
 		highScore = number;
 		setNumber(highScoreLabelNumber, highScore);
 	}
-	
+
 	/**
 	 * This method returns the high score of the game.
 	 */
@@ -127,7 +127,7 @@ public class InformationPanelRight extends JPanel {
 		}
 		game.getFrame().pack();
 	}
-	
+
 	/**
 	 * This method creates a panel in which a text and the corresponding value are
 	 * displayed.
@@ -193,14 +193,14 @@ public class InformationPanelRight extends JPanel {
 
 		this.add(panel);
 	}
-	
+
 	/**
 	 * This method sets the number of cleared lines.
 	 * 
 	 * @param number Number of cleared lines
 	 */
 	public void addClearedLines(int number) {
-		
+
 		if (number >= 0) {
 			clearedLines = clearedLines + number;
 			setNumber(linesLabelNumber, clearedLines);
@@ -209,58 +209,46 @@ public class InformationPanelRight extends JPanel {
 			throw new IllegalArgumentException("Number of cleared lines cannot be negative.");
 		}
 	}
-	
+
 	/**
 	 * This method sets the next tetromino in the next grid.
 	 * 
 	 * @param tetromino The tetromino which shoukld displayed
 	 */
 	public void setNextTetromino(Tetromino tetromino) {
-		
+
 		// Clear next grid at first.
 		nextGrid.clearGrid();
-	
+
 		// Matrix of the tetromino
 		int[][] matrix = extendedMatrix(tetromino.getShape().getMatrix());
-		
-		
-		
+
 		// Draw a colored block for each one in the matrix
-		for(int m = 0; m < nextGrid.getNumRows(); m++) {
-			for(int n = 0; n < nextGrid.getNumCols(); n++) {
-				if(matrix[m][n] == 1) {
+		for (int m = 0; m < nextGrid.getNumRows(); m++) {
+			for (int n = 0; n < nextGrid.getNumCols(); n++) {
+				if (matrix[m][n] == 1) {
 					nextGrid.setValueAt(tetromino.getShape(), m, n);
 				}
 			}
 		}
 	}
-	
-	private int[][] extendedMatrix(int[][] mtx){
-		
-		System.out.println("matrix: "+ mtx);
-		
-		if (mtx.length < 4 && mtx[0].length < 4) {
-			
-			int[][] tmpMtx = new int[4][4];
-			
-			for(int i = 0; i < mtx.length; i++) {
-				for(int j = 0; j < mtx[i].length; j++) {
-					tmpMtx[i][j] = mtx[i][j];
-				}
+
+	private int[][] extendedMatrix(int[][] mtx) {
+
+		System.out.println("matrix: " + mtx);
+
+		//Create 4x4 matrix
+		int[][] tmpMtx = new int[][] { { 0, 0, 0, 0 }, { 0, 0, 0, 0 }, { 0, 0, 0, 0 }, { 0, 0, 0, 0 } };
+
+		for (int i = 0; i < mtx.length; i++) {
+			for (int j = 0; j < mtx[i].length; j++) {
+				tmpMtx[i][j] = mtx[i][j];
 			}
-			
-			for(int i = mtx.length; i < 4; i++) {
-				for(int j = mtx[i].length; j < 4; j++) {
-					tmpMtx[i][j] = 0;
-				}
-			}
-			
-			System.out.println("extended matrix: "+ tmpMtx);
-			
-			return tmpMtx;
-			
 		}
-		
-		return mtx;
+
+		System.out.println("extended matrix: " + tmpMtx);
+
+		return tmpMtx;
+
 	}
 }

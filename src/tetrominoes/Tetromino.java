@@ -456,6 +456,7 @@ public class Tetromino {
 	 * @param matrix Matrix to rotate
 	 * @return rotated matrix
 	 */
+	//TODO Adjust rotate Matrix for 3x3 matrices
 	public int[][] rotateMatrix(int[][] matrix) {
 		if (matrix.length != matrix[0].length || matrix.length != 4) {
 			throw new IllegalArgumentException("Matrix must be a square 4x4 matrix");
