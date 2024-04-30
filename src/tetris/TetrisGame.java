@@ -1,5 +1,4 @@
 package tetris;
-
 import listeners.GameOverListener;
 
 /**

@@ -1,5 +1,7 @@
 package listeners;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
@@ -24,9 +26,13 @@ public class KeyBoardListener implements KeyListener {
             
             // Add a delay of X milliseconds before being able to process the action again.
             // Prevents bugs that happen when a key is pressed continuously.
-            timer = new Timer(100, (e1) -> {
-                processingKey = false;
+            timer = new Timer(100, new ActionListener() {
+            	@Override
+            	public void actionPerformed(ActionEvent e1) {
+            		processingKey = false;
+            	}
             });
+            		
             timer.setRepeats(false);
             timer.start();
         }
